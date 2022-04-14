@@ -34,7 +34,11 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     UserFormComponent,
     RouterModule
   ],
-  imports: [CommonModule, AppRoutingModule, RouterModule,
-  PrimengModule],
+  imports: [
+    CommonModule, 
+    AppRoutingModule, 
+    RouterModule,
+    PrimengModule
+],
 })
 export class FeaturesModule {}
