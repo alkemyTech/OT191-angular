@@ -2,21 +2,28 @@ import { ActivityFormComponent } from "./pages/activities/activity-form/activity
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
+import { SlidesComponent } from "./backoffice/pages/slides/slides.component";
+import { HomeComponent } from "./public/pages/home/home.component";
 
 const routes: Routes = [
   { 
     path: "actividades", 
     component: ActivityFormComponent },
+    {
+      path: "slide",
+      component:SlidesComponent,
+      
+    },
   {
     path: "",
-    redirectTo: "actividades",
-    pathMatch: "full",
+    component: HomeComponent,
   },
   {
     path: "**",
     redirectTo: "actividades",
     pathMatch: "full",
   },
+  
 ];
 
 @NgModule({
@@ -24,3 +31,4 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forRoot(routes)],
 })
 export class AppRoutingModule {}
+export const routingComponents = [SlidesComponent]
