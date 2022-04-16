@@ -10,7 +10,7 @@ const routes: Routes = [
     path: "actividades", 
     component: ActivityFormComponent },
     {
-      path: "slide",
+      path: "backoffice/slides",
       component:SlidesComponent,
       
     },
