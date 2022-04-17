@@ -1,12 +1,18 @@
-import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
+
+import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
 
 const routes: Routes = [
   { 
     path: "actividades", 
-    component: ActivityFormComponent },
+    component: ActivityFormComponent 
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
   {
     path: "",
     redirectTo: "actividades",
@@ -17,6 +23,7 @@ const routes: Routes = [
     redirectTo: "actividades",
     pathMatch: "full",
   },
+  
 ];
 
 @NgModule({

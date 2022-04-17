@@ -1,0 +1,48 @@
+<div class="container-fluid ps-md-0">
+    <div class="row g-0">
+        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image animate__animated animate__fadeInLeft"></div>
+        <div class="col-md-8 col-lg-6">
+            <div class="login d-flex align-items-center py-5">
+                <div class="container animate__animated animate__fadeInRight">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-8 mx-auto">
+                            <h3 class="login-heading mb-4">¡Bienvenido a Somos Más!</h3>
+
+                            <!-- Sign In Form -->
+                            <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+                                <div class="field mb-3 p-fluid">
+                                    <span class="p-float-label">
+                                        <input pInputText type="email" formControlName="email" [class]="isValid('email') ? 'ng-invalid ng-dirty': ''" id="float-input" >
+                                        <label for="float-input">Ingresa tu correo electrónico</label>
+                                    </span>
+                                    <small *ngIf="isValid('email')" class="p-error block">Correo electrónico inválido.</small>
+
+                                </div>
+                                <div class="field mb-3 p-fluid mt-4">
+                                    <span class="p-float-label">
+                                        <p-password type="password" [toggleMask]="true" [feedback]="false" formControlName="password" [class]="isValid('password') ? ' ng-invalid ng-dirty': ''"  styleClass="p-password p-component p-inputwrapper p-input-icon-right"></p-password>
+                                        <label for="password" class="block">Ingresa tu contraseña</label>
+                                    </span>
+                                    <small *ngIf="isValid('password')" class="p-error block">Contraseña no debe estar vacía.</small>
+
+                                </div>
+
+
+
+                                <div class="d-grid">
+                                    <button pButton pRipple [disabled]="loading" type="submit" label="Ingresar" class="p-button-raised"></button>
+                                    <button pButton pRipple [disabled]="loading" routerLink="/" label="Volver" class="p-button-raised p-button-danger mt-3"></button>
+
+                                    <div class="text-center mt-5" *ngIf="this.loginForm.valid && loading">
+                                        <p-progressSpinner [style]="{width: '100px', height: '100px'}" strokeWidth="3"></p-progressSpinner>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
