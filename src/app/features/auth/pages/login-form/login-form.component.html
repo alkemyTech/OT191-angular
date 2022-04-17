@@ -29,8 +29,8 @@
 
 
                                 <div class="d-grid">
-                                    <button pButton pRipple [disabled]="loading" type="submit" label="Ingresar" class="p-button-raised"></button>
-                                    <button pButton pRipple [disabled]="loading" routerLink="/" label="Volver" class="p-button-raised p-button-danger mt-3"></button>
+
+                                    <button pButton pRipple [disabled]="loading" type="submit" label="Ingresar" class="p-button-raised mr-1"></button>
 
                                     <div class="text-center mt-5" *ngIf="this.loginForm.valid && loading">
                                         <p-progressSpinner [style]="{width: '100px', height: '100px'}" strokeWidth="3"></p-progressSpinner>
@@ -38,6 +38,18 @@
                                 </div>
 
                             </form>
+                            <hr>
+                            <div class="col text-center">
+                                <h3 class="login-heading mb-4">¿No tienes un usuario?</h3>
+                                <div class="text-center mr-3">
+                                    <div class="btn-group">
+                                        <button pButton pRipple [disabled]="loading" class="p-button-raised mr-3" style="margin:0 5px;" routerLink="/auth/register" label="¡Registrate aquí!"></button>
+                                        <button pButton pRipple [disabled]="loading" routerLink="/" label="Volver" class="p-button-raised p-button-danger"></button>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
