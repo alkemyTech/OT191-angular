@@ -9,21 +9,20 @@
                             <h3 class="login-heading mb-4">¡Bienvenido a Somos Más!</h3>
 
                             <!-- Sign In Form -->
-                            <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-                                <div class="field mb-3 p-fluid">
-                                    <span class="p-float-label">
-                                        <input pInputText type="email" formControlName="email" [class]="isValid('email') ? 'ng-invalid ng-dirty': ''" id="float-input" >
-                                        <label for="float-input">Ingresa tu correo electrónico</label>
-                                    </span>
-                                    <small *ngIf="isValid('email')" class="p-error block">Correo electrónico inválido.</small>
+                            <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" autofill="off" autocomplete="off">
+                                <div class="field mb-2 p-fluid">
+
+                                    <label for="float-input">Ingresa tu correo electrónico</label>
+                                    <input pInputText type="email" formControlName="email" [class]="isInvalid('email') ? 'ng-invalid ng-dirty': ''" placeholder="name@example.com">
+                                    <small *ngIf="isInvalid('email')" class="p-error block">Correo electrónico inválido.</small>
 
                                 </div>
-                                <div class="field mb-3 p-fluid mt-4">
-                                    <span class="p-float-label">
-                                        <p-password type="password" [toggleMask]="true" [feedback]="false" formControlName="password" [class]="isValid('password') ? ' ng-invalid ng-dirty': ''"  styleClass="p-password p-component p-inputwrapper p-input-icon-right"></p-password>
-                                        <label for="password" class="block">Ingresa tu contraseña</label>
-                                    </span>
-                                    <small *ngIf="isValid('password')" class="p-error block">Contraseña no debe estar vacía.</small>
+                                <div class="field mb-4 p-fluid mt-2">
+
+                                    <label for="password" class="block">Ingresa tu contraseña</label>
+                                    <p-password autofill="off" autocomplete="off" type="password" [toggleMask]="true" [feedback]="false" formControlName="password" [class]="isInvalid('password') ? ' ng-invalid ng-dirty': ''" styleClass="p-password p-component p-inputwrapper p-input-icon-right"
+                                        placeholder="Escribe tu contraseña"></p-password>
+                                    <small *ngIf="isInvalid('password')" class="p-error block">Contraseña no debe estar vacía.</small>
 
                                 </div>
 

@@ -14,8 +14,6 @@ import { User } from 'src/app/core/models/user.model';
 export class LoginFormComponent implements OnInit {
 
   loading = false;
-
-  passempty = true;
   
  // crear formulario de respuesta del login
   loginForm: FormGroup = this.fb.group({
@@ -29,17 +27,13 @@ export class LoginFormComponent implements OnInit {
     private fb: FormBuilder,
     private auth: AuthService
   ) {
-    if (this.loginForm.controls['password'].value !== '') {
-      this.passempty = false;
-    }
-
   }
 
   ngOnInit(): void {
   }
 
 
-  isValid( value: string ) {
+  isInvalid( value: string ) {
 
     return this.loginForm.controls[value].errors 
             && this.loginForm.controls[value].touched;
