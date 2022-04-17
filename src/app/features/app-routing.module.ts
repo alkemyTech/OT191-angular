@@ -6,14 +6,14 @@ import { SlidesComponent } from "./backoffice/pages/slides/slides.component";
 import { HomeComponent } from "./public/pages/home/home.component";
 
 const routes: Routes = [
-  { 
-    path: "actividades", 
-    component: ActivityFormComponent },
-    {
-      path: "backoffice/slides",
-      component:SlidesComponent,
-      
-    },
+  {
+    path: "actividades",
+    component: ActivityFormComponent,
+  },
+  {
+    path: "backoffice/slides",
+    component: SlidesComponent,
+  },
   {
     path: "",
     component: HomeComponent,
@@ -23,7 +23,6 @@ const routes: Routes = [
     redirectTo: "actividades",
     pathMatch: "full",
   },
-  
 ];
 
 @NgModule({
@@ -31,4 +30,4 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forRoot(routes)],
 })
 export class AppRoutingModule {}
-export const routingComponents = [SlidesComponent]
+export const routingComponents = [SlidesComponent];
