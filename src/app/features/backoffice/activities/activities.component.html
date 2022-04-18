@@ -9,7 +9,8 @@
 						pInputText
 						formControlName="name"
 						[ngClass]="
-							activityFormControl.name.touched || submitted
+							(activityFormControl.name.touched || submitted) &&
+							activityFormControl.name.invalid
 								? 'ng-invalid ng-dirty'
 								: ''
 						"
@@ -32,34 +33,35 @@
 		<div class="row mb-4">
 			<div class="col">
 				<ckeditor
+					formControlName="description"
 					[config]="config"
 					(change)="onChange($event)"
-					tagName="tarea"
 					[editor]="Editor"
 					[data]="editorData"
 				></ckeditor>
 			</div>
 		</div>
 		<div class="row mb-4">
-            <div class="col-6">
-                <label for="Image" class="form-label"> Suba una imagen</label>
-                <input
-                    formControlName="image"
-                    type="file"
-                    (change)="onFileSelected($event)"
-                    required
-                />
-                <div
-                    class="text-danger"
-                    *ngIf="
-                        activityFormControl.image.touched && activityFormControl.image.invalid
-                    "
-                >
-                    <span *ngIf="activityFormControl.image.errors?.['required']">
-                        La imagen es requerida
-                    </span>
-                </div>
-            </div>
+			<div class="col-6">
+				<label for="Image" class="form-label"> Suba una imagen</label>
+				<input
+					formControlName="image"
+					type="file"
+					(change)="onFileSelected($event)"
+					required
+				/>
+				<div
+					class="text-danger"
+					*ngIf="
+						activityFormControl.image.touched &&
+						activityFormControl.image.invalid
+					"
+				>
+					<span *ngIf="activityFormControl.image.errors?.['required']">
+						La imagen es requerida
+					</span>
+				</div>
+			</div>
 		</div>
 
 		<div class="row mb-4 justify-content-between">
