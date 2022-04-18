@@ -8,6 +8,7 @@ import {PasswordModule} from 'primeng/password';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {RippleModule} from 'primeng/ripple';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 @NgModule({
   exports: [ 
@@ -19,7 +20,8 @@ import {RippleModule} from 'primeng/ripple';
     ProgressSpinnerModule,
     PasswordModule,
     DividerModule,
-    CardModule
+    CardModule,
+    ProgressBarModule
   ]
 })
 export class PrimengModule { }

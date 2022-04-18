@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AlertService } from 'src/app/core/services/alert.service';
@@ -11,7 +11,7 @@ import { User } from 'src/app/core/models/user.model';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
 
   loading = false;
   
@@ -29,16 +29,11 @@ export class LoginFormComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-  }
-
-
   isInvalid( value: string ) {
 
     return this.loginForm.controls[value].errors 
             && this.loginForm.controls[value].touched;
   }
-
 
 
   onSubmit(){
@@ -57,10 +52,8 @@ export class LoginFormComponent implements OnInit {
         password: this.loginForm.controls['password'].value
       }
 
-      console.log(user);
+      //console.log(user);
 
-
-      
     } catch (error) {
       this.alerts.alertNotification('Error', 'Error desconocido', 'error');
       this.loading = false;
