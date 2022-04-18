@@ -99,13 +99,13 @@
                   ></button>
 
                   <div
-                    class="text-center mt-5"
+                    class="text-center mt-3"
                     *ngIf="this.registerForm.valid && loading"
                   >
-                    <p-progressSpinner
-                      [style]="{ width: '100px', height: '100px' }"
-                      strokeWidth="3"
-                    ></p-progressSpinner>
+                    <p-progressBar
+                      mode="indeterminate"
+                      [style]="{ height: '3px' }"
+                    ></p-progressBar>
                   </div>
                 </div>
               </form>
@@ -119,7 +119,6 @@
                       pRipple
                       [disabled]="loading"
                       class="p-button-raised mr-3"
-                      style="margin: 0 5px"
                       routerLink="/auth/login"
                       label="¡Iniciar Sesión!"
                     ></button>

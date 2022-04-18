@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AlertService } from 'src/app/core/services/alert.service';
@@ -12,7 +12,7 @@ import { ValidatorService } from '../../services/validators/validator.service';
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss']
 })
-export class RegisterFormComponent implements OnInit {
+export class RegisterFormComponent {
 
   loading = false;
 
@@ -35,8 +35,6 @@ export class RegisterFormComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-  }
 
 
   isInvalid( value: string ) {
@@ -63,7 +61,7 @@ export class RegisterFormComponent implements OnInit {
         password: this.registerForm.controls['password'].value
       }
 
-      console.log(user);
+      //console.log(user);
 
 
       
