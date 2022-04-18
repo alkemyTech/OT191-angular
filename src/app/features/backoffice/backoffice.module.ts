@@ -1,15 +1,11 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { PrimengModule } from '../../core/utils/primeng/primeng.module';
-import { CreationNewsComponent } from './pages/creation-news/creation-news.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+import { PrimengModule } from "../../core/utils/primeng/primeng.module";
+import { CreationNewsComponent } from "./pages/creation-news/creation-news.component";
 
 @NgModule({
-  declarations: [
-    CreationNewsComponent
-  ],
-  imports: [
-    CommonModule,
-    PrimengModule
-  ]
+  declarations: [CreationNewsComponent],
+  imports: [CommonModule, PrimengModule, FormsModule, ReactiveFormsModule],
 })
-export class BackofficeModule { }
+export class BackofficeModule {}

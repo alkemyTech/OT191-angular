@@ -1,11 +1,57 @@
 <h2>Creation News</h2>
-<form>
-  titulo contenido
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <form (ngSubmit)="sendCreation()">
+        <!-- [formGroup]="formCreation" -->
+        <div class="mb-3">
+          <label for="InputTitulo" class="form-label">Titutlo</label>
+          <input
+            type="text"
+            class="form-control"
+            id="InputTitulo"
+            formControlName="titulo"
+            placeholder="ingrese titulo"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="InputContenido" class="form-label">Contenido</label>
+          <input
+            type="text"
+            class="form-control"
+            id="InputContenido"
+            formControlName="contenido"
+            placeholder="contenido..."
+          />
+        </div>
 
-  <!--reemplazar el campo de texto por la librería CKEditor-->
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          formControlName="categoria"
+        >
+          <option selected>Categorias</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <br />
+        <input
+          formControlName="img"
+          id="uploadImage"
+          type="file"
+          class="form-control"
+          accept="image/*"
+          multiple
+          (change)="onSelectFile($event)"
+        />
+      </form>
 
-  categoria
-  <!--obtener las Categorías desde el endpoint /categories.-->
+      <button type="submit" [disabled]="formCreation.invalid">Enviar</button>
+    </div>
 
-  imagen
-</form>
+    <div class="col-md-6">
+      <img [src]="files" class="imgPrevi" />
+    </div>
+  </div>
+</div>
