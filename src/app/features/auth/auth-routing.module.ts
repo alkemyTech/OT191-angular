@@ -9,19 +9,15 @@ const routes: Routes = [
     path: '',
     children: [
       { path: 'login', component: LoginFormComponent },
-      { path: 'register', component: RegisterFormComponent},
+      { path: 'register', component: RegisterFormComponent },
       { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: '**', redirectTo: 'login'},
-    ]
-  }
-]
+      { path: '**', redirectTo: 'login' },
+    ],
+  },
+];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}

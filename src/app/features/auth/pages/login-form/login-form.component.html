@@ -1,59 +1,107 @@
 <div class="container-fluid ps-md-0">
-    <div class="row g-0">
-        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image animate__animated animate__fadeInLeft"></div>
-        <div class="col-md-8 col-lg-6">
-            <div class="login d-flex align-items-center py-5">
-                <div class="container animate__animated animate__fadeInRight">
-                    <div class="row">
-                        <div class="col-md-9 col-lg-8 mx-auto">
-                            <h3 class="login-heading mb-4">¡Bienvenido a Somos Más!</h3>
+  <div class="row g-0">
+    <div
+      class="d-none d-md-flex col-md-4 col-lg-6 bg-image animate__animated animate__fadeInLeft"
+    ></div>
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container animate__animated animate__fadeInRight">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="login-heading mb-4">¡Bienvenido a Somos Más!</h3>
 
-                            <!-- Sign In Form -->
-                            <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" autofill="off" autocomplete="off">
-                                <div class="field mb-2 p-fluid">
+              <!-- Sign In Form -->
 
-                                    <label for="float-input">Ingresa tu correo electrónico</label>
-                                    <input pInputText type="email" formControlName="email" [class]="isInvalid('email') ? 'ng-invalid ng-dirty': ''" placeholder="name@example.com">
-                                    <small *ngIf="isInvalid('email')" class="p-error block">Correo electrónico inválido.</small>
-
-                                </div>
-                                <div class="field mb-4 p-fluid mt-2">
-
-                                    <label for="password" class="block">Ingresa tu contraseña</label>
-                                    <p-password autofill="off" autocomplete="off" type="password" [toggleMask]="true" [feedback]="false" formControlName="password" [class]="isInvalid('password') ? ' ng-invalid ng-dirty': ''" styleClass="p-password p-component p-inputwrapper p-input-icon-right"
-                                        placeholder="Escribe tu contraseña"></p-password>
-                                    <small *ngIf="isInvalid('password')" class="p-error block">Contraseña no debe estar vacía.</small>
-
-                                </div>
-
-
-
-                                <div class="d-grid">
-
-                                    <button pButton pRipple [disabled]="loading" type="submit" label="Ingresar" class="p-button-raised mr-1"></button>
-
-                                    <div class="text-center mt-5" *ngIf="this.loginForm.valid && loading">
-                                        <p-progressSpinner [style]="{width: '100px', height: '100px'}" strokeWidth="3"></p-progressSpinner>
-                                    </div>
-                                </div>
-
-                            </form>
-                            <hr>
-                            <div class="col text-center">
-                                <h3 class="login-heading mb-4">¿No tienes un usuario?</h3>
-                                <div class="text-center mr-3">
-                                    <div class="btn-group">
-                                        <button pButton pRipple [disabled]="loading" class="p-button-raised mr-3" style="margin:0 5px;" routerLink="/auth/register" label="¡Registrate aquí!"></button>
-                                        <button pButton pRipple [disabled]="loading" routerLink="/" label="Volver" class="p-button-raised p-button-danger"></button>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
+              <form
+                (ngSubmit)="onSubmit()"
+                [formGroup]="loginForm"
+                autofill="off"
+                autocomplete="off"
+              >
+                <div class="field mb-2 p-fluid">
+                  <label for="float-input">Ingresa tu correo electrónico</label>
+                  <input
+                    pInputText
+                    type="email"
+                    formControlName="email"
+                    [class]="isInvalid('email') ? 'ng-invalid ng-dirty' : ''"
+                    placeholder="name@example.com"
+                  />
+                  <small *ngIf="isInvalid('email')" class="p-error block"
+                    >Correo electrónico inválido.</small
+                  >
                 </div>
+                <div class="field mb-4 p-fluid mt-2">
+                  <label for="password" class="block"
+                    >Ingresa tu contraseña</label
+                  >
+                  <p-password
+                    autofill="off"
+                    autocomplete="off"
+                    type="password"
+                    [toggleMask]="true"
+                    [feedback]="false"
+                    formControlName="password"
+                    [class]="
+                      isInvalid('password') ? ' ng-invalid ng-dirty' : ''
+                    "
+                    styleClass="p-password p-component p-inputwrapper p-input-icon-right"
+                    placeholder="Escribe tu contraseña"
+                  ></p-password>
+                  <small *ngIf="isInvalid('password')" class="p-error block"
+                    >Contraseña no debe estar vacía.</small
+                  >
+                </div>
+
+                <div class="d-grid">
+                  <button
+                    pButton
+                    pRipple
+                    [disabled]="loading"
+                    type="submit"
+                    label="Ingresar"
+                    class="p-button-raised mr-1"
+                  ></button>
+
+                  <div
+                    class="text-center mt-5"
+                    *ngIf="this.loginForm.valid && loading"
+                  >
+                    <p-progressSpinner
+                      [style]="{ width: '100px', height: '100px' }"
+                      strokeWidth="3"
+                    ></p-progressSpinner>
+                  </div>
+                </div>
+              </form>
+              <hr />
+              <div class="col text-center">
+                <h3 class="login-heading mb-4">¿No tienes un usuario?</h3>
+                <div class="text-center mr-3">
+                  <div class="btn-group">
+                    <button
+                      pButton
+                      pRipple
+                      [disabled]="loading"
+                      class="p-button-raised mr-3"
+                      style="margin: 0 5px"
+                      routerLink="/auth/register"
+                      label="¡Registrate aquí!"
+                    ></button>
+                    <button
+                      pButton
+                      pRipple
+                      routerLink="/"
+                      label="Volver"
+                      class="p-button-raised p-button-danger"
+                    ></button>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
