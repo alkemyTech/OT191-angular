@@ -5,6 +5,7 @@ import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/user.model';
+import { ValidatorService } from '../../services/validators/validator.service';
 
 @Component({
   selector: 'app-login-form',
@@ -17,7 +18,7 @@ export class LoginFormComponent implements OnInit {
   
  // crear formulario de respuesta del login
   loginForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.pattern(this.valSer.emailPattern) ]],
     password: ['', [Validators.required]]
   });
   
@@ -25,7 +26,8 @@ export class LoginFormComponent implements OnInit {
     private router: Router, 
     private alerts: AlertService,
     private fb: FormBuilder,
-    private auth: AuthService
+    private auth: AuthService,
+    private valSer: ValidatorService
   ) {
   }
 
