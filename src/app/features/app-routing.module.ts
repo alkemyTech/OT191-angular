@@ -2,13 +2,24 @@ import { ActivityFormComponent } from "./pages/activities/activity-form/activity
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
+import { CategoriesComponent } from "./backoffice/categories/categories.component";
 
 const routes: Routes = [
   { 
     path: "actividades", 
-    component: ActivityFormComponent },
+    component: ActivityFormComponent
+  },
+  { 
+    path: "categories", 
+    component: CategoriesComponent
+  },
   {
     path: "",
+    redirectTo: "actividades",
+    pathMatch: "full",
+  },
+  {
+    path: "**",
     redirectTo: "actividades",
     pathMatch: "full",
   },
@@ -23,4 +34,5 @@ const routes: Routes = [
   declarations: [],
   imports: [CommonModule, RouterModule.forRoot(routes)],
 })
+
 export class AppRoutingModule {}
