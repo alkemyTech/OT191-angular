@@ -1,0 +1,59 @@
+
+<div class="container">
+
+    <form [formGroup]="categoryForm" (ngSubmit)="submitCategory()">
+        <label for="name" class="form-label">Nombre</label>
+        <div class="row">
+            <div class="col-6">
+                <input class="form-control" type="text" id="name" formControlName="name">
+                <div class="text-danger"
+                *ngIf="(categoryFormControl.name.touched || submitted) && categoryFormControl.name.invalid">
+                    <span
+                    *ngIf="categoryFormControl.name.errors?.['required']">
+                        El nombre es requerido
+                    </span>
+                    <span
+                    *ngIf="categoryFormControl.name.errors?.['minlength']">  
+                        El nombre tiene que tener mas de 4 letras
+                    </span>
+                </div>
+            </div>
+        </div>
+        <label for="description" class="form-label">Descripción</label>
+        <div class="row">
+            <div class="col-6">
+                <input type="text" [value]="description" class="form-control" formControlName="description">
+                <div class="text-danger"
+                *ngIf="(categoryFormControl.description.touched || submitted) && categoryFormControl.description.invalid">
+                    <span 
+                    *ngIf="categoryFormControl.description.errors?.required">
+                        La descripcion es requerida
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <label for="Image" class="form-label"> Imagenes</label>
+            <input formControlName="image" type="file" (change)="onFileSelected($event)" required>  
+            <div class="text-danger"
+            *ngIf="(categoryFormControl.image.touched) && categoryFormControl.image.invalid">
+                <span 
+                *ngIf="categoryFormControl.image.errors?.['required']">
+                    La imagen es requerida
+                </span>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col">
+                <button pButton pRipple *ngIf="(categoryForm.status)" type="submit" class="p-button-raised" label="Crear Categoria" ></button>
+
+            </div>
+            <div class="col">
+                <button pButton pRipple type="button"  (click)="cancelAction()" class="p-button-raised p-button-danger" label="Cancelar" ></button>
+
+            </div>
+        </div>
+    </form>
+    
+</div>
