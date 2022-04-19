@@ -11,6 +11,7 @@ import { RouterModule } from "@angular/router";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     CommonModule, 
     AppRoutingModule, 
     RouterModule,
-    PrimengModule
+    PrimengModule,
+    SharedModule
 ],
 })
 export class FeaturesModule {}
