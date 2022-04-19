@@ -1,49 +1,35 @@
-import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { AppRoutingModule, routingComponents } from "./app-routing.module";
-import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 import { CommonModule } from "@angular/common";
-import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
-import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { NgModule } from "@angular/core";
-import { PrimengModule } from '../core/utils/primeng/primeng.module';
-import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { RouterModule } from "@angular/router";
-import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
-import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
-import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 
+
+import { PrimengModule } from '../core/utils/primeng/primeng.module';
+import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [
-    ActivityFormComponent,
-    LoginFormComponent,
-    RegisterFormComponent,
-    CategoriesFormComponent,
-    NewsFormComponent,
-    SlidesFormComponent,
-    TestimonialFormComponent,
-    UserFormComponent,
-    
+  declarations: [ 
     routingComponents,
+    
   ],
   exports: [
-    ActivityFormComponent,
-    LoginFormComponent,
-    RegisterFormComponent,
-    CategoriesFormComponent,
-    NewsFormComponent,
-    SlidesFormComponent,
-    TestimonialFormComponent,
-    UserFormComponent,
-    
     routingComponents,
-    RouterModule
+    RouterModule,
+    CKEditorModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
   ],
   imports: [
-    CommonModule, 
+    CommonModule,
+    CKEditorModule,
     AppRoutingModule, 
     RouterModule,
-    PrimengModule
+    PrimengModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
 ],
 })
 export class FeaturesModule {}
