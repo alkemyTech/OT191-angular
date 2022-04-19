@@ -1,0 +1,136 @@
+<div class="container mt-4">
+	<form [formGroup]="contactForm" (ngSubmit)="submitContact()">
+		<div
+			class="row pt-4"
+			[ngClass]="
+				validateControlForSpacing(contactFormControl.name) &&
+				validateControlForSpacing(contactFormControl.phone)
+					? 'mb-4'
+					: ''
+			"
+		>
+			<div class="col">
+				<div class="p-inputgroup">
+					<span class="p-float-label">
+						<input
+							id="name"
+							type="text"
+							class="p-inputtext-lg"
+							formControlName="name"
+							pInputText
+							[ngClass]="
+								validateControlForText(contactFormControl.name)
+									? 'ng-invalid ng-dirty'
+									: ''
+							"
+						/>
+						<label for="float-input">Nombre</label>
+					</span>
+				</div>
+				<div
+					class="text-danger"
+					*ngIf="validateControlForText(contactFormControl.name)"
+				>
+					<span *ngIf="contactFormControl.name.errors?.['required']">
+						El nombre es requerido
+					</span>
+				</div>
+			</div>
+
+			<div class="col">
+                <div class="">
+					<span class="p-float-label">
+                        <p-inputMask formControlName="phone" type="tel" inputId="phone" styleClass="p-inputgroup p-inputtext-lg" mask="(999) 999-9999"></p-inputMask>
+                    <label for="phone">Telefono</label>
+                </span>
+            </div>
+                <div
+					class="text-danger"
+					*ngIf="validateControlForText(contactFormControl.phone)"
+				>
+					<span *ngIf="contactFormControl.phone.errors?.['required']">
+						El telefono es requerido
+					</span>
+				</div>
+			</div>
+		</div>
+		<div
+			class="row pt-4"
+			[ngClass]="
+				validateControlForSpacing(contactFormControl.mail) ? 'mb-4' : ''
+			"
+		>
+			<div class="col-12">
+				<div class="p-inputgroup">
+					<span class="p-float-label">
+						<input
+							id="mail"
+							type="email"
+							class="p-inputtext-lg"
+							formControlName="mail"
+                            ng-pattern=" ^[a-z]+[a-z0-9._-]+@[a-z]+\.[a-z.]{2,6}$"
+							pInputText
+						/>
+						<label for="float-input">Email</label>
+					</span>
+				</div>
+				<div
+					class="text-danger"
+					*ngIf="validateControlForText(contactFormControl.mail)"
+				>
+					<span *ngIf="contactFormControl.mail.errors?.['required']">
+						El mail es requerido
+					</span>
+                    <span *ngIf="contactFormControl.mail.errors?.['mailFormat'] && !contactFormControl.mail.errors?.['required']">
+						El mail no es valido
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<div
+			class="row pt-4"
+			[ngClass]="
+				validateControlForSpacing(contactFormControl.message) ? 'mb-4' : ''
+			"
+		>
+			<div class="col">
+				<div class="p-inputgroup">
+					<span class="p-float-label">
+						<textarea
+							id="message"
+							[rows]="3"
+							[cols]="40"
+							formControlName="message"
+							pInputTextarea
+							[autoResize]="autoResize"
+						></textarea>
+						<label for="message">Mensaje</label>
+					</span>
+				</div>
+
+				<div
+					class="text-danger"
+					*ngIf="validateControlForText(contactFormControl.message)"
+				>
+					<span *ngIf="contactFormControl.message.errors?.['required']">
+						El mensaje es requerido
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="row pt-4 mb-4 justify-content-between">
+			<div class="col-auto mr-auto">
+			</div>
+			<div class="col-auto">
+				<button
+					pButton
+					pRipple
+					type="submit"
+					class="p-button-raised"
+					label="Enviar"
+				></button>
+			</div>
+		</div>
+	</form>
+</div>

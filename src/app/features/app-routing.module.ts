@@ -4,6 +4,7 @@ import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 import { SlidesComponent } from "./backoffice/pages/slides/slides.component";
 import { HomeComponent } from "./public/pages/home/home.component";
+import { FormcontactComponent } from "./public/formcontact/formcontact.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: "",
     component: HomeComponent,
+  },
+  {
+    path: "public/contact",
+    component: FormcontactComponent,
   },
   {
     path: "**",
