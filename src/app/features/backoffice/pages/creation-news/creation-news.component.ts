@@ -1,5 +1,7 @@
+import { ApiService } from "./../../services/api.service";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { DataCategorie } from "src/app/core/Models/categorie.model";
 
 @Component({
   selector: "app-creation-news",
@@ -8,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 })
 export class CreationNewsComponent implements OnInit {
   files: any;
+  categorias!: DataCategorie[];
 
   formCreation: FormGroup = this.fb.group({
     titulo: ["", [Validators.required, Validators.minLength(4)]],
@@ -16,14 +19,21 @@ export class CreationNewsComponent implements OnInit {
     img: ["", [Validators.required]],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private api: ApiService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.api.getCategories().subscribe((data) => {
+      this.categorias = data.data;
+    });
+  }
 
   sendCreation() {
     const form = this.formCreation.value;
-    console.log(form);
-    this.formCreation.reset;
+  }
+
+  reset() {
+    this.formCreation.reset();
+    this.files = "";
   }
 
   onSelectFile(img: any) {

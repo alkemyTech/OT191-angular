@@ -44,6 +44,7 @@
           >
         </div>
 
+        <!-- <div > -->
         <select
           class="form-select"
           formControlName="categoria"
@@ -53,10 +54,11 @@
           "
         >
           <option selected>Categorias</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option *ngFor="let categori of categorias" value="{{ categori.id }}">
+            {{ categori.name }}
+          </option>
         </select>
+        <!-- </div> -->
         <small *ngIf="isInvalid('categoria')" class="p-error block"
           >Categoria Requerido</small
         >
@@ -76,27 +78,32 @@
         >
 
         <br />
-        <button
-          type="reset"
-          pButton
-          type="button"
-          label="Cancelar"
-          class="p-button-danger m-3"
-        ></button>
+        <div class="text-center">
+          <button
+            type="reset"
+            pButton
+            type="button"
+            label="Cancelar"
+            class="p-button-danger m-3"
+            (click)="reset()"
+          ></button>
 
-        <button
-          type="submit"
-          [disabled]="formCreation.invalid"
-          pButton
-          type="button"
-          label="Enviar"
-          class="p-button-Primary m-3"
-        ></button>
+          <button
+            type="submit"
+            [disabled]="formCreation.invalid"
+            pButton
+            type="button"
+            label="Enviar"
+            class="p-button-Primary m-3"
+          ></button>
+        </div>
       </form>
     </div>
 
     <div class="col-md-6">
-      <img [src]="files" class="imgPrevi" />
+      <div class="contenedor">
+        <img [src]="files" class="imgPrevi" />
+      </div>
     </div>
   </div>
 </div>
