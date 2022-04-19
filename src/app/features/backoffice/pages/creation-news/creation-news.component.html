@@ -2,7 +2,7 @@
 <div class="container-fluid mt-4">
   <div class="row">
     <div class="col-md-6">
-      <form (ngSubmit)="sendCreation()">
+      <form (ngSubmit)="sendCreation()" [formGroup]="formCreation">
         <!-- [formGroup]="formCreation" -->
         <div class="mb-3">
           <label for="InputTitulo" class="form-label">Titutlo</label>

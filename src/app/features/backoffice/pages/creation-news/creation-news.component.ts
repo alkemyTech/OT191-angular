@@ -35,6 +35,3 @@ export class CreationNewsComponent implements OnInit {
     }
   }
 }
-function titulo(titulo: any): import("@angular/forms").AbstractControl {
-  throw new Error("Function not implemented.");
-}
