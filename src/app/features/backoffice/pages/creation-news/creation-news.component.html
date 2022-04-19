@@ -3,7 +3,6 @@
   <div class="row">
     <div class="col-md-6">
       <form (ngSubmit)="sendCreation()" [formGroup]="formCreation">
-        <!-- [formGroup]="formCreation" -->
         <div class="mb-3">
           <label for="InputTitulo" class="form-label">Titutlo</label>
           <input
@@ -11,9 +10,14 @@
             class="form-control"
             id="InputTitulo"
             formControlName="titulo"
+            [class.is-invalid]="
+              this.formCreation.get('titulo')?.invalid &&
+              this.formCreation.get('titulo')?.touched
+            "
             placeholder="ingrese titulo"
           />
         </div>
+
         <div class="mb-3">
           <label for="InputContenido" class="form-label">Contenido</label>
           <input
@@ -27,8 +31,8 @@
 
         <select
           class="form-select"
-          aria-label="Default select example"
           formControlName="categoria"
+          aria-label="Default select example"
         >
           <option selected>Categorias</option>
           <option value="1">One</option>
@@ -37,17 +41,30 @@
         </select>
         <br />
         <input
-          formControlName="img"
           id="uploadImage"
           type="file"
           class="form-control"
           accept="image/*"
           multiple
           (change)="onSelectFile($event)"
+          formControlName="img"
         />
+        <br />
+        <button
+          pButton
+          type="button"
+          label="Cancelar"
+          class="p-button-danger m-3"
+        ></button>
+        <button
+          type="submit"
+          [disabled]="formCreation.invalid"
+          pButton
+          type="button"
+          label="Enviar"
+          class="p-button-Primary m-3"
+        ></button>
       </form>
-
-      <button type="submit" [disabled]="formCreation.invalid">Enviar</button>
     </div>
 
     <div class="col-md-6">

@@ -10,9 +10,9 @@ export class CreationNewsComponent implements OnInit {
   files: any;
 
   formCreation: FormGroup = this.fb.group({
-    titulo: ["", [Validators.required, Validators.minLength(6)]],
+    titulo: ["", [Validators.required, Validators.minLength(4)]],
     contenido: ["", [Validators.required]],
-    categoria: ["", [Validators.required]],
+    categoria: ["Categorias", [Validators.required]],
     img: ["", [Validators.required]],
   });
 
