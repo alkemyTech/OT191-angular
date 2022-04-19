@@ -12,7 +12,7 @@ export class CreationNewsComponent implements OnInit {
   formCreation: FormGroup = this.fb.group({
     titulo: ["", [Validators.required, Validators.minLength(4)]],
     contenido: ["", [Validators.required]],
-    categoria: ["Categorias", [Validators.required]],
+    categoria: ["", [Validators.required]],
     img: ["", [Validators.required]],
   });
 
@@ -23,6 +23,7 @@ export class CreationNewsComponent implements OnInit {
   sendCreation() {
     const form = this.formCreation.value;
     console.log(form);
+    this.formCreation.reset;
   }
 
   onSelectFile(img: any) {
@@ -33,5 +34,12 @@ export class CreationNewsComponent implements OnInit {
         this.files = event.target.result;
       };
     }
+  }
+
+  isInvalid(value: string) {
+    return (
+      this.formCreation.controls[value].errors &&
+      this.formCreation.controls[value].touched
+    );
   }
 }
