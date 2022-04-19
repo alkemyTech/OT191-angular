@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  public welcomeong:string = "Texto de bienvenida  "
+
   constructor() { }
 
   ngOnInit(): void {

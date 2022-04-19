@@ -1,0 +1,23 @@
+.welcome {
+  display: -ms-flexbox;
+  text-align: center;
+  align-items: center;
+  font-weight: 200;
+}
+
+.container {
+  margin-top: 15vh;
+  background-color: var(--primaryColor);
+  border: 0.2rem solid var(--accentColor);
+  border-radius: 1rem;
+  box-shadow: 0.05rem 0.05rem 0.05rem 0.05rem rgba(0, 0, 0, 0.192);
+  height: fit-content;
+  padding: 1rem;
+  width: fit-content;
+  min-width: 500px;
+}
+
+.container .col {
+  display: inline-block;
+  width: 50%;
+}
