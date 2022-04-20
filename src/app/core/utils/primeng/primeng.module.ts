@@ -1,9 +1,17 @@
 import {ButtonModule} from 'primeng/button';
 import { NgModule } from '@angular/core';
+import {InputTextModule} from 'primeng/inputtext';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {InputMaskModule} from 'primeng/inputmask';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   exports: [ 
-    ButtonModule
+    ButtonModule,
+    InputTextModule,
+    InputTextareaModule,
+    InputMaskModule,
+    DropdownModule
   ]
 })
 export class PrimengModule { }

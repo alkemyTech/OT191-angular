@@ -4,6 +4,7 @@ import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 import { SlidesComponent } from "./backoffice/pages/slides/slides.component";
 import { HomeComponent } from "./public/pages/home/home.component";
+import { EditOrganizationComponent } from "./backoffice/edit-organization/edit-organization.component";
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: "backoffice/slides",
     component: SlidesComponent,
+  },
+  {
+    path: "backoffice/organization/edit",
+    component: EditOrganizationComponent,
   },
   {
     path: "",
