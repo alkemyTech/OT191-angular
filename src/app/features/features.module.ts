@@ -24,8 +24,6 @@ import { SharedModule } from '../shared/shared.module';
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
-    
-    
   ],
   exports: [
     ActivityFormComponent,
@@ -36,8 +34,6 @@ import { SharedModule } from '../shared/shared.module';
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
-    
-    
     RouterModule
   ],
   imports: [
