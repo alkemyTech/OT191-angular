@@ -1,5 +1,5 @@
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
-import { AppRoutingModule } from "./app-routing.module";
+import { AppRoutingModule, routingComponents } from "./app-routing.module";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 import { CommonModule } from "@angular/common";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
@@ -13,6 +13,7 @@ import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { BackofficeModule } from "./backoffice/backoffice.module";
 
+
 @NgModule({
   declarations: [
     ActivityFormComponent,
@@ -22,7 +23,8 @@ import { BackofficeModule } from "./backoffice/backoffice.module";
     NewsFormComponent,
     SlidesFormComponent,
     TestimonialFormComponent,
-    UserFormComponent
+    UserFormComponent,
+    routingComponents,
   ],
   exports: [
     ActivityFormComponent,
@@ -33,8 +35,9 @@ import { BackofficeModule } from "./backoffice/backoffice.module";
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
-    RouterModule,
-    BackofficeModule
+    BackofficeModule,
+    routingComponents, 
+    RouterModule
   ],
   imports: [
     CommonModule, 
