@@ -47,8 +47,9 @@
 
 /* Image styles */
 
-.img-title {
-  margin-bottom: 20px;
+.second-title{
+  margin-bottom: 10px;
+  margin-top: 30px;
 }
 
 .img {
@@ -66,5 +67,27 @@
 .form-control{
     width: auto;
     min-width: 200px;
-    margin-bottom: 3rem;
+    
+}
+
+@media (max-width:760px){
+  .title{
+    padding-top: 15vh;
+    padding-bottom: 1rem;
+    margin-left: 32%;
+  }
+  .container{
+    display: block;
+    height: 60%;
+  }
+  .col{
+    width: 90%;
+    height: 60%;
+  }
+
+ 
+  #mobile{
+    display: block;
+    margin-left: 7%;
+  }
 }

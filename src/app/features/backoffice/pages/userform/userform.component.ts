@@ -25,8 +25,8 @@ export class UserformComponent implements OnInit {
   }
   
   editarUser = new FormGroup({
-    name: new FormControl(null,[Validators.required,Validators.minLength(4)]),
-    email: new FormControl(null,[Validators.required,Validators.email]),
+    name: new FormControl("",[Validators.required,Validators.minLength(4)]),
+    email: new FormControl("",[Validators.required,Validators.email]),
     role_id: new FormControl(null)
   })
 
@@ -64,6 +64,18 @@ export class UserformComponent implements OnInit {
       subscriber.error(error);
     };
   }
+
+  //Invalid inputs
+
+  get name() {
+    return this.editarUser.get('name');
+  }
+  get email() {
+    return this.editarUser.get('email');
+  }
+  
+
+  //conectar con API
 
   editarForm(form:UserI){
     if(this.user.role_id == 0){

@@ -28,14 +28,14 @@
               type="text"
               class="form-control form-control-sm"
               placeholder="Nombre de usuario"
-              
+              formControlName="name"
               required
             />
-            
+            <small class="text-danger"  *ngIf="name?.invalid && name?.touched ">Name is required</small>
             
           </ng-template>
 
-          <h4 class="img-title">Imagen de perfil</h4>
+          <h4 class="second-title">Imagen de perfil</h4>
           <div class="mb-3">
             <label for="formFile" class="form-label">Ingrese una imagen</label>
             <input
@@ -50,7 +50,7 @@
           <img class="img" [src]="images" alt="" />
         </ul>
       </div>
-      <div class="col">
+      <div class="col" id="mobile">
         <h4>Email</h4>
           <div
             *ngIf="user.role_id != 0; then thenBlock1; else elseBlock1"
@@ -78,16 +78,16 @@
               
               required
             />
-            
+            <small class="text-danger"  *ngIf="email?.invalid && email?.touched ">Email is required and valid email</small>
             
           </ng-template>
-        <h4>Elige Rol</h4>
+        <h4 class="second-title">Elige Rol</h4>
         <select
           class="form-select form-select-lg mb-3"
           aria-label=".form-select-lg example"
           formControlName="role_id"
         >
-          <option selected>Elegir rol</option>
+          
           <option value="1">Administrador</option>
           <option value="2">Usuario</option>          
         </select>
