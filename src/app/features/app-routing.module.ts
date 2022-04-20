@@ -28,11 +28,6 @@ const routes: Routes = [
     redirectTo: "actividades",
     pathMatch: "full",
   },
-  {
-    path: "**",
-    redirectTo: "actividades",
-    pathMatch: "full",
-  },
 ];
 
 @NgModule({
