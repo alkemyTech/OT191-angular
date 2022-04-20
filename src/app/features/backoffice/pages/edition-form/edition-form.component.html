@@ -1,0 +1,131 @@
+<h2 class="mt-3 ms-2">Edition Form</h2>
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <form
+        (ngSubmit)="sendEdition()"
+        [formGroup]="formEdition"
+        autofill="off"
+        autocomplete="off"
+      >
+        <div class="mb-3">
+          <label for="InputTitulo" class="form-label">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="InputTitulo"
+            formControlName="name"
+            [class.is-invalid]="
+              this.formEdition.get('name')?.invalid &&
+              this.formEdition.get('name')?.touched
+            "
+            placeholder="Ingrese Nombre..."
+          />
+          <small *ngIf="isInvalid('name')" class="p-error block"
+            >Nombre invalido min 4 caracteres.</small
+          >
+        </div>
+
+        <div class="mb-3">
+          <label for="InputContenido" class="form-label">Descripcion</label>
+          <input
+            type="text"
+            class="form-control"
+            id="InputContenido"
+            formControlName="descripcion"
+            placeholder="Ingrese descripcion..."
+            [class.is-invalid]="
+              this.formEdition.get('descripcion')?.invalid &&
+              this.formEdition.get('descripcion')?.touched
+            "
+          />
+          <small *ngIf="isInvalid('descripcion')" class="p-error block"
+            >Descripcion requerido</small
+          >
+        </div>
+
+        <div class="mb-3">
+          <label for="url" class="form-label">Instagram</label>
+          <input
+            type="url"
+            id="url"
+            class="form-control"
+            formControlName="instagram"
+            placeholder="https://example.com"
+            pattern="https://.*"
+            size="30"
+            [class.is-invalid]="
+              this.formEdition.get('instagram')?.invalid &&
+              this.formEdition.get('instagram')?.touched
+            "
+          />
+          <small *ngIf="isInvalid('instagram')" class="p-error block"
+            >instagram requerido</small
+          >
+        </div>
+
+        <div class="mb-3">
+          <label for="url" class="form-label">Facebook</label>
+          <input
+            type="url"
+            id="url"
+            class="form-control"
+            formControlName="facebook"
+            placeholder="https://example.com"
+            pattern="https://.*"
+            size="30"
+            [class.is-invalid]="
+              this.formEdition.get('facebook')?.invalid &&
+              this.formEdition.get('facebook')?.touched
+            "
+          />
+          <small *ngIf="isInvalid('facebook')" class="p-error block"
+            >facebook requerido</small
+          >
+        </div>
+
+        <br />
+        <input
+          id="uploadImage"
+          type="file"
+          class="form-control"
+          accept="image/*"
+          multiple
+          (change)="onSelectFile($event)"
+          formControlName="img"
+        />
+        <small *ngIf="isInvalid('img')" class="p-error block"
+          >Imagen Requerida</small
+        >
+
+        <br />
+        <div class="text-center">
+          <button
+            type="reset"
+            pButton
+            type="button"
+            label="Cancelar"
+            class="p-button-danger m-3"
+            (click)="reset()"
+          ></button>
+
+          <button
+            type="submit"
+            [disabled]="formEdition.invalid"
+            pButton
+            type="button"
+            label="Enviar"
+            class="p-button-Primary m-3"
+            (click)="sendEdition()"
+          ></button>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <div class="contenedor">
+        <img [src]="files" class="imgPrevi" />
+      </div>
+    </div>
+  </div>
+</div>
