@@ -1,8 +1,19 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
-export function urlValidator(nameRe: RegExp): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const formatUrl = nameRe.test(control.value);
-      return formatUrl? null: {formatUrl: {value: control.value}} ;
-    };
-  }
+export function urlValidator(site:string): ValidatorFn {
+    const nameRe= new RegExp("[a-zA-Z0-9./]{1,50}")
+	return (control: AbstractControl): ValidationErrors | null => {
+        if (String(control.value).includes(site)){
+            const start= String(control.value).indexOf('.com/')+4;
+            const end= String(control.value).length;
+            const user= String(control.value).substring(start,end);
+            console.log(user);
+            const formatUrl = nameRe.test(user);
+            console.log(formatUrl);
+            return formatUrl ? null : { formatUrl: { value: control.value } };
+        }else{
+            return { formatUrl: { value: control.value } }
+        }
+
+	};
+}

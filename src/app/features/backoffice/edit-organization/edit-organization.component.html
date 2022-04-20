@@ -1,7 +1,7 @@
 <div class="container mt-4">
 	<form [formGroup]="organizationForm" (ngSubmit)="submitOrganization()">
 		<div
-			class="row pt-4"
+			class="row pt-4 justify-content-between"
 			[ngClass]="
 				validateControlForSpacing(organizationFormControl.name) &&
 				validateControlForSpacing(organizationFormControl.logo)
@@ -9,7 +9,7 @@
 					: ''
 			"
 		>
-			<div class="col">
+			<div class="col-auto mr-auto align-self-center">
 				<div class="p-inputgroup">
 					<span class="p-float-label">
 						<input
@@ -36,46 +36,23 @@
 					</span>
 				</div>
 			</div>
-
-			<div class="col">
-				<label for="logo" class="form-label"> Suba una imagen</label>
-				<input
-					id="logo"
-					formControlName="logo"
-					type="file"
-					(change)="onFileSelected($event)"
-					accept="image/x-png,image/jpeg"
-					required
-					#logo
-					style="display: none"
-				/>
-				<button
-					type="button"
-					pButton
-					class="p-button-raised-sm p-button-secondary"
-					(click)="logo.click()"
-				>
-					Suba su logo
-				</button>
-				<div
-					class="text-danger"
-					*ngIf="validateControlForText(organizationFormControl.logo)"
-				>
-					<span *ngIf="organizationFormControl.logo.errors?.['required']">
-						La imagen es requerida
-					</span>
-				</div>
+			<div class="col-auto">
+				<p-image
+					src="assets/LOGO-SOMOS-MAS.png"
+					alt="Image"
+					width="200"
+				></p-image>
 			</div>
 		</div>
 		<div
-			class="row pt-4"
+			class="row row no-gutters"
 			[ngClass]="
 				validateControlForSpacing(organizationFormControl.shortDescription)
 					? 'mb-4'
 					: ''
 			"
 		>
-			<div class="col">
+			<div class="col-12 col-sm-6 col-md-8">
 				<div class="p-inputgroup">
 					<span class="p-float-label">
 						<input
@@ -103,8 +80,35 @@
 					</span>
 				</div>
 			</div>
+			<div class="col-6 col-md-4">
+				<input
+					id="logo"
+					formControlName="logo"
+					type="file"
+					(change)="onFileSelected($event)"
+					accept="image/x-png,image/jpeg"
+					required
+					#logo
+					style="display: none"
+				/>
+				<button
+					type="button"
+					pButton
+					class="p-button-raised-lg p-button-secondary"
+					(click)="logo.click()"
+				>
+					Subir logo
+				</button>
+				<div
+					class="text-danger"
+					*ngIf="validateControlForText(organizationFormControl.logo)"
+				>
+					<span *ngIf="organizationFormControl.logo.errors?.['required']">
+						El logo es requerido
+					</span>
+				</div>
+			</div>
 		</div>
-
 		<div
 			class="row pt-4"
 			[ngClass]="
@@ -142,17 +146,34 @@
 				</div>
 			</div>
 		</div>
-		<div class="row pt-4">
-			<div class="col">
+		<div
+			class="row pt-4"
+			[ngClass]="
+				validateControlForSpacing(organizationFormLinksControl.twitter)
+					? 'mb-4'
+					: ''
+			"
+		>
+			<div class="col" formGroupName="links">
 				<div class="p-inputgroup">
 					<span class="p-inputgroup-addon"><i class="pi pi-twitter"></i></span>
-					<span class="p-inputgroup-addon">www.twitter.com </span>
 					<input
+						formControlName="twitter"
 						type="text"
 						class="p-inputtext-lg"
 						pInputText
-						placeholder="/Usuario"
+						placeholder="www.twitter.com/Usuario"
 					/>
+				</div>
+				<div
+					class="text-danger"
+					*ngIf="validateControlForText(organizationFormLinksControl.twitter)"
+				>
+					<span
+						*ngIf="organizationFormLinksControl.twitter.errors?.['formatUrl']"
+					>
+						La url no es valida
+					</span>
 				</div>
 			</div>
 		</div>
@@ -167,42 +188,56 @@
 			<div class="col" formGroupName="links">
 				<div class="p-inputgroup">
 					<span class="p-inputgroup-addon"><i class="pi pi-facebook"></i></span>
-					<span class="p-inputgroup-addon">www.facebook.com</span>
 					<input
 						formControlName="facebook"
 						type="text"
 						class="p-inputtext-lg"
 						pInputText
-						placeholder="/Usuario"
+						placeholder="www.facebook.com/Usuario"
 					/>
 				</div>
 				<div
 					class="text-danger"
-					*ngIf="
-						validateControlForText(organizationFormLinksControl.facebook)
-					"
+					*ngIf="validateControlForText(organizationFormLinksControl.facebook)"
 				>
 					<span
-						*ngIf="organizationFormLinksControl.facebook.errors?.['required']"
+						*ngIf="organizationFormLinksControl.facebook.errors?.['formatUrl']"
 					>
 						La url no es valida
 					</span>
 				</div>
 			</div>
 		</div>
-		<div class="row pt-4">
-			<div class="col pb-4">
+		<div
+			class="row pt-4"
+			[ngClass]="
+				validateControlForSpacing(organizationFormLinksControl.instagram)
+					? 'mb-4'
+					: ''
+			"
+		>
+			<div class="col" formGroupName="links">
 				<div class="p-inputgroup">
 					<span class="p-inputgroup-addon"
 						><i class="pi pi-instagram"></i
 					></span>
-					<span class="p-inputgroup-addon">www.instagram.com</span>
 					<input
+						formControlName="instagram"
 						type="text"
 						class="p-inputtext-lg"
 						pInputText
-						placeholder="/Usuario"
+						placeholder="www.instagram.com/Usuario"
 					/>
+				</div>
+				<div
+					class="text-danger"
+					*ngIf="validateControlForText(organizationFormLinksControl.instagram)"
+				>
+					<span
+						*ngIf="organizationFormLinksControl.instagram.errors?.['formatUrl']"
+					>
+						La url no es valida
+					</span>
 				</div>
 			</div>
 		</div>

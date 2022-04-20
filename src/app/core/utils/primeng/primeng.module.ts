@@ -4,6 +4,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {InputMaskModule} from 'primeng/inputmask';
 import {DropdownModule} from 'primeng/dropdown';
+import {ImageModule} from 'primeng/image';
 
 @NgModule({
   exports: [ 
@@ -11,7 +12,8 @@ import {DropdownModule} from 'primeng/dropdown';
     InputTextModule,
     InputTextareaModule,
     InputMaskModule,
-    DropdownModule
+    DropdownModule,
+    ImageModule
   ]
 })
 export class PrimengModule { }
