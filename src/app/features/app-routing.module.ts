@@ -11,12 +11,16 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: "actividades",
-    component: ActivityFormComponent,
-  },
-  {
     path: "backoffice/slides",
     component: SlidesComponent,
+  },
+  {
+    path: 'backoffice',
+    loadChildren: () => import('./backoffice/backoffice.module').then(m => m.BackofficeModule)
+  },
+  {
+    path: "actividades",
+    component: ActivityFormComponent,
   },
   {
     path: "",

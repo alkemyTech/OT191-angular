@@ -9,6 +9,10 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {RippleModule} from 'primeng/ripple';
 import {ProgressBarModule} from 'primeng/progressbar';
+import {TableModule} from 'primeng/table';
+import {VirtualScrollerModule} from 'primeng/virtualscroller';
+import {ImageModule} from 'primeng/image';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 @NgModule({
   exports: [ 
@@ -21,7 +25,11 @@ import {ProgressBarModule} from 'primeng/progressbar';
     PasswordModule,
     DividerModule,
     CardModule,
-    ProgressBarModule
+    ProgressBarModule,
+    TableModule,
+    VirtualScrollerModule,
+    ImageModule,
+    InputTextareaModule
   ]
 })
 export class PrimengModule { }
