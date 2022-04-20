@@ -1,5 +1,5 @@
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
-import { AppRoutingModule, routingComponents } from "./app-routing.module";
+import { AppRoutingModule } from "./app-routing.module";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 import { CommonModule } from "@angular/common";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
@@ -24,7 +24,7 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     TestimonialFormComponent,
     UserFormComponent,
     
-    routingComponents,
+    
   ],
   exports: [
     ActivityFormComponent,
@@ -36,7 +36,7 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     TestimonialFormComponent,
     UserFormComponent,
     
-    routingComponents,
+    
     RouterModule
   ],
   imports: [
