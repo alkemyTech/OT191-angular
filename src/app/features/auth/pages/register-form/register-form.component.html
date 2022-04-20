@@ -1,0 +1,17 @@
+<h5>Templating</h5>
+<p-password type="password" [toggleMask]="true" styleClass="p-password p-component p-inputwrapper p-input-icon-right" promptLabel="Seguridad" weakLabel="Mala" goodLabel="Normal" strongLabel="Perfecta" strongRegex="^(?=.*[a-z])(?=.*[!#$%&/()=?<>@'¿{}¡])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})"
+    mediumRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{4,})">
+    <ng-template pTemplate="header">
+        <h6>Elige tu contraseña</h6>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <p-divider></p-divider>
+        <p class="mt-2">Debe tener:</p>
+        <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+            <li>Al menos una letra minúscula</li>
+            <li>Al menos una letra mayúscula</li>
+            <li>Al menos un número</li>
+            <li>Mínimo 6 caracteres</li>
+        </ul>
+    </ng-template>
+</p-password>
