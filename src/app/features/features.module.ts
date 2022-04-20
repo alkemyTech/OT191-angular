@@ -5,13 +5,13 @@ import { CommonModule } from "@angular/common";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { NgModule } from "@angular/core";
-import { PrimengModule } from '../core/utils/primeng/primeng.module';
+import { PrimengModule } from "../core/utils/primeng/primeng.module";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { RouterModule } from "@angular/router";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
-
+import { BackofficeModule } from "./backoffice/backoffice.module";
 
 @NgModule({
   declarations: [
@@ -23,8 +23,6 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
-    
-    
   ],
   exports: [
     ActivityFormComponent,
@@ -35,15 +33,15 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
-    
-    
-    RouterModule
+
+    RouterModule,
   ],
   imports: [
-    CommonModule, 
-    AppRoutingModule, 
+    CommonModule,
+    AppRoutingModule,
     RouterModule,
-    PrimengModule
-],
+    PrimengModule,
+    BackofficeModule,
+  ],
 })
 export class FeaturesModule {}
