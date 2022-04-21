@@ -12,6 +12,7 @@ import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.comp
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { SharedModule } from '../shared/shared.module';
+import { BackofficeModule } from "./backoffice/backoffice.module";
 
 
 @NgModule({
@@ -34,14 +35,16 @@ import { SharedModule } from '../shared/shared.module';
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
-    RouterModule
+    RouterModule,
+    BackofficeModule
+
   ],
   imports: [
     CommonModule, 
     AppRoutingModule, 
     RouterModule,
     PrimengModule,
-    SharedModule
+    SharedModule,
 ],
 })
 export class FeaturesModule {}
