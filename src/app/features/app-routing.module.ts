@@ -7,8 +7,8 @@ import { NgModule } from "@angular/core";
 
 const routes: Routes = [
   {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    path: "auth",
+    loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
   },
   {
     path: "actividades",
@@ -27,7 +27,6 @@ const routes: Routes = [
     redirectTo: "",
     pathMatch: "full",
   },
-  
 ];
 
 @NgModule({

@@ -41,7 +41,8 @@ import { BackofficeModule } from "./backoffice/backoffice.module";
     CommonModule, 
     AppRoutingModule, 
     RouterModule,
-    PrimengModule
+    PrimengModule,
+    BackofficeModule,
 ],
 })
 export class FeaturesModule {}
