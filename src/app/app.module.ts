@@ -6,10 +6,17 @@ import { CoreModule } from "./core/core.module";
 import { FeaturesModule } from "./features/features.module";
 import { NgModule } from "@angular/core";
 import { PrimengModule } from "./core/utils/primeng/primeng.module";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, CoreModule, FeaturesModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    CoreModule,
+    FeaturesModule,
+    RouterModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
