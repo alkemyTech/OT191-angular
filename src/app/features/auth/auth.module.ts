@@ -8,16 +8,13 @@ import { PrimengModule } from '../../core/utils/primeng/primeng.module';
 import { RegisterFormComponent } from './pages/register-form/register-form.component';
 
 @NgModule({
-  declarations: [
-    LoginFormComponent,
-    RegisterFormComponent
-  ],
+  declarations: [LoginFormComponent, RegisterFormComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
     PrimengModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class AuthModule { }
+export class AuthModule {}

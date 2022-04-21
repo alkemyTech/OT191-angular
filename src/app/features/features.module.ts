@@ -11,7 +11,6 @@ import { RouterModule } from "@angular/router";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
-import { BackofficeModule } from "./backoffice/backoffice.module";
 
 
 @NgModule({
@@ -34,7 +33,6 @@ import { BackofficeModule } from "./backoffice/backoffice.module";
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
-    BackofficeModule,
     RouterModule
   ],
   imports: [
