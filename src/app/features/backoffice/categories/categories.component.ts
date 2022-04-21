@@ -1,31 +1,48 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ICategory } from './categories.interface';
+import { HttpClient } from "@angular/common/http";
+import { Component, Input, OnInit } from "@angular/core";
+import {
+	FormBuilder,
+	FormControl,
+	FormGroup,
+	Validators,
+} from "@angular/forms";
+import { ICategory } from "./categories.interface";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular/ckeditor.component";
 
 @Component({
-  selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss']
+	selector: "app-categories",
+	templateUrl: "./categories.component.html",
+	styleUrls: ["./categories.component.scss"],
 })
-export class CategoriesComponent{
+export class CategoriesComponent {
+	constructor(private http: HttpClient, private fb: FormBuilder) {}
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {   }
-
-  @Input() categorySelected: ICategory ={
-    id:0,
-    name:"",
-    description:"",
-    pathImage: "",
-  }
-  submitted = false;
-  categoryForm = new FormGroup({
-    name: new FormControl(this.categorySelected.name!=""? this.categorySelected.name: "", [Validators.required, Validators.minLength(4)]),
-    description: new FormControl(this.categorySelected.description!=""? this.categorySelected.description: "", Validators.required),
-    image: new FormControl(this.categorySelected.pathImage!=''? this.categorySelected.pathImage: "", Validators.required)
-  });
+	@Input() categorySelected: ICategory = {
+		id: 0,
+		name: "",
+		description: "",
+		pathImage: "",
+	};
+	submitted = false;
+	categoryForm = new FormGroup({
+		name: new FormControl(
+			this.categorySelected.name != "" ? this.categorySelected.name : "",
+			[Validators.required, Validators.minLength(4)]
+		),
+		description: new FormControl(
+			this.categorySelected.description != ""
+				? this.categorySelected.description
+				: "",
+			Validators.required
+		),
+		image: new FormControl(
+			this.categorySelected.pathImage != ""
+				? this.categorySelected.pathImage
+				: "",
+			Validators.required
+		),
+	});
 
 	// --------Config CKEditor-------
 	public Editor = ClassicEditor;
@@ -36,28 +53,26 @@ export class CategoriesComponent{
 	};
 	// ------------------------------
 
-  get categoryFormControl(){
-    return this.categoryForm.controls;
-  }
+	get categoryFormControl() {
+		return this.categoryForm.controls;
+	}
 
 	onChange({ editor }: ChangeEvent) {
 		const data = editor.getData();
 		this.categoryForm.value.description = data;
 	}
-  
-  onFileSelected(event: any){
-    let selectedFile=<File> event.target.files;
-  }
 
-  submitCategory(){
-    this.submitted=true;
-    if (this.categoryForm.valid) {
+	onFileSelected(event: any) {
+		let selectedFile = <File>event.target.files;
+	}
 
-    }
-  }
+	submitCategory() {
+		this.submitted = true;
+		if (this.categoryForm.valid) {
+		}
+	}
 
-
-  cancelAction(){
-    console.log(this.categoryFormControl.name.errors);
-  }
+	cancelAction() {
+		console.log(this.categoryFormControl.name.errors);
+	}
 }
