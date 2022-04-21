@@ -4,11 +4,13 @@ import { HomeComponent } from "./public/pages/home/home.component";
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { GraciasComponent } from "./public/pages/donations/gracias/gracias.component";
+import { DonationsComponent } from "./public/pages/donations/donations.component";
 
 const routes: Routes = [
   {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    path: "auth",
+    loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
   },
   {
     path: "actividades",
@@ -19,6 +21,14 @@ const routes: Routes = [
     component: SlidesComponent,
   },
   {
+    path: "donar",
+    component: DonationsComponent,
+  },
+  {
+    path: "gracias",
+    component: GraciasComponent,
+  },
+  {
     path: "",
     component: HomeComponent,
   },
@@ -27,7 +37,6 @@ const routes: Routes = [
     redirectTo: "",
     pathMatch: "full",
   },
-  
 ];
 
 @NgModule({
