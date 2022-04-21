@@ -1,5 +1,5 @@
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
-import { AppRoutingModule, routingComponents } from "./app-routing.module";
+import { AppRoutingModule } from "./app-routing.module";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 import { CommonModule } from "@angular/common";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
@@ -12,6 +12,7 @@ import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.comp
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { BackofficeModule } from "./backoffice/backoffice.module";
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -24,7 +25,6 @@ import { BackofficeModule } from "./backoffice/backoffice.module";
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
-    routingComponents,
   ],
   exports: [
     ActivityFormComponent,
@@ -36,14 +36,14 @@ import { BackofficeModule } from "./backoffice/backoffice.module";
     TestimonialFormComponent,
     UserFormComponent,
     BackofficeModule,
-    routingComponents, 
     RouterModule
   ],
   imports: [
     CommonModule, 
     AppRoutingModule, 
     RouterModule,
-    PrimengModule
+    PrimengModule,
+    SharedModule
 ],
 })
 export class FeaturesModule {}
