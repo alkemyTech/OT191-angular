@@ -38,13 +38,19 @@
 			</div>
 
 			<div class="col">
-                <div class="">
+				<div class="">
 					<span class="p-float-label">
-                        <p-inputMask formControlName="phone" type="tel" inputId="phone" styleClass="p-inputgroup p-inputtext-lg" mask="(999) 999-9999"></p-inputMask>
-                    <label for="phone">Telefono</label>
-                </span>
-            </div>
-                <div
+						<p-inputMask
+							formControlName="phone"
+							type="tel"
+							inputId="phone"
+							styleClass="p-inputgroup p-inputtext-lg"
+							mask="(999) 999-9999"
+						></p-inputMask>
+						<label for="phone">Telefono</label>
+					</span>
+				</div>
+				<div
 					class="text-danger"
 					*ngIf="validateControlForText(contactFormControl.phone)"
 				>
@@ -68,7 +74,7 @@
 							type="email"
 							class="p-inputtext-lg"
 							formControlName="mail"
-                            ng-pattern=" ^[a-z]+[a-z0-9._-]+@[a-z]+\.[a-z.]{2,6}$"
+							ng-pattern=" ^[a-z]+[a-z0-9._-]+@[a-z]+\.[a-z.]{2,6}$"
 							pInputText
 						/>
 						<label for="float-input">Email</label>
@@ -81,7 +87,9 @@
 					<span *ngIf="contactFormControl.mail.errors?.['required']">
 						El mail es requerido
 					</span>
-                    <span *ngIf="contactFormControl.mail.errors?.['mailFormat'] && !contactFormControl.mail.errors?.['required']">
+					<span
+						*ngIf="contactFormControl.mail.errors?.['mailFormat'] && !contactFormControl.mail.errors?.['required']"
+					>
 						El mail no es valido
 					</span>
 				</div>
@@ -120,8 +128,7 @@
 			</div>
 		</div>
 		<div class="row pt-4 mb-4 justify-content-between">
-			<div class="col-auto mr-auto">
-			</div>
+			<div class="col-auto mr-auto"></div>
 			<div class="col-auto">
 				<button
 					pButton
