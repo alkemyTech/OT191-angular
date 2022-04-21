@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrimengModule } from '../../core/utils/primeng/primeng.module';
+import { SharedModule } from '../../shared/shared.module';
 import { ActivitiesComponent } from './activities/activities.component';
 import {FormsModule} from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
@@ -17,6 +18,7 @@ import { EditOrganizationComponent } from './edit-organization/edit-organization
   imports: [
     CommonModule,
     PrimengModule,
+    SharedModule,
     ReactiveFormsModule,
     FormsModule,
     CKEditorModule,
