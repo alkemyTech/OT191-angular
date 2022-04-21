@@ -1,7 +1,91 @@
 <div class="container mt-4">
 	<form [formGroup]="organizationForm" (ngSubmit)="submitOrganization()">
+		<div class="row">
+			<div class="col-7 align-self-center">
+				<div
+					class="row pt-4"
+					[ngClass]="
+						validateControlForSpacing(organizationFormControl.name)
+							? 'mb-4'
+							: ''
+					"
+				>
+					<div class="p-inputgroup">
+						<span class="p-float-label">
+							<input
+								id="name"
+								type="text"
+								class="p-inputtext-lg"
+								formControlName="name"
+								pInputText
+								[ngClass]="
+									validateControlForText(organizationFormControl.name)
+										? 'ng-invalid ng-dirty'
+										: ''
+								"
+							/>
+							<label for="float-input">Nombre de la organizacion</label>
+						</span>
+					</div>
+					<div
+						class="text-danger"
+						*ngIf="validateControlForText(organizationFormControl.name)"
+					>
+						<span *ngIf="organizationFormControl.name.errors?.['required']">
+							El nombre es requerido
+						</span>
+					</div>
+				</div>
+				<div
+					class="row pt-4"
+					[ngClass]="
+						validateControlForSpacing(organizationFormControl.logo)
+							? 'mb-4'
+							: ''
+					"
+				>
+					<input
+						id="logo"
+						type="file"
+						class="p-button-raised p-button-secondary"
+						(change)="onFileSelected($event)"
+						accept="image/x-png,image/jpeg"
+						required
+						#logo
+						style="display: none"
+					/>
+					<div class="p-inputgroup">
+						<button
+							#buttonLogo
+							type="button"
+							pButton
+							(blur)="nothingSelected()"
+							class="p-button-raised p-button-secondary"
+							(click)="logo.click()"
+						>
+							Cargar logo
+						</button>
+					</div>
+					<div class="text-danger" *ngIf="logoEmpty">
+						<span *ngIf="logoEmpty"> El logo es requerido </span>
+					</div>
+				</div>
+			</div>
+			<div class="col-auto align-self-center">
+				<p-image
+					width="250"
+					height="250"
+					[src]="
+						organizationFormControl.logo.value == ''
+							? organizationData.logo
+							: organizationFormControl.logo.value
+					"
+					alt="Image"
+				></p-image>
+			</div>
+		</div>
 		<div
-			class="row pt-4 justify-content-between"
+			class="row mt-4"
 			[ngClass]="
 				validateControlForSpacing(organizationFormControl.name) &&
 				validateControlForSpacing(organizationFormControl.logo)
@@ -9,64 +93,25 @@
 					: ''
 			"
 		>
-			<div class="col-auto mr-auto align-self-center">
-				<div class="p-inputgroup">
-					<span class="p-float-label">
-						<input
-							id="name"
-							type="text"
-							class="p-inputtext-lg"
-							formControlName="name"
-							pInputText
-							[ngClass]="
-								validateControlForText(organizationFormControl.name)
-									? 'ng-invalid ng-dirty'
-									: ''
-							"
-						/>
-						<label for="float-input">Nombre de la organizacion</label>
-					</span>
-				</div>
-				<div
-					class="text-danger"
-					*ngIf="validateControlForText(organizationFormControl.name)"
-				>
-					<span *ngIf="organizationFormControl.name.errors?.['required']">
-						El nombre es requerido
-					</span>
-				</div>
-			</div>
-			<div class="col-auto">
-				<p-image
-					src="assets/LOGO-SOMOS-MAS.png"
-					alt="Image"
-					width="200"
-				></p-image>
-			</div>
+			<div class="col"></div>
 		</div>
 		<div
-			class="row row no-gutters"
+			class="row mt-4"
 			[ngClass]="
 				validateControlForSpacing(organizationFormControl.shortDescription)
 					? 'mb-4'
 					: ''
 			"
 		>
-			<div class="col-12 col-sm-6 col-md-8">
-				<div class="p-inputgroup">
-					<span class="p-float-label">
-						<input
-							id="shortDescription"
-							type="text"
-							class="p-inputtext-lg"
-							formControlName="shortDescription"
-							pInputText
-						/>
-						<label for="float-input"
-							>Descripcion corta de la organizacion</label
-						>
-					</span>
-				</div>
+			<div class="col">
+				<ckeditor
+					formControlName="shortDescription"
+					[config]="config"
+					(change)="onChange($event)"
+					[editor]="Editor"
+					[data]="editorData"
+				></ckeditor>
+
 				<div
 					class="text-danger"
 					*ngIf="
@@ -77,34 +122,6 @@
 						*ngIf="organizationFormControl.shortDescription.errors?.['required']"
 					>
 						La descripcion corta es requerida
-					</span>
-				</div>
-			</div>
-			<div class="col-6 col-md-4">
-				<input
-					id="logo"
-					formControlName="logo"
-					type="file"
-					(change)="onFileSelected($event)"
-					accept="image/x-png,image/jpeg"
-					required
-					#logo
-					style="display: none"
-				/>
-				<button
-					type="button"
-					pButton
-					class="p-button-raised-lg p-button-secondary"
-					(click)="logo.click()"
-				>
-					Subir logo
-				</button>
-				<div
-					class="text-danger"
-					*ngIf="validateControlForText(organizationFormControl.logo)"
-				>
-					<span *ngIf="organizationFormControl.logo.errors?.['required']">
-						El logo es requerido
 					</span>
 				</div>
 			</div>
@@ -122,16 +139,18 @@
 					<span class="p-float-label">
 						<textarea
 							id="longDescription"
-							[rows]="3"
-							[cols]="40"
+							type="text"
+							class="p-inputtext-lg"
 							formControlName="longDescription"
 							pInputTextarea
+							rows="3"
 							[autoResize]="autoResize"
 						></textarea>
-						<label for="message">Descripcion larga de la organizacion</label>
+						<label for="longDescription"
+							>Descripcion larga de la organizacion</label
+						>
 					</span>
 				</div>
-
 				<div
 					class="text-danger"
 					*ngIf="
@@ -242,14 +261,23 @@
 			</div>
 		</div>
 		<div class="row pt-4 mb-4 justify-content-between">
-			<div class="col-auto mr-auto"></div>
+			<div class="col-auto mr-auto">
+				<button
+					pButton
+					pRipple
+					type="button"
+					class="p-button-raised"
+					label="Cancelar"
+					(click)="cancelAction()"
+				></button>
+			</div>
 			<div class="col-auto">
 				<button
 					pButton
 					pRipple
 					type="submit"
 					class="p-button-raised"
-					label="Enviar"
+					label="Actualizar datos"
 				></button>
 			</div>
 		</div>
