@@ -6,6 +6,7 @@ import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { NgModule } from '@angular/core';
 import { PrimengModule } from '../../core/utils/primeng/primeng.module';
 import { RegisterFormComponent } from './pages/register-form/register-form.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [LoginFormComponent, RegisterFormComponent],
@@ -15,6 +16,7 @@ import { RegisterFormComponent } from './pages/register-form/register-form.compo
     PrimengModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule
   ],
 })
 export class AuthModule {}
