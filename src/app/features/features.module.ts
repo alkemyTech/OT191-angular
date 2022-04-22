@@ -36,15 +36,14 @@ import { SharedModule } from '../shared/shared.module';
     TestimonialFormComponent,
     UserFormComponent,
     RouterModule,
-    PublicModule,
-    RouterModule
+    PublicModule
   ],
   imports: [
     CommonModule, 
     AppRoutingModule, 
     RouterModule,
     PrimengModule,
-    SharedModule
+    SharedModule,
 ],
 })
 export class FeaturesModule {}
