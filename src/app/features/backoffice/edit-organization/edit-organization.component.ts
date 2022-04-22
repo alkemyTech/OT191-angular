@@ -109,13 +109,12 @@ export class EditOrganizationComponent {
 		}
 	}
 	submitOrganization() {
-		console.log("boton submit");
-		console.log(this.organizationFormControl.logo.value);
+
 		if (this.organizationFormControl.logo.value == "") {
 			this.organizationForm.controls.logo.setValue(this.organizationData.logo);
 		}
 		if (this.organizationForm.valid) {
-			console.log(this.organizationForm.value);
+
 		}
 	}
 	cancelAction() {}

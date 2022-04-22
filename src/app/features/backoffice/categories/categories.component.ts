@@ -72,7 +72,5 @@ export class CategoriesComponent {
 		}
 	}
 
-	cancelAction() {
-		console.log(this.categoryFormControl.name.errors);
-	}
+	cancelAction() {}
 }
