@@ -14,11 +14,7 @@ const routes: Routes = [
   {
     path: "backoffice/slides",
     component: SlidesComponent,
-  },
-  {
-    path: 'backoffice',
-    loadChildren: () => import('./backoffice/backoffice.module').then(m => m.BackofficeModule)
-  },
+  }, 
   {
     path: "actividades",
     component: ActivityFormComponent,
@@ -30,6 +26,10 @@ const routes: Routes = [
   {
     path: "public/contact",
     component: FormcontactComponent,
+  },
+  {
+    path: 'backoffice',
+    loadChildren: () => import('./backoffice/backoffice.module').then(m => m.BackofficeModule)
   },
   {
     path: "**",

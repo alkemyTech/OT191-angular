@@ -1,23 +1,22 @@
-import {ButtonModule} from 'primeng/button';
-import {CardModule} from 'primeng/card';
-import {CheckboxModule} from 'primeng/checkbox';
-import {DividerModule} from 'primeng/divider';
-import {InputTextModule} from 'primeng/inputtext';
-import { NgModule } from '@angular/core';
-import {InputTextareaModule} from 'primeng/inputtextarea';
-import {InputMaskModule} from 'primeng/inputmask';
-import {PasswordModule} from 'primeng/password';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import {RadioButtonModule} from 'primeng/radiobutton';
-import {RippleModule} from 'primeng/ripple';
-import {ProgressBarModule} from 'primeng/progressbar';
-import {TableModule} from 'primeng/table';
-import {VirtualScrollerModule} from 'primeng/virtualscroller';
-import {ImageModule} from 'primeng/image';
-import {InputTextareaModule} from 'primeng/inputtextarea';
+import { ButtonModule } from "primeng/button";
+import { CardModule } from "primeng/card";
+import { CheckboxModule } from "primeng/checkbox";
+import { DividerModule } from "primeng/divider";
+import { InputTextModule } from "primeng/inputtext";
+import { NgModule } from "@angular/core";
+import { InputTextareaModule } from "primeng/inputtextarea";
+import { InputMaskModule } from "primeng/inputmask";
+import { PasswordModule } from "primeng/password";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { RadioButtonModule } from "primeng/radiobutton";
+import { RippleModule } from "primeng/ripple";
+import { ProgressBarModule } from "primeng/progressbar";
+import { TableModule } from "primeng/table";
+import { VirtualScrollerModule } from "primeng/virtualscroller";
+import { ImageModule } from "primeng/image";
 
 @NgModule({
-  exports: [ 
+  exports: [
     ButtonModule,
     InputTextareaModule,
     InputMaskModule,
@@ -33,7 +32,6 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     TableModule,
     VirtualScrollerModule,
     ImageModule,
-    InputTextareaModule
-  ]
+  ],
 })
-export class PrimengModule { }
+export class PrimengModule {}
