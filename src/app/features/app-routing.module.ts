@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from "@angular/router";
 import { SlidesComponent } from "./backoffice/pages/slides/slides.component";
 import { HomeComponent } from "./public/pages/home/home.component";
+import { FormcontactComponent } from "./public/formcontact/formcontact.component";
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
@@ -12,12 +13,16 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: "actividades",
-    component: ActivityFormComponent,
-  },
-  {
     path: "backoffice/slides",
     component: SlidesComponent,
+  },
+  {
+    path: 'backoffice',
+    loadChildren: () => import('./backoffice/backoffice.module').then(m => m.BackofficeModule)
+  },
+  {
+    path: "actividades",
+    component: ActivityFormComponent,
   },
   {
     path: "",
@@ -26,6 +31,10 @@ const routes: Routes = [
   {
     path: "Nosotros",
     component: PrincipalComponent,
+  },
+  {
+    path: "public/contact",
+    component: FormcontactComponent,
   },
   {
     path: "**",
