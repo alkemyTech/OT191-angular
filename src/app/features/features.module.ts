@@ -14,6 +14,7 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { BackofficeModule } from "./backoffice/backoffice.module";
 import { PublicModule } from "./public/public.module";
 import { CurrencyPipe } from "@angular/common";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -35,10 +36,17 @@ import { CurrencyPipe } from "@angular/common";
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
+    RouterModule,
     BackofficeModule,
+    PublicModule,
     RouterModule,
   ],
-  imports: [CommonModule, AppRoutingModule, RouterModule, PrimengModule],
-  providers: [CurrencyPipe],
+  imports: [
+    CommonModule,
+    AppRoutingModule,
+    RouterModule,
+    PrimengModule,
+    SharedModule,
+  ],
 })
 export class FeaturesModule {}

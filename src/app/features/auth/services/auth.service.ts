@@ -11,5 +11,9 @@ export class AuthService {
     throw new Error('Method not implemented.');
   }
 
+  register(user: User | Partial<User>) {
+    throw new Error('Method not implemented.');
+  }
+
   constructor() { }
 }
