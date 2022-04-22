@@ -4,6 +4,12 @@ export interface ICategory {
 	description: string;
 	pathImage: string;
 }
+export interface IActivity {
+	id: number;
+	name: string;
+	description: string;
+	pathImage: string;
+}
 export interface IOrganization {
 	name: string;
 	logo: string | ArrayBuffer;
