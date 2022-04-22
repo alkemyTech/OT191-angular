@@ -1,0 +1,107 @@
+<div class="container-fluid mt-3">
+  <div class="row g-0">
+    <div class="col-sm-5 mx-auto animate__animated animate__fadeIn">
+      <div class="text-center">
+        <h1>Edición de Pantalla Principal</h1>
+      </div>
+      <form
+        (ngSubmit)="onSubmit()"
+        [formGroup]="editHomeForm"
+        autofill="off"
+        autocomplete="off"
+      >
+        <div class="field mb-2 mt-4 p-fluid">
+          <label for="float-input"
+            >Escribe el texto que quieras mostrar en la pantalla principal (mín.
+            20 carácteres) y luego selecciona 3 slides.</label
+          >
+          <span class="p-float-label mt-4">
+            <textarea
+              id="float-input"
+              formControlName="text"
+              rows="7"
+              cols="30"
+              pInputTextarea
+            ></textarea>
+            <label for="float-input">Texto para la pantalla principal</label>
+          </span>
+          <small *ngIf="isInvalid('text')" class="p-error block"
+            >El texto debe tener al menos 20 carácteres.</small
+          >
+        </div>
+        <small *ngIf="isInvalid('newSlides')" class="p-error block"
+          >Debe seleccionar 3 slides.</small
+        >
+        <div class="col text-center">
+          <div class="text-center mr-3">
+            <div class="btn-group">
+              <button
+                pButton
+                pRipple
+                [disabled]="loading"
+                type="submit"
+                label="Aceptar"
+                class="p-button-raised mr-1"
+              ></button>
+              <button
+                pButton
+                pRipple
+                routerLink="/backoffice"
+                label="Cancelar"
+                class="p-button-raised p-button-danger"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="vr"></div>
+
+    <div class="col-sm-5 mx-auto">
+      <div class="card">
+        <div class="text-center">
+          <h3>Selecciona 3 Slides para mostrar en el Home</h3>
+          <hr />
+        </div>
+        <p-virtualScroller
+          [value]="slides"
+          scrollHeight="800px"
+          [itemSize]="500"
+        >
+          <ng-template let-product pTemplate="item" let-i="index">
+            <div class="container">
+              <div class="mb-3 row">
+                <div class="col-sm-1">
+                  <p-checkbox
+                    name="group"
+                    value="product"
+                    [value]="product"
+                    [(ngModel)]="selectedSlides"
+                    (change)="onCheckboxChange($event)"
+                    [inputId]="product.id"
+                  ></p-checkbox>
+                </div>
+
+                <div class="col-sm-9">
+                  <label [for]="product.id" class="image-fluid"
+                    >{{ product.name }}
+                    <p-image
+                      src="{{ product.image }}"
+                      alt="Image"
+                      width="600"
+                      class="image-fluid"
+                    >
+                    </p-image>
+                  </label>
+                </div>
+              </div>
+
+              <hr />
+            </div>
+          </ng-template>
+        </p-virtualScroller>
+      </div>
+    </div>
+  </div>
+</div>
