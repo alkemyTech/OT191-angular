@@ -4,6 +4,7 @@ import { HomeComponent } from "./public/pages/home/home.component";
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { PrincipalComponent } from "../About/principal/principal.component";
 
 const routes: Routes = [
   {
@@ -23,10 +24,15 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: "Nosotros",
+    component: PrincipalComponent,
+  },
+  {
     path: "**",
     redirectTo: "",
     pathMatch: "full",
   },
+
   
 ];
 
