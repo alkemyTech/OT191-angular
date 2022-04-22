@@ -1,0 +1,144 @@
+<div class="container-fluid ps-md-0">
+  <div class="row g-0">
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container animate__animated animate__fadeInLeft">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="register-heading mb-4">¡Regístrate en Somos Más!</h3>
+
+              <!-- Sign In Form -->
+              <form
+                (ngSubmit)="onSubmit()"
+                [formGroup]="registerForm"
+                autofill="off"
+                autocomplete="off"
+              >
+                <!--Email-->
+                <div class="field mb-2 p-fluid">
+                  <label for="float-input">Ingresa tu correo electrónico</label>
+                  <input
+                    pInputText
+                    type="email"
+                    formControlName="email"
+                    [class]="isInvalid('email') ? 'ng-invalid ng-dirty' : ''"
+                    placeholder="name@example.com"
+                  />
+                  <small *ngIf="isInvalid('email')" class="p-error block"
+                    >Correo electrónico inválido.</small
+                  >
+                </div>
+                <!--Password 1-->
+                <div class="field mb-2 p-fluid">
+                  <label for="float-input">Elige una contraseña</label>
+                  <p-password
+                    formControlName="password"
+                    placeholder="Inventa una contraseña"
+                    type="password"
+                    [toggleMask]="true"
+                    styleClass="p-password p-component p-inputwrapper p-input-icon-right"
+                    promptLabel="Seguridad"
+                    weakLabel="Mala"
+                    mediumLabel="Normal"
+                    strongLabel="Perfecta"
+                    strongRegex="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!#$%&/()=?<>@'¿{}¡])[A-Za-z\d$@$!%*?&].{6,}"
+                    mediumRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{4,})"
+                  >
+                    <ng-template pTemplate="header">
+                      <h6>Elige tu contraseña</h6>
+                    </ng-template>
+                    <ng-template pTemplate="footer">
+                      <p-divider></p-divider>
+                      <p class="mt-2">Debe tener:</p>
+                      <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                        <li>Al menos una letra minúscula</li>
+                        <li>Al menos una letra mayúscula</li>
+                        <li>Al menos un número</li>
+                        <li>Al menos un símbolo. Ejemplo: @#$%!&</li>
+                        <li>Mínimo 6 caracteres</li>
+                      </ul>
+                    </ng-template>
+                  </p-password>
+                  <small *ngIf="isInvalid('password')" class="p-error block"
+                    >Contraseña inválida.</small
+                  >
+                </div>
+
+                <!--Password 2-->
+                <div class="field mb-4 p-fluid mt-2">
+                  <label for="password" class="block"
+                    >Confirma la contraseña</label
+                  >
+                  <p-password
+                    autofill="off"
+                    autocomplete="off"
+                    type="password"
+                    [toggleMask]="true"
+                    [feedback]="false"
+                    formControlName="password2"
+                    [class]="
+                      isInvalid('password') ? ' ng-invalid ng-dirty' : ''
+                    "
+                    styleClass="p-password p-component p-inputwrapper p-input-icon-right"
+                    placeholder="Repite la contraseña"
+                  ></p-password>
+                  <small *ngIf="isInvalid('password2')" class="p-error block"
+                    >Las contraseñas no coinciden.</small
+                  >
+                </div>
+
+                <!--Sign In Buttons -->
+                <div class="d-grid">
+                  <button
+                    pButton
+                    pRipple
+                    [disabled]="loading"
+                    type="submit"
+                    label="Registrarse"
+                    class="p-button-raised mr-1"
+                  ></button>
+
+                  <div
+                    class="text-center mt-3"
+                    *ngIf="this.registerForm.valid && loading"
+                  >
+                    <p-progressBar
+                      mode="indeterminate"
+                      [style]="{ height: '3px' }"
+                    ></p-progressBar>
+                  </div>
+                </div>
+              </form>
+              <hr />
+              <div class="col text-center">
+                <h3 class="register-heading mb-4">¿Ya tienes un usuario?</h3>
+                <div class="text-center mr-3">
+                  <div class="btn-group">
+                    <button
+                      pButton
+                      pRipple
+                      [disabled]="loading"
+                      class="p-button-raised mr-3"
+                      routerLink="/auth/login"
+                      label="¡Inicia Sesión Aquí!"
+                    ></button>
+                    <button
+                      pButton
+                      pRipple
+                      routerLink="/"
+                      label="Volver"
+                      class="p-button-raised p-button-danger"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="d-none d-md-flex col-md-4 col-lg-6 bg-image animate__animated animate__fadeInRight"
+    ></div>
+  </div>
+</div>

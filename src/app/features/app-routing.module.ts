@@ -1,13 +1,18 @@
-import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { Component, NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { UserFormComponent } from "./pages/users/user-form/user-form.component";
+import { UserformComponent } from "./backoffice/pages/userform/userform.component";
 import { RouterModule, Routes } from "@angular/router";
 import { SlidesComponent } from "./backoffice/pages/slides/slides.component";
 import { HomeComponent } from "./public/pages/home/home.component";
-import { UserFormComponent } from "./pages/users/user-form/user-form.component";
-import { UserformComponent } from "./backoffice/pages/userform/userform.component";
+import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
+import { CommonModule } from "@angular/common";
+
 
 const routes: Routes = [
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
   {
     path: "actividades",
     component: ActivityFormComponent,
@@ -26,9 +31,10 @@ const routes: Routes = [
   },
   {
     path: "**",
-    redirectTo: "actividades",
+    redirectTo: "",
     pathMatch: "full",
   },
+  
 ];
 
 @NgModule({
