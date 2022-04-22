@@ -4,6 +4,8 @@ import {CheckboxModule} from 'primeng/checkbox';
 import {DividerModule} from 'primeng/divider';
 import {InputTextModule} from 'primeng/inputtext';
 import { NgModule } from '@angular/core';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {InputMaskModule} from 'primeng/inputmask';
 import {PasswordModule} from 'primeng/password';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {RadioButtonModule} from 'primeng/radiobutton';
@@ -17,6 +19,8 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 @NgModule({
   exports: [ 
     ButtonModule,
+    InputTextareaModule,
+    InputMaskModule,
     RadioButtonModule,
     CheckboxModule,
     InputTextModule,
