@@ -14,11 +14,13 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { BackofficeModule } from "./backoffice/backoffice.module";
 import { PublicModule } from "./public/public.module";
 import { SharedModule } from '../shared/shared.module';
+import { ActivitiesListComponent } from "./backoffice/activitieslist/activitieslist.component";
 
 
 @NgModule({
   declarations: [
     ActivityFormComponent,
+    ActivitiesListComponent,
     LoginFormComponent,
     RegisterFormComponent,
     CategoriesFormComponent,
@@ -29,6 +31,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   exports: [
     ActivityFormComponent,
+    ActivitiesListComponent,
     LoginFormComponent,
     RegisterFormComponent,
     CategoriesFormComponent,
