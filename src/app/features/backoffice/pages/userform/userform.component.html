@@ -1,6 +1,6 @@
 
-<header></header>
-<body>
+
+<section>
   <h1 class="title">Editor de Usuarios</h1>
   <form [formGroup]="editarUser" (ngSubmit)="editarForm(editarUser.value)">
     <div class="container">
@@ -81,7 +81,7 @@
             <small class="text-danger"  *ngIf="email?.invalid && email?.touched ">Email is required and valid email</small>
             
           </ng-template>
-        <h4 class="second-title">Elige Rol</h4>
+        <h4 class="second-title" id="second-title">Elige Rol</h4>
         <select
           class="form-select form-select-lg mb-3"
           aria-label=".form-select-lg example"
@@ -99,4 +99,4 @@
       </div>
     </div>
   </form>
-</body>
+</section>
