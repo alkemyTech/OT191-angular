@@ -7,6 +7,8 @@ import { ActivityFormComponent } from "./pages/activities/activity-form/activity
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { EditOrganizationComponent } from "./backoffice/edit-organization/edit-organization.component";
+import { ActivitiesListComponent } from "./backoffice/activities-list/activities-list.component";
+import { ActivitiesComponent } from "./backoffice/activities/activities.component";
 
 const routes: Routes = [
   {
@@ -40,6 +42,14 @@ const routes: Routes = [
   {
     path: "public/contact",
     component: FormcontactComponent,
+  },
+  {
+    path: "backoffice/activities",
+    component: ActivitiesListComponent,
+  },
+  {
+    path: "backoffice/activities/create",
+    component: ActivitiesComponent,
   },
   {
     path: "**",
