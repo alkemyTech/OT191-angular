@@ -46,7 +46,7 @@ import { SharedModule } from '../shared/shared.module';
     AppRoutingModule, 
     RouterModule,
     PrimengModule,
-    SharedModule
+    SharedModule,
 ],
 })
 export class FeaturesModule {}

@@ -6,6 +6,7 @@ import { ActivityFormComponent } from "./pages/activities/activity-form/activity
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { PrincipalComponent } from "../About/principal/principal.component";
+import { EditOrganizationComponent } from "./backoffice/edit-organization/edit-organization.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: "backoffice/slides",
     component: SlidesComponent,
+  },
+  {
+    path: "backoffice/organization/edit",
+    component: EditOrganizationComponent,
   },
   {
     path: 'backoffice',

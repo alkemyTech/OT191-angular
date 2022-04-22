@@ -7,7 +7,7 @@ import {
 	Validators,
 } from "@angular/forms";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { ICategory } from "./activities.interface";
+import { ICategory } from "../backoffice.interface";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular/ckeditor.component";
 
 @Component({
