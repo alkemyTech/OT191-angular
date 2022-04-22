@@ -7,7 +7,7 @@ import {
 	Validators,
 } from "@angular/forms";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { ICategory } from "../backoffice.interface";
+import { IActivity } from "../backoffice.interface";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular/ckeditor.component";
 
 @Component({
@@ -20,7 +20,7 @@ export class ActivitiesComponent implements OnInit {
 
 	ngOnInit(): void {}
 
-	@Input() activitySelected: ICategory = {
+	@Input() activitySelected: IActivity = {
 		id: 0,
 		name: "",
 		description: "",
