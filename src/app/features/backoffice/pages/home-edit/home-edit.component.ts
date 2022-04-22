@@ -7,7 +7,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { AlertService } from "src/app/core/services/alert.service";
-import { AuthService } from "src/app/features/auth/services/auth.service";
+import { HomeProviderService } from '../../../public/services/providers/home-provider.service';
+import { Slide } from '../../../../core/models/slides.model';
 
 @Component({
   selector: "app-home-edit",
@@ -19,7 +20,7 @@ export class HomeEditComponent {
 
   @Input() homeSlides: any[] = [];
 
-  slides = [];
+  slides: Slide[] = [];
 
   selectedSlides: any[] = [];
 
@@ -32,12 +33,16 @@ export class HomeEditComponent {
       [Validators.required, Validators.minLength(3), Validators.maxLength(3)]
     ),
   });
-
+  
   constructor(
     private alerts: AlertService,
     private fb: FormBuilder,
-    private auth: AuthService
-  ) {}
+    private homeP: HomeProviderService
+  ) {
+    this.homeP.getSlides().subscribe((slides) => {
+      this.slides = slides;
+    });
+  }
 
   isInvalid(value: string) {
     return (
