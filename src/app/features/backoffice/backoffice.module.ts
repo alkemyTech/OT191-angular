@@ -5,6 +5,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { ActivitiesComponent } from './activities/activities.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { SlidesComponent } from './pages/slides/slides.component';
+import { EditOrganizationComponent } from './edit-organization/edit-organization.component';
 import { BackofficeRoutingModule } from './backoffice-routing.module';
 import { HomeEditComponent } from './pages/home-edit/home-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SlidesComponent,
     HomeEditComponent,
     ActivitiesComponent,
-    SlidesComponent
+    EditOrganizationComponent,
   ],
   imports: [
     CommonModule,
