@@ -5,7 +5,6 @@ export function urlValidator(site: string): ValidatorFn {
 	return (control: AbstractControl): ValidationErrors | null => {
 		if (String(control.value).includes(site)) {
 			const start = String(control.value).indexOf(".com/") + 4;
-			console.log(start);
 			const end = String(control.value).length;
 			const user = String(control.value).substring(start, end);
 			const formatUrl = nameRe.test(user);
