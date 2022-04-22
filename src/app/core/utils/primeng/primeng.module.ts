@@ -14,15 +14,18 @@ import { ProgressBarModule } from "primeng/progressbar";
 import { TableModule } from "primeng/table";
 import { VirtualScrollerModule } from "primeng/virtualscroller";
 import { ImageModule } from "primeng/image";
+import { DropdownModule } from "primeng/dropdown";
 
 @NgModule({
   exports: [
     ButtonModule,
+    InputTextModule,
     InputTextareaModule,
+    DropdownModule,
+    ImageModule,
     InputMaskModule,
     RadioButtonModule,
     CheckboxModule,
-    InputTextModule,
     RippleModule,
     ProgressSpinnerModule,
     PasswordModule,
