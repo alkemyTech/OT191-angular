@@ -8,15 +8,21 @@ import { Slide } from "../../../../core/models/slides.model";
 @Injectable({
   providedIn: "root",
 })
-export class HomeProviderService extends PublicApiService {
-  constructor(http: HttpClient) {
-    super(http);
+export class HomeProviderService {
+  constructor(private publicApiService: PublicApiService) {}
+
+  public getAllSlides(): Observable<Slide[]> {
+    return this.publicApiService.get("/slides").pipe(
+      map((res: any) => {
+        return res.data;
+      })
+    );
   }
 
   public getSlides(): Observable<Slide[]> {
-    return super.get("/slides").pipe(
+    return this.publicApiService.get("/slides").pipe(
       map((res: any) => {
-        return res.data;
+        return res.data.filter((slide: any) => slide.order !== null);
       })
     );
   }

@@ -39,7 +39,7 @@ export class HomeEditComponent {
     private fb: FormBuilder,
     private homeP: HomeProviderService
   ) {
-    this.homeP.getSlides().subscribe((slides) => {
+    this.homeP.getAllSlides().subscribe((slides) => {
       this.slides = slides;
     });
   }
