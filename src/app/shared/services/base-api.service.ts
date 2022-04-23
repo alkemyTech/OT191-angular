@@ -1,13 +1,15 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
 @Injectable({
 	providedIn: "root",
 })
-export class PublicapiServiceService {
+export class BaseApiService {
 	constructor(private http: HttpClient) {}
+	private baseUrl: string ='';
 
-	getDataApi(destinationRoute: string, id: number | null) {
+	public get(destinationRoute: string, id: number | null) {
 		return this.http.get(destinationRoute + "/" + id);
 	}
 }
