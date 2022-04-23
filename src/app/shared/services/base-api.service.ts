@@ -10,6 +10,6 @@ export class BaseApiService {
 	private baseUrl: string ='';
 
 	public get(destinationRoute: string, id: number | null) {
-		return this.http.get(destinationRoute + "/" + id);
+		return this.http.get(this.baseUrl+destinationRoute + "/" + id);
 	}
 }
