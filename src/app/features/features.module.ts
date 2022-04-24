@@ -11,6 +11,8 @@ import { RouterModule } from "@angular/router";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
+import { BackofficeModule } from "./backoffice/backoffice.module";
+import { PublicModule } from "./public/public.module";
 import { SharedModule } from '../shared/shared.module';
 
 
@@ -34,6 +36,9 @@ import { SharedModule } from '../shared/shared.module';
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
+    RouterModule,
+    BackofficeModule,
+    PublicModule,
     RouterModule
   ],
   imports: [
@@ -41,7 +46,7 @@ import { SharedModule } from '../shared/shared.module';
     AppRoutingModule, 
     RouterModule,
     PrimengModule,
-    SharedModule
+    SharedModule,
 ],
 })
 export class FeaturesModule {}
