@@ -9,7 +9,7 @@ export class BaseApiService {
 	constructor(private http: HttpClient) {}
 	private baseUrl: string ='';
 
-	public get(destinationRoute: string, id: number | null) {
-		return this.http.get(this.baseUrl+destinationRoute + "/" + id);
+	public get(destinationRoute: string, id: number | null): Observable<any> {
+		return this.http.get(this.baseUrl+destinationRoute + (id!=null?"/"+id:''));
 	}
 }
