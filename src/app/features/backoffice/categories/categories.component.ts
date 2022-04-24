@@ -6,9 +6,10 @@ import {
 	FormGroup,
 	Validators,
 } from "@angular/forms";
-import { ICategory } from "./categories.interface";
+
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular/ckeditor.component";
+import { ICategory } from "../backoffice.interface";
 
 @Component({
 	selector: "app-categories",
