@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { PrimengModule } from '../../core/utils/primeng/primeng.module';
 import { SharedModule } from '../../shared/shared.module';
@@ -21,6 +21,7 @@ import { GraciasComponent } from './pages/donations/gracias/gracias.component';
     FormsModule,
     ReactiveFormsModule,
     SharedModule
-  ]
+  ],
+  providers:[CurrencyPipe]
 })
 export class PublicModule {}

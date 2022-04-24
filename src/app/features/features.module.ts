@@ -37,7 +37,6 @@ import { SharedModule } from "../shared/shared.module";
     TestimonialFormComponent,
     UserFormComponent,
     RouterModule,
-    BackofficeModule,
     PublicModule,
     RouterModule,
   ],
