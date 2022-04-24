@@ -1,0 +1,7 @@
+<div class="container">
+	<app-title-view title="Actividades"></app-title-view>
+	<a [routerLink]="['./create']">Cree su propia rutina</a>
+	<div *ngFor="let act of listActivities">
+		{{ act.id }}--{{ act.name }}--{{ act.description }}--{{ act.pathImage }}
+	</div>
+</div>

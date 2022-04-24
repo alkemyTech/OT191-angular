@@ -8,50 +8,56 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { PrincipalComponent } from "../About/principal/principal.component";
 import { EditOrganizationComponent } from "./backoffice/edit-organization/edit-organization.component";
+import { ActivitiesListComponent } from "./backoffice/activities-list/activities-list.component";
+import { ActivitiesComponent } from "./backoffice/activities/activities.component";
 
 const routes: Routes = [
 	{
 		path: "categories",
 		component: CategoriesComponent,
 	},
-	{
-		path: "auth",
-		loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
-	},
-	{
-		path: "backoffice/slides",
-		component: SlidesComponent,
-	},
-	{
-		path: "backoffice/organization/edit",
-		component: EditOrganizationComponent,
-	},
-	{
-		path: "backoffice",
-		loadChildren: () =>
-			import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
-	},
-	{
-		path: "actividades",
-		component: ActivityFormComponent,
-	},
-	{
-		path: "",
-		component: HomeComponent,
-	},
-	{
-		path: "Nosotros",
-		component: PrincipalComponent,
-	},
-	{
-		path: "public/contact",
-		component: FormcontactComponent,
-	},
-	{
-		path: "**",
-		redirectTo: "",
-		pathMatch: "full",
-	},
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: "backoffice/slides",
+    component: SlidesComponent,
+  },
+  {
+    path: "backoffice/organization/edit",
+    component: EditOrganizationComponent,
+  },
+  {
+    path: 'backoffice',
+    loadChildren: () => import('./backoffice/backoffice.module').then(m => m.BackofficeModule)
+  },
+  {
+    path: "actividades",
+    component: ActivityFormComponent,
+  },
+  {
+    path: "",
+    component: HomeComponent,
+  },
+  {
+    path: "public/contact",
+    component: FormcontactComponent,
+  },
+  {
+    path: "backoffice/activities",
+    component: ActivitiesListComponent,
+  },
+  {
+    path: "backoffice/activities/create",
+    component: ActivitiesComponent,
+  },
+  {
+    path: "**",
+    redirectTo: "",
+    pathMatch: "full",
+  },
+  
 ];
 
 @NgModule({
