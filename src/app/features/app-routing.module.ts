@@ -1,35 +1,33 @@
 import { RouterModule, Routes } from "@angular/router";
-import { CategoriesComponent } from "./backoffice/categories/categories.component";
-import { SlidesComponent } from "./backoffice/pages/slides/slides.component";
-import { HomeComponent } from "./public/pages/home/home.component";
-import { FormcontactComponent } from "./public/formcontact/formcontact.component";
-import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+
 import { EditOrganizationComponent } from "./backoffice/edit-organization/edit-organization.component";
 import { ActivitiesListComponent } from "./backoffice/activities-list/activities-list.component";
 import { ActivitiesComponent } from "./backoffice/activities/activities.component";
+import { FormcontactComponent } from "./public/formcontact/formcontact.component";
+import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
+import { DonationsComponent } from "./public/pages/donations/donations.component";
+import { HomeComponent } from "./public/pages/home/home.component";
+import { GraciasComponent } from "./public/pages/donations/gracias/gracias.component";
+
 
 const routes: Routes = [
   {
-		path: "categories",
-		component: CategoriesComponent,
-	},
-  {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    path: "auth",
+    loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
   },
   {
-    path: "backoffice/slides",
-    component: SlidesComponent,
+    path: "donar",
+    component: DonationsComponent,
+  },
+  {
+    path: "gracias",
+    component: GraciasComponent,
   },
   {
     path: "backoffice/organization/edit",
     component: EditOrganizationComponent,
-  },
-  {
-    path: 'backoffice',
-    loadChildren: () => import('./backoffice/backoffice.module').then(m => m.BackofficeModule)
   },
   {
     path: "actividades",
@@ -40,7 +38,7 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: "public/contact",
+    path: "contact",
     component: FormcontactComponent,
   },
   {
@@ -52,15 +50,18 @@ const routes: Routes = [
     component: ActivitiesComponent,
   },
   {
+    path: 'backoffice',
+    loadChildren: () => import('./backoffice/backoffice.module').then(m => m.BackofficeModule)
+  },
+  {
     path: "**",
     redirectTo: "",
     pathMatch: "full",
   },
-  
 ];
 
 @NgModule({
-	declarations: [],
-	imports: [CommonModule, RouterModule.forRoot(routes)],
+  declarations: [],
+  imports: [CommonModule, RouterModule.forRoot(routes)],
 })
 export class AppRoutingModule {}
