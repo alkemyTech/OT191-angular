@@ -42,7 +42,6 @@ import { ToolbarModule } from "primeng/toolbar";
     DialogModule,
     ToastModule,
     ToolbarModule,
-    
   ],
 })
 export class PrimengModule {}

@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
+
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+
 import { PublicApiService } from "../public-api.service";
-import { Slide } from "../../../../core/models/slides.model";
-import { Testimonial } from "../../../../core/models/testimonial.model";
 import { News } from "../../../../core/models/news.model";
 import { Organization } from "../../../../core/models/organization.model";
+import { Slide } from "../../../../core/models/slides.model";
+import { Testimonial } from "../../../../core/models/testimonial.model";
 
 @Injectable({
   providedIn: "root",
