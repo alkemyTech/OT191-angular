@@ -1,7 +1,6 @@
 import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-
 import { EditOrganizationComponent } from "./backoffice/edit-organization/edit-organization.component";
 import { ActivitiesListComponent } from "./backoffice/activities-list/activities-list.component";
 import { ActivitiesComponent } from "./backoffice/activities/activities.component";
@@ -10,6 +9,7 @@ import { ActivityFormComponent } from "./pages/activities/activity-form/activity
 import { DonationsComponent } from "./public/pages/donations/donations.component";
 import { HomeComponent } from "./public/pages/home/home.component";
 import { GraciasComponent } from "./public/pages/donations/gracias/gracias.component";
+import { CategoriesComponent } from "./backoffice/categories/categories.component";
 
 
 const routes: Routes = [
@@ -17,6 +17,10 @@ const routes: Routes = [
     path: "auth",
     loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
   },
+	{
+		path: "categories",
+		component: CategoriesComponent,
+	},
   {
     path: "donar",
     component: DonationsComponent,

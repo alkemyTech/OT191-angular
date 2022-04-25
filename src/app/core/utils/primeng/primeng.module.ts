@@ -4,8 +4,8 @@ import { CheckboxModule } from "primeng/checkbox";
 import { DividerModule } from "primeng/divider";
 import { InputTextModule } from "primeng/inputtext";
 import { NgModule } from "@angular/core";
-import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputMaskModule } from "primeng/inputmask";
+import { DropdownModule } from "primeng/dropdown";
 import { PasswordModule } from "primeng/password";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { RadioButtonModule } from "primeng/radiobutton";
@@ -14,27 +14,31 @@ import { ProgressBarModule } from "primeng/progressbar";
 import { TableModule } from "primeng/table";
 import { VirtualScrollerModule } from "primeng/virtualscroller";
 import { ImageModule } from "primeng/image";
-import { DropdownModule } from "primeng/dropdown";
+import { InputTextareaModule } from "primeng/inputtextarea";
+import { ToolbarModule } from "primeng/toolbar";
+import { FileUploadModule } from "primeng/fileupload";
 
 @NgModule({
-  exports: [
-    ButtonModule,
-    InputTextModule,
-    InputTextareaModule,
-    DropdownModule,
-    ImageModule,
-    InputMaskModule,
-    RadioButtonModule,
-    CheckboxModule,
-    RippleModule,
-    ProgressSpinnerModule,
-    PasswordModule,
-    DividerModule,
-    CardModule,
-    ProgressBarModule,
-    TableModule,
-    VirtualScrollerModule,
-    ImageModule,
-  ],
+	exports: [
+		ButtonModule,
+		InputTextModule,
+		InputTextareaModule,
+		DropdownModule,
+		ImageModule,
+		InputMaskModule,
+		RadioButtonModule,
+		CheckboxModule,
+		RippleModule,
+		ProgressSpinnerModule,
+		PasswordModule,
+		DividerModule,
+		CardModule,
+		ProgressBarModule,
+		TableModule,
+		VirtualScrollerModule,
+		ImageModule,
+		ToolbarModule,
+		FileUploadModule,
+	],
 })
 export class PrimengModule {}
