@@ -1,0 +1,40 @@
+.body{
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--primaryColor);
+    
+}
+
+.body p{
+    color: black;
+}
+
+.row{
+    border: solid 1px var(--accentColor);
+    border-radius: 4px;
+    margin-top: 15vh;
+    background-color: #9AC9FB;
+    padding: 20px;
+    justify-content: center;
+    min-height: 70vh;
+    align-items: center;
+    animation-name: cambiarColor;
+    animation-duration: 5s;
+}
+.row h1{
+    text-align: center;
+    text-decoration: wavy;
+    // animations
+    
+}
+
+@keyframes cambiarColor {
+    0%{
+        background-color: #9ac9fb2c;
+        transform: scale(0.5);
+    }
+    100%{
+        background-color: #9AC9FB;
+        transform: scale(1);
+    }
+}
