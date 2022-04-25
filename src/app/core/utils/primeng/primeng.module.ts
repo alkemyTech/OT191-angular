@@ -1,9 +1,10 @@
+import { NgModule } from "@angular/core";
+
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { CheckboxModule } from "primeng/checkbox";
 import { DividerModule } from "primeng/divider";
 import { InputTextModule } from "primeng/inputtext";
-import { NgModule } from "@angular/core";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputMaskModule } from "primeng/inputmask";
 import { PasswordModule } from "primeng/password";
@@ -15,6 +16,9 @@ import { TableModule } from "primeng/table";
 import { VirtualScrollerModule } from "primeng/virtualscroller";
 import { ImageModule } from "primeng/image";
 import { DropdownModule } from "primeng/dropdown";
+import { DialogModule } from "primeng/dialog";
+import { ToastModule } from "primeng/toast";
+import { ToolbarModule } from "primeng/toolbar";
 
 @NgModule({
   exports: [
@@ -35,6 +39,10 @@ import { DropdownModule } from "primeng/dropdown";
     TableModule,
     VirtualScrollerModule,
     ImageModule,
+    DialogModule,
+    ToastModule,
+    ToolbarModule,
+    
   ],
 })
 export class PrimengModule {}

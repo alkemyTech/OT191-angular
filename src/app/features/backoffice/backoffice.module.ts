@@ -10,6 +10,8 @@ import { EditOrganizationComponent } from "./edit-organization/edit-organization
 import { BackofficeRoutingModule } from "./backoffice-routing.module";
 import { HomeEditComponent } from "./pages/home-edit/home-edit.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { UserListViewComponent } from './pages/user-list-view/user-list-view.component';
+import { TableUsersComponent } from './components/table-users/table-users.component';
 
 @NgModule({
 	declarations: [
@@ -18,6 +20,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 		SlidesComponent,
 		HomeEditComponent,
 		EditOrganizationComponent,
+  UserListViewComponent,
+  TableUsersComponent,
 	],
 	imports: [
 		CommonModule,
