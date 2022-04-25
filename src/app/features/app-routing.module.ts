@@ -6,28 +6,43 @@ import { FormcontactComponent } from "./public/formcontact/formcontact.component
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { GraciasComponent } from "./public/pages/donations/gracias/gracias.component";
+import { DonationsComponent } from "./public/pages/donations/donations.component";
 import { EditOrganizationComponent } from "./backoffice/edit-organization/edit-organization.component";
 
 const routes: Routes = [
   {
-		path: "categories",
-		component: CategoriesComponent,
-	},
+    path: "auth",
+    loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
+  },
   {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    path: "categories",
+    component: CategoriesComponent,
+  },
+  {
+    path: "auth",
+    loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
   },
   {
     path: "backoffice/slides",
     component: SlidesComponent,
   },
   {
+    path: "donar",
+    component: DonationsComponent,
+  },
+  {
+    path: "gracias",
+    component: GraciasComponent,
+  },
+  {
     path: "backoffice/organization/edit",
     component: EditOrganizationComponent,
   },
   {
-    path: 'backoffice',
-    loadChildren: () => import('./backoffice/backoffice.module').then(m => m.BackofficeModule)
+    path: "backoffice",
+    loadChildren: () =>
+      import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
   },
   {
     path: "actividades",
@@ -46,11 +61,10 @@ const routes: Routes = [
     redirectTo: "",
     pathMatch: "full",
   },
-  
 ];
 
 @NgModule({
-	declarations: [],
-	imports: [CommonModule, RouterModule.forRoot(routes)],
+  declarations: [],
+  imports: [CommonModule, RouterModule.forRoot(routes)],
 })
 export class AppRoutingModule {}

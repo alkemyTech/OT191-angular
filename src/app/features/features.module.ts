@@ -5,7 +5,7 @@ import { CommonModule } from "@angular/common";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { NgModule } from "@angular/core";
-import { PrimengModule } from '../core/utils/primeng/primeng.module';
+import { PrimengModule } from "../core/utils/primeng/primeng.module";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { RouterModule } from "@angular/router";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
@@ -13,8 +13,8 @@ import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { BackofficeModule } from "./backoffice/backoffice.module";
 import { PublicModule } from "./public/public.module";
-import { SharedModule } from '../shared/shared.module';
-
+import { CurrencyPipe } from "@angular/common";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -37,16 +37,15 @@ import { SharedModule } from '../shared/shared.module';
     TestimonialFormComponent,
     UserFormComponent,
     RouterModule,
-    BackofficeModule,
     PublicModule,
-    RouterModule
+    RouterModule,
   ],
   imports: [
-    CommonModule, 
-    AppRoutingModule, 
+    CommonModule,
+    AppRoutingModule,
     RouterModule,
     PrimengModule,
     SharedModule,
-],
+  ],
 })
 export class FeaturesModule {}
