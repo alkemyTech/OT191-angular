@@ -21,15 +21,19 @@ export class BaseApiService {
 		};
 	}
 
-	public get<T>(path: string, id: number | null): Observable<T> {
+	public getApi(destinationRoute: string, id: number | null): Observable<any> {
+		return this.http.get(
+			this.baseUrl + destinationRoute + (id != null ? "/" + id : "")
+		);
+	}
+
+	public get<T>(path: string): Observable<T> {
 		this.options();
-		return this.http
-			.get(this.baseUrl + path + (id != null ? "/" + id : ""), this.httpOptions)
-			.pipe(
-				map((res: any) => {
-					return res;
-				})
-			);
+		return this.http.get(this.baseUrl + path, this.httpOptions).pipe(
+			map((res: any) => {
+				return res;
+			})
+		);
 	}
 
 	public post<T>(path: string, body: any): Observable<T> {
