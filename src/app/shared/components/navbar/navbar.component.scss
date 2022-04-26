@@ -33,7 +33,7 @@
     color: var(--lightblue); 
     transition: 0.7s all ease;
     overflow: hidden;
-    font-size: 0.8rem;
+    font-size: 1.1rem;
 }
 
 .navbar-nav .nav-item .nav-link .active{
@@ -53,6 +53,7 @@
     color: var(--lightblue);
     border-color: var(--lightblue);
     transition: 0.8s all ease;
+    font-size: 1rem;
 }
 
 #login:hover{
@@ -66,6 +67,7 @@
     border-color: var(--lightblue);
     color: #fff;
     transition: 0.8s all ease;
+    font-size: 1rem;
 }
 
 #register:hover{
