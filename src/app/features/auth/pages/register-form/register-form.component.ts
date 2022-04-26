@@ -18,10 +18,7 @@ export class RegisterFormComponent {
 
   registerForm: FormGroup = this.fb.group(
     {
-      name: [
-        "",
-        [Validators.required],
-      ],
+      name: ["", [Validators.required]],
       email: [
         "",
         [Validators.required, Validators.pattern(this.valSer.emailPattern)],
@@ -77,11 +74,9 @@ export class RegisterFormComponent {
         email: this.registerForm.controls["email"].value,
         password: this.registerForm.controls["password"].value,
       };
-      console.log(user);
 
       this.auth.register(user).subscribe({
         next: (res) => {
-
           this.loading = false;
           this.alerts.alertNotification(
             "¡Se ha registrado el usuario!",
@@ -92,14 +87,13 @@ export class RegisterFormComponent {
         },
         error: (error) => {
           this.alerts.alertNotification(
-            "¡Usuario no válido!",
-            "¡Correo o Contraseña Incorrectos!, asegurese que se encuentran bien ingresados",
+            "¡Error al registrarse!",
+            "Ha ocurrido un error al intentar registrar el usuario",
             "error"
           );
           this.loading = false;
         },
       });
-
     } catch (error) {
       this.alerts.alertNotification("Error", "Error desconocido", "error");
       this.loading = false;
