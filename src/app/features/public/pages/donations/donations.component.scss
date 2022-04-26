@@ -1,0 +1,111 @@
+.body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--primaryColor);
+}
+
+.body p {
+  color: black;
+}
+
+.row {
+  border: solid 1px #bbb;
+  border-radius: 4px;
+  margin-top: 4vh;
+  background-color: #9ac9fb;
+  padding: 20px;
+}
+
+.col1 {
+  width: 60%;
+  padding: 3px;
+  border: solid 1px #bbb;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+  // animations
+  animation-name: growup;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in;
+}
+.container > .row > .col1 > .col {
+  overflow: hidden;
+}
+
+.container > .row > .col1 > .col > img {
+  width: 800px;
+
+  object-fit: cover;
+  margin: auto;
+  margin-left: -12%;
+  overflow: hidden;
+}
+
+.box {
+  background-color: var(--secondaryColor);
+}
+
+// Donar
+
+#donar {
+  display: flexbox;
+  justify-content: center;
+}
+
+#donar p {
+  color: var(--primaryColor);
+  font-weight: 600;
+  letter-spacing: 1px;
+  display: block;
+  text-align: center;
+}
+
+#primertexto {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.donacion {
+  margin-bottom: 10px;
+}
+
+.btn {
+  position: absolute;
+  left: 85%;
+
+  background-color: var(--accentColor);
+  font-weight: 600;
+  transition: 0.5s ease-in-out all;
+}
+
+.btn:hover {
+  transform: scale(1.2);
+}
+
+@keyframes growup {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    background-color: #9ac9fb;
+  }
+}
+
+@media (max-width: 1024px) {
+  .col1 {
+    width: 100%;
+  }
+  .row {
+    display: block;
+  }
+  #donar p {
+    font-size: 2rem;
+  }
+
+  .btn {
+    position: relative;
+    font-size: 2rem;
+    bottom: 0;
+    right: 0;
+  }
+}
