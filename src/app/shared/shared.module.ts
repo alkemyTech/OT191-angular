@@ -2,13 +2,19 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { PrimengModule } from '../core/utils/primeng/primeng.module';
 import { TitleViewComponent } from './components/title-view/title-view.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
-    TitleViewComponent
+    TitleViewComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   exports: [
-    TitleViewComponent
+    TitleViewComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
