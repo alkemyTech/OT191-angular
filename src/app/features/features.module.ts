@@ -39,7 +39,7 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     TestimonialFormComponent,
     UserFormComponent,
     RouterModule,
-    PublicModule
+    PublicModule,
   ],
   imports: [
     CommonModule,

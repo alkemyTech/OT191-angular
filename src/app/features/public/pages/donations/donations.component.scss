@@ -11,7 +11,7 @@
 .row {
   border: solid 1px #bbb;
   border-radius: 4px;
-  margin-top: 15vh;
+  margin-top: 4vh;
   background-color: #9ac9fb;
   padding: 20px;
 }
@@ -75,11 +75,11 @@
 
   background-color: var(--accentColor);
   font-weight: 600;
-  transition: 1s ease-in-out all;
+  transition: 0.5s ease-in-out all;
 }
 
 .btn:hover {
-  padding: 1%;
+  transform: scale(1.2);
 }
 
 @keyframes growup {

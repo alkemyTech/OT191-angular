@@ -1,0 +1,102 @@
+
+
+<section>
+  <h1 class="title">Editor de Usuarios</h1>
+  <form [formGroup]="editarUser" (ngSubmit)="editarForm(editarUser.value)">
+    <div class="container">
+      <div class="col">
+        <ul class="list">
+          <h4>Nombre</h4>
+          <div
+            *ngIf="user.role_id != 0; then thenBlock; else elseBlock"
+          ></div>
+          <ng-template #thenBlock
+            ><p>Tu nombre: {{user.name}}</p>
+            <p>Cambia tu nombre:</p>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              placeholder="{{user.name}}"
+              formControlName="name"
+              value="{{user.name}}"
+              required
+            />
+            
+          </ng-template>
+          <ng-template #elseBlock
+            ><input
+              type="text"
+              class="form-control form-control-sm"
+              placeholder="Nombre de usuario"
+              formControlName="name"
+              required
+            />
+            <small class="text-danger"  *ngIf="name?.invalid && name?.touched ">Name is required</small>
+            
+          </ng-template>
+
+          <h4 class="second-title">Imagen de perfil</h4>
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Ingrese una imagen</label>
+            <input
+              (change)="getImage($event)"
+              class="form-control"
+              type="file"
+              id="formFile"
+              required
+            />
+          </div>
+          
+          <img class="img" [src]="images" alt="" />
+        </ul>
+      </div>
+      <div class="col" id="mobile">
+        <h4>Email</h4>
+          <div
+            *ngIf="user.role_id != 0; then thenBlock1; else elseBlock1"
+          ></div>
+          <ng-template #thenBlock1
+            ><p>Tu email: {{user.email}}</p>
+            <p>Cambia tu email:</p>
+            <input
+              type="email"
+              class="form-control form-control-sm"
+              value="{{ user.email }}"
+              formControlName="email"
+              value="{{user.email}}"
+              placeholder="{{user.email}}"
+            />
+            
+          </ng-template>
+          <ng-template #elseBlock1
+            >
+            <input
+              type="email"
+              class="form-control form-control-sm"
+              placeholder="Email"
+              formControlName="email"
+              
+              required
+            />
+            <small class="text-danger"  *ngIf="email?.invalid && email?.touched ">Email is required and valid email</small>
+            
+          </ng-template>
+        <h4 class="second-title" id="second-title">Elige Rol</h4>
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label=".form-select-lg example"
+          formControlName="role_id"
+        >
+          
+          <option value="1">Administrador</option>
+          <option value="2">Usuario</option>          
+        </select>
+        
+        
+        <button  type="submit" class="btn btn-primary" id="submit-button">
+          Crear / Editar
+        </button>
+      </div>
+    </div>
+  </form>
+</section>
