@@ -1,14 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+
 import { PrimengModule } from '../core/utils/primeng/primeng.module';
+
+import { RolPipe } from './pipes/rol.pipe';
 import { TitleViewComponent } from './components/title-view/title-view.component';
 
 @NgModule({
   declarations: [
-    TitleViewComponent
+    TitleViewComponent,
+    RolPipe
   ],
   exports: [
-    TitleViewComponent
+    TitleViewComponent,
+    RolPipe
   ],
   imports: [
     CommonModule,
