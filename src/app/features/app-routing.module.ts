@@ -1,9 +1,6 @@
-import { Component, NgModule } from "@angular/core";
-import { UserFormComponent } from "./pages/users/user-form/user-form.component";
-import { UserformComponent } from "./backoffice/pages/userform/userform.component";
 import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
-
+import { NgModule } from "@angular/core";
 
 import { EditOrganizationComponent } from "./backoffice/edit-organization/edit-organization.component";
 import { FormcontactComponent } from "./public/formcontact/formcontact.component";
@@ -39,10 +36,6 @@ const routes: Routes = [
     component: ActivityFormComponent,
   },
   {
-    path: "backoffice/userform",
-    component: UserformComponent
-  },
-  {
     path: "",
     component: HomeComponent,
   },
@@ -66,4 +59,3 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forRoot(routes)],
 })
 export class AppRoutingModule {}
-export const routingComponents = [SlidesComponent,UserformComponent];
