@@ -41,7 +41,7 @@ export class SlidesComponent implements OnInit {
     const image = event.target.files[0];
     this.stringimage = image.name
     this.convertToBase64(image);
-    console.log(this.stringimage)
+    
   }
 
   convertToBase64(file: File) {
@@ -72,12 +72,12 @@ export class SlidesComponent implements OnInit {
     if(this.slide.order == 0){
       form.image=this.stringimage
       this.api.createSlide(form).subscribe( data =>{
-        console.log(data)
+       
       })
     }else{
       form.image=this.stringimage
       this.api.editSlide(form).subscribe( data =>{
-        console.log(data)
+        
       })
       
     }
