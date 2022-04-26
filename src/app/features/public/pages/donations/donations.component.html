@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<section class="body">
+  <div class="container">
+    <div class="row">
+      <div class="col1">
+        <div class="col">
+          <img src="../../../../../assets/img/donar/Foto11.jpg" alt="img" />
+        </div>
+      </div>
+      <div class="col" id="donar">
+        <p id="primertexto">{{ texto }}</p>
+        <p class="donacion">Cuánto quieres donar?</p>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">ARS</span>
+          </div>
+
+          <input
+            type="text"
+            (blur)="transformAmount($event)"
+            [(ngModel)]="formattedAmount"
+            class="form-control"
+          />
+        </div>
+
+        <button type="submit" class="btn" id="submit-button">Donar</button>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

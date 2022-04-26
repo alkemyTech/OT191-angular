@@ -1,15 +1,19 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { PrimengModule } from '../../core/utils/primeng/primeng.module';
 import { SharedModule } from '../../shared/shared.module';
 import { HomeComponent } from './pages/home/home.component';
 import { FormcontactComponent } from './formcontact/formcontact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DonationsComponent } from './pages/donations/donations.component';
+import { GraciasComponent } from './pages/donations/gracias/gracias.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    FormcontactComponent
+    FormcontactComponent,
+    DonationsComponent,
+    GraciasComponent
   ],
   imports: [
     CommonModule,
@@ -17,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     SharedModule
-  ]
+  ],
+  providers:[CurrencyPipe]
 })
-export class PublicModule { }
+export class PublicModule {}

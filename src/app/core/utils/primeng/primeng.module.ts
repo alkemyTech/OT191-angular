@@ -15,9 +15,12 @@ import {TableModule} from 'primeng/table';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {ImageModule} from 'primeng/image';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import {CarouselModule} from 'primeng/carousel';
+
+
 
 @NgModule({
-  exports: [ 
+  exports: [
     ButtonModule,
     InputTextModule,
     InputTextareaModule,
@@ -34,6 +37,9 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     ProgressBarModule,
     TableModule,
     VirtualScrollerModule,
-  ]
+    CarouselModule,
+    ImageModule,
+  ],
+
 })
-export class PrimengModule { }
+export class PrimengModule {}

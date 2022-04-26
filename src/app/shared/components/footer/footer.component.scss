@@ -1,0 +1,51 @@
+.first-hr{
+    height: 3px;
+    background-color: black;
+    margin-bottom: 10px;
+    border-color: black;
+}
+
+.nav-link {
+    color: black;
+    font-weight: 600;
+    font-family: var(--font-family-primary);
+    transition: 0.5s ease all;
+}
+
+.nav-link:hover{
+    text-decoration: underline;
+}
+
+
+
+.container-fluid{
+    overflow: hidden;
+    max-height: 150px;
+}
+
+.nav-item{
+    padding: 3vw;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+.second-hr{
+    width: 90%;
+    background-color: solid black;
+}
+
+p{
+    font-family: var(--font-family-primary);
+    font-size: 0.8rem;    
+}
+
+.icons{
+    margin-bottom: 10px;
+}
+
+.icons a{
+    padding: 20px;
+}

@@ -9,7 +9,14 @@ import { AboutModule } from "./About/about.module";
 
 @NgModule({
 	declarations: [AppComponent],
-	imports: [BrowserModule, BrowserAnimationsModule, CoreModule, FeaturesModule, SharedModule, AboutModule],
+	imports: [
+		BrowserModule,
+		BrowserAnimationsModule,
+		CoreModule,
+		FeaturesModule,
+		SharedModule,
+		AboutModule,
+	],
 	providers: [],
 	bootstrap: [AppComponent],
 })
