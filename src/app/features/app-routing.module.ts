@@ -2,7 +2,6 @@ import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
-import { EditOrganizationComponent } from "./backoffice/edit-organization/edit-organization.component";
 import { FormcontactComponent } from "./public/formcontact/formcontact.component";
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { DonationsComponent } from "./public/pages/donations/donations.component";
@@ -16,20 +15,12 @@ const routes: Routes = [
     loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
   },
   {
-    path: "auth",
-    loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
-  },
-  {
     path: "donar",
     component: DonationsComponent,
   },
   {
     path: "gracias",
     component: GraciasComponent,
-  },
-  {
-    path: "backoffice/organization/edit",
-    component: EditOrganizationComponent,
   },
   {
     path: "actividades",

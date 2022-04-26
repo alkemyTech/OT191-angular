@@ -40,6 +40,7 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     UserFormComponent,
     RouterModule,
     PublicModule
+
   ],
   imports: [
     CommonModule,
