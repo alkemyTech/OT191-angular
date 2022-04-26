@@ -26,7 +26,7 @@ export class PrivateApiService extends BaseApiService {
     this.options();
     return id.length > 0 ? super.get<T>(path + '/' + id) : super.get<T>(path);
   }
-
+  //esta Hecho
   public post<T>(path: string, body: any): Observable<T> {
     this.options();
     return super.post<T>(path, body);
