@@ -14,6 +14,20 @@
                 autofill="off"
                 autocomplete="off"
               >
+              <!--Nombre-->
+              <div class="field mb-2 p-fluid">
+                <label for="float-input">Ingresa tu Nombre</label>
+                <input
+                  pInputText
+                  type="text"
+                  formControlName="name"
+                  [class]="isInvalid('name') ? 'ng-invalid ng-dirty' : ''"
+                  placeholder="Nombre Apellido"
+                />
+                <small *ngIf="isInvalid('name')" class="p-error block"
+                  >El nombre es requerido.</small
+                >
+              </div>
                 <!--Email-->
                 <div class="field mb-2 p-fluid">
                   <label for="float-input">Ingresa tu correo electrónico</label>

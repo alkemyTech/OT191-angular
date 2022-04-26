@@ -1,10 +1,11 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
 import { AlertService } from "src/app/core/services/alert.service";
-import { AuthService } from "../../services/auth.service";
-import { Router } from "@angular/router";
 import { User } from "src/app/core/models/user.model";
+
+import { AuthService } from "../../services/auth.service";
 import { ValidatorService } from "../../services/validators/validator.service";
 
 @Component({
@@ -17,6 +18,10 @@ export class RegisterFormComponent {
 
   registerForm: FormGroup = this.fb.group(
     {
+      name: [
+        "",
+        [Validators.required],
+      ],
       email: [
         "",
         [Validators.required, Validators.pattern(this.valSer.emailPattern)],
@@ -68,9 +73,33 @@ export class RegisterFormComponent {
 
     try {
       let user: Partial<User> = {
+        name: this.registerForm.controls["name"].value,
         email: this.registerForm.controls["email"].value,
         password: this.registerForm.controls["password"].value,
       };
+      console.log(user);
+
+      this.auth.register(user).subscribe({
+        next: (res) => {
+
+          this.loading = false;
+          this.alerts.alertNotification(
+            "¡Se ha registrado el usuario!",
+            "Su usuario ha sido registrado con éxito",
+            "success"
+          );
+          this.router.navigate(["/"]);
+        },
+        error: (error) => {
+          this.alerts.alertNotification(
+            "¡Usuario no válido!",
+            "¡Correo o Contraseña Incorrectos!, asegurese que se encuentran bien ingresados",
+            "error"
+          );
+          this.loading = false;
+        },
+      });
+
     } catch (error) {
       this.alerts.alertNotification("Error", "Error desconocido", "error");
       this.loading = false;
