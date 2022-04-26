@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { ResponseI } from '../../models/response.interface';
 import { SlideI } from '../../models/slide.interface';
@@ -11,6 +11,9 @@ import { UserI } from '../../models/user.interface';
   providedIn: 'root'
 })
 export class RestService {
+  editUser(form: UserI) {
+    return of([])
+  }
   url = "https://ongapi.alkemy.org/api/"
   constructor(private http:HttpClient) { }
 
