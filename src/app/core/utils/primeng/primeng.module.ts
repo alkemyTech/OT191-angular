@@ -18,8 +18,9 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CarouselModule} from 'primeng/carousel';
 
 
+
 @NgModule({
-  exports: [ 
+  exports: [
     ButtonModule,
     InputTextModule,
     InputTextareaModule,
@@ -37,6 +38,8 @@ import {CarouselModule} from 'primeng/carousel';
     TableModule,
     VirtualScrollerModule,
     CarouselModule,
-  ]
+    ImageModule,
+  ],
+
 })
-export class PrimengModule { }
+export class PrimengModule {}
