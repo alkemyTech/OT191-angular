@@ -69,6 +69,10 @@ const routes: Routes = [
 		redirectTo: "",
 		pathMatch: "full",
 	},
+  {
+    path: "Nosotros",
+    component: PrincipalComponent,
+  },
 ];
 
 @NgModule({
