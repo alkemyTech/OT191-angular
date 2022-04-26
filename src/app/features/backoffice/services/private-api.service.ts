@@ -24,12 +24,12 @@ export class PrivateApiService extends BaseApiService {
     this.options();
     return super.get<T>(path);
   }
-
+  //esta Hecho
   public post<T>(path: string, body: any): Observable<T> {
     this.options();
     return super.post<T>(path, body);
   }
-
+  //
   public delete<T>(path: string, id: string = ''): Observable<T> {
     this.options();
     return super.delete<T>(path  + '/' + id);

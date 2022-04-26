@@ -6,3 +6,4 @@ export interface ResponseI{
     data: UserI;
     message: string;
 } 
+
