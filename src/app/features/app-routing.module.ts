@@ -1,9 +1,6 @@
 import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { EditOrganizationComponent } from "./backoffice/edit-organization/edit-organization.component";
-import { ActivitiesListComponent } from "./backoffice/activities-list/activities-list.component";
-import { ActivitiesComponent } from "./backoffice/activities/activities.component";
 import { FormcontactComponent } from "./public/formcontact/formcontact.component";
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { DonationsComponent } from "./public/pages/donations/donations.component";
@@ -29,10 +26,7 @@ const routes: Routes = [
     path: "gracias",
     component: GraciasComponent,
   },
-  {
-    path: "backoffice/organization/edit",
-    component: EditOrganizationComponent,
-  },
+
   {
     path: "actividades",
     component: ActivityFormComponent,
@@ -44,14 +38,6 @@ const routes: Routes = [
   {
     path: "contact",
     component: FormcontactComponent,
-  },
-  {
-    path: "backoffice/activities",
-    component: ActivitiesListComponent,
-  },
-  {
-    path: "backoffice/activities/create",
-    component: ActivitiesComponent,
   },
   {
     path: 'backoffice',
