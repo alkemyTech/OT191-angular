@@ -9,7 +9,7 @@ import {
 
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular/ckeditor.component";
-import { ICategory } from "../backoffice.interface";
+import { ICategory } from "src/app/core/models/category.model";
 
 @Component({
 	selector: "app-categories",

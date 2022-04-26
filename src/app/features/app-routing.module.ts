@@ -10,32 +10,6 @@ import { GraciasComponent } from "./public/pages/donations/gracias/gracias.compo
 
 const routes: Routes = [
 	{
-		path: "backoffice",
-		loadChildren: () =>
-			import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
-	},
-	{
-		path: "actividades",
-		component: ActivityFormComponent,
-	},
-	{
-		path: "",
-		component: HomeComponent,
-	},
-	{
-		path: "Nosotros",
-		component: PrincipalComponent,
-	},
-	{
-		path: "public/contact",
-		component: FormcontactComponent,
-	},
-	{
-		path: "**",
-		redirectTo: "",
-		pathMatch: "full",
-	},
-	{
 		path: "auth",
 		loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
 	},
@@ -47,6 +21,7 @@ const routes: Routes = [
 		path: "gracias",
 		component: GraciasComponent,
 	},
+
 	{
 		path: "actividades",
 		component: ActivityFormComponent,
@@ -65,14 +40,9 @@ const routes: Routes = [
 			import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
 	},
 	{
-		path: "**",
-		redirectTo: "",
-		pathMatch: "full",
+		path: "Nosotros",
+		component: PrincipalComponent,
 	},
-  {
-    path: "Nosotros",
-    component: PrincipalComponent,
-  },
 ];
 
 @NgModule({
