@@ -1,0 +1,285 @@
+<div class="container mt-4">
+	<form [formGroup]="organizationForm" (ngSubmit)="submitOrganization()">
+		<div class="row">
+			<div class="col-7 align-self-center">
+				<div
+					class="row pt-4"
+					[ngClass]="
+						validateControlForSpacing(organizationFormControl.name)
+							? 'mb-4'
+							: ''
+					"
+				>
+					<div class="p-inputgroup">
+						<span class="p-float-label">
+							<input
+								id="name"
+								type="text"
+								class="p-inputtext-lg"
+								formControlName="name"
+								pInputText
+								[ngClass]="
+									validateControlForText(organizationFormControl.name)
+										? 'ng-invalid ng-dirty'
+										: ''
+								"
+							/>
+							<label for="float-input">Nombre de la organizacion</label>
+						</span>
+					</div>
+					<div
+						class="text-danger"
+						*ngIf="validateControlForText(organizationFormControl.name)"
+					>
+						<span *ngIf="organizationFormControl.name.errors?.['required']">
+							El nombre es requerido
+						</span>
+					</div>
+				</div>
+				<div
+					class="row pt-4"
+					[ngClass]="
+						validateControlForSpacing(organizationFormControl.logo)
+							? 'mb-4'
+							: ''
+					"
+				>
+					<input
+						id="logo"
+						type="file"
+						class="p-button-raised p-button-secondary"
+						(change)="onFileSelected($event)"
+						accept="image/x-png,image/jpeg"
+						required
+						#logo
+						style="display: none"
+					/>
+					<div class="p-inputgroup">
+						<button
+							#buttonLogo
+							type="button"
+							pButton
+							(blur)="nothingSelected()"
+							class="p-button-raised p-button-secondary"
+							(click)="logo.click()"
+						>
+							Cargar logo
+						</button>
+					</div>
+					<div class="text-danger" *ngIf="logoEmpty">
+						<span *ngIf="logoEmpty"> El logo es requerido </span>
+					</div>
+				</div>
+			</div>
+			<div class="col-auto align-self-center">
+				<p-image
+					width="250"
+					height="250"
+					[src]="
+						organizationFormControl.logo.value == ''
+							? organizationData.logo
+							: organizationFormControl.logo.value
+					"
+					alt="Image"
+				></p-image>
+			</div>
+		</div>
+		<div
+			class="row mt-4"
+			[ngClass]="
+				validateControlForSpacing(organizationFormControl.name) &&
+				validateControlForSpacing(organizationFormControl.logo)
+					? 'mb-4'
+					: ''
+			"
+		>
+			<div class="col"></div>
+		</div>
+		<div
+			class="row mt-4"
+			[ngClass]="
+				validateControlForSpacing(organizationFormControl.shortDescription)
+					? 'mb-4'
+					: ''
+			"
+		>
+			<div class="col">
+				<ckeditor
+					formControlName="shortDescription"
+					[config]="config"
+					(change)="onChange($event)"
+					[editor]="Editor"
+					[data]="editorData"
+				></ckeditor>
+
+				<div
+					class="text-danger"
+					*ngIf="
+						validateControlForText(organizationFormControl.shortDescription)
+					"
+				>
+					<span
+						*ngIf="organizationFormControl.shortDescription.errors?.['required']"
+					>
+						La descripcion corta es requerida
+					</span>
+				</div>
+			</div>
+		</div>
+		<div
+			class="row pt-4"
+			[ngClass]="
+				validateControlForSpacing(organizationFormControl.longDescription)
+					? 'mb-4'
+					: ''
+			"
+		>
+			<div class="col">
+				<div class="p-inputgroup">
+					<span class="p-float-label">
+						<textarea
+							id="longDescription"
+							type="text"
+							class="p-inputtext-lg"
+							formControlName="longDescription"
+							pInputTextarea
+							rows="3"
+							[autoResize]="autoResize"
+						></textarea>
+						<label for="longDescription"
+							>Descripcion larga de la organizacion</label
+						>
+					</span>
+				</div>
+				<div
+					class="text-danger"
+					*ngIf="
+						validateControlForText(organizationFormControl.longDescription)
+					"
+				>
+					<span
+						*ngIf="organizationFormControl.longDescription.errors?.['required']"
+					>
+						La descripcion larga es requerida
+					</span>
+				</div>
+			</div>
+		</div>
+		<div
+			class="row pt-4"
+			[ngClass]="
+				validateControlForSpacing(organizationFormLinksControl.twitter)
+					? 'mb-4'
+					: ''
+			"
+		>
+			<div class="col" formGroupName="links">
+				<div class="p-inputgroup">
+					<span class="p-inputgroup-addon"><i class="pi pi-twitter"></i></span>
+					<input
+						formControlName="twitter"
+						type="text"
+						class="p-inputtext-lg"
+						pInputText
+						placeholder="www.twitter.com/Usuario"
+					/>
+				</div>
+				<div
+					class="text-danger"
+					*ngIf="validateControlForText(organizationFormLinksControl.twitter)"
+				>
+					<span
+						*ngIf="organizationFormLinksControl.twitter.errors?.['formatUrl']"
+					>
+						La url no es valida
+					</span>
+				</div>
+			</div>
+		</div>
+		<div
+			class="row pt-4"
+			[ngClass]="
+				validateControlForSpacing(organizationFormLinksControl.facebook)
+					? 'mb-4'
+					: ''
+			"
+		>
+			<div class="col" formGroupName="links">
+				<div class="p-inputgroup">
+					<span class="p-inputgroup-addon"><i class="pi pi-facebook"></i></span>
+					<input
+						formControlName="facebook"
+						type="text"
+						class="p-inputtext-lg"
+						pInputText
+						placeholder="www.facebook.com/Usuario"
+					/>
+				</div>
+				<div
+					class="text-danger"
+					*ngIf="validateControlForText(organizationFormLinksControl.facebook)"
+				>
+					<span
+						*ngIf="organizationFormLinksControl.facebook.errors?.['formatUrl']"
+					>
+						La url no es valida
+					</span>
+				</div>
+			</div>
+		</div>
+		<div
+			class="row pt-4"
+			[ngClass]="
+				validateControlForSpacing(organizationFormLinksControl.instagram)
+					? 'mb-4'
+					: ''
+			"
+		>
+			<div class="col" formGroupName="links">
+				<div class="p-inputgroup">
+					<span class="p-inputgroup-addon"
+						><i class="pi pi-instagram"></i
+					></span>
+					<input
+						formControlName="instagram"
+						type="text"
+						class="p-inputtext-lg"
+						pInputText
+						placeholder="www.instagram.com/Usuario"
+					/>
+				</div>
+				<div
+					class="text-danger"
+					*ngIf="validateControlForText(organizationFormLinksControl.instagram)"
+				>
+					<span
+						*ngIf="organizationFormLinksControl.instagram.errors?.['formatUrl']"
+					>
+						La url no es valida
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="row pt-4 mb-4 justify-content-between">
+			<div class="col-auto mr-auto">
+				<button
+					pButton
+					pRipple
+					type="button"
+					class="p-button-raised p-button-danger "
+					label="Cancelar"
+					(click)="cancelAction()"
+				></button>
+			</div>
+			<div class="col-auto">
+				<button
+					pButton
+					pRipple
+					type="submit"
+					class="p-button-raised"
+					label="Actualizar datos"
+				></button>
+			</div>
+		</div>
+	</form>
+</div>
