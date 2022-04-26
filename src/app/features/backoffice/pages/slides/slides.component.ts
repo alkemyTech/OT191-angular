@@ -18,11 +18,11 @@ export class SlidesComponent implements OnInit {
   public stringimage: string = "";
   
   public slide:SlideI = {
-    id: 1,
-    name: "nombre",
+    id: 0,
+    name: "",
     order: 0,
-    description: "hola mundo",
-    image: "string",
+    description: "",
+    image: "",
   };
   editarSlide = new FormGroup({
     name: new FormControl('',[Validators.required,Validators.minLength(4)]),
