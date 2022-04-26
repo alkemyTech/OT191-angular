@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, ViewChild } from "@angular/core";
-import { IActivities, IActivity } from "../backoffice.interface";
+
 import { ActivitiesControllerService } from "../services/activitiesController/activities-controller.service";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { Table } from "primeng/table";
+import { IActivities, IActivity } from "src/app/core/models/activity.model";
 
 @Component({
 	selector: "app-activities-list",
@@ -54,11 +55,19 @@ export class ActivitiesListComponent implements OnInit {
 
 	activityDialog: boolean = false;
 
-	activities: IActivities = <IActivities>{success:true, data:[],message:''};
+	activities: IActivities = <IActivities>{
+		success: true,
+		data: [],
+		message: "",
+	};
 
 	activity: IActivity = <IActivity>{};
 
-	selectedActivities: IActivities = <IActivities>{success:false, data:[],message:''};
+	selectedActivities: IActivities = <IActivities>{
+		success: false,
+		data: [],
+		message: "",
+	};
 
 	submitted: boolean = false;
 
@@ -84,7 +93,11 @@ export class ActivitiesListComponent implements OnInit {
 				this.activities.data = this.activities.data.filter(
 					(val) => !this.selectedActivities.data.includes(val)
 				);
-				this.selectedActivities = <IActivities>{success:false, data:[],message:''};
+				this.selectedActivities = <IActivities>{
+					success: false,
+					data: [],
+					message: "",
+				};
 				this.messageService.add({
 					severity: "success",
 					summary: "Exitoso",

@@ -1,36 +1,39 @@
 <div class="container justify-content:center align-items-center mt-4">
 	<form [formGroup]="activityForm" (ngSubmit)="submitActivity()">
-		<div class="row mb-4">
+		<div
+			class="row pt-4"
+			[ngClass]="
+				validateControlForSpacing(activityFormControl.name) ? 'mb-4' : ''
+			"
+		>
 			<div class="col">
-				<div class="p-float-label">
-					<input
-						id="name"
-						type="text"
-						pInputText
-						formControlName="name"
-						[ngClass]="
-							(activityFormControl.name.touched || submitted) &&
-							activityFormControl.name.invalid
-								? 'ng-invalid ng-dirty'
-								: ''
-						"
-					/>
-					<label for="name">Nombre de la actividad</label>
-					<div
-						class="text-danger"
-						*ngIf="
-							(activityFormControl.name.touched || submitted) &&
-							activityFormControl.name.invalid
-						"
-					>
-						<span *ngIf="activityFormControl.name.errors?.['required']">
-							El nombre es requerido
-						</span>
+				<div class="p-inputgroup">
+					<div class="p-float-label">
+						<input
+							id="name"
+							type="text"
+							pInputText
+							formControlName="name"
+							[ngClass]="
+								validateControlForText(activityFormControl.name)
+									? 'ng-invalid ng-dirty'
+									: ''
+							"
+						/>
+						<label for="name">Nombre de la actividad</label>
 					</div>
+				</div>
+				<div
+					class="text-danger"
+					*ngIf="validateControlForText(activityFormControl.name)"
+				>
+					<span *ngIf="activityFormControl.name.errors?.['required']">
+						El nombre es requerido
+					</span>
 				</div>
 			</div>
 		</div>
-		<div class="row mb-4">
+		<div class="row pt-4 mb-4">
 			<div class="col">
 				<ckeditor
 					formControlName="description"
@@ -42,46 +45,71 @@
 			</div>
 		</div>
 		<div class="row mb-4">
-			<div class="col-6">
-				<label for="Image" class="form-label"> Suba una imagen</label>
-				<input
-					formControlName="image"
-					type="file"
-					(change)="onFileSelected($event)"
-					required
-				/>
-				<div
-					class="text-danger"
-					*ngIf="
-						activityFormControl.image.touched &&
-						activityFormControl.image.invalid
+			<div class="col">
+				<p-image
+					[src]="
+						activityFormControl.image.value == ''
+							? activitySelected.data.image
+							: activityFormControl.image.value
 					"
+					[alt]="activitySelected.data.name"
+					width="300"
+				></p-image>
+			</div>
+		</div>
+		<div
+			class="row pt-4"
+			[ngClass]="
+				validateControlForSpacing(activityFormControl.image.value) && imageEmpty
+					? 'mb-4'
+					: ''
+			"
+		>
+			<input
+				id="image"
+				type="file"
+				class="p-button-raised p-button-secondary"
+				(change)="onFileSelected($event)"
+				accept="image/x-png,image/jpeg"
+				required
+				#logo
+				style="display: none"
+			/>
+			<div class="p-inputgroup">
+				<button
+					#buttonLogo
+					type="button"
+					pButton
+					(blur)="nothingSelected()"
+					class="p-button-sm p-button-raised p-button-secondary"
+					(click)="logo.click()"
 				>
-					<span *ngIf="activityFormControl.image.errors?.['required']">
-						La imagen es requerida
-					</span>
-				</div>
+					Cargar imagen
+				</button>
+			</div>
+			<div class="text-danger" *ngIf="imageEmpty">
+				<span *ngIf="imageEmpty"> La imagen es requerida </span>
 			</div>
 		</div>
 
-		<div class="row mb-4 justify-content-between">
+		<div class="row pt-4 mb-4 justify-content-between">
 			<div class="col-auto mr-auto">
 				<button
 					pButton
 					pRipple
-					type="submit"
-					class="p-button-raised"
-					label="Crear Categoria"
+					type="button"
+					[routerLink]="['/backoffice/activities']"
+					class="p-button-raised p-button-danger"
+					label="Cancelar"
 				></button>
 			</div>
 			<div class="col-auto">
 				<button
 					pButton
 					pRipple
-					type="button"
-					(click)="cancelAction()"
-					class="p-button-raised p-button-danger"
-					label="Cancelar"
+					type="submit"
+					class="p-button-raised"
+					label="Guardar Categoria"
 				></button>
 			</div>
 		</div>
