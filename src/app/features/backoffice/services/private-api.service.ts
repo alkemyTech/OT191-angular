@@ -30,6 +30,11 @@ export class PrivateApiService extends BaseApiService {
     return super.post<T>(path, body);
   }
 
+  public put<T>(path: string, body: any): Observable<T> {
+    this.options();
+    return super.put<T>(path, body);
+  }
+
   public delete<T>(path: string, id: string = ''): Observable<T> {
     this.options();
     return super.delete<T>(path  + '/' + id);
