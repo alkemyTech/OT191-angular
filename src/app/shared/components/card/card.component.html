@@ -1,0 +1,15 @@
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <p-card [header]="title" class="card font" styleClass="p-card-shadow">
+                <ng-template pTemplate="header">
+                    <img class="image" [alt]="title" [src]="image||'assets/img/card/imagenVacia.png'">
+                </ng-template>
+                <p class="font" [innerHTML]="description"></p>
+                <ng-template pTemplate="footer">
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+</div>

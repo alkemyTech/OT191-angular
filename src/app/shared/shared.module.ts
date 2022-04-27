@@ -4,17 +4,20 @@ import { PrimengModule } from '../core/utils/primeng/primeng.module';
 import { TitleViewComponent } from './components/title-view/title-view.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
     TitleViewComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    CardComponent
   ],
   exports: [
     TitleViewComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
