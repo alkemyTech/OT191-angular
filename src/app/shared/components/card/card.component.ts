@@ -8,8 +8,7 @@ import { Component, Input, OnInit } from "@angular/core";
 export class CardComponent {
 	constructor() {}
 
-  @Input() title="";
-  @Input() image="";
-  @Input() description="";
-
+	@Input() title = "";
+	@Input() image = "";
+	@Input() description = "";
 }
