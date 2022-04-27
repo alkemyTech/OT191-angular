@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { MaterialModule } from '../core/utils/material/material.module';
 import { PrimengModule } from '../core/utils/primeng/primeng.module';
 
 import { RolPipe } from './pipes/rol.pipe';
@@ -23,7 +24,8 @@ import { TitleViewComponent } from './components/title-view/title-view.component
   ],
   imports: [
     CommonModule,
-    PrimengModule
+    PrimengModule,
+    MaterialModule
   ]
 })
 export class SharedModule { }

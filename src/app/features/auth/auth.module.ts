@@ -1,12 +1,15 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
+import { SharedModule } from '../../shared/shared.module';
+import { MaterialModule } from '../../core/utils/material/material.module';
+import { PrimengModule } from '../../core/utils/primeng/primeng.module';
 
 import { AuthRoutingModule } from './auth-routing.module';
-import { CommonModule } from '@angular/common';
+
 import { LoginFormComponent } from './pages/login-form/login-form.component';
-import { NgModule } from '@angular/core';
-import { PrimengModule } from '../../core/utils/primeng/primeng.module';
 import { RegisterFormComponent } from './pages/register-form/register-form.component';
-import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [LoginFormComponent, RegisterFormComponent],
@@ -14,6 +17,7 @@ import { SharedModule } from '../../shared/shared.module';
     CommonModule,
     AuthRoutingModule,
     PrimengModule,
+    MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule
