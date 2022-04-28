@@ -1,20 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+
 import { PrimengModule } from '../core/utils/primeng/primeng.module';
-import { TitleViewComponent } from './components/title-view/title-view.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+
 import { FooterComponent } from './components/footer/footer.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { TitleViewComponent } from './components/title-view/title-view.component';
 import { CardComponent } from './components/card/card.component';
+import { RolPipe } from './pipes/rol.pipe';
 
 @NgModule({
   declarations: [
     TitleViewComponent,
     NavbarComponent,
     FooterComponent,
-    CardComponent
+    RolPipe,
+    CardComponent,
   ],
   exports: [
     TitleViewComponent,
+    RolPipe,
     NavbarComponent,
     FooterComponent,
     CardComponent
