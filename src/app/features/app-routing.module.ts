@@ -36,10 +36,6 @@ const routes: Routes = [
     component: FormcontactComponent,
   },
   {
-    path: "Nosotros",
-    component: PrincipalComponent,
-  },
-  {
     path: "backoffice",
     loadChildren: () =>
       import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
@@ -48,6 +44,10 @@ const routes: Routes = [
     path: "**",
     redirectTo: "",
     pathMatch: "full",
+  },
+  {
+    path: "Nosotros",
+    component: PrincipalComponent,
   },
 ];
 
