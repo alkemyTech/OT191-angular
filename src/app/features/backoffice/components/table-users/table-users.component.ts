@@ -30,6 +30,8 @@ export class TableUsersComponent {
     { label: "Administrador", value: 2 },
   ];
 
+  stylesDialog = { width: '400px', height: '500px' };
+
   @ViewChild("dt") dt: Table | undefined;
   // filtro para el buscador de una columna
   applyFilter($event: any, stringVal: any) {
