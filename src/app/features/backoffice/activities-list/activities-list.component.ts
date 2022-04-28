@@ -13,45 +13,24 @@ import { IActivities, IActivity } from "src/app/core/models/activity.model";
 export class ActivitiesListComponent implements OnInit {
 	@ViewChild("dt") dt: Table | undefined;
 
+	@Input() listActivities: IActivities = {
+		success: true,
+		data: [],
+		message: "",
+	};
+
 	constructor(
 		private activityController: ActivitiesControllerService,
 		private messageService: MessageService,
 		private confirmationService: ConfirmationService
 	) {}
-	@Input() listActivities: IActivities = {
-		success: true,
-		data: [
-			{
-				id: 1753,
-				name: "Taller Arte y Cuentos",
-				slug: null,
-				description:
-					"<p>Taller literario y de manualidades que se realiza permanentemente.</p>",
-				image: "http://ongapi.alkemy.org/storage/SbltJhWv08.jpg",
-				user_id: null,
-				category_id: null,
-				created_at: "2022-04-16T22:42:39.000000Z",
-				updated_at: "2022-04-16T22:42:39.000000Z",
-				deleted_at: null,
-				group_id: 42,
-			},
-			{
-				id: 1754,
-				name: "Paseos Recreativos y Educativos",
-				slug: null,
-				description:
-					"<p>Estos paseos están pensados para promover la participación y sentido de permanencia de los niños, niñas y adolescentes del área educativa.</p>",
-				image: "http://ongapi.alkemy.org/storage/PdZu0HAd5N.jpg",
-				user_id: null,
-				category_id: null,
-				created_at: "2022-04-16T22:43:11.000000Z",
-				updated_at: "2022-04-16T22:43:11.000000Z",
-				deleted_at: null,
-				group_id: 42,
-			},
-		],
-		message: "",
-	};
+	ngOnInit() {
+		this.activityController
+			.getActivities("/activities", null)
+			.subscribe((response) => {
+				this.activities = response;
+			});
+	}
 
 	activityDialog: boolean = false;
 
@@ -70,14 +49,6 @@ export class ActivitiesListComponent implements OnInit {
 	};
 
 	submitted: boolean = false;
-
-	ngOnInit() {
-		this.activityController
-			.getActivities("/activities", null)
-			.subscribe((response) => {
-				this.activities = response;
-			});
-	}
 
 	applyFilterGlobal($event: any, stringVal: string) {
 		this.dt!.filterGlobal(($event.target as HTMLInputElement).value, stringVal);
