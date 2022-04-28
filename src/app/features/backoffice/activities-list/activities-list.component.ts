@@ -20,36 +20,7 @@ export class ActivitiesListComponent implements OnInit {
 	) {}
 	@Input() listActivities: IActivities = {
 		success: true,
-		data: [
-			{
-				id: 1753,
-				name: "Taller Arte y Cuentos",
-				slug: null,
-				description:
-					"<p>Taller literario y de manualidades que se realiza permanentemente.</p>",
-				image: "http://ongapi.alkemy.org/storage/SbltJhWv08.jpg",
-				user_id: null,
-				category_id: null,
-				created_at: "2022-04-16T22:42:39.000000Z",
-				updated_at: "2022-04-16T22:42:39.000000Z",
-				deleted_at: null,
-				group_id: 42,
-			},
-			{
-				id: 1754,
-				name: "Paseos Recreativos y Educativos",
-				slug: null,
-				description:
-					"<p>Estos paseos están pensados para promover la participación y sentido de permanencia de los niños, niñas y adolescentes del área educativa.</p>",
-				image: "http://ongapi.alkemy.org/storage/PdZu0HAd5N.jpg",
-				user_id: null,
-				category_id: null,
-				created_at: "2022-04-16T22:43:11.000000Z",
-				updated_at: "2022-04-16T22:43:11.000000Z",
-				deleted_at: null,
-				group_id: 42,
-			},
-		],
+		data: [],
 		message: "",
 	};
 
