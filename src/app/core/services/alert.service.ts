@@ -1,6 +1,6 @@
-import Swal, { SweetAlertIcon, SweetAlertResult } from 'sweetalert2';
-
 import { Injectable } from '@angular/core';
+
+import Swal, { SweetAlertIcon, SweetAlertResult } from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,7 @@ export class AlertService {
               title: title,
               text: body,
               icon: icon,
+              allowOutsideClick: false,
               showCancelButton: true,
               confirmButtonColor: '#3B82F6',
               cancelButtonColor: 'black',

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from "@angular/platform-browser";
-import { Observable, Subscriber } from "rxjs";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+
+import { Observable, Subscriber } from "rxjs";
+
 import { RestService } from "src/app/core/services/endpoint/rest.service";
 import { UserI } from 'src/app/core/models/user.interface';
 
