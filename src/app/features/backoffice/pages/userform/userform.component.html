@@ -17,7 +17,7 @@
             <p>Cambia tu nombre:</p>
             <input
               type="text"
-              class="form-control form-control-sm"
+              class="form-control form-control"
               placeholder="{{user.name}}"
               formControlName="name"
               value="{{user.name}}"
@@ -28,12 +28,12 @@
           <ng-template #elseBlock
             ><input
               type="text"
-              class="form-control form-control-sm"
+              class="form-control form-control"
               placeholder="Nombre de usuario"
               formControlName="name"
               required
             />
-            <small class="text-danger"  *ngIf="name?.invalid && name?.touched ">Name is required</small>
+            <small class="text-danger"  *ngIf="name?.invalid && name?.touched ">Campo nombre es requerido</small>
             
           </ng-template>
 
@@ -50,10 +50,8 @@
           </div>
           
           <img class="img" [src]="images" alt="" />
-        </ul>
-      
-      
-        <h4>Email</h4>
+
+          <h4>Email</h4>
           <div
             *ngIf="user.role_id != 0; then thenBlock1; else elseBlock1"
           ></div>
@@ -62,7 +60,7 @@
             <p>Cambia tu email:</p>
             <input
               type="email"
-              class="form-control form-control-sm"
+              class="form-control form-control"
               value="{{ user.email }}"
               formControlName="email"
               value="{{user.email}}"
@@ -74,13 +72,13 @@
             >
             <input
               type="email"
-              class="form-control form-control-sm"
-              placeholder="Email"
+              class="form-control form-control"
+              placeholder="example@mail.com"
               formControlName="email"
               
               required
             />
-            <small class="text-danger"  *ngIf="email?.invalid && email?.touched ">Email is required and valid email</small>
+            <small class="text-danger"  *ngIf="email?.invalid && email?.touched ">Email es un campo requerido y tiene que ser un email valido</small>
             
           </ng-template>
         <h4 class="second-title" id="second-title">Elige Rol</h4>
@@ -93,10 +91,14 @@
           <option value="1">Administrador</option>
           <option value="2">Usuario</option>          
         </select>
+        </ul>
+      
+      
+        
         
         
         <button  type="submit" class="btn btn-primary" id="submit-button">
-          Crear / Editar
+          Crear
         </button>
       </div>
     </div>

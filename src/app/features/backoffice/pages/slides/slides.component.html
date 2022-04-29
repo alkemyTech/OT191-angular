@@ -1,7 +1,7 @@
 
 
   <div class="animate__animated animate__backInDown">
-    <app-title-view title="Editor de Usuarios"></app-title-view>
+    <app-title-view title="Editor de Slides"></app-title-view>
   </div>
   <form [formGroup]="editarSlide" (ngSubmit)="editarForm(editarSlide.value)">
     <div class="container">
@@ -14,7 +14,7 @@
           <ng-template #thenBlock
             ><input
               type="text"
-              class="form-control form-control-sm"
+              class="form-control form-control"
               value="{{ slide.name }}"
               formControlName="name"
               
@@ -25,7 +25,7 @@
           <ng-template #elseBlock
             ><input
               type="text"
-              class="form-control form-control-sm"
+              class="form-control form-control"
               placeholder="Nombre del slide"
               formControlName="name"
               required
@@ -45,18 +45,18 @@
               required
             />
           </div>
+          <div class="img-container">
+            <div class="center"><img class="img" [src]="images" alt="" /></div>
+          </div>
           
-          <img class="img" [src]="images" alt="" />
-        </ul>
-      </div>
-      <div class="col">
-        <h4>Orden</h4>
+
+          <h4>Orden</h4>
+        <small>Elige posicion de slide</small>
         <select
           class="form-select form-select-lg mb-3"
           aria-label=".form-select-lg example"
           formControlName="order"
-        >
-          <option selected>Elige posición de Slide</option>
+        >          
           <option value="1">Primero</option>
           <option value="2">Segundo</option>
           <option value="3">Tercero</option>
@@ -86,9 +86,12 @@
           ></ckeditor>
           </ng-template
         >
+        </ul>
+      
+        
 
         <button  type="submit" class="btn btn-primary" id="submit-button">
-          Crear / Editar
+          Crear
         </button>
       </div>
     </div>
