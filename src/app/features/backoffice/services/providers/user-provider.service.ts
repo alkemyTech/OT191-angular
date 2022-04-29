@@ -29,24 +29,24 @@ export class UserProviderService {
     );
   }
 
-  public getById(id: string): Observable<User> {
-    return this.privateApiService.get("/users", id).pipe(
+  public getUserById(id: string | number): Observable<User> {
+    return this.privateApiService.get("/users", id.toString()).pipe(
       map((data: any) => {
         return data.data;
       })
     );
   }
 
-  public deleteUser(id: string) {
-    return this.privateApiService.delete("/users", id).pipe(
+  public deleteUser(id: string | number): Observable<User> {
+    return this.privateApiService.delete("/users", id.toString()).pipe(
       map((data: any) => {
         return data.data;
       })
     );
   }
 
-  public updateUser(id: string, user: User | Partial<User>) {
-    return this.privateApiService.put("/users", id, user).pipe(
+  public updateUser(id: string | number, user: User | Partial<User>): Observable<User> {
+    return this.privateApiService.patch("/users", id.toString(), user).pipe(
       map((data: any) => {
         return data.data;
       })

@@ -6,9 +6,11 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
+
 import { AlertService } from "src/app/core/services/alert.service";
-import { HomeProviderService } from '../../../public/services/providers/home-provider.service';
+
 import { Slide } from '../../../../core/models/slides.model';
+import { HomeProviderService } from '../../../public/services/providers/home-provider.service';
 
 @Component({
   selector: "app-home-edit",
