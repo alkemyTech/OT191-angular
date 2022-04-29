@@ -1,7 +1,12 @@
 .container{
-    
+    font-family: var(font-family-primary);
     padding-left: 30px;
     padding-right: 30px;
+    
+}
+
+.container h1{
+    letter-spacing: 1px;
 }
 
 .container div{

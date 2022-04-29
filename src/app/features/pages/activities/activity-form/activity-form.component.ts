@@ -19,8 +19,8 @@ export class ActivityFormComponent implements OnInit {
     this.dialog.open(DialogComponent, {
       data: {
         title: "Hello World",
-        description: "This is a example test",
-        value: "info",
+        description: "This is an example",
+        value: "success",
       },
     });
   }
