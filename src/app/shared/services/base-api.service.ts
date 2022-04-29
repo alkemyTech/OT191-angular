@@ -65,6 +65,7 @@ export class BaseApiService {
     );
   }
 
+
   public delete<T>(path: string): Observable<T> {
     this.options();
     return this.http.delete(this.baseUrl + path, this.httpOptions).pipe(
@@ -73,4 +74,5 @@ export class BaseApiService {
       })
     );
   }
+
 }
