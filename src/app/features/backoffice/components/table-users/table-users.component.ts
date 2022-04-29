@@ -51,7 +51,7 @@ export class TableUsersComponent {
   editUser(user: User) {
     this.productDialog = true;
     this.user = { ...user };
-    console.log(this.user);
+
   }
 
   deleteSelectedUsers() {
