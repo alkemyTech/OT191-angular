@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -20,16 +19,21 @@ import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CarouselModule } from 'primeng/carousel';
+import { FileUploadModule } from "primeng/fileupload";
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+
 
 @NgModule({
-  exports: [
-    ButtonModule,
-    InputTextModule,
-    InputTextareaModule,
-    DropdownModule,
-    ImageModule,
-    InputMaskModule,
-    RadioButtonModule,
+	exports: [
+		ButtonModule,
+		InputTextModule,
+		InputTextareaModule,
+		DropdownModule,
+		ImageModule,
+		InputMaskModule,
+		RadioButtonModule,
+		DividerModule,
+		CardModule,
     CheckboxModule,
     RippleModule,
     ProgressSpinnerModule,
@@ -44,6 +48,8 @@ import { CarouselModule } from 'primeng/carousel';
     DialogModule,
     ToastModule,
     ToolbarModule,
+		FileUploadModule,
+		ConfirmDialogModule,
   ],
 })
 export class PrimengModule {}

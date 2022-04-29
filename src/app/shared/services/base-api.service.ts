@@ -10,18 +10,18 @@ import { environment } from "src/environments/environment";
   providedIn: "root",
 })
 export class BaseApiService {
-  baseUrl: string = environment.apiURL;
-  httpOptions: HttpHeaders | any;
+	baseUrl: string = environment.apiURL;
+	httpOptions: HttpHeaders | any;
 
-  constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) {}
 
-  options() {
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json",
-      }),
-    };
-  }
+	options() {
+		this.httpOptions = {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json",
+			}),
+		};
+	}
 
   public getApi(destinationRoute: string, id: number | null): Observable<any> {
     return this.http.get(

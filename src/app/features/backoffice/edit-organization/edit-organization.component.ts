@@ -10,7 +10,8 @@ import {
 import { urlValidator } from "./regExp.directive";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular/ckeditor.component";
-import { IOrganization } from "../backoffice.interface";
+import { IOrganization } from "src/app/core/models/organization.model";
+
 @Component({
 	selector: "app-edit-organization",
 	templateUrl: "./edit-organization.component.html",
