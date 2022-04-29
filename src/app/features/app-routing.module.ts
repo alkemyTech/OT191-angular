@@ -2,19 +2,16 @@ import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
-import { EditOrganizationComponent } from "./backoffice/edit-organization/edit-organization.component";
+import { PrincipalComponent } from "../About/principal/principal.component";
+
 import { FormcontactComponent } from "./public/formcontact/formcontact.component";
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { DonationsComponent } from "./public/pages/donations/donations.component";
 import { HomeComponent } from "./public/pages/home/home.component";
 import { GraciasComponent } from "./public/pages/donations/gracias/gracias.component";
-
+import { CategoriesComponent } from "./backoffice/categories/categories.component";
 
 const routes: Routes = [
-  {
-    path: "auth",
-    loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
-  },
   {
     path: "auth",
     loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
@@ -26,10 +23,6 @@ const routes: Routes = [
   {
     path: "gracias",
     component: GraciasComponent,
-  },
-  {
-    path: "backoffice/organization/edit",
-    component: EditOrganizationComponent,
   },
   {
     path: "actividades",
@@ -44,13 +37,18 @@ const routes: Routes = [
     component: FormcontactComponent,
   },
   {
-    path: 'backoffice',
-    loadChildren: () => import('./backoffice/backoffice.module').then(m => m.BackofficeModule)
+    path: "backoffice",
+    loadChildren: () =>
+      import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
   },
   {
     path: "**",
     redirectTo: "",
     pathMatch: "full",
+  },
+  {
+    path: "Nosotros",
+    component: PrincipalComponent,
   },
 ];
 
