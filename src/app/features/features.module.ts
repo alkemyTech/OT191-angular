@@ -17,6 +17,7 @@ import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     RouterModule,
     PrimengModule,
     SharedModule,
+    MatDialogModule,
   ],
 })
 export class FeaturesModule {}
