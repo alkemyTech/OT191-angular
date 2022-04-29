@@ -63,9 +63,19 @@ export class BaseApiService {
     );
   }
 
+
   public delete<T>(path: string): Observable<T> {
     this.options();
     return this.http.delete(this.baseUrl + path, this.httpOptions).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+
+  public put<T>(path: string, body: any): Observable<T> {
+    this.options();
+    return this.http.put(this.baseUrl + path, body, this.httpOptions).pipe(
       map((res: any) => {
         return res;
       })
