@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { PrimengModule } from '../core/utils/primeng/primeng.module';
 
+import { RolPipe } from './pipes/rol.pipe';
+import { CardComponent } from './components/card/card.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TitleViewComponent } from './components/title-view/title-view.component';
-import { CardComponent } from './components/card/card.component';
-import { RolPipe } from './pipes/rol.pipe';
 
 @NgModule({
   declarations: [
@@ -16,13 +17,15 @@ import { RolPipe } from './pipes/rol.pipe';
     FooterComponent,
     RolPipe,
     CardComponent,
+    LoadingSpinnerComponent,
   ],
   exports: [
     TitleViewComponent,
     RolPipe,
     NavbarComponent,
     FooterComponent,
-    CardComponent
+    CardComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     CommonModule,

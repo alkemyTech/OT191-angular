@@ -9,6 +9,7 @@ import { ActivityFormComponent } from "./pages/activities/activity-form/activity
 import { DonationsComponent } from "./public/pages/donations/donations.component";
 import { HomeComponent } from "./public/pages/home/home.component";
 import { GraciasComponent } from "./public/pages/donations/gracias/gracias.component";
+import { CategoriesComponent } from "./backoffice/categories/categories.component";
 
 const routes: Routes = [
   {

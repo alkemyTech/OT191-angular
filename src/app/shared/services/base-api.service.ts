@@ -1,18 +1,17 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-
 import { environment } from "src/environments/environment";
 
 @Injectable({
 	providedIn: "root",
 })
 export class BaseApiService {
-	constructor(private http: HttpClient) {}
 	private baseUrl: string = environment.apiURL;
 	protected httpOptions: HttpHeaders | any;
+
+	constructor(private http: HttpClient) {}
 
 	options() {
 		this.httpOptions = {
@@ -27,7 +26,7 @@ export class BaseApiService {
 			this.baseUrl + destinationRoute + (id != null ? "/" + id : "")
 		);
 	}
-  
+
 	public get<T>(path: string): Observable<T> {
 		this.options();
 		return this.http.get(this.baseUrl + path, this.httpOptions).pipe(
