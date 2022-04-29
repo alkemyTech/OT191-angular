@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -73,12 +75,4 @@ export class BaseApiService {
     );
   }
 
-  public put<T>(path: string, body: any): Observable<T> {
-    this.options();
-    return this.http.put(this.baseUrl + path, body, this.httpOptions).pipe(
-      map((res: any) => {
-        return res;
-      })
-    );
-  }
 }

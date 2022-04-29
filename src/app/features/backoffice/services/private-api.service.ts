@@ -33,13 +33,6 @@ export class PrivateApiService extends BaseApiService {
   }
 
 
-  public put<T>(path: string, body: any): Observable<T> {
-    this.options();
-    return super.put<T>(path, body);
-  }
-
-  //
-
   public put<T>(path: string, id: string = '',  body: any = {}): Observable<T> {
     this.options();
     return id.length > 0 ? super.put<T>(path + '/' + id, body) : super.put<T>(path, body);
