@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import { UserI } from '../../models/user.interface';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+import { Observable, of } from 'rxjs';
+
 import { ResponseI } from '../../models/response.interface';
 import { SlideI } from '../../models/slide.interface';
-import { HttpClient } from '@angular/common/http';
+import { UserI } from '../../models/user.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestService {
+  editUser(form: UserI) {
+    return of([])
+  }
   url = "https://ongapi.alkemy.org/api/"
   constructor(private http:HttpClient) { }
 
@@ -18,8 +23,6 @@ export class RestService {
     return this.http.post<ResponseI>(direccion,form)
   }
 
-  editUser(form:UserI):Observable<ResponseI>{
-    let direccion = this.url + "users"
 
   createSlide(form:SlideI):Observable<ResponseI>{
     let direccion= this.url + "slides/create"

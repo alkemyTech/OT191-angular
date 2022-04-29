@@ -4,6 +4,10 @@ import { CategoriesComponent } from "./categories/categories.component";
 import { EditOrganizationComponent } from "./edit-organization/edit-organization.component";
 import { HomeEditComponent } from "./pages/home-edit/home-edit.component";
 import { SlidesComponent } from "./pages/slides/slides.component";
+import { UserListViewComponent } from './pages/user-list-view/user-list-view.component';
+import { UserformComponent } from "./pages/userform/userform.component";
+import { ActivitiesListComponent } from "./activities-list/activities-list.component";
+import { ActivitiesComponent } from "./activities/activities.component";
 
 const routes: Routes = [
   {
@@ -27,6 +31,14 @@ const routes: Routes = [
         component: HomeEditComponent,
       },
       {
+        path: "users",
+        component: UserListViewComponent,
+      },
+      {
+        path: "users/create",
+        component: UserformComponent,
+      },
+      {
         path: "",
         redirectTo: "",
         pathMatch: "full",
@@ -35,12 +47,24 @@ const routes: Routes = [
         path: "**",
         redirectTo: "",
       },
+	  {
+		path: "activities/create",
+		component: ActivitiesComponent,
+	},
+	{
+		path: "activities/create/:id",
+		component: ActivitiesComponent,
+	},
+	{
+		path: "activities",
+		component: ActivitiesListComponent,
+	},
     ],
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule],
 })
 export class BackofficeRoutingModule {}
