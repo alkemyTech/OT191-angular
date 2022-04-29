@@ -10,6 +10,7 @@ import { FormcontactComponent } from './formcontact/formcontact.component';
 import { DonationsComponent } from './pages/donations/donations.component';
 import { HomeComponent } from './pages/home/home.component';
 import { GraciasComponent } from './pages/donations/gracias/gracias.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { GraciasComponent } from './pages/donations/gracias/gracias.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MatDialogModule,
   ],
   providers:[CurrencyPipe]
 })
