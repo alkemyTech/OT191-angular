@@ -6,6 +6,8 @@ import { PrimengModule } from '../core/utils/primeng/primeng.module';
 import { RolPipe } from './pipes/rol.pipe';
 import { CardComponent } from './components/card/card.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { DialogComponent } from './components/dialog/dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TitleViewComponent } from './components/title-view/title-view.component';
@@ -15,6 +17,7 @@ import { TitleViewComponent } from './components/title-view/title-view.component
     TitleViewComponent,
     NavbarComponent,
     FooterComponent,
+    DialogComponent,
     RolPipe,
     CardComponent,
     LoadingSpinnerComponent,
@@ -24,12 +27,14 @@ import { TitleViewComponent } from './components/title-view/title-view.component
     RolPipe,
     NavbarComponent,
     FooterComponent,
+    DialogComponent,
     CardComponent,
     LoadingSpinnerComponent,
   ],
   imports: [
     CommonModule,
-    PrimengModule
+    PrimengModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

@@ -7,6 +7,7 @@ import { FormcontactComponent } from './formcontact/formcontact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DonationsComponent } from './pages/donations/donations.component';
 import { GraciasComponent } from './pages/donations/gracias/gracias.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { GraciasComponent } from './pages/donations/gracias/gracias.component';
     PrimengModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MatDialogModule,
   ],
   providers:[CurrencyPipe]
 })
