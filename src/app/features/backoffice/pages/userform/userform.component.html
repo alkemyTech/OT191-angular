@@ -1,7 +1,9 @@
 
 
 <section>
-  <h1 class="title">Editor de Usuarios</h1>
+  <div class="animate__animated animate__backInDown">
+    <app-title-view title="Editor de Usuarios"></app-title-view>
+</div>
   <form [formGroup]="editarUser" (ngSubmit)="editarForm(editarUser.value)">
     <div class="container">
       <div class="col">
@@ -49,8 +51,8 @@
           
           <img class="img" [src]="images" alt="" />
         </ul>
-      </div>
-      <div class="col" id="mobile">
+      
+      
         <h4>Email</h4>
           <div
             *ngIf="user.role_id != 0; then thenBlock1; else elseBlock1"

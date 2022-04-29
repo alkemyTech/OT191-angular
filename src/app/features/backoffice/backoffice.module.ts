@@ -16,6 +16,7 @@ import { SlidesComponent } from "./pages/slides/slides.component";
 import { UserListViewComponent } from './pages/user-list-view/user-list-view.component';
 import { UserformComponent } from "./pages/userform/userform.component";
 import { ActivitiesListComponent } from "./activities-list/activities-list.component";
+import { SlidesTableComponent } from './components/slides-table/slides-table.component';
 
 @NgModule({
 	declarations: [
@@ -29,6 +30,7 @@ import { ActivitiesListComponent } from "./activities-list/activities-list.compo
 		TableUsersComponent,
 		UserformComponent,
 		ActivitiesListComponent,
+  SlidesTableComponent,
 	],
 	imports: [
 		CommonModule,
