@@ -20,6 +20,8 @@ export class RestService {
 
   editUser(form:UserI):Observable<ResponseI>{
     let direccion = this.url + "users"
+    return this.http.put<ResponseI>(direccion,form)
+  }
 
   createSlide(form:SlideI):Observable<ResponseI>{
     let direccion= this.url + "slides/create"
