@@ -15,6 +15,9 @@ export function authReducer(state = initialState, action: AuthActions): AuthStat
     case AuthActionTypes.LoginSuccess:
       return { ...state, logged: action.payload.logged };
 
+    case AuthActionTypes.RegisterSuccess:
+      return { ...state, logged: action.payload.logged };
+      
     case AuthActionTypes.LogoutConfirmed:
       return initialState;
 

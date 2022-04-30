@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { of } from "rxjs";
+import { of, throwError } from "rxjs";
 import { map, tap } from "rxjs/operators";
 
 import { User } from "src/app/core/models/user.model";
@@ -25,35 +25,56 @@ export class AuthService {
   ) {}
 
   login(user: User | Partial<User>) {
-    return this.baseApi
-      .post("/login", user)
-      .pipe(tap((res: any) => (this.token = res.token)));
+    return this.baseApi.post("/login", user).pipe(
+      map((res: any) => {
+        if (res.token == undefined) {
+          return throwError("Ususario o contraseña incorrectos");
+        }
+        this.loggedIn = true;
+        this.token = res.token;
+        
+        return res;
+      })
+    );
   }
 
   register(user: User | Partial<User>) {
-    return this.baseApi.post("/register", user);
+    return this.baseApi.post("/register", user).pipe(
+      map((res: any) => {
+        if (!res.success) {
+          return throwError("Error al registrarse");
+        }
+        return res;
+      })
+    );
   }
 
   verifyAuth() {
     return this.privateApi.get("/auth/me").pipe(
       map((res: any) => {
-        return of(res.success);
+        return res.success;
       })
     );
   }
 
   askLogout() {
-    this.alert.alertQuestion("¿Quiere cerrar sesion?",'Confirme para salir','question')
-    .then((res) => {
-      if (res.isConfirmed) {
-        of(true)
-      }
-    });
+    this.alert
+      .alertQuestion(
+        "¿Quiere cerrar sesion?",
+        "Confirme para salir",
+        "question"
+      )
+      .then((res) => {
+        if (res.isConfirmed) {
+          of(true);
+        }
+      });
     return of(false);
   }
-  
+
   logout() {
     this.loggedIn = false;
+    localStorage.removeItem("token");
     return of(true);
   }
 

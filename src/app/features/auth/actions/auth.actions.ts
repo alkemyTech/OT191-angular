@@ -1,5 +1,7 @@
 import { Action } from '@ngrx/store';
 
+import { User } from 'src/app/core/models/user.model';
+
 import { Authenticate } from '../models/authentication.model';
 
 
@@ -11,6 +13,9 @@ export enum AuthActionTypes {
   LogoutCancelled = '[Auth] Logout Cancelled',
   LogoutConfirmed = '[Auth] Logout Confirmed',
   LogoutComplete = '[Auth API] Logout Complete',
+  Register = '[Register Page] Register',
+  RegisterSuccess = '[Auth API] Register Success',
+  RegisterFailure = '[Auth API] Register Failure',
 }
 
 export class Login implements Action {
@@ -47,6 +52,24 @@ export class LogoutComplete implements Action {
   readonly type = AuthActionTypes.LogoutComplete;
 }
 
+export class Register implements Action {
+  readonly type = AuthActionTypes.Register;
+
+  constructor(public payload: Partial<User>) {}
+}
+
+export class RegisterSuccess implements Action {
+  readonly type = AuthActionTypes.RegisterSuccess;
+
+  constructor(public payload: { logged: boolean }) {}
+}
+
+export class RegisterFailure implements Action {
+  readonly type = AuthActionTypes.RegisterFailure;
+
+  constructor(public payload: any) {}
+}
+
 export type AuthActions =
   | Login
   | LoginSuccess
@@ -54,4 +77,7 @@ export type AuthActions =
   | Logout
   | LogoutCancelled
   | LogoutConfirmed
-  | LogoutComplete;
+  | LogoutComplete
+  | Register
+  | RegisterSuccess
+  | RegisterFailure;

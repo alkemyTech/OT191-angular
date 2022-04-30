@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { Actions, createEffect, Effect, ofType } from "@ngrx/effects";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 
 import { map, exhaustMap, catchError, tap } from "rxjs/operators";
 import { of } from "rxjs";
+
+import { AlertService } from 'src/app/core/services/alert.service';
 
 import {
   AuthActions,
@@ -16,19 +18,44 @@ import {
   LogoutConfirmed,
   LogoutComplete,
   LogoutCancelled,
+  RegisterSuccess,
+  RegisterFailure,
 } from "../actions/auth.actions";
 import { AuthService } from "../services/auth.service";
 
 @Injectable()
 export class AuthEffects {
+
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private router: Router,
+    private alerts: AlertService
+  ) {}
+
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType<Login>(AuthActionTypes.Login),
       map((action) => action.payload),
       exhaustMap((auth) =>
         this.authService.login(auth).pipe(
-          map((logged) => new LoginSuccess({ logged: true })),
-          catchError((error) => of(new LoginFailure(error)))
+          map((res) => new LoginSuccess({logged: true})),
+          catchError((error) => {
+            return of(new LoginFailure(error))})
+        )
+      )
+    )
+  );
+
+  register$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType<Login>(AuthActionTypes.Login),
+      map((action) => action.payload),
+      exhaustMap((auth) =>
+        this.authService.register(auth).pipe(
+          map((res) => new RegisterSuccess({logged: true})),
+          catchError((error) => {
+            return of(new RegisterFailure(error))})
         )
       )
     )
@@ -75,9 +102,5 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-  constructor(
-    private actions$: Actions,
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  
 }
