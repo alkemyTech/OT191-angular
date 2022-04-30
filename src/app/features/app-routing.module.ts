@@ -9,7 +9,6 @@ import { ActivityFormComponent } from "./pages/activities/activity-form/activity
 import { DonationsComponent } from "./public/pages/donations/donations.component";
 import { HomeComponent } from "./public/pages/home/home.component";
 import { GraciasComponent } from "./public/pages/donations/gracias/gracias.component";
-import { CategoriesComponent } from "./backoffice/categories/categories.component";
 
 const routes: Routes = [
   {
@@ -42,13 +41,13 @@ const routes: Routes = [
       import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
   },
   {
+    path: "nosotros",
+    component: PrincipalComponent,
+  },
+  {
     path: "**",
     redirectTo: "",
     pathMatch: "full",
-  },
-  {
-    path: "Nosotros",
-    component: PrincipalComponent,
   },
 ];
 

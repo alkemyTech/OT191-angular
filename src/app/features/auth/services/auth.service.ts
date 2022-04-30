@@ -15,6 +15,7 @@ import { PrivateApiService } from "../../backoffice/services/private-api.service
 })
 export class AuthService {
   private token: string = "";
+  private loggedIn = false;
 
   constructor(
     private baseApi: BaseApiService,
@@ -39,6 +40,21 @@ export class AuthService {
         return of(res.success);
       })
     );
+  }
+
+  askLogout() {
+    this.alert.alertQuestion("¿Quiere cerrar sesion?",'Confirme para salir','question')
+    .then((res) => {
+      if (res.isConfirmed) {
+        of(true)
+      }
+    });
+    return of(false);
+  }
+  
+  logout() {
+    this.loggedIn = false;
+    return of(true);
   }
 
   invalidAccess() {
