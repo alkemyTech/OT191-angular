@@ -51,6 +51,7 @@ export class TableUsersComponent {
   editUser(user: User) {
     this.productDialog = true;
     this.user = { ...user };
+
   }
 
   deleteSelectedUsers() {
@@ -72,7 +73,7 @@ export class TableUsersComponent {
             (val) => !this.selectedUsers.includes(val)
           );
           this.selectedUsers.forEach((user) => {
-            this.userP.deleteUser(user.id.toString()).subscribe();
+            this.userP.deleteUser(user.id).subscribe();
           });
           this.selectedUsers = [];
         }
@@ -91,7 +92,7 @@ export class TableUsersComponent {
           this.users = this.users!.filter((val) => val.id !== user.id);
           this.user = {};
 
-          this.userP.deleteUser(user.id.toString()).subscribe({
+          this.userP.deleteUser(user.id).subscribe({
             next: (data) => {
               this.messageService.add({
                 severity: "error",
@@ -123,7 +124,7 @@ export class TableUsersComponent {
 
     this.users![this.findIndexById(this.user.id!)] = this.user as User;
 
-    this.userP.updateUser(this.user.id!.toString(), this.user).subscribe({
+    this.userP.updateUser(this.user.id!, this.user).subscribe({
       next: (data) => {
         this.messageService.add({
           severity: "success",

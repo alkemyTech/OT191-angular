@@ -1,10 +1,11 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
 import { AlertService } from "src/app/core/services/alert.service";
-import { AuthService } from "../../services/auth.service";
-import { Router } from "@angular/router";
 import { User } from "src/app/core/models/user.model";
+
+import { AuthService } from "../../services/auth.service";
 import { ValidatorService } from "../../services/validators/validator.service";
 
 @Component({
@@ -51,6 +52,24 @@ export class LoginFormComponent {
         email: this.loginForm.controls["email"].value,
         password: this.loginForm.controls["password"].value,
       };
+
+      this.auth.login(user).subscribe({
+        next: (res) => {
+          localStorage.setItem("token", res.token);
+
+          this.loading = false;
+          this.router.navigate(["/"]);
+        },
+        error: (error) => {
+          this.alerts.alertNotification(
+            "¡Usuario no válido!",
+            "¡Correo o Contraseña Incorrectos!, asegurese que se encuentran bien ingresados",
+            "error"
+          );
+          this.loading = false;
+          this.loginForm.controls["password"].reset();
+        },
+      });
     } catch (error) {
       this.alerts.alertNotification("Error", "Error desconocido", "error");
       this.loading = false;

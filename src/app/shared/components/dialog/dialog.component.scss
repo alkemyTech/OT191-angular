@@ -1,0 +1,56 @@
+.container{
+    font-family: var(font-family-primary);
+    padding-left: 30px;
+    padding-right: 30px;
+    
+}
+
+.container h1{
+    letter-spacing: 1px;
+}
+
+.container div{
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.container button{
+    position: relative;
+    bottom: 0px    ;
+    margin-left: -20px;
+
+}
+
+.btn-error{
+    background-color: var(--secondaryColor);
+    color: white;
+    font-weight: 400;
+    transition: .5s all ease ;
+}
+
+.btn-error:hover{
+   transform: scale(1.05); 
+}
+
+.error-icon{
+    color: var(--secondaryColor);
+    padding-bottom: 40px;
+    margin-left: 35%;
+}
+
+.succes-icon{
+    color: var(--lightblue);
+    padding-bottom: 40px;
+    margin-left: 35%;
+}
+
+.btn-succes{
+    background-color: var(--lightblue);
+    color: white;
+    font-weight: 400;
+    transition: .5s all ease ;
+}
+
+.btn-succes:hover{
+    transform: scale(1.05); 
+ }

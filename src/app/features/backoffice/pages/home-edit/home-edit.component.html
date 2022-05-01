@@ -1,15 +1,18 @@
-<div class="container-fluid mt-3">
-  <div class="row g-0">
-    <div class="col-sm-5 mx-auto animate__animated animate__fadeIn">
-      <div class="text-center">
-        <h1>Edición de Pantalla Principal</h1>
-      </div>
-      <form
-        (ngSubmit)="onSubmit()"
-        [formGroup]="editHomeForm"
-        autofill="off"
-        autocomplete="off"
-      >
+<div class="container-fluid mt-2">
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="editHomeForm"
+    autofill="off"
+    autocomplete="off"
+  >
+    <div class="row g-0">
+      <div class="col-6 mx-auto animate__animated animate__fadeIn">
+        <div class="text-center">
+          <app-title-view
+            title="Edición de Pantalla Principal"
+          ></app-title-view>
+        </div>
+
         <div class="field mb-2 mt-4 p-fluid">
           <label for="float-input"
             >Escribe el texto que quieras mostrar en la pantalla principal (mín.
@@ -29,44 +32,43 @@
             >El texto debe tener al menos 20 carácteres.</small
           >
         </div>
-        <small *ngIf="isInvalid('newSlides')" class="p-error block"
-          >Debe seleccionar 3 slides.</small
-        >
-        <div class="col text-center">
-          <div class="text-center mr-3">
-            <div class="btn-group">
-              <button
-                pButton
-                pRipple
-                [disabled]="loading"
-                type="submit"
-                label="Aceptar"
-                class="p-button-raised mr-1"
-              ></button>
-              <button
-                pButton
-                pRipple
-                routerLink="/backoffice"
-                label="Cancelar"
-                class="p-button-raised p-button-danger"
-              ></button>
-            </div>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
-
-    <div class="vr"></div>
-
+    <div class="col mt-3">
+      <div class="text-center mb-2">
+        <div class="btn-group">
+          <button
+            pButton
+            pRipple
+            [disabled]="loading"
+            type="submit"
+            label="Aceptar"
+            class="p-button-raised mr-1"
+          ></button>
+          <button
+            pButton
+            pRipple
+            routerLink="/backoffice"
+            label="Cancelar"
+            class="p-button-raised p-button-danger"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row g-0">
     <div class="col-sm-5 mx-auto animate__animated animate__fadeIn">
       <div class="card">
         <div class="text-center">
           <h3>Selecciona 3 Slides para mostrar en el Home</h3>
+          <small *ngIf="isInvalid('newSlides')" class="p-error block"
+            >Debe seleccionar 3 slides.</small
+          >
           <hr />
         </div>
         <p-virtualScroller
           [value]="slides"
-          scrollHeight="800px"
+          scrollHeight="470px"
           [itemSize]="500"
         >
           <ng-template let-product pTemplate="item" let-i="index">
