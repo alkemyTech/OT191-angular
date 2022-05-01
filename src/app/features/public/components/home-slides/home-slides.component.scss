@@ -1,0 +1,16 @@
+
+#carouselExampleIndicators{
+    max-height: 80vh;
+    padding-top: 15px;
+    overflow: hidden;
+  }
+  
+  .carousel-indicators button{
+    border-radius: 100%;
+    height: 12px;
+  }
+  
+  .carousel-caption{
+    position: absolute;
+    top: 400px;  
+  }

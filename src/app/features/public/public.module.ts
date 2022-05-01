@@ -8,13 +8,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DonationsComponent } from './pages/donations/donations.component';
 import { GraciasComponent } from './pages/donations/gracias/gracias.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HomeSlidesComponent } from './components/home-slides/home-slides.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     FormcontactComponent,
     DonationsComponent,
-    GraciasComponent
+    GraciasComponent,
+    HomeSlidesComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     SharedModule,
     MatDialogModule,
   ],
+  exports:[HomeSlidesComponent],
   providers:[CurrencyPipe]
 })
 export class PublicModule {}
