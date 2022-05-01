@@ -4,6 +4,7 @@ import { ActivitiesControllerService } from "../services/activitiesController/ac
 import { ConfirmationService, MessageService } from "primeng/api";
 import { Table } from "primeng/table";
 import { IActivities, IActivity } from "src/app/core/models/activity.model";
+import { Observable } from "rxjs";
 
 @Component({
 	selector: "app-activities-list",
@@ -25,15 +26,21 @@ export class ActivitiesListComponent implements OnInit {
 		private confirmationService: ConfirmationService
 	) {}
 	ngOnInit() {
-		this.activityController
-			.getActivities("/activities", null)
-			.subscribe((response) => {
+		this.activityController.getActivities("/activities", null).subscribe({
+			next: (response) => {
 				this.activities = response;
-			});
+				this.errorAlert = false;
+			},
+			error: (error) => {
+				this.errorAlert = true;
+				this.error=error;
+			},
+		});
 	}
 
 	activityDialog: boolean = false;
-
+	errorAlert: boolean = false;
+	error: string = "";
 	activities: IActivities = <IActivities>{
 		success: true,
 		data: [],

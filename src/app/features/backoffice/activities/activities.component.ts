@@ -29,17 +29,22 @@ export class ActivitiesComponent implements OnInit {
 	ngOnInit(): void {
 		const id = this.route.snapshot.paramMap.get("id");
 		if (id != null) {
-			this.activityController
-				.getActivity("/activities", Number(id))
-				.subscribe((response) => {
+			this.activityController.getActivity("/activities", Number(id)).subscribe({
+				next: (response) => {
 					this.activitySelected = response;
 					this.activityForm.reset({
 						name: this.activitySelected.data.name,
 						description: this.activitySelected.data.description,
 						image: this.activitySelected.data.image,
 					});
+
 					this.imageEmpty = false;
-				});
+				},
+				error: (error) => {
+					this.errorAlert = true;
+					this.error=error;
+				},
+			});
 		}
 	}
 
@@ -58,12 +63,12 @@ export class ActivitiesComponent implements OnInit {
 			deleted_at: null,
 			group_id: 42,
 		},
-
 		message: " ",
 	};
 	imageEmpty = false;
 	submitted = false;
-
+	errorAlert: boolean = false;
+	error: string = "";
 	activityForm = new FormGroup({
 		name: new FormControl(
 			this.activitySelected != undefined ? this.activitySelected.data.name : "",
