@@ -13,6 +13,8 @@ import { ChangeEvent } from "@ckeditor/ckeditor5-angular/ckeditor.component";
 import { ActivitiesControllerService } from "../services/activitiesController/activities-controller.service";
 import { ActivatedRoute } from "@angular/router";
 import { IActivity } from "src/app/core/models/activity.model";
+import { MatDialog } from "@angular/material/dialog";
+import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
 
 @Component({
 	selector: "app-activities",
@@ -24,7 +26,8 @@ export class ActivitiesComponent implements OnInit {
 		private route: ActivatedRoute,
 		private http: HttpClient,
 		private fb: FormBuilder,
-		private activityController: ActivitiesControllerService
+		private activityController: ActivitiesControllerService,
+		public dialog: MatDialog
 	) {}
 	ngOnInit(): void {
 		const id = this.route.snapshot.paramMap.get("id");
@@ -37,19 +40,19 @@ export class ActivitiesComponent implements OnInit {
 						description: this.activitySelected.data.description,
 						image: this.activitySelected.data.image,
 					});
-
 					this.imageEmpty = false;
 				},
 				error: (error) => {
 					this.errorAlert = true;
-					this.error=error;
+					this.error = error.message;
+					this.openDialog("Error", this.error, "error");
 				},
 			});
 		}
 	}
 
 	@Input() activitySelected: IActivity = {
-		success: true,
+		success: false,
 		data: {
 			id: 0,
 			name: "",
@@ -61,7 +64,7 @@ export class ActivitiesComponent implements OnInit {
 			created_at: "2022-04-16",
 			updated_at: "2022-04-16T22:42:39.000000Z",
 			deleted_at: null,
-			group_id: 42,
+			group_id: 0,
 		},
 		message: " ",
 	};
@@ -145,8 +148,90 @@ export class ActivitiesComponent implements OnInit {
 			);
 		}
 		if (this.activityForm.valid) {
+			if (this.activitySelected.success) {
+				const activity: IActivity = {
+					success: true,
+					data: {
+						id: this.activitySelected.data.id,
+						name: this.changeValue(
+							this.activityFormControl.name,
+							this.activitySelected.data.name
+						),
+						slug: this.activitySelected.data.slug,
+						description: this.changeValue(
+							this.activityFormControl.description,
+							this.activitySelected.data.description
+						),
+						image: this.changeValue(
+							this.activityFormControl.image,
+							this.activitySelected.data.image
+						),
+						user_id: this.activitySelected.data.user_id,
+						category_id: this.activitySelected.data.category_id,
+						created_at: this.activitySelected.data.created_at,
+						updated_at: this.activitySelected.data.updated_at,
+						deleted_at: this.activitySelected.data.deleted_at,
+						group_id: this.activitySelected.data.group_id,
+					},
+					message: "",
+				};
+				this.activityController
+					.patchActivity("/activities", activity.data.id, activity)
+					.subscribe({
+						next: (response) => {
+							this.openDialog("Modificacion con exito", response, "success");
+						},
+						error: (error) => {
+							this.openDialog("Error en la modificacion", error, "error");
+						},
+					});
+			} else {
+				const activity: IActivity = {
+					success: true,
+					data: {
+						id: 0,
+						name: this.activityFormControl.name.value,
+						slug: this.activitySelected.data.slug,
+						description: this.activityFormControl.description.value,
+						image: this.activityFormControl.image.value,
+						user_id: null,
+						category_id: null,
+						created_at: "",
+						updated_at: "",
+						deleted_at: null,
+						group_id: 0,
+					},
+					message: "",
+				};
+
+				this.activityController.postActivity("/activities", activity).subscribe({
+					next: (response)=>{
+						this.openDialog("Creacion con exito", response, "success");
+					},
+					error: (error) => {
+						this.openDialog("Error en la creacion", error, "error");
+					},
+				});
+			}
 		}
 	}
 
+	changeValue(formValue: any, initialValue: any) {
+		if (formValue != initialValue) {
+			return formValue;
+		} else {
+			return initialValue;
+		}
+	}
+
+	openDialog(title: String, description: any, value: String) {
+		this.dialog.open(DialogComponent, {
+			data: {
+				title: title,
+				description: description,
+				value: value,
+			},
+		});
+	}
 	cancelAction() {}
 }
