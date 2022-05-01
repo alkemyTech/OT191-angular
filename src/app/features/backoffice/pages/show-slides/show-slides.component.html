@@ -1,3 +1,7 @@
 <div class="animate__animated animate__backInDown">
     <app-title-view title="Administración de Slides"></app-title-view>
 </div>
+
+<div class="table-users animate__animated animate__bounceIn">
+    <app-slides-table [slides]="slides$ | async"> </app-slides-table>
+</div>

@@ -1,106 +1,64 @@
-
-
 <section>
   <div class="animate__animated animate__backInDown">
     <app-title-view title="Editor de Usuarios"></app-title-view>
-</div>
-  <form [formGroup]="editarUser" (ngSubmit)="editarForm(editarUser.value)">
-    <div class="container">
-      <div class="col">
-        <ul class="list">
-          <h4>Nombre</h4>
-          <div
-            *ngIf="user.role_id != 0; then thenBlock; else elseBlock"
-          ></div>
-          <ng-template #thenBlock
-            ><p>Tu nombre: {{user.name}}</p>
-            <p>Cambia tu nombre:</p>
-            <input
-              type="text"
-              class="form-control form-control"
-              placeholder="{{user.name}}"
-              formControlName="name"
-              value="{{user.name}}"
-              required
-            />
-            
-          </ng-template>
-          <ng-template #elseBlock
-            ><input
-              type="text"
-              class="form-control form-control"
-              placeholder="Nombre de usuario"
-              formControlName="name"
-              required
-            />
-            <small class="text-danger"  *ngIf="name?.invalid && name?.touched ">Campo nombre es requerido</small>
-            
-          </ng-template>
+  </div>
+  <div class="animate__animated animate__bounceIn">
+    <form [formGroup]="editarUser" (ngSubmit)="editarForm(editarUser.value)">
+      <div class="container">
+        <div class="col">
+          <ul class="list">
+            <h4>Nombre</h4>
+            <div *ngIf="user.role_id != 0; then thenBlock; else elseBlock"></div>
+            <ng-template #thenBlock>
+              <p>Tu nombre: {{user.name}}</p>
+              <p>Cambia tu nombre:</p>
+              <input type="text" class="form-control form-control" placeholder="{{user.name}}" formControlName="name"
+                value="{{user.name}}" required />
 
-          <h4 class="second-title">Imagen de perfil</h4>
-          <div class="mb-3">
-            <label for="formFile" class="form-label">Ingrese una imagen</label>
-            <input
-              (change)="getImage($event)"
-              class="form-control"
-              type="file"
-              id="formFile"
-              required
-            />
-          </div>
-          
-          <img class="img" [src]="images" alt="" />
+            </ng-template>
+            <ng-template #elseBlock><input type="text" class="form-control form-control" placeholder="Nombre de usuario"
+                formControlName="name" required />
+              <small class="text-danger" *ngIf="name?.invalid && name?.touched ">Campo nombre es requerido</small>
 
-          <h4>Email</h4>
-          <div
-            *ngIf="user.role_id != 0; then thenBlock1; else elseBlock1"
-          ></div>
-          <ng-template #thenBlock1
-            ><p>Tu email: {{user.email}}</p>
-            <p>Cambia tu email:</p>
-            <input
-              type="email"
-              class="form-control form-control"
-              value="{{ user.email }}"
-              formControlName="email"
-              value="{{user.email}}"
-              placeholder="{{user.email}}"
-            />
-            
-          </ng-template>
-          <ng-template #elseBlock1
-            >
-            <input
-              type="email"
-              class="form-control form-control"
-              placeholder="example@mail.com"
-              formControlName="email"
-              
-              required
-            />
-            <small class="text-danger"  *ngIf="email?.invalid && email?.touched ">Email es un campo requerido y tiene que ser un email valido</small>
-            
-          </ng-template>
-        <h4 class="second-title" id="second-title">Elige Rol</h4>
-        <select
-          class="form-select form-select-lg mb-3"
-          aria-label=".form-select-lg example"
-          formControlName="role_id"
-        >
-          
-          <option value="1">Administrador</option>
-          <option value="2">Usuario</option>          
-        </select>
-        </ul>
-      
-      
-        
-        
-        
-        <button  type="submit" class="btn btn-primary" id="submit-button">
-          Crear
-        </button>
+            </ng-template>
+
+            <h4 class="second-title">Imagen de perfil</h4>
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Ingrese una imagen</label>
+              <input (change)="getImage($event)" class="form-control" type="file" id="formFile" required />
+            </div>
+
+            <img class="img" [src]="images" alt="" />
+
+            <h4>Email</h4>
+            <div *ngIf="user.role_id != 0; then thenBlock1; else elseBlock1"></div>
+            <ng-template #thenBlock1>
+              <p>Tu email: {{user.email}}</p>
+              <p>Cambia tu email:</p>
+              <input type="email" class="form-control form-control" value="{{ user.email }}" formControlName="email"
+                value="{{user.email}}" placeholder="{{user.email}}" />
+
+            </ng-template>
+            <ng-template #elseBlock1>
+              <input type="email" class="form-control form-control" placeholder="example@mail.com"
+                formControlName="email" required />
+              <small class="text-danger" *ngIf="email?.invalid && email?.touched ">Email es un campo requerido y tiene
+                que ser un email valido</small>
+
+            </ng-template>
+            <h4 class="second-title" id="second-title">Elige Rol</h4>
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+              formControlName="role_id">
+
+              <option value="1">Administrador</option>
+              <option value="2">Usuario</option>
+            </select>
+          </ul>
+          <button type="submit" class="btn btn-primary" id="submit-button">
+            Crear
+          </button>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </section>
