@@ -18,10 +18,12 @@ import {
   LogoutConfirmed,
   LogoutComplete,
   LogoutCancelled,
+  Register,
   RegisterSuccess,
   RegisterFailure,
 } from "../actions/auth.actions";
 import { AuthService } from "../services/auth.service";
+
 
 @Injectable()
 export class AuthEffects {
@@ -49,7 +51,7 @@ export class AuthEffects {
 
   register$ = createEffect(() =>
     this.actions$.pipe(
-      ofType<Login>(AuthActionTypes.Login),
+      ofType<Register>(AuthActionTypes.Register),
       map((action) => action.payload),
       exhaustMap((auth) =>
         this.authService.register(auth).pipe(

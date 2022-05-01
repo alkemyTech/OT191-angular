@@ -9,12 +9,7 @@ import { User } from "src/app/core/models/user.model";
 
 import { Login } from "../../actions/auth.actions";
 import { Authenticate } from "../../models/authentication.model";
-import { AuthState } from "../../reducers/auth.reducer";
-import {
-  State,
-  selectError,
-  selectPending,
-} from "../../reducers/login-page.reducer";
+import { State } from "../../reducers/auth.reducer";
 import { AuthService } from "../../services/auth.service";
 import { ValidatorService } from "../../services/validators/validator.service";
 
@@ -40,7 +35,7 @@ export class LoginFormComponent {
     private fb: FormBuilder,
     private auth: AuthService,
     private valSer: ValidatorService,
-    private store: Store<AuthState>
+    private store: Store<State>
   ) {}
 
   isInvalid(value: string) {

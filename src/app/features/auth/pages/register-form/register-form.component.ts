@@ -8,7 +8,7 @@ import { AlertService } from "src/app/core/services/alert.service";
 import { User } from "src/app/core/models/user.model";
 
 import { Register } from "../../actions/auth.actions";
-import { AuthState } from "../../reducers/auth.reducer";
+import { State } from "../../reducers/auth.reducer";
 import { AuthService } from "../../services/auth.service";
 import { ValidatorService } from "../../services/validators/validator.service";
 
@@ -55,7 +55,7 @@ export class RegisterFormComponent {
     private fb: FormBuilder,
     private auth: AuthService,
     private valSer: ValidatorService,
-    private store: Store<AuthState>,
+    private store: Store<State>,
   ) {}
 
   isInvalid(value: string) {

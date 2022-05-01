@@ -5,7 +5,7 @@ import * as fromLoginPage from '../features/auth/reducers/login-page.reducer';
 import * as fromRegisterPage from '../features/auth/reducers/register-page.reducer';
 
 interface AppState {
-    auth: fromAuth.AuthState;
+    auth: fromAuth.State;
     loginPage: fromLoginPage.State;
     registerPage: fromRegisterPage.State;
 }
