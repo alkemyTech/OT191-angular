@@ -7,11 +7,11 @@ import { map } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 
 @Injectable({
-	providedIn: "root",
+  providedIn: "root",
 })
 export class BaseApiService {
-	private baseUrl: string = environment.apiURL;
-	protected httpOptions: HttpHeaders | any;
+	baseUrl: string = environment.apiURL;
+	httpOptions: HttpHeaders | any;
 
 	constructor(private http: HttpClient) {}
 
@@ -23,29 +23,29 @@ export class BaseApiService {
 		};
 	}
 
-	public getApi(destinationRoute: string, id: number | null): Observable<any> {
-		return this.http.get(
-			this.baseUrl + destinationRoute + (id != null ? "/" + id : "")
-		);
-	}
+  public getApi(destinationRoute: string, id: number | null): Observable<any> {
+    return this.http.get(
+      this.baseUrl + destinationRoute + (id != null ? "/" + id : "")
+    );
+  }
 
-	public get<T>(path: string): Observable<T> {
-		this.options();
-		return this.http.get(this.baseUrl + path, this.httpOptions).pipe(
-			map((res: any) => {
-				return res;
-			})
-		);
-	}
+  public get<T>(path: string): Observable<T> {
+    this.options();
+    return this.http.get(this.baseUrl + path, this.httpOptions).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
 
-	public post<T>(path: string, body: any): Observable<T> {
-		this.options();
-		return this.http.post(this.baseUrl + path, body, this.httpOptions).pipe(
-			map((res: any) => {
-				return res;
-			})
-		);
-	}
+  public post<T>(path: string, body: any): Observable<T> {
+    this.options();
+    return this.http.post(this.baseUrl + path, body, this.httpOptions).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
 
   public put<T>(path: string, body: any): Observable<T> {
     this.options();

@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { CurrencyPipe } from "@angular/common";
 
 import { SharedModule } from "../shared/shared.module";
+import { MaterialModule } from '../core/utils/material/material.module';
 import { PrimengModule } from "../core/utils/primeng/primeng.module";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -47,6 +48,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     AppRoutingModule,
     RouterModule,
     PrimengModule,
+    MaterialModule,
     SharedModule,
     MatDialogModule,
   ],
