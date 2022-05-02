@@ -24,6 +24,7 @@ export class ActivitiesListComponent implements OnInit {
 		private messageService: MessageService,
 		private confirmationService: ConfirmationService
 	) {}
+
 	ngOnInit() {
 		this.activityController
 			.getActivities("/activities", null)
