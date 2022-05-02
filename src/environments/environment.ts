@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://ongapi.alkemy.org/api'
+  apiURL: 'https://ongapi.alkemy.org/api',
+  newsApiURL: 'https://ongapi.alkemy.org/api/news',
+  usersApiURL: 'https://ongapi.alkemy.org/api/users',
 };
 
 /*

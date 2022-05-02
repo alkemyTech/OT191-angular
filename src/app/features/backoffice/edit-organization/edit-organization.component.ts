@@ -34,6 +34,7 @@ export class EditOrganizationComponent {
 
 	public autoResize: boolean = true;
 	submitted: boolean = false;
+	title="Editar organizacion"
 	imageSource: any;
 	logoEmpty = false;
 	organizationForm = new FormGroup({

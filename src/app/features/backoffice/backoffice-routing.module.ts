@@ -5,67 +5,67 @@ import { EditOrganizationComponent } from "./edit-organization/edit-organization
 import { HomeEditComponent } from "./pages/home-edit/home-edit.component";
 import { ShowSlidesComponent } from "./pages/show-slides/show-slides.component";
 import { SlidesComponent } from "./pages/slides/slides.component";
-import { UserListViewComponent } from './pages/user-list-view/user-list-view.component';
+import { UserListViewComponent } from "./pages/user-list-view/user-list-view.component";
 import { UserformComponent } from "./pages/userform/userform.component";
 import { ActivitiesListComponent } from "./activities-list/activities-list.component";
 import { ActivitiesComponent } from "./activities/activities.component";
 
 const routes: Routes = [
-  {
-    path: "",
-    children: [
-      { path: "" },
-      {
-        path: "categories",
-        component: CategoriesComponent,
-      },
-      {
-        path: "organization/edit",
-        component: EditOrganizationComponent,
-      },
-      {
-        path:"slides",
-        component: ShowSlidesComponent
-      },
-      {
-        path: "slides/create",
-        component: SlidesComponent,
-      },
-      {
-        path: "home",
-        component: HomeEditComponent,
-      },
-      {
-        path: "users",
-        component: UserListViewComponent,
-      },
-      {
-        path: "users/create",
-        component: UserformComponent,
-      },
-      {
-        path: "",
-        redirectTo: "",
-        pathMatch: "full",
-      },
-      {
-        path: "**",
-        redirectTo: "",
-      },
-	  {
-		path: "activities/create",
-		component: ActivitiesComponent,
-	},
 	{
-		path: "activities/create/:id",
-		component: ActivitiesComponent,
+		path: "",
+		children: [
+			{ path: "" },
+			{
+				path: "categories",
+				component: CategoriesComponent,
+			},
+			{
+				path: "organization/edit",
+				component: EditOrganizationComponent,
+			},
+			{
+				path: "slides",
+				component: ShowSlidesComponent,
+			},
+			{
+				path:"slides/create",
+				component: SlidesComponent,
+			},
+			{
+				path: "home",
+				component: HomeEditComponent,
+			},
+			{
+				path: "users",
+				component: UserListViewComponent,
+			},
+			{
+				path: "users/create",
+				component: UserformComponent,
+			},
+			{
+				path: "",
+				redirectTo: "",
+				pathMatch: "full",
+			},
+			{
+				path: "**",
+				redirectTo: "",
+			},
+			{
+				path: "activities/create",
+				component: ActivitiesComponent,
+			},
+			{
+				path: "activities/create/:id",
+				component: ActivitiesComponent,
+			},
+			{
+				path: "activities",
+				component: ActivitiesListComponent,
+			},
+		],
 	},
-	{
-		path: "activities",
-		component: ActivitiesListComponent,
-	},
-    ],
-  },
 ];
 
 @NgModule({

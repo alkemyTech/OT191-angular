@@ -6,17 +6,25 @@ import { map } from 'rxjs/operators';
 import { News } from 'src/app/core/models/news.model';
 
 import { PublicApiService } from '../public-api.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NewsProviderService {
+export class NewsProviderService extends PublicApiService {
 
-  constructor(private publicApiService: PublicApiService) { }
-
+  constructor(http: HttpClient) {
+    super(http);
+  }
+  
+  options(): void {
+     this.baseUrl = environment.newsApiURL;
+  }
 
   public getAllNews(): Observable<News[]> {
-    return this.publicApiService.get("/news").pipe(
+    this.options();
+    return super.get("").pipe(
       map((res: any) => {
         return res.data;
       })
@@ -24,7 +32,8 @@ export class NewsProviderService {
   }
 
   public getNewsById(id: string | number): Observable<News> {
-    return this.publicApiService.get(`/news/${id}`).pipe(
+    this.options();
+    return super.get(`/${id}`).pipe(
       map((res: any) => {
         return res.data;
       })
@@ -32,7 +41,8 @@ export class NewsProviderService {
   }
 
  public createNews(news: News): Observable<News> {
-    return this.publicApiService.post("/news", news).pipe(
+    this.options();
+    return super.post("", news).pipe(
       map((res: any) => {
         return res.data;
       })
@@ -40,7 +50,8 @@ export class NewsProviderService {
   }
 
   public updateNews(id: string | number, news: News | Partial<News>): Observable<News> {
-    return this.publicApiService.put(`/news/${id}`, news).pipe(
+    this.options();
+    return super.put(`/${id}`, news).pipe(
       map((res: any) => {
         return res.data;
       })
@@ -48,7 +59,8 @@ export class NewsProviderService {
   }
 
   public deleteNews(id: string | number): Observable<News> {
-    return this.publicApiService.delete(`/news/${id}`).pipe(
+    this.options();
+    return super.delete(`/${id}`).pipe(
       map((res: any) => {
         return res.data;
       })
