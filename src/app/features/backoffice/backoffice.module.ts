@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { SharedModule } from "../../shared/shared.module";
+import { MaterialModule } from '../../core/utils/material/material.module';
 import { PrimengModule } from "../../core/utils/primeng/primeng.module";
 import { BackofficeRoutingModule } from "./backoffice-routing.module";
 import { ActivitiesComponent } from "./activities/activities.component";
@@ -30,6 +31,7 @@ import { ActivitiesListComponent } from "./activities-list/activities-list.compo
 	imports: [
 		CommonModule,
 		PrimengModule,
+		MaterialModule,
 		SharedModule,
 		ReactiveFormsModule,
 		FormsModule,

@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 
 import { EffectsModule } from '@ngrx/effects';
 
+import { MaterialModule } from 'src/app/core/utils/material/material.module';
+
 import { SharedModule } from '../../shared/shared.module';
 import { PrimengModule } from '../../core/utils/primeng/primeng.module';
 
@@ -19,6 +21,7 @@ import { RegisterFormComponent } from './pages/register-form/register-form.compo
     CommonModule,
     AuthRoutingModule,
     PrimengModule,
+    MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
