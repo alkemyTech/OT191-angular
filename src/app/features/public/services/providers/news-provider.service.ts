@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { HttpClient } from '@angular/common/http';
 
 import { Observable } from "rxjs";
 import { map, catchError } from "rxjs/operators";
@@ -7,19 +8,25 @@ import { map, catchError } from "rxjs/operators";
 import { News } from "src/app/core/models/news.model";
 import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
 
-import { PublicApiService } from "../public-api.service";
+import { PublicApiService } from '../public-api.service';
+import { environment } from '../../../../../environments/environment';
 
 @Injectable({
   providedIn: "root",
 })
-export class NewsProviderService {
-  constructor(
-    private publicApiService: PublicApiService,
-    public dialog: MatDialog
-  ) {}
+export class NewsProviderService extends PublicApiService {
+
+  constructor(http: HttpClient,public dialog: MatDialog) {
+    super(http);
+  }
+  
+  options(): void {
+     this.baseUrl = environment.newsApiURL;
+  }
 
   public getAllNews(): Observable<News[]> {
-    return this.publicApiService.get("/news").pipe(
+    this.options();
+    return super.get("").pipe(
       map((res: any) => {
         return res.data;
       }),
@@ -37,7 +44,8 @@ export class NewsProviderService {
   }
 
   public getNewsById(id: string | number): Observable<News> {
-    return this.publicApiService.get(`/news/${id}`).pipe(
+    this.options();
+    return super.get(`/${id}`).pipe(
       map((res: any) => {
         return res.data;
       }),
@@ -54,8 +62,9 @@ export class NewsProviderService {
     );
   }
 
-  public createNews(news: News): Observable<News> {
-    return this.publicApiService.post("/news", news).pipe(
+ public createNews(news: News): Observable<News> {
+    this.options();
+    return super.post("", news).pipe(
       map((res: any) => {
         return res.data;
       }),
@@ -72,11 +81,9 @@ export class NewsProviderService {
     );
   }
 
-  public updateNews(
-    id: string | number,
-    news: News | Partial<News>
-  ): Observable<News> {
-    return this.publicApiService.put(`/news/${id}`, news).pipe(
+  public updateNews(id: string | number, news: News | Partial<News>): Observable<News> {
+    this.options();
+    return super.put(`/${id}`, news).pipe(
       map((res: any) => {
         return res.data;
       }),
@@ -94,7 +101,8 @@ export class NewsProviderService {
   }
 
   public deleteNews(id: string | number): Observable<News> {
-    return this.publicApiService.delete(`/news/${id}`).pipe(
+    this.options();
+    return super.delete(`/${id}`).pipe(
       map((res: any) => {
         return res.data;
       }),

@@ -39,10 +39,10 @@ export class ActivitiesComponent implements OnInit {
 						image: this.activitySelected.data.image,
 					});
 					this.imageEmpty = false;
+					this.title = "Modificar actividad";
 				});
 		}
 	}
-
 	@Input() activitySelected: IActivity = {
 		success: true,
 		data: {
@@ -63,7 +63,7 @@ export class ActivitiesComponent implements OnInit {
 	};
 	imageEmpty = false;
 	submitted = false;
-
+	title: string = "Crear actividad";
 	activityForm = new FormGroup({
 		name: new FormControl(
 			this.activitySelected != undefined ? this.activitySelected.data.name : "",
@@ -127,10 +127,9 @@ export class ActivitiesComponent implements OnInit {
 		}
 	}
 	nothingSelected() {
-		if (this.activitySelected.data.image == "") {
-			this.activityFormControl.image.setValue("");
-			this.imageEmpty = true;
-		}
+		this.activityFormControl.image.setValue("");
+		this.activitySelected.data.image = "";
+		this.imageEmpty = true;
 	}
 	submitActivity() {
 		this.submitted = true;
