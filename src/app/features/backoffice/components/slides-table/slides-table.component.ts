@@ -27,7 +27,7 @@ export class SlidesTableComponent {
     { label: "Tercero", value: 3 },
   ];
 
-  stylesDialog = { width: '400px', height: '500px' };
+  
 
   @ViewChild("dt") dt: Table | undefined;
   // filtro para el buscador de una columna
@@ -54,7 +54,7 @@ export class SlidesTableComponent {
     this.alerts
       .alertQuestion(
         "Borrar",
-        "¿Seguro que quieres borrar todos los usuarios marcados?",
+        "¿Seguro que quieres borrar todos los slides marcados?",
         "warning"
       )
       .then(async (result) => {
@@ -62,7 +62,7 @@ export class SlidesTableComponent {
           this.messageService.add({
             severity: "success",
             summary: "Éxito",
-            detail: "Se han eliminado los usuarios",
+            detail: "Se han eliminado los slides",
           });
 
           this.slides = this.slides!.filter(
@@ -80,7 +80,7 @@ export class SlidesTableComponent {
     this.alerts
       .alertQuestion(
         "Borrar",
-        "¿Seguro que quieres borrar este usuario?",
+        "¿Seguro que quieres borrar este slide?",
         "warning"
       )
       .then(async (result) => {
@@ -93,7 +93,7 @@ export class SlidesTableComponent {
               this.messageService.add({
                 severity: "error",
                 summary: "Se eliminó",
-                detail: "Se ha eliminado el usuario",
+                detail: "Se ha eliminado el slide",
                 life: 3000,
               });
             },
@@ -125,7 +125,7 @@ export class SlidesTableComponent {
         this.messageService.add({
           severity: "success",
           summary: "Éxito",
-          detail: "Se ha actualizado el usuario",
+          detail: "Se ha actualizado el slide",
           life: 3000,
         });
       },
