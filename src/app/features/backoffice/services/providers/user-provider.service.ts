@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
@@ -7,18 +8,23 @@ import { AlertService } from "src/app/core/services/alert.service";
 
 import { PrivateApiService } from "../private-api.service";
 import { User } from "../../../../core/models/user.model";
+import { environment } from '../../../../../environments/environment';
 
 @Injectable({
   providedIn: "root",
 })
-export class UserProviderService {
-  constructor(
-    private privateApiService: PrivateApiService,
-    private alerts: AlertService
-  ) {}
+export class UserProviderService extends PrivateApiService {
+  constructor(private alerts: AlertService, http: HttpClient) {
+    super(http);
+  }
+
+  options(): void {
+      this.baseUrl = environment.usersApiURL;
+  }
 
   public getUsers(): Observable<User[]> {
-    return this.privateApiService.get("/users").pipe(
+    this.options();
+    return super.get('').pipe(
       map((data: any) => {
         return data.data;
       }),
@@ -29,24 +35,27 @@ export class UserProviderService {
     );
   }
 
-  public getById(id: string): Observable<User> {
-    return this.privateApiService.get("/users", id).pipe(
+  public getUserById(id: string | number): Observable<User> {
+    this.options();
+    return super.get('', id.toString()).pipe(
       map((data: any) => {
         return data.data;
       })
     );
   }
 
-  public deleteUser(id: string) {
-    return this.privateApiService.delete("/users", id).pipe(
+  public deleteUser(id: string | number): Observable<User> {
+    this.options();
+    return super.delete('', id.toString()).pipe(
       map((data: any) => {
         return data.data;
       })
     );
   }
 
-  public updateUser(id: string, user: User | Partial<User>) {
-    return this.privateApiService.put("/users", id, user).pipe(
+  public updateUser(id: string | number, user: User | Partial<User>): Observable<User> {
+    this.options();
+    return super.put('', id.toString(), user).pipe(
       map((data: any) => {
         return data.data;
       })

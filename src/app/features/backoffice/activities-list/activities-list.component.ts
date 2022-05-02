@@ -13,16 +13,25 @@ import { IActivities, IActivity } from "src/app/core/models/activity.model";
 export class ActivitiesListComponent implements OnInit {
 	@ViewChild("dt") dt: Table | undefined;
 
-	constructor(
-		private activityController: ActivitiesControllerService,
-		private messageService: MessageService,
-		private confirmationService: ConfirmationService
-	) {}
 	@Input() listActivities: IActivities = {
 		success: true,
 		data: [],
 		message: "",
 	};
+
+	constructor(
+		private activityController: ActivitiesControllerService,
+		private messageService: MessageService,
+		private confirmationService: ConfirmationService
+	) {}
+
+	ngOnInit() {
+		this.activityController
+			.getActivities("/activities", null)
+			.subscribe((response) => {
+				this.activities = response;
+			});
+	}
 
 	activityDialog: boolean = false;
 
@@ -41,14 +50,6 @@ export class ActivitiesListComponent implements OnInit {
 	};
 
 	submitted: boolean = false;
-
-	ngOnInit() {
-		this.activityController
-			.getActivities("/activities", null)
-			.subscribe((response) => {
-				this.activities = response;
-			});
-	}
 
 	applyFilterGlobal($event: any, stringVal: string) {
 		this.dt!.filterGlobal(($event.target as HTMLInputElement).value, stringVal);

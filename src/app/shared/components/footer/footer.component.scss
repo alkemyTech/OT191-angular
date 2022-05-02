@@ -7,9 +7,10 @@
 
 .nav-link {
     color: black;
+    font-size: 1.2rem;
     font-weight: 600;
     font-family: var(--font-family-primary);
-    transition: 0.5s ease all;
+    transition: 1s ease-in-out all;
 }
 
 .nav-link:hover{

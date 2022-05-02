@@ -32,6 +32,7 @@ export class PrivateApiService extends BaseApiService {
     return super.post<T>(path, body);
   }
 
+
   public put<T>(path: string, id: string = '',  body: any = {}): Observable<T> {
     this.options();
     return id.length > 0 ? super.put<T>(path + '/' + id, body) : super.put<T>(path, body);
@@ -41,6 +42,7 @@ export class PrivateApiService extends BaseApiService {
     this.options();
     return id.length > 0 ? super.patch<T>(path + '/' + id, body) : super.patch<T>(path, body);
   }
+
 
   public delete<T>(path: string, id: string = ''): Observable<T> {
     this.options();

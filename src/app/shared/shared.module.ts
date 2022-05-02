@@ -1,32 +1,42 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import {MatDialogModule} from '@angular/material/dialog';
 
+import { MaterialModule } from '../core/utils/material/material.module';
 import { PrimengModule } from '../core/utils/primeng/primeng.module';
 
+import { RolPipe } from './pipes/rol.pipe';
+import { CardComponent } from './components/card/card.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TitleViewComponent } from './components/title-view/title-view.component';
-import { CardComponent } from './components/card/card.component';
-import { RolPipe } from './pipes/rol.pipe';
 
 @NgModule({
   declarations: [
     TitleViewComponent,
     NavbarComponent,
     FooterComponent,
+    DialogComponent,
     RolPipe,
     CardComponent,
+    LoadingSpinnerComponent,
   ],
   exports: [
     TitleViewComponent,
     RolPipe,
     NavbarComponent,
     FooterComponent,
-    CardComponent
+    DialogComponent,
+    CardComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     CommonModule,
-    PrimengModule
+    PrimengModule,
+    MaterialModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

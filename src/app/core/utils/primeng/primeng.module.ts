@@ -31,6 +31,8 @@ import { ConfirmDialogModule } from "primeng/confirmdialog";
 		ImageModule,
 		InputMaskModule,
 		RadioButtonModule,
+		DividerModule,
+		CardModule,
 		CheckboxModule,
 		RippleModule,
 		ProgressSpinnerModule,
