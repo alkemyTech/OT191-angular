@@ -1,20 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from "rxjs";
+import { map, catchError } from "rxjs/operators";
 
-import { News } from 'src/app/core/models/news.model';
+import { News } from "src/app/core/models/news.model";
+import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
 
 import { PublicApiService } from '../public-api.service';
-import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class NewsProviderService extends PublicApiService {
 
-  constructor(http: HttpClient) {
+  constructor(http: HttpClient,public dialog: MatDialog) {
     super(http);
   }
   
@@ -27,6 +29,16 @@ export class NewsProviderService extends PublicApiService {
     return super.get("").pipe(
       map((res: any) => {
         return res.data;
+      }),
+      catchError((err) => {
+        this.dialog.open(DialogComponent, {
+          data: {
+            title: "Error",
+            description: "Ocurrió un error al obtener las novedades",
+            value: "error",
+          },
+        });
+        return [];
       })
     );
   }
@@ -36,6 +48,16 @@ export class NewsProviderService extends PublicApiService {
     return super.get(`/${id}`).pipe(
       map((res: any) => {
         return res.data;
+      }),
+      catchError((err) => {
+        this.dialog.open(DialogComponent, {
+          data: {
+            title: "Error",
+            description: "Ocurrió un error al obtener la noticia",
+            value: "error",
+          },
+        });
+        return [];
       })
     );
   }
@@ -45,6 +67,16 @@ export class NewsProviderService extends PublicApiService {
     return super.post("", news).pipe(
       map((res: any) => {
         return res.data;
+      }),
+      catchError((err) => {
+        this.dialog.open(DialogComponent, {
+          data: {
+            title: "Error",
+            description: "Ocurrió un error al crear la noticia",
+            value: "error",
+          },
+        });
+        return [];
       })
     );
   }
@@ -54,6 +86,16 @@ export class NewsProviderService extends PublicApiService {
     return super.put(`/${id}`, news).pipe(
       map((res: any) => {
         return res.data;
+      }),
+      catchError((err) => {
+        this.dialog.open(DialogComponent, {
+          data: {
+            title: "Error",
+            description: "Ocurrió un error al actualizar la noticia",
+            value: "error",
+          },
+        });
+        return [];
       })
     );
   }
@@ -63,6 +105,16 @@ export class NewsProviderService extends PublicApiService {
     return super.delete(`/${id}`).pipe(
       map((res: any) => {
         return res.data;
+      }),
+      catchError((err) => {
+        this.dialog.open(DialogComponent, {
+          data: {
+            title: "Error",
+            description: "Ocurrió un error al borrar la noticia",
+            value: "error",
+          },
+        });
+        return [];
       })
     );
   }
