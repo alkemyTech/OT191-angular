@@ -3,6 +3,9 @@
     max-height: 80vh;
     padding-top: 15px;
     overflow: hidden;
+    font-family: var(--font-family-primary);
+    font-size: .9rem;
+    
   }
   
   .carousel-indicators button{
@@ -13,4 +16,12 @@
   .carousel-caption{
     position: absolute;
     top: 400px;  
+  }
+
+  h5{
+    font-family: var(--font-family-primary);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+      
   }
