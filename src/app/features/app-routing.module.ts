@@ -39,13 +39,13 @@ const routes: Routes = [
       import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
   },
   {
+    path: "nosotros",
+    component: PrincipalComponent,
+  },
+  {
     path: "**",
     redirectTo: "",
     pathMatch: "full",
-  },
-  {
-    path: "Nosotros",
-    component: PrincipalComponent,
   },
 ];
 
