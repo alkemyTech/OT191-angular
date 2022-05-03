@@ -2,9 +2,13 @@ import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
+import { Store } from "@ngrx/store";
+
 import { AlertService } from "src/app/core/services/alert.service";
 import { User } from "src/app/core/models/user.model";
 
+import { Register } from "../../actions/auth.actions";
+import { State } from "../../reducers/auth.reducer";
 import { AuthService } from "../../services/auth.service";
 import { ValidatorService } from "../../services/validators/validator.service";
 
@@ -50,7 +54,8 @@ export class RegisterFormComponent {
     private alerts: AlertService,
     private fb: FormBuilder,
     private auth: AuthService,
-    private valSer: ValidatorService
+    private valSer: ValidatorService,
+    private store: Store<State>,
   ) {}
 
   isInvalid(value: string) {
@@ -74,7 +79,8 @@ export class RegisterFormComponent {
         email: this.registerForm.controls["email"].value,
         password: this.registerForm.controls["password"].value,
       };
-
+      this.store.dispatch(new Register(user));
+      
       this.auth.register(user).subscribe({
         next: (res) => {
           this.loading = false;

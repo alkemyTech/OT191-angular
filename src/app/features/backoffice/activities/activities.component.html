@@ -1,4 +1,5 @@
 <div class="container justify-content:center align-items-center mt-4">
+	<app-title-view [title]="title"></app-title-view>
 	<form [formGroup]="activityForm" (ngSubmit)="submitActivity()">
 		<div
 			class="row pt-4"
@@ -72,17 +73,17 @@
 				(change)="onFileSelected($event)"
 				accept="image/x-png,image/jpeg"
 				required
-				#logo
+				#image
 				style="display: none"
 			/>
 			<div class="p-inputgroup">
 				<button
-					#buttonLogo
+					#buttonImage
 					type="button"
 					pButton
-					(blur)="nothingSelected()"
 					class="p-button-sm p-button-raised p-button-secondary"
-					(click)="logo.click()"
+					(click)="image.click()"
+					(click)="nothingSelected()"
 				>
 					Cargar imagen
 				</button>
@@ -109,7 +110,7 @@
 					pRipple
 					type="submit"
 					class="p-button-raised"
-					label="Guardar Categoria"
+					[label]="title"
 				></button>
 			</div>
 		</div>

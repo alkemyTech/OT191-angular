@@ -38,7 +38,7 @@ const routes: Routes = [
 				path: "users/create",
 				component: UserformComponent,
 			},
-      {
+			{
 				path: "activities/create",
 				component: ActivitiesComponent,
 			},

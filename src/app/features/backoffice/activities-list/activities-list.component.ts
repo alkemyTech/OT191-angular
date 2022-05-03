@@ -28,6 +28,7 @@ export class ActivitiesListComponent implements OnInit {
 		private confirmationService: ConfirmationService,
 		public dialog: MatDialog
 	) {}
+
 	ngOnInit() {
 		this.activityController.getActivities("/activities", null).subscribe({
 			next: (response) => {

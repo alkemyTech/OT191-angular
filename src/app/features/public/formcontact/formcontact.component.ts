@@ -19,7 +19,7 @@ export class FormcontactComponent {
 
 	public autoResize: boolean = true;
 	submitted: boolean = false;
-
+	title: string = "Formulario de contacto";
 	contactForm = new FormGroup({
 		name: new FormControl("", [Validators.required]),
 		phone: new FormControl("", [Validators.required]),

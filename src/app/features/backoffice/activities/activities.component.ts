@@ -41,6 +41,7 @@ export class ActivitiesComponent implements OnInit {
 						image: this.activitySelected.data.image,
 					});
 					this.imageEmpty = false;
+					this.title = "Modificar actividad";
 				},
 				error: (error) => {
 					this.errorAlert = true;
@@ -50,7 +51,6 @@ export class ActivitiesComponent implements OnInit {
 			});
 		}
 	}
-
 	@Input() activitySelected: IActivity = {
 		success: false,
 		data: {
@@ -72,6 +72,7 @@ export class ActivitiesComponent implements OnInit {
 	submitted = false;
 	errorAlert: boolean = false;
 	error: string = "";
+	title: string = "Crear actividad";
 	activityForm = new FormGroup({
 		name: new FormControl(
 			this.activitySelected != undefined ? this.activitySelected.data.name : "",
@@ -135,10 +136,9 @@ export class ActivitiesComponent implements OnInit {
 		}
 	}
 	nothingSelected() {
-		if (this.activitySelected.data.image == "") {
-			this.activityFormControl.image.setValue("");
-			this.imageEmpty = true;
-		}
+		this.activityFormControl.image.setValue("");
+		this.activitySelected.data.image = "";
+		this.imageEmpty = true;
 	}
 	submitActivity() {
 		this.submitted = true;
@@ -204,14 +204,16 @@ export class ActivitiesComponent implements OnInit {
 					message: "",
 				};
 
-				this.activityController.postActivity("/activities", activity).subscribe({
-					next: (response)=>{
-						this.openDialog("Creacion con exito", response, "success");
-					},
-					error: (error) => {
-						this.openDialog("Error en la creacion", error, "error");
-					},
-				});
+				this.activityController
+					.postActivity("/activities", activity)
+					.subscribe({
+						next: (response) => {
+							this.openDialog("Creacion con exito", response, "success");
+						},
+						error: (error) => {
+							this.openDialog("Error en la creacion", error, "error");
+						},
+					});
 			}
 		}
 	}
