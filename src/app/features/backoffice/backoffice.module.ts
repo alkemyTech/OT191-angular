@@ -18,6 +18,9 @@ import { ActivitiesListComponent } from "./activities-list/activities-list.compo
 import { StoreModule } from "@ngrx/store";
 import { activityReducer } from "./store-activity/activity.reducer";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { EffectsModule } from "@ngrx/effects";
+import { activityEffects } from "./store-activity/activity.effects";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
 	declarations: [
@@ -41,7 +44,9 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 		CKEditorModule,
 		BackofficeRoutingModule,
 		StoreModule.forRoot({activity: activityReducer}),
-		StoreDevtoolsModule.instrument({autoPause:true})
+		StoreDevtoolsModule.instrument({autoPause:true}),
+		EffectsModule.forRoot([activityEffects]),
+		HttpClientModule
 	],
 })
 export class BackofficeModule {}

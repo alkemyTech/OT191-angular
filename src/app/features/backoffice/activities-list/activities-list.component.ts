@@ -6,7 +6,7 @@ import { Table } from "primeng/table";
 import { IActivities, IActivity } from "src/app/core/models/activity.model";
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
-import { setActivities } from "../store-activity/activity.actions";
+import { loadActivities, loadActivitiesSuccess } from "../store-activity/activity.actions";
 
 @Component({
 	selector: "app-activities-list",
@@ -24,7 +24,6 @@ export class ActivitiesListComponent implements OnInit {
 	};
 
 	constructor(
-		private activityController: ActivitiesControllerService,
 		private messageService: MessageService,
 		private confirmationService: ConfirmationService,
 		private store: Store<{ activity: IActivities }>
@@ -33,13 +32,9 @@ export class ActivitiesListComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.activities$ = this.activityController.getActivities(
-			"/activities",
-			null
-		);
+		this.store.dispatch(loadActivities());
 		this.activities$.subscribe((response) => {
 			this.activities = response;
-			this.store.dispatch(setActivities({activities: response}))
 		});
 
 	}
