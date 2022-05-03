@@ -15,6 +15,9 @@ import { SlidesComponent } from "./pages/slides/slides.component";
 import { UserListViewComponent } from './pages/user-list-view/user-list-view.component';
 import { UserformComponent } from "./pages/userform/userform.component";
 import { ActivitiesListComponent } from "./activities-list/activities-list.component";
+import { StoreModule } from "@ngrx/store";
+import { activityReducer } from "./store-activity/activity.reducer";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
 @NgModule({
 	declarations: [
@@ -37,6 +40,8 @@ import { ActivitiesListComponent } from "./activities-list/activities-list.compo
 		FormsModule,
 		CKEditorModule,
 		BackofficeRoutingModule,
+		StoreModule.forRoot({activity: activityReducer}),
+		StoreDevtoolsModule.instrument({autoPause:true})
 	],
 })
 export class BackofficeModule {}
