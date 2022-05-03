@@ -6,8 +6,9 @@ import { HomeEditComponent } from "./pages/home-edit/home-edit.component";
 import { SlidesComponent } from "./pages/slides/slides.component";
 import { UserListViewComponent } from "./pages/user-list-view/user-list-view.component";
 import { UserformComponent } from "./pages/userform/userform.component";
-import { ActivitiesListComponent } from "./activities-list/activities-list.component";
+
 import { ActivitiesComponent } from "./activities/activities.component";
+import { ActivitiesListComponent } from "./activities-list/activities-list.component";
 
 const routes: Routes = [
 	{
@@ -44,10 +45,6 @@ const routes: Routes = [
 				pathMatch: "full",
 			},
 			{
-				path: "**",
-				redirectTo: "",
-			},
-			{
 				path: "activities/create",
 				component: ActivitiesComponent,
 			},
@@ -58,6 +55,10 @@ const routes: Routes = [
 			{
 				path: "activities",
 				component: ActivitiesListComponent,
+			},
+			{
+				path: "**",
+				redirectTo: "",
 			},
 		],
 	},
