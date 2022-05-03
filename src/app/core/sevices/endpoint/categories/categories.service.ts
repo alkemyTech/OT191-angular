@@ -54,9 +54,9 @@ export class CategoriesService extends PrivateApiService {
     );
   }
 
-  public updateCategory(id: string | number, user: ICategory | Partial<ICategory>): Observable<ICategory> {
+  public updateCategory(id: string | number, category: ICategory | Partial<ICategory>): Observable<ICategory> {
     this.options();
-    return super.put('', id.toString(), user).pipe(
+    return super.put('', id.toString(), category).pipe(
       map((data: any) => {
         return data.data;
       })
