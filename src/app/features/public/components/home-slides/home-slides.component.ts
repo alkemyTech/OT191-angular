@@ -7,7 +7,27 @@ import { Slide } from 'src/app/core/models/slides.model';
   styleUrls: ["./home-slides.component.scss"],
 })
 export class HomeSlidesComponent implements OnInit {
-  constructor() {}
+
+  responsiveOptions:any;
+  constructor() {
+    this.responsiveOptions = [
+      {
+          breakpoint: '1024px',
+          numVisible: 3,
+          numScroll: 3
+      },
+      {
+          breakpoint: '768px',
+          numVisible: 2,
+          numScroll: 2
+      },
+      {
+          breakpoint: '560px',
+          numVisible: 1,
+          numScroll: 1
+      }
+  ];
+  }
 
   slides!: Slide[];
 
