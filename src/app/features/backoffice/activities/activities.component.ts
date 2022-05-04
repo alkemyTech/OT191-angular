@@ -35,52 +35,33 @@ export class ActivitiesComponent implements OnInit {
 			this.activityController
 				.getActivity("/activities", Number(id))
 				.subscribe((response) => {
-					this.activitySelected = response;
+					this.activitySelected = response.data;
 					this.activityForm.reset({
-						name: this.activitySelected.data.name,
-						description: this.activitySelected.data.description,
-						image: this.activitySelected.data.image,
+						name: this.activitySelected.name,
+						description: this.activitySelected.description,
+						image: this.activitySelected.image,
 					});
 					this.imageEmpty = false;
 					this.title = "Modificar actividad";
 				});
 		}
 	}
-	@Input() activitySelected: IActivity = {
-		success: true,
-		data: {
-			id: 0,
-			name: "",
-			slug: null,
-			description: "",
-			image: "",
-			user_id: null,
-			category_id: null,
-			created_at: "2022-04-16",
-			updated_at: "2022-04-16T22:42:39.000000Z",
-			deleted_at: null,
-			group_id: 42,
-		},
-
-		message: " ",
-	};
+	@Input() activitySelected: IActivity = <IActivity>{};
 	imageEmpty = false;
 	submitted = false;
 	title: string = "Crear actividad";
 	activityForm = new FormGroup({
 		name: new FormControl(
-			this.activitySelected != undefined ? this.activitySelected.data.name : "",
+			this.activitySelected != <IActivity>{} ? this.activitySelected.name : "",
 			[Validators.required]
 		),
 		description: new FormControl(
-			this.activitySelected != undefined
-				? this.activitySelected.data.description
+			this.activitySelected != <IActivity>{}
+				? this.activitySelected.description
 				: ""
 		),
 		image: new FormControl(
-			this.activitySelected != undefined
-				? this.activitySelected.data.image
-				: "",
+			this.activitySelected != <IActivity>{} ? this.activitySelected.image : "",
 			Validators.required
 		),
 	});
@@ -88,9 +69,7 @@ export class ActivitiesComponent implements OnInit {
 	// --------Config CKEditor-------
 	public Editor = ClassicEditor;
 	public editorData =
-		this.activitySelected != undefined
-			? this.activitySelected.data.description
-			: "";
+		this.activitySelected != undefined ? this.activitySelected.description : "";
 	public config = {
 		placeholder: "Ingrese la descripcion de la actividad",
 	};
@@ -131,67 +110,57 @@ export class ActivitiesComponent implements OnInit {
 	}
 	nothingSelected() {
 		this.activityFormControl.image.setValue("");
-		this.activitySelected.data.image = "";
+		this.activitySelected.image = "";
 		this.imageEmpty = true;
 	}
 	submitActivity() {
 		this.submitted = true;
 		if (this.activityFormControl.image.value == "") {
-			this.activityForm.controls.image.setValue(
-				this.activitySelected.data.image
-			);
+			this.activityForm.controls.image.setValue(this.activitySelected.image);
 		}
 		if (this.activityForm.valid) {
-			if (this.activitySelected.success) {
+			if (this.activitySelected.name != "") {
 				const activity: IActivity = {
-					success: true,
-					data: {
-						id: this.activitySelected.data.id,
-						name: this.changeValue(
-							this.activityFormControl.name,
-							this.activitySelected.data.name
-						),
-						slug: this.activitySelected.data.slug,
-						description: this.changeValue(
-							this.activityFormControl.description,
-							this.activitySelected.data.description
-						),
-						image: this.changeValue(
-							this.activityFormControl.image,
-							this.activitySelected.data.image
-						),
-						user_id: this.activitySelected.data.user_id,
-						category_id: this.activitySelected.data.category_id,
-						created_at: this.activitySelected.data.created_at,
-						updated_at: this.activitySelected.data.updated_at,
-						deleted_at: this.activitySelected.data.deleted_at,
-						group_id: this.activitySelected.data.group_id,
-					},
-					message: "",
+					id: this.activitySelected.id,
+					name: this.changeValue(
+						this.activityFormControl.name,
+						this.activitySelected.name
+					),
+					slug: this.activitySelected.slug,
+					description: this.changeValue(
+						this.activityFormControl.description,
+						this.activitySelected.description
+					),
+					image: this.changeValue(
+						this.activityFormControl.image,
+						this.activitySelected.image
+					),
+					user_id: this.activitySelected.user_id,
+					category_id: this.activitySelected.category_id,
+					created_at: this.activitySelected.created_at,
+					updated_at: this.activitySelected.updated_at,
+					deleted_at: this.activitySelected.deleted_at,
+					group_id: this.activitySelected.group_id,
 				};
 				this.activityController.patchActivity(
 					"/activities",
-					activity.data.id,
+					activity.id,
 					activity
 				);
 			}
 		} else {
 			const activity: IActivity = {
-				success: true,
-				data: {
-					id: 0,
-					name: this.activityFormControl.name.value,
-					slug: this.activitySelected.data.slug,
-					description: this.activityFormControl.description.value,
-					image: this.activityFormControl.image.value,
-					user_id: null,
-					category_id: null,
-					created_at: "",
-					updated_at: "",
-					deleted_at: null,
-					group_id: 0,
-				},
-				message: "",
+				id: 0,
+				name: this.activityFormControl.name.value,
+				slug: this.activitySelected.slug,
+				description: this.activityFormControl.description.value,
+				image: this.activityFormControl.image.value,
+				user_id: null,
+				category_id: null,
+				created_at: "",
+				updated_at: "",
+				deleted_at: null,
+				group_id: 0,
 			};
 
 			this.activityController.postActivity("/activities", activity).subscribe({

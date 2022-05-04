@@ -3,10 +3,13 @@ import { Component, Input, OnInit, ViewChild } from "@angular/core";
 import { ActivitiesControllerService } from "../services/activitiesController/activities-controller.service";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { Table } from "primeng/table";
-import { IActivities, IActivity } from "src/app/core/models/activity.model";
+import { IActivity } from "src/app/core/models/activity.model";
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
-import { loadActivities, loadActivitiesSuccess } from "../store-activity/activity.actions";
+import {
+	loadActivities,
+	loadActivitiesSuccess,
+} from "../store-activity/activity.actions";
 
 @Component({
 	selector: "app-activities-list",
@@ -15,45 +18,31 @@ import { loadActivities, loadActivitiesSuccess } from "../store-activity/activit
 })
 export class ActivitiesListComponent implements OnInit {
 	@ViewChild("dt") dt: Table | undefined;
-	activities$: Observable<IActivities>;
+	activities$: Observable<any>;
 
-	@Input() listActivities: IActivities = {
-		success: true,
-		data: [],
-		message: "",
-	};
+	@Input() listActivities: IActivity[] = [];
 
 	constructor(
 		private messageService: MessageService,
 		private confirmationService: ConfirmationService,
-		private store: Store<{ activity: IActivities }>
+		private store: Store<{ activity: IActivity }>
 	) {
-		this.activities$ = store.select(state=> state.activity);
+		this.activities$ = store.select((state) => state.activity);
 	}
 
 	ngOnInit() {
 		this.store.dispatch(loadActivities());
 		this.activities$.subscribe((response) => {
-			this.activities = response;
+			this.activities=<IActivity[]>response;
 		});
-
 	}
 
 	activityDialog: boolean = false;
 
-	activities: IActivities = <IActivities>{
-		success: true,
-		data: [],
-		message: "",
-	};
-
+	activities: IActivity[] = [];
 	activity: IActivity = <IActivity>{};
 
-	selectedActivities: IActivities = <IActivities>{
-		success: false,
-		data: [],
-		message: "",
-	};
+	selectedActivities: IActivity[] = [];
 
 	submitted: boolean = false;
 
@@ -68,14 +57,10 @@ export class ActivitiesListComponent implements OnInit {
 			header: "Confirmacion",
 			icon: "pi pi-exclamation-triangle",
 			accept: () => {
-				this.activities.data = this.activities.data.filter(
-					(val) => !this.selectedActivities.data.includes(val)
+				this.activities = this.activities.filter(
+					(val) => !this.selectedActivities.includes(val)
 				);
-				this.selectedActivities = <IActivities>{
-					success: false,
-					data: [],
-					message: "",
-				};
+				this.selectedActivities = [];
 				this.messageService.add({
 					severity: "success",
 					summary: "Exitoso",
@@ -93,7 +78,7 @@ export class ActivitiesListComponent implements OnInit {
 			header: "Confirmacion",
 			icon: "pi pi-exclamation-triangle",
 			accept: () => {
-				this.activities.data = this.activities.data.filter(
+				this.activities = this.activities.filter(
 					(val) => val.id !== activity.id
 				);
 				this.activity = <IActivity>{};

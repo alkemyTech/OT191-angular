@@ -13,7 +13,7 @@ export class activityEffects {
 			switchMap(() =>
 				this.activityService
 					.getActivities("/activities", null)
-					.pipe(map((data) => loadActivitiesSuccess({ activities: data })))
+					.pipe(map((data) => loadActivitiesSuccess({ activities: data.data })))
 			)
 		)
 	);

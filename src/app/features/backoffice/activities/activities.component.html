@@ -21,7 +21,7 @@
 									: ''
 							"
 						/>
-						<label for="name">Nombre de la actividad</label>
+						<label class="root" for="name">Nombre de la actividad</label>
 					</div>
 				</div>
 				<div
@@ -50,10 +50,10 @@
 				<p-image
 					[src]="
 						activityFormControl.image.value == ''
-							? activitySelected.data.image
+							? activitySelected.image
 							: activityFormControl.image.value
 					"
-					[alt]="activitySelected.data.name"
+					[alt]="activitySelected.name"
 					width="300"
 				></p-image>
 			</div>
@@ -61,7 +61,7 @@
 		<div
 			class="row pt-4"
 			[ngClass]="
-				validateControlForSpacing(activityFormControl.image.value) && imageEmpty
+				validateControlForSpacing(activityFormControl.image) && imageEmpty
 					? 'mb-4'
 					: ''
 			"
@@ -116,3 +116,5 @@
 		</div>
 	</form>
 </div>
+
+<p class="root"> texto de prueba asdasdasd</p>

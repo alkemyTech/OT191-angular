@@ -23,7 +23,7 @@
 						icon="pi pi-trash"
 						class="p-button-danger"
 						(click)="deleteSelectedActivities()"
-						[disabled]="!selectedActivities || !selectedActivities.data.length"
+						[disabled]="!selectedActivities || !selectedActivities.length"
 					></button>
 				</div>
 			</div>
@@ -32,12 +32,12 @@
 
 	<p-table
 		#dt
-		[value]="activities.data"
+		[value]="activities"
 		[rows]="10"
 		[paginator]="true"
 		[globalFilterFields]="['name', 'created_at']"
 		responsiveLayout="scroll"
-		[(selection)]="selectedActivities.data"
+		[(selection)]="selectedActivities"
 		[rowHover]="true"
 		dataKey="id"
 		currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} actividades"
@@ -108,7 +108,7 @@
 		<ng-template pTemplate="summary">
 			<div class="flex align-items-center justify-content-between">
 				En total hay
-				{{ activities.success ? activities.data.length : 0 }} actividades.
+				{{ activities ? activities.length : 0 }} actividades.
 			</div>
 		</ng-template>
 	</p-table>
