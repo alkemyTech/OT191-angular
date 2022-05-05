@@ -17,13 +17,14 @@ export class ActivitiesControllerService {
 	getActivity(destinationRoute: string, id: number): Observable<any> {
 		return this.baseHttp.getApi(destinationRoute, id);
 	}
-	patchActivity(destinationRoute: string, id: number, activity: IActivity) {
-		return this.baseHttp.patch(destinationRoute + "/" + id, activity);
+	putActivity(destinationRoute: string, id: number, activity: IActivity): Observable<any> {
+		return this.baseHttp.put(destinationRoute + "/" + id, activity);
 	}
 	deleteActivity(destinationRoute: string, id: number) {
 		return this.baseHttp.delete("/" + destinationRoute + "/" + id);
 	}
 	postActivity(destinationRoute: string, activity: IActivity) {
+		console.log("error en post");
 		return this.baseHttp.post(destinationRoute, activity);
 	}
 }

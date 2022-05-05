@@ -18,12 +18,12 @@ export class activityEffects {
 		)
 	);
     
-    // updateActivity$ = createEffect(() => this.actions$.pipe(
-    //     ofType(updateActivity),
-    //     switchMap(() => this.activityService.patchActivity("/activities",1,).pipe(
-    //       map(data => updateActivitySuccess({activity: data}))
-    //     ))
-    //   ));
+    updateActivity$ = createEffect(() => this.actions$.pipe(
+         ofType(updateActivity),
+         switchMap(({activity}) => this.activityService.putActivity("/activities",activity.id,activity).pipe(
+           map(data => updateActivitySuccess({activity:data.data}))
+         ))
+       ));
 
 	constructor(
 		private actions$: Actions,

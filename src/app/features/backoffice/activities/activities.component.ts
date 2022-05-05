@@ -15,6 +15,10 @@ import { ActivatedRoute } from "@angular/router";
 import { IActivity } from "src/app/core/models/activity.model";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
+import { updateActivity } from "../store-activity/activity.actions";
+import { ImageService } from "../services/activitiesController/image.service";
 
 @Component({
 	selector: "app-activities",
@@ -22,13 +26,18 @@ import { DialogComponent } from "src/app/shared/components/dialog/dialog.compone
 	styleUrls: ["./activities.component.scss"],
 })
 export class ActivitiesComponent implements OnInit {
+	activities$: Observable<any>;
 	constructor(
+		public imageService: ImageService,
 		public dialog: MatDialog,
 		private route: ActivatedRoute,
 		private http: HttpClient,
 		private fb: FormBuilder,
-		private activityController: ActivitiesControllerService
-	) {}
+		private activityController: ActivitiesControllerService,
+		private store: Store<{ activity: IActivity }>
+	) {
+		this.activities$ = store.select((state) => state.activity);
+	}
 	ngOnInit(): void {
 		const id = this.route.snapshot.paramMap.get("id");
 		if (id != null) {
@@ -110,31 +119,35 @@ export class ActivitiesComponent implements OnInit {
 	}
 	nothingSelected() {
 		this.activityFormControl.image.setValue("");
-		this.activitySelected.image = "";
 		this.imageEmpty = true;
 	}
 	submitActivity() {
+		console.log("entrosubmit")
 		this.submitted = true;
-		if (this.activityFormControl.image.value == "") {
-			this.activityForm.controls.image.setValue(this.activitySelected.image);
+		if (this.activityFormControl.image.value == this.activitySelected.image) {
+			console.log("entrobase64");
+			const string: string = this.activitySelected.image;
+			this.imageService.imageUrlToBase64('https://cors-anywhere.herokuapp.com/'+string).subscribe((base64) => {
+				this.activityForm.controls.image.setValue(base64);
+			});
 		}
 		if (this.activityForm.valid) {
-			if (this.activitySelected.name != "") {
+			console.log(this.activitySelected);
+			if (this.activitySelected != <IActivity>{}) {
+				console.log("entro modificacion")
 				const activity: IActivity = {
 					id: this.activitySelected.id,
 					name: this.changeValue(
-						this.activityFormControl.name,
+						this.activityFormControl.name.value,
 						this.activitySelected.name
 					),
 					slug: this.activitySelected.slug,
 					description: this.changeValue(
-						this.activityFormControl.description,
+						this.activityFormControl.description.value,
 						this.activitySelected.description
 					),
-					image: this.changeValue(
-						this.activityFormControl.image,
-						this.activitySelected.image
-					),
+					image: this.activityFormControl.image.value
+					,
 					user_id: this.activitySelected.user_id,
 					category_id: this.activitySelected.category_id,
 					created_at: this.activitySelected.created_at,
@@ -142,13 +155,20 @@ export class ActivitiesComponent implements OnInit {
 					deleted_at: this.activitySelected.deleted_at,
 					group_id: this.activitySelected.group_id,
 				};
-				this.activityController.patchActivity(
-					"/activities",
-					activity.id,
-					activity
-				);
+				this.store.dispatch(updateActivity({activity}));
+				// this.activityController
+				// 	.putActivity("/activities", activity.id, activity)
+				// 	.subscribe({
+				// 		next: (response) => {
+				// 			this.openDialog("Modificación con exito", response, "success");
+				// 		},
+				// 		error: (error) => {
+				// 			this.openDialog("Error en la modificación", error, "error");
+				// 		},
+				// 	});
 			}
 		} else {
+			console.log("entro creacion")
 			const activity: IActivity = {
 				id: 0,
 				name: this.activityFormControl.name.value,
@@ -168,6 +188,7 @@ export class ActivitiesComponent implements OnInit {
 					this.openDialog("Creacion con exito", response, "success");
 				},
 				error: (error) => {
+					console.log(error);
 					this.openDialog("Error en la creacion", error, "error");
 				},
 			});
@@ -190,4 +211,6 @@ export class ActivitiesComponent implements OnInit {
 		});
 	}
 	cancelAction() {}
+	
+	
 }
