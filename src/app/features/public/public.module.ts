@@ -6,12 +6,13 @@ import { SharedModule } from '../../shared/shared.module';
 import { MaterialModule } from '../../core/utils/material/material.module';
 import { PrimengModule } from '../../core/utils/primeng/primeng.module';
 
-import { FormcontactComponent } from './formcontact/formcontact.component';
+import { FormcontactComponent } from './pages/formcontact/formcontact.component';
 import { DonationsComponent } from './pages/donations/donations.component';
 import { HomeComponent } from './pages/home/home.component';
 import { GraciasComponent } from './pages/donations/gracias/gracias.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HomeSlidesComponent } from './components/home-slides/home-slides.component';
+import { PublicRoutingModule } from './public-routing.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HomeSlidesComponent } from './components/home-slides/home-slides.compon
     ReactiveFormsModule,
     SharedModule,
     MatDialogModule,
+    PublicRoutingModule
   ],
   exports:[HomeSlidesComponent],
   providers:[CurrencyPipe]
