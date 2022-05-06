@@ -1,30 +1,39 @@
-.button,.input,.th{
-    font-family: var(--font-family-primary);
-}
 .span{
-    font-family: var(--font-family-primary);
+    font-family: var(--font-family-primary)!important;
 }
 .p-component{
-    font-family: var(--font-family-primary);
+    font-family: var(--font-family-primary)!important;
 }
 .text{
     font-family: var(--font-family-primary);
 }
 .p-button-success{
     background-color: var(--lightblue);
+    border-color: var(--lightblue);
+    transition: 0.5s ease;
 }
 .p-button-success:hover{
-    background-color: var(--lightblue);
+    background-color: var(--lightblue)!important;
+    border-color: var(--lightblue)!important;
+    transform: scale(1.1)!important;
 }
-.p-button-secondary{
-    background-color: var(--lightblue);
+.p-button-warning{
+    background-color: rgb(251, 218, 119)!important;
+    border-color:  rgb(251, 218, 119)!important;
+    transition: 0.5s ease;
 }
-.p-button-secondary:hover{
-    background-color: var(--accentColor);
+.p-button-warning:hover{
+    background-color: rgb(251, 218, 119)!important;
+    transform: scale(1.1)!important;
+    border-color:  rgb(251, 218, 119)!important;
 }
 .p-button-danger{
     background-color: var(--secondaryColor);
+    border-color: var(--secondaryColor)!important;
+    transition: 0.5s ease;
 }
 .p-button-danger:hover{
-    background-color: var(--primaryColor);
+    background-color: var(--secondaryColor);
+    border-color: var(--secondaryColor)!important;
+    transform: scale(1.1)!important;
 }

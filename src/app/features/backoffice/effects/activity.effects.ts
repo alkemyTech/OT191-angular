@@ -9,6 +9,9 @@ import { ActivitiesControllerService } from "../services/activitiesController/ac
 import {
 	addActivity,
 	addActivitySuccess,
+	// deleteActivities,
+	deleteActivity,
+	deleteActivitySuccess,
 	loadActivities,
 	loadActivitiesSuccess,
 	updateActivity,
@@ -49,10 +52,13 @@ export class activityEffects {
 						map((data) => {
 							this.openDialog(
 								"Actividad modificada con exito",
-								"Actividad " + data.data.name + " fue modificada satisfactoriamente",
+								"Actividad " +
+									data.data.name +
+									" fue modificada satisfactoriamente",
 								"success"
 							);
-							return updateActivitySuccess({ activity: data.data })}),
+							return updateActivitySuccess({ activity: data.data });
+						}),
 						catchError((error) => {
 							this.openDialog(
 								"Error en la modificación",
@@ -93,6 +99,40 @@ export class activityEffects {
 			)
 		)
 	);
+
+	deleteActivity$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(deleteActivity),
+			mergeMap(({ activity }) => {
+				return this.activityService
+					.deleteActivity("/activities", activity.id)
+					.pipe(
+						map((data) => {
+							this.openDialog(
+								"Actividad eliminada con exito",
+								"Actividad " +
+									activity.name +
+									" fue eliminada satisfactoriamente",
+								"success"
+							);
+							return deleteActivitySuccess({ activity: activity });
+						}),
+						catchError((error) => {
+							this.openDialog(
+								"Error en la eliminacion",
+								error.message,
+								"error"
+							);
+							return of({
+								type: "[activities Component] Error Activity",
+								error: { error },
+							});
+						})
+					);
+			})
+		)
+	);
+
 	constructor(
 		private actions$: Actions,
 		private activityService: ActivitiesControllerService,

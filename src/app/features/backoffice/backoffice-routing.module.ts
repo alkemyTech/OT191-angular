@@ -45,11 +45,6 @@ const routes: Routes = [
 				component: UserformComponent,
 			},
 			{
-				path: "",
-				redirectTo: "",
-				pathMatch: "full",
-			},
-			{
 				path: "activities/create",
 				component: ActivitiesComponent,
 			},
@@ -60,6 +55,11 @@ const routes: Routes = [
 			{
 				path: "activities",
 				component: ActivitiesListComponent,
+			},
+			{
+				path: "",
+				redirectTo: "",
+				pathMatch: "full",
 			},
 			{
 				path: "**",

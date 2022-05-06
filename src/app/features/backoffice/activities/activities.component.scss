@@ -9,6 +9,7 @@
     font-family: var(--font-family-primary);
 }
 .p-button-info{
+    font-family: var(--font-family-primary);
     background-color: var(--lightblue);
     border-color: var(--lightblue)!important;
 }
@@ -17,6 +18,7 @@
     border-color: var(--lightblue)!important;
 }
 .p-button-secondary{
+    font-family: var(--font-family-primary);
     background-color: rgb(193, 193, 193);
     border-color: rgb(193, 193, 193)!important;
     font-weight: 600;
@@ -26,6 +28,7 @@
     border-color: rgb(193, 193, 193)!important;
 }
 .p-button-danger{
+    font-family: var(--font-family-primary);
     background-color: var(--secondaryColor);
     border-color: var(--secondaryColor)!important;
 }

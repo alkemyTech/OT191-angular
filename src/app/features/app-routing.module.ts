@@ -26,12 +26,12 @@ const routes: Routes = [
     component: ActivityFormComponent,
   },
   {
-    path: "",
-    component: HomeComponent,
-  },
-  {
     path: "contact",
     component: FormcontactComponent,
+  },
+  {
+    path: "Nosotros",
+    component: PrincipalComponent,
   },
   {
     path: "backoffice",
@@ -39,8 +39,8 @@ const routes: Routes = [
       import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
   },
   {
-    path: "nosotros",
-    component: PrincipalComponent,
+    path: "",
+    component: HomeComponent,
   },
   {
     path: "**",

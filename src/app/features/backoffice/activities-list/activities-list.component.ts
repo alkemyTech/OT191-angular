@@ -6,8 +6,7 @@ import { Table } from "primeng/table";
 import { IActivity } from "src/app/core/models/activity.model";
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
-import { loadActivities } from "../actions/activity.actions";
-
+import { deleteActivity, loadActivities } from "../actions/activity.actions";
 
 @Component({
 	selector: "app-activities-list",
@@ -26,10 +25,10 @@ export class ActivitiesListComponent implements OnInit {
 		private store: Store<{ activity: IActivity }>
 	) {
 		this.activities$ = store.select((state) => state.activity);
+		this.store.dispatch(loadActivities());
 	}
 
 	ngOnInit() {
-		this.store.dispatch(loadActivities());
 		this.activities$.subscribe((response) => {
 			this.activities = <IActivity[]>response;
 		});
@@ -49,7 +48,6 @@ export class ActivitiesListComponent implements OnInit {
 	}
 
 	deleteSelectedActivities() {
-		//Falta agregar metodo para actualizar base de datos
 		this.confirmationService.confirm({
 			message: "Esta seguro de eliminar estas actividades?",
 			header: "Confirmacion",
@@ -58,18 +56,15 @@ export class ActivitiesListComponent implements OnInit {
 				this.activities = this.activities.filter(
 					(val) => !this.selectedActivities.includes(val)
 				);
-				this.selectedActivities = [];
-				this.messageService.add({
-					severity: "success",
-					summary: "Exitoso",
-					detail: "Actividades eliminadas",
-					life: 3000,
+				this.selectedActivities.forEach((activity) => {
+					this.store.dispatch(deleteActivity({ activity }));
 				});
+				this.selectedActivities = [];
 			},
 		});
 	}
 
-	deleteActivity(activity: any) {
+	deleteActivity(activity: IActivity) {
 		this.confirmationService.confirm({
 			message: "Esta seguro de eliminar la actividad " + activity.name + "?",
 			header: "Confirmacion",
@@ -78,13 +73,8 @@ export class ActivitiesListComponent implements OnInit {
 				this.activities = this.activities.filter(
 					(val) => val.id !== activity.id
 				);
+				this.store.dispatch(deleteActivity({ activity }));
 				this.activity = <IActivity>{};
-				this.messageService.add({
-					severity: "success",
-					summary: "Exitoso",
-					detail: "Actividad eliminada",
-					life: 3000,
-				});
 			},
 		});
 	}
