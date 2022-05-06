@@ -1,0 +1,24 @@
+.p-button-raised{
+    font-family: var(--font-family-primary);
+}
+.text{
+    font-family: var(--font-family-primary);
+}
+.p-button-info{
+    background-color: var(--lightblue);
+}
+.p-button-info:hover{
+    background-color: var(--lightblue);
+}
+.p-button-secondary{
+    background-color: var(--lightblue);
+}
+.p-button-secondary:hover{
+    background-color: var(--accentColor);
+}
+.p-button-danger{
+    background-color: var(--secondaryColor);
+}
+.p-button-danger:hover{
+    background-color: var(--primaryColor);
+}

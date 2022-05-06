@@ -17,8 +17,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import { updateActivity } from "../store-activity/activity.actions";
-import { ImageService } from "../services/activitiesController/image.service";
+import { addActivity, loadActivities, updateActivity } from "../store-activity/activity.actions";
 
 @Component({
 	selector: "app-activities",
@@ -27,8 +26,8 @@ import { ImageService } from "../services/activitiesController/image.service";
 })
 export class ActivitiesComponent implements OnInit {
 	activities$: Observable<any>;
+	lastActivity:IActivity=<IActivity>{};
 	constructor(
-		public imageService: ImageService,
 		public dialog: MatDialog,
 		private route: ActivatedRoute,
 		private http: HttpClient,
@@ -40,6 +39,7 @@ export class ActivitiesComponent implements OnInit {
 	}
 	ngOnInit(): void {
 		const id = this.route.snapshot.paramMap.get("id");
+		this.store.dispatch(loadActivities());
 		if (id != null) {
 			this.activityController
 				.getActivity("/activities", Number(id))
@@ -53,24 +53,32 @@ export class ActivitiesComponent implements OnInit {
 					this.imageEmpty = false;
 					this.title = "Modificar actividad";
 				});
+		}else{
+			this.activities$.subscribe((data:IActivity[])=>{this.lastActivity=data[data.length-1]});
+			this.imageEmpty = true;
 		}
 	}
+
 	@Input() activitySelected: IActivity = <IActivity>{};
-	imageEmpty = false;
+	imageEmpty = true;
 	submitted = false;
 	title: string = "Crear actividad";
 	activityForm = new FormGroup({
 		name: new FormControl(
-			this.activitySelected != <IActivity>{} ? this.activitySelected.name : "",
+			Object.keys(this.activitySelected).length === 0
+				? ""
+				: this.activitySelected.name,
 			[Validators.required]
 		),
 		description: new FormControl(
-			this.activitySelected != <IActivity>{}
-				? this.activitySelected.description
-				: ""
+			Object.keys(this.activitySelected).length === 0
+				? ""
+				: this.activitySelected.description
 		),
 		image: new FormControl(
-			this.activitySelected != <IActivity>{} ? this.activitySelected.image : "",
+			Object.keys(this.activitySelected).length === 0
+				? ""
+				: this.activitySelected.image,
 			Validators.required
 		),
 	});
@@ -78,8 +86,11 @@ export class ActivitiesComponent implements OnInit {
 	// --------Config CKEditor-------
 	public Editor = ClassicEditor;
 	public editorData =
-		this.activitySelected != undefined ? this.activitySelected.description : "";
+		Object.keys(this.activitySelected).length === 0
+			? ""
+			: this.activitySelected.description;
 	public config = {
+		class:"text",
 		placeholder: "Ingrese la descripcion de la actividad",
 	};
 	// ------------------------------
@@ -122,76 +133,77 @@ export class ActivitiesComponent implements OnInit {
 		this.imageEmpty = true;
 	}
 	submitActivity() {
-		console.log("entrosubmit")
 		this.submitted = true;
-		if (this.activityFormControl.image.value == this.activitySelected.image) {
-			console.log("entrobase64");
-			const string: string = this.activitySelected.image;
-			this.imageService.imageUrlToBase64('https://cors-anywhere.herokuapp.com/'+string).subscribe((base64) => {
-				this.activityForm.controls.image.setValue(base64);
-			});
-		}
 		if (this.activityForm.valid) {
-			console.log(this.activitySelected);
-			if (this.activitySelected != <IActivity>{}) {
-				console.log("entro modificacion")
+			if (Object.keys(this.activitySelected).length === 0) {
 				const activity: IActivity = {
-					id: this.activitySelected.id,
-					name: this.changeValue(
-						this.activityFormControl.name.value,
-						this.activitySelected.name
-					),
+					id: this.lastActivity.id+1,
+					name: this.activityFormControl.name.value,
 					slug: this.activitySelected.slug,
-					description: this.changeValue(
-						this.activityFormControl.description.value,
-						this.activitySelected.description
-					),
-					image: this.activityFormControl.image.value
-					,
-					user_id: this.activitySelected.user_id,
-					category_id: this.activitySelected.category_id,
-					created_at: this.activitySelected.created_at,
-					updated_at: this.activitySelected.updated_at,
-					deleted_at: this.activitySelected.deleted_at,
-					group_id: this.activitySelected.group_id,
+					description: this.activityFormControl.description.value,
+					image: this.activityFormControl.image.value,
+					user_id: null,
+					category_id: null,
+					created_at: "",
+					updated_at: "",
+					deleted_at: null,
+					group_id: 0,
 				};
-				this.store.dispatch(updateActivity({activity}));
-				// this.activityController
-				// 	.putActivity("/activities", activity.id, activity)
-				// 	.subscribe({
-				// 		next: (response) => {
-				// 			this.openDialog("Modificación con exito", response, "success");
-				// 		},
-				// 		error: (error) => {
-				// 			this.openDialog("Error en la modificación", error, "error");
-				// 		},
-				// 	});
+				this.store.dispatch(addActivity({ activity }));
+			} else {
+				if (
+					this.activityFormControl.image.value == this.activitySelected.image
+				) {
+					const string: string = this.activitySelected.image;
+					this.toDataURL(
+						"https://cors-anywhere.herokuapp.com/" + string,
+						(base64) => {
+							this.activityForm.controls.image.setValue(base64);
+							const activity: IActivity = {
+								id: this.activitySelected.id,
+								name: this.changeValue(
+									this.activityFormControl.name.value,
+									this.activitySelected.name
+								),
+								slug: this.activitySelected.slug,
+								description: this.changeValue(
+									this.activityFormControl.description.value,
+									this.activitySelected.description
+								),
+								image: this.activityFormControl.image.value,
+								user_id: this.activitySelected.user_id,
+								category_id: this.activitySelected.category_id,
+								created_at: this.activitySelected.created_at,
+								updated_at: this.activitySelected.updated_at,
+								deleted_at: this.activitySelected.deleted_at,
+								group_id: this.activitySelected.group_id,
+							};
+							this.store.dispatch(updateActivity({ activity }));
+						}
+					);
+				} else {
+					const activity: IActivity = {
+						id: this.activitySelected.id,
+						name: this.changeValue(
+							this.activityFormControl.name.value,
+							this.activitySelected.name
+						),
+						slug: this.activitySelected.slug,
+						description: this.changeValue(
+							this.activityFormControl.description.value,
+							this.activitySelected.description
+						),
+						image: this.activityFormControl.image.value,
+						user_id: this.activitySelected.user_id,
+						category_id: this.activitySelected.category_id,
+						created_at: this.activitySelected.created_at,
+						updated_at: this.activitySelected.updated_at,
+						deleted_at: this.activitySelected.deleted_at,
+						group_id: this.activitySelected.group_id,
+					};
+					this.store.dispatch(updateActivity({ activity }));
+				}
 			}
-		} else {
-			console.log("entro creacion")
-			const activity: IActivity = {
-				id: 0,
-				name: this.activityFormControl.name.value,
-				slug: this.activitySelected.slug,
-				description: this.activityFormControl.description.value,
-				image: this.activityFormControl.image.value,
-				user_id: null,
-				category_id: null,
-				created_at: "",
-				updated_at: "",
-				deleted_at: null,
-				group_id: 0,
-			};
-
-			this.activityController.postActivity("/activities", activity).subscribe({
-				next: (response) => {
-					this.openDialog("Creacion con exito", response, "success");
-				},
-				error: (error) => {
-					console.log(error);
-					this.openDialog("Error en la creacion", error, "error");
-				},
-			});
 		}
 	}
 	changeValue(formValue: any, initialValue: any) {
@@ -211,6 +223,21 @@ export class ActivitiesComponent implements OnInit {
 		});
 	}
 	cancelAction() {}
-	
-	
+
+	toDataURL(
+		url: string,
+		callback: (arg0: string | ArrayBuffer | null) => void
+	) {
+		var xhr = new XMLHttpRequest();
+		xhr.onload = function () {
+			var reader = new FileReader();
+			reader.onloadend = function () {
+				callback(reader.result);
+			};
+			reader.readAsDataURL(xhr.response);
+		};
+		xhr.open("GET", url);
+		xhr.responseType = "blob";
+		xhr.send();
+	}
 }

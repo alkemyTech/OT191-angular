@@ -23,8 +23,7 @@ export class ActivitiesControllerService {
 	deleteActivity(destinationRoute: string, id: number) {
 		return this.baseHttp.delete("/" + destinationRoute + "/" + id);
 	}
-	postActivity(destinationRoute: string, activity: IActivity) {
-		console.log("error en post");
+	postActivity(destinationRoute: string, activity: IActivity): Observable<any> {
 		return this.baseHttp.post(destinationRoute, activity);
 	}
 }

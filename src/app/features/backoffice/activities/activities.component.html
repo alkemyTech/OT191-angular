@@ -13,6 +13,7 @@
 						<input
 							id="name"
 							type="text"
+							class="text"
 							pInputText
 							formControlName="name"
 							[ngClass]="
@@ -21,14 +22,14 @@
 									: ''
 							"
 						/>
-						<label class="root" for="name">Nombre de la actividad</label>
+						<label class="text" for="name">Nombre de la actividad</label>
 					</div>
 				</div>
 				<div
 					class="text-danger"
 					*ngIf="validateControlForText(activityFormControl.name)"
 				>
-					<span *ngIf="activityFormControl.name.errors?.['required']">
+					<span class="text" *ngIf="activityFormControl.name.errors?.['required']">
 						El nombre es requerido
 					</span>
 				</div>
@@ -88,8 +89,8 @@
 					Cargar imagen
 				</button>
 			</div>
-			<div class="text-danger" *ngIf="imageEmpty">
-				<span *ngIf="imageEmpty"> La imagen es requerida </span>
+			<div class="text-danger" *ngIf="imageEmpty && submitted">
+				<span class="text" *ngIf="imageEmpty && submitted"> La imagen es requerida </span>
 			</div>
 		</div>
 
@@ -109,7 +110,7 @@
 					pButton
 					pRipple
 					type="submit"
-					class="p-button-raised"
+					class="p-button-raised p-button-info"
 					[label]="title"
 				></button>
 			</div>

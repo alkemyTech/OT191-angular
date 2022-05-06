@@ -33,7 +33,7 @@ export class ActivitiesListComponent implements OnInit {
 	ngOnInit() {
 		this.store.dispatch(loadActivities());
 		this.activities$.subscribe((response) => {
-			this.activities=<IActivity[]>response;
+			this.activities = <IActivity[]>response;
 		});
 	}
 
@@ -72,7 +72,6 @@ export class ActivitiesListComponent implements OnInit {
 	}
 
 	deleteActivity(activity: any) {
-		//Falta agregar metodo para actualizar base de datos
 		this.confirmationService.confirm({
 			message: "Esta seguro de eliminar la actividad " + activity.name + "?",
 			header: "Confirmacion",

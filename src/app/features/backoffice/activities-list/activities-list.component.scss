@@ -1,0 +1,30 @@
+.button,.input,.th{
+    font-family: var(--font-family-primary);
+}
+.span{
+    font-family: var(--font-family-primary);
+}
+.p-component{
+    font-family: var(--font-family-primary);
+}
+.text{
+    font-family: var(--font-family-primary);
+}
+.p-button-success{
+    background-color: var(--lightblue);
+}
+.p-button-success:hover{
+    background-color: var(--lightblue);
+}
+.p-button-secondary{
+    background-color: var(--lightblue);
+}
+.p-button-secondary:hover{
+    background-color: var(--accentColor);
+}
+.p-button-danger{
+    background-color: var(--secondaryColor);
+}
+.p-button-danger:hover{
+    background-color: var(--primaryColor);
+}
