@@ -1,39 +1,48 @@
 <div class="container justify-content:center align-items-center mt-4">
+	<app-title-view [title]="title"></app-title-view>
 	<form [formGroup]="categoryForm" (ngSubmit)="submitCategory()">
-		<div class="row mb-4">
+		<div
+			class="row pt-4"
+			[ngClass]="
+				validateControlForSpacing(categoryFormControl.name) ? 'mb-4' : ''
+			"
+		>
 			<div class="col">
-				<div class="p-float-label">
-					<input
-						id="name"
-						type="text"
-						pInputText
-						formControlName="name"
-						[ngClass]="
-							(categoryFormControl.name.touched || submitted) &&
-							categoryFormControl.name.invalid
-								? 'ng-invalid ng-dirty'
-								: ''
-						"
-					/>
-					<label for="name">Nombre de la categoria</label>
-					<div
-						class="text-danger"
-						*ngIf="
-							(categoryFormControl.name.touched || submitted) &&
-							categoryFormControl.name.invalid
-						"
-					>
-						<span *ngIf="categoryFormControl.name.errors?.['required']">
-							El nombre es requerido
-						</span>
-						<span *ngIf="categoryFormControl.name.errors?.['minlength']">
-							El nombre tiene que tener mas de 4 letras
-						</span>
+				<div class="p-inputgroup">
+					<div class="p-float-label">
+						<input
+							id="name"
+							type="text"
+							pInputText
+							formControlName="name"
+							[ngClass]="
+								validateControlForText(categoryFormControl.name)
+									? 'ng-invalid ng-dirty'
+									: ''
+							"
+						/>
+						<label for="name">Nombre de la categoria</label>
 					</div>
+				</div>
+				<div
+					class="text-danger"
+					*ngIf="validateControlForText(categoryFormControl.name)"
+				>
+					<span *ngIf="categoryFormControl.name.errors?.['required']">
+						El nombre es requerido
+					</span>
+					<span *ngIf="categoryFormControl.name.errors?.['minlength']">
+						El nombre tiene que tener mas de 4 letras
+					</span>
 				</div>
 			</div>
 		</div>
-		<div class="row mb-4">
+		<div
+			class="row pt-4"
+			[ngClass]="
+				validateControlForSpacing(categoryFormControl.description) ? 'mb-4' : ''
+			"
+		>
 			<div class="col">
 				<ckeditor
 					formControlName="description"
@@ -44,10 +53,7 @@
 				></ckeditor>
 				<div
 					class="text-danger"
-					*ngIf="
-						(categoryFormControl.description.touched || submitted) &&
-						categoryFormControl.description.invalid
-					"
+					*ngIf="validateControlForText(categoryFormControl.description)"
 				>
 					<span *ngIf="categoryFormControl.description.errors?.['required']">
 						La descripcion es requerida
@@ -56,42 +62,55 @@
 			</div>
 		</div>
 		<div class="row mb-4">
-			<div class="col-6">
-				<div class="row">
-					<label for="Image" class="form-label"> Suba una imagen</label>
-				</div>
-				<input
-					formControlName="image"
-					type="file"
-					(change)="onFileSelected($event)"
-					accept="image/x-png,image/jpeg"
-					required
-				/>
-				<div
-					class="text-danger"
-					*ngIf="
-						categoryFormControl.image.touched &&
-						categoryFormControl.image.invalid
+			<div class="col">
+				<p-image
+					[src]="
+						categoryFormControl.image.value == ''
+							? categorySelected.image
+							: categoryFormControl.image.value
 					"
+					[alt]="categorySelected.name"
+					width="300"
+				></p-image>
+			</div>
+		</div>
+		<div
+			class="row pt-4"
+			[ngClass]="
+				validateControlForSpacing(categoryFormControl.image.value) && imageEmpty
+					? 'mb-4'
+					: ''
+			"
+		>
+			<input
+				id="image"
+				type="file"
+				class="p-button-raised p-button-secondary"
+				(change)="onFileSelected($event)"
+				accept="image/x-png,image/jpeg"
+				required
+				#image
+				style="display: none"
+			/>
+			<div class="p-inputgroup">
+				<button
+					#buttonImage
+					type="button"
+					pButton
+					class="p-button-sm p-button-raised p-button-secondary"
+					(click)="image.click()"
+					(click)="nothingSelected()"
 				>
-					<span *ngIf="categoryFormControl.image.errors?.['required']">
-						La imagen es requerida
-					</span>
-				</div>
+					Cargar imagen
+				</button>
+			</div>
+			<div class="text-danger" *ngIf="imageEmpty">
+				<span *ngIf="imageEmpty"> La imagen es requerida </span>
 			</div>
 		</div>
 
-		<div class="row mb-4 justify-content-between">
+		<div class="row pt-4 mb-4 justify-content-between">
 			<div class="col-auto mr-auto">
-				<button
-					pButton
-					pRipple
-					type="submit"
-					class="p-button-raised"
-					label="Crear Categoria"
-				></button>
-			</div>
-			<div class="col-auto">
 				<button
 					pButton
 					pRipple
@@ -99,6 +118,15 @@
 					(click)="cancelAction()"
 					class="p-button-raised p-button-danger"
 					label="Cancelar"
+				></button>
+			</div>
+			<div class="col-auto">
+				<button
+					pButton
+					pRipple
+					type="submit"
+					class="p-button-raised"
+					[label]="title"
 				></button>
 			</div>
 		</div>

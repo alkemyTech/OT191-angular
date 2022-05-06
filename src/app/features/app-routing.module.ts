@@ -1,9 +1,7 @@
 import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-
 import { PrincipalComponent } from "../About/principal/principal.component";
-
 import { FormcontactComponent } from "./public/formcontact/formcontact.component";
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { DonationsComponent } from "./public/pages/donations/donations.component";
@@ -41,13 +39,13 @@ const routes: Routes = [
       import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
   },
   {
+    path: "nosotros",
+    component: PrincipalComponent,
+  },
+  {
     path: "**",
     redirectTo: "",
     pathMatch: "full",
-  },
-  {
-    path: "Nosotros",
-    component: PrincipalComponent,
   },
 ];
 

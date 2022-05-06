@@ -17,3 +17,10 @@ export interface Organization {
     instagram_url:     string;
     twitter_url:       string;
 }
+export interface IOrganization {
+	name: string;
+	logo: string | ArrayBuffer;
+	shortDescription: string;
+	longDescription: string;
+	links: { facebook: string; twitter: string; instagram: string };
+}

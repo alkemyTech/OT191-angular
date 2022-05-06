@@ -1,4 +1,5 @@
 <div class="container mt-4">
+	<app-title-view [title]="title"></app-title-view>
 	<form [formGroup]="organizationForm" (ngSubmit)="submitOrganization()">
 		<div class="row">
 			<div class="col-7 align-self-center">
@@ -266,7 +267,7 @@
 					pButton
 					pRipple
 					type="button"
-					class="p-button-raised p-button-danger "
+					class="p-button-raised p-button-danger"
 					label="Cancelar"
 					(click)="cancelAction()"
 				></button>

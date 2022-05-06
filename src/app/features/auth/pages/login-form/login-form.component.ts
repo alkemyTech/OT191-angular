@@ -1,10 +1,16 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+
+import { Store } from "@ngrx/store";
 
 import { AlertService } from "src/app/core/services/alert.service";
-import { AuthService } from "../../services/auth.service";
-import { Router } from "@angular/router";
 import { User } from "src/app/core/models/user.model";
+
+import { Login } from "../../actions/auth.actions";
+import { Authenticate } from "../../models/authentication.model";
+import { State } from "../../reducers/auth.reducer";
+import { AuthService } from "../../services/auth.service";
 import { ValidatorService } from "../../services/validators/validator.service";
 
 @Component({
@@ -28,7 +34,8 @@ export class LoginFormComponent {
     private alerts: AlertService,
     private fb: FormBuilder,
     private auth: AuthService,
-    private valSer: ValidatorService
+    private valSer: ValidatorService,
+    private store: Store<State>
   ) {}
 
   isInvalid(value: string) {
@@ -51,6 +58,24 @@ export class LoginFormComponent {
         email: this.loginForm.controls["email"].value,
         password: this.loginForm.controls["password"].value,
       };
+
+      this.store.dispatch(new Login(user as Authenticate));
+
+      this.auth.login(user).subscribe({
+        next: (res) => {
+          localStorage.setItem("token", res.token);
+          this.loading = false;
+          this.router.navigate(["/"]);
+        },
+        error: (err) => {
+          this.loading = false;
+          this.alerts.alertNotification(
+            "Error",
+            "Error Usuario o contraseña incorrectos",
+            "error"
+          );
+        },
+      });
     } catch (error) {
       this.alerts.alertNotification("Error", "Error desconocido", "error");
       this.loading = false;

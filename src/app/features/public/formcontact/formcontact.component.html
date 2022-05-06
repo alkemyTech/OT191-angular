@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
 <div class="container mt-4">
+	<app-title-view [title]="title"></app-title-view>
 	<form [formGroup]="contactForm" (ngSubmit)="submitContact()">
 		<div
 			class="row pt-4"

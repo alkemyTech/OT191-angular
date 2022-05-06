@@ -1,38 +1,14 @@
-
-.title {
-    padding-top: 7rem;
-    margin-left: 37%;
-    font-weight: 400;
-  }
-  
-  header {
-    width: 100%;
-    height: 12vh;
-    background: var(--secondaryColor);
-    position: fixed;
-    z-index: 2;
-  }
-  
+ 
 #second-title{
   padding-bottom: 20px;
 }
 
 .container {
-  background-color: rgba(205, 205, 255, 0.308);
-  border: 1.5rem solid rgba(205, 205, 255, 0.068);
+  background-color: #fff;
+  border: 1.5rem solid #fff;
   box-shadow: 0.05rem 0.05rem 0.05rem 0.05rem rgba(0, 0, 0, 0.192);
   min-height: 500px;
   display: flex;
-}
-
-.col {
-  width: 50%;
-  position: relative;
-}
-
-.list input {
-  max-width: 250px;
-  
 }
 
 .description input {
@@ -58,16 +34,12 @@
 //   End of image styles
 
 #submit-button {
-  position: absolute;
-  bottom: 5px;
+  
+  margin-top: 20px;
   right: 10px;
 }
 
-.form-control{
-    width: auto;
-    min-width: 200px;
-    
-}
+
 
 @media (max-width:760px){
   .title{

@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, Input, OnInit } from "@angular/core";
 import {
+	AbstractControl,
 	FormBuilder,
 	FormControl,
 	FormGroup,
@@ -9,7 +10,7 @@ import {
 
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular/ckeditor.component";
-import { ICategory } from "../backoffice.interface";
+import { ICategory } from "src/app/core/models/category.model";
 
 @Component({
 	selector: "app-categories",
@@ -23,9 +24,11 @@ export class CategoriesComponent {
 		id: 0,
 		name: "",
 		description: "",
-		pathImage: "",
+		image: "",
 	};
 	submitted = false;
+	title = "Crear categoria";
+	imageEmpty = false;
 	categoryForm = new FormGroup({
 		name: new FormControl(
 			this.categorySelected.name != "" ? this.categorySelected.name : "",
@@ -38,9 +41,7 @@ export class CategoriesComponent {
 			Validators.required
 		),
 		image: new FormControl(
-			this.categorySelected.pathImage != ""
-				? this.categorySelected.pathImage
-				: "",
+			this.categorySelected.image != "" ? this.categorySelected.image : "",
 			Validators.required
 		),
 	});
@@ -58,13 +59,40 @@ export class CategoriesComponent {
 		return this.categoryForm.controls;
 	}
 
+	validateControlForSpacing(control: AbstractControl) {
+		if (control.valid || control.untouched) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	validateControlForText(control: AbstractControl) {
+		return (control.touched || this.submitted) && control.invalid;
+	}
+
+	nothingSelected() {
+		this.categoryFormControl.image.setValue("");
+		this.categorySelected.image = "";
+		this.imageEmpty = true;
+	}
+
 	onChange({ editor }: ChangeEvent) {
 		const data = editor.getData();
 		this.categoryForm.value.description = data;
 	}
 
 	onFileSelected(event: any) {
-		let selectedFile = <File>event.target.files;
+		if (event.target.files && event.target.files[0]) {
+			const imageFile = event.target.files[0];
+			const fileReader = new FileReader();
+			fileReader.onload = () => {
+				this.imageEmpty = false;
+				this.categorySelected.image = <string>fileReader.result;
+				return this.categoryFormControl.image.setValue(fileReader.result);
+			};
+			fileReader.readAsDataURL(imageFile);
+		}
 	}
 
 	submitCategory() {

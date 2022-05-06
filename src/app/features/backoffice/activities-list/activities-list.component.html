@@ -1,0 +1,117 @@
+<div class="container">
+	<app-title-view title="Actividades"></app-title-view>
+</div>
+<p-toast></p-toast>
+<div class="card">
+	<p-toolbar styleClass="mb-4">
+		<ng-template pTemplate="left">
+			<div class="row">
+				<div class="col">
+					<button
+						pButton
+						pRipple
+						label="Nuevo"
+						icon="pi pi-plus"
+						[routerLink]="['./create']"
+						class="p-button-success"
+					></button>
+				</div>
+				<div class="col">
+					<button
+						pButton
+						pRipple
+						icon="pi pi-trash"
+						class="p-button-danger"
+						(click)="deleteSelectedActivities()"
+						[disabled]="!selectedActivities || !selectedActivities.data.length"
+					></button>
+				</div>
+			</div>
+		</ng-template>
+	</p-toolbar>
+
+	<p-table
+		#dt
+		[value]="activities.data"
+		[rows]="10"
+		[paginator]="true"
+		[globalFilterFields]="['name', 'created_at']"
+		responsiveLayout="scroll"
+		[(selection)]="selectedActivities.data"
+		[rowHover]="true"
+		dataKey="id"
+		currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} actividades"
+		[showCurrentPageReport]="true"
+	>
+		<ng-template pTemplate="caption">
+			<div class="d-flex align-items-center justify-content-between">
+				<h5 class="m-0">Administrador de actividades</h5>
+				<span class="p-input-icon-left">
+					<i class="pi pi-search"></i>
+					<input
+						pInputText
+						type="text"
+						(input)="applyFilterGlobal($event, 'contains')"
+						placeholder="Search..."
+					/>
+				</span>
+			</div>
+		</ng-template>
+		<ng-template pTemplate="header">
+			<tr>
+				<th style="width: 3rem">
+					<p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+				</th>
+				<th pSortableColumn="name">
+					Nombre <p-sortIcon field="name"></p-sortIcon>
+				</th>
+				<th>Image</th>
+				<th pSortableColumn="created_at">
+					Creado en <p-sortIcon field="created_at"></p-sortIcon>
+				</th>
+				<th></th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-activity>
+			<tr>
+				<td>
+					<p-tableCheckbox [value]="activity"></p-tableCheckbox>
+				</td>
+				<td>{{ activity.name }}</td>
+				<td>
+					<img
+						[src]="activity.image"
+						[alt]="activity.name"
+						width="100"
+						class="shadow-4"
+					/>
+				</td>
+				<td>{{ activity.created_at | date }}</td>
+				<td>
+					<button
+						pButton
+						pRipple
+						icon="pi pi-pencil"
+						class="p-button-rounded p-button-success mr-2"
+						[routerLink]="['./create', activity.id]"
+					></button>
+					<button
+						pButton
+						pRipple
+						icon="pi pi-trash"
+						class="p-button-rounded p-button-warning"
+						(click)="deleteActivity(activity)"
+					></button>
+				</td>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="summary">
+			<div class="flex align-items-center justify-content-between">
+				En total hay
+				{{ activities.success ? activities.data.length : 0 }} actividades.
+			</div>
+		</ng-template>
+	</p-table>
+</div>
+
+<p-confirmDialog></p-confirmDialog>
