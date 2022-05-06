@@ -17,7 +17,7 @@ export class PrivateApiService extends BaseApiService {
     this.httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
-        "Authorization": localStorage.getItem("token") || "",
+        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
       }),
     };
   }

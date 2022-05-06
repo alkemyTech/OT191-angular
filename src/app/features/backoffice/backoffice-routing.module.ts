@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { CategoriesComponent } from "./categories/categories.component";
 import { EditOrganizationComponent } from "./edit-organization/edit-organization.component";
 import { HomeEditComponent } from "./pages/home-edit/home-edit.component";
+import { ShowSlidesComponent } from "./pages/show-slides/show-slides.component";
 import { SlidesComponent } from "./pages/slides/slides.component";
 import { UserListViewComponent } from "./pages/user-list-view/user-list-view.component";
 import { UserformComponent } from "./pages/userform/userform.component";
@@ -25,6 +26,10 @@ const routes: Routes = [
 			},
 			{
 				path: "slides",
+				component: ShowSlidesComponent,
+			},
+			{
+				path:"slides/create",
 				component: SlidesComponent,
 			},
 			{
