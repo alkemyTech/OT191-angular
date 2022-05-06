@@ -17,11 +17,6 @@ import { SlidesComponent } from "./pages/slides/slides.component";
 import { UserListViewComponent } from "./pages/user-list-view/user-list-view.component";
 import { UserformComponent } from "./pages/userform/userform.component";
 import { ActivitiesListComponent } from "./activities-list/activities-list.component";
-import { StoreModule } from "@ngrx/store";
-import { activityReducer } from "./store-activity/activity.reducer";
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
-import { EffectsModule } from "@ngrx/effects";
-import { activityEffects } from "./store-activity/activity.effects";
 import { HttpClientModule } from "@angular/common/http";
 import { SlidesTableComponent } from "./components/slides-table/slides-table.component";
 
@@ -48,9 +43,6 @@ import { SlidesTableComponent } from "./components/slides-table/slides-table.com
 		FormsModule,
 		CKEditorModule,
 		BackofficeRoutingModule,
-		StoreModule.forRoot({ activity: activityReducer }),
-		StoreDevtoolsModule.instrument({ autoPause: true }),
-		EffectsModule.forRoot([activityEffects]),
 		HttpClientModule,
 	],
 })

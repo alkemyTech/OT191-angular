@@ -7,7 +7,7 @@ import {
 	errorActivity,
 	loadActivitiesSuccess,
 	updateActivitySuccess,
-} from "./activity.actions";
+} from "../actions/activity.actions";
 
 export const initialState: IActivity[] = [];
 

@@ -17,7 +17,8 @@ import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import { addActivity, loadActivities, updateActivity } from "../store-activity/activity.actions";
+import { addActivity, loadActivities, updateActivity } from "../actions/activity.actions";
+
 
 @Component({
 	selector: "app-activities",

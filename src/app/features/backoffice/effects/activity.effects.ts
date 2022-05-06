@@ -13,7 +13,7 @@ import {
 	loadActivitiesSuccess,
 	updateActivity,
 	updateActivitySuccess,
-} from "./activity.actions";
+} from "../actions/activity.actions";
 
 @Injectable()
 export class activityEffects {

@@ -6,10 +6,8 @@ import { Table } from "primeng/table";
 import { IActivity } from "src/app/core/models/activity.model";
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
-import {
-	loadActivities,
-	loadActivitiesSuccess,
-} from "../store-activity/activity.actions";
+import { loadActivities } from "../actions/activity.actions";
+
 
 @Component({
 	selector: "app-activities-list",
