@@ -10,9 +10,10 @@ import {
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular/ckeditor.component";
-import { ActivitiesControllerService } from "../services/activitiesController/activities-controller.service";
+
 import { ActivatedRoute } from "@angular/router";
 import { IActivity } from "src/app/core/models/activity.model";
+import { ActivitiesControllerService } from "../../services/activitiesController/activities-controller.service";
 
 @Component({
 	selector: "app-activities",
