@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {MatDialogModule} from '@angular/material/dialog';
 
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 import { MaterialModule } from '../core/utils/material/material.module';
 import { PrimengModule } from '../core/utils/primeng/primeng.module';
 
@@ -36,7 +38,8 @@ import { TitleViewComponent } from './components/title-view/title-view.component
     CommonModule,
     PrimengModule,
     MaterialModule,
-    MatDialogModule
+    MatDialogModule,
+    PdfViewerModule
   ]
 })
 export class SharedModule { }

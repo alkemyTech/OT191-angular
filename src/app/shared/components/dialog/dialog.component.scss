@@ -53,4 +53,15 @@
 
 .btn-succes:hover{
     transform: scale(1.05); 
- }
+}
+
+.p-button-raised{
+    margin: 25px;
+}
+
+pdf-viewer{
+    width: 800px;
+    height: 500px;
+    max-width: auto; 
+    max-height: auto;
+}
