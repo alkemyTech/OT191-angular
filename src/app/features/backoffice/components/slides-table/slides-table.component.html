@@ -1,0 +1,179 @@
+<ng-container *ngIf="!slides; else Slides">
+    <app-loading-spinner></app-loading-spinner>
+  </ng-container>
+  
+  <ng-template #Slides>
+    <p-toast></p-toast>
+    <!-- Card -->
+    <p-card>
+      <!-- Toolbar superior -->
+      <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="left">
+          <button
+            pButton
+            pRipple
+            label="Nuevo"
+            icon="pi pi-plus"
+            class="p-button-success mr-2"
+            routerLink="/backoffice/slides/create"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-danger"
+            (click)="deleteSelectedSlides()"
+            [disabled]="!selectedSlides || !selectedSlides.length"
+          ></button>
+        </ng-template>
+      </p-toolbar>
+  
+      <!-- Tabla -->
+      <p-table
+        #dt
+        [value]="slides!"
+        [rows]="10"
+        [paginator]="true"
+        responsiveLayout="scroll"
+        [(selection)]="selectedSlides"
+        [rowHover]="true"
+        dataKey="id"
+        [rowsPerPageOptions]="[10, 25, 50]"
+        currentPageReportTemplate="Mostrando desde {first} a {last} de {totalRecords} slides"
+        [showCurrentPageReport]="true"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+            <h5 class="text-center">Tabla de Slides</h5>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th></th>
+            <th>
+              <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  (input)="applyFilter($event, 'name')"
+                  [value]="$any(dt).filters['name']?.value"
+                  placeholder="Buscar Nombre..."
+                  class="p-column-filter"
+                />
+              </span>
+            </th>
+            
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <th class="check"></th>
+            <th class="column" pSortableColumn="name">
+              Nombre <p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th>Image</th>
+            <th class="column" pSortableColumn="order">
+              Orden <p-sortIcon field="order"></p-sortIcon>
+            </th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-slide>
+          <tr>
+            <td>
+              <p-tableCheckbox [value]="slide"></p-tableCheckbox>
+            </td>
+            <td>{{ slide.name }}</td>
+            <td><img [src]=" slide.image " [alt]="slide.name" width="100" class="shadow-4" /></td>
+            <td>{{ slide.order }}</td>
+            <td>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-pencil"
+                class="p-button-rounded p-button-success mr-2"
+                (click)="editSlide(slide)"
+              ></button>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-trash"
+                class="p-button-rounded p-button-danger"
+                (click)="deleteSlide(slide)"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="flex align-items-center justify-content-between">
+            Hay en total {{ slides ? slides.length : 0 }} Slides.
+          </div>
+        </ng-template>
+      </p-table>
+  
+      <p-dialog
+        [(visible)]="productDialog"
+        class="stylesDialog"
+        [draggable]="false"
+        [resizable]="false"
+        header="Detalles del Slide"
+        [modal]="true"
+        styleClass="p-fluid"
+      >
+        <ng-template pTemplate="content">
+          <div class="field">
+            <label for="name">Nombre</label>
+            <input
+              type="text"
+              pInputText
+              id="name"
+              [(ngModel)]="slide.name"
+              required
+              autofocus
+            />
+            <small class="p-error" *ngIf="submitted && !slide.name"
+              >Debe incluir un nombre.</small
+            >
+          </div>
+          
+  
+          <div class="field">
+            <label for="role_id">Orden de slide</label>
+            <p-dropdown
+              [(ngModel)]="slide.order"
+              inputId="order"
+              [options]="order"
+              placeholder="Selecciona un permiso"
+            >
+              <ng-template let-option pTemplate="item">
+                <span [class]="'product-badge status-' + option.value">{{
+                  option.label
+                }}</span>
+              </ng-template>
+            </p-dropdown>
+          </div>
+        </ng-template>
+  
+        <ng-template pTemplate="footer">
+          <button
+            pButton
+            pRipple
+            label="Cancelar"
+            icon="pi pi-times"
+            class="p-button-text"
+            (click)="hideDialog()"
+          ></button>
+          <button
+            pButton
+            pRipple
+            label="Guardar"
+            icon="pi pi-check"
+            class="p-button-text"
+            (click)="saveSlide()"
+          ></button>
+        </ng-template>
+      </p-dialog>
+    </p-card>
+  </ng-template>
+  
