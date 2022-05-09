@@ -1,94 +1,103 @@
-<header></header>
-<body>
-  <h1 class="title">Editor de Slides</h1>
-  <form [formGroup]="editarSlide" (ngSubmit)="editarForm(editarSlide.value)">
-    <div class="container">
-      <div class="col">
-        <ul class="list">
-          <h4>Nombre</h4>
-          <div
-            *ngIf="slide.name.length != 0; then thenBlock; else elseBlock"
-          ></div>
-          <ng-template #thenBlock
-            ><input
-              type="text"
-              class="form-control form-control-sm"
-              value="{{ slide.name }}"
-              formControlName="name"
+
+
+  <div class="animate__animated animate__backInDown">
+    <app-title-view title="Editor de Slides"></app-title-view>
+  </div>
+
+  <div class="animate__animated animate__bounceIn">
+    <form [formGroup]="editarSlide" (ngSubmit)="editarForm(editarSlide.value)">
+      <div class="container">
+        <div class="col">
+          <ul class="list">
+            <h4>Nombre</h4>
+            <div
+              *ngIf="slide.name.length != 0; then thenBlock; else elseBlock"
+            ></div>
+            <ng-template #thenBlock
+              ><input
+                type="text"
+                class="form-control form-control"
+                value="{{ slide.name }}"
+                formControlName="name"
+                
+                required
+              />
               
-              required
-            />
+            </ng-template>
+            <ng-template #elseBlock
+              ><input
+                type="text"
+                class="form-control form-control"
+                placeholder="Nombre del slide"
+                formControlName="name"
+                required
+              />
+              
+              
+            </ng-template>
+  
+            <h4 class="img-title">Imagen</h4>
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Ingrese una imagen</label>
+              <input
+                (change)="getImage($event)"
+                class="form-control"
+                type="file"
+                id="formFile"
+                required
+              />
+            </div>
+            <div class="img-container">
+              <div class="center"><img class="img" [src]="images" alt="" /></div>
+            </div>
             
-          </ng-template>
-          <ng-template #elseBlock
-            ><input
-              type="text"
-              class="form-control form-control-sm"
-              placeholder="Nombre del slide"
-              formControlName="name"
-              required
-            />
-            
-            
-          </ng-template>
-
-          <h4 class="img-title">Imagen</h4>
-          <div class="mb-3">
-            <label for="formFile" class="form-label">Ingrese una imagen</label>
-            <input
-              (change)="getImage($event)"
-              class="form-control"
-              type="file"
-              id="formFile"
-              required
-            />
-          </div>
+  
+            <h4>Orden</h4>
+          <small>Elige posicion de slide</small>
+          <select
+            class="form-select form-select-lg mb-3"
+            aria-label=".form-select-lg example"
+            formControlName="order"
+          >          
+            <option value="1">Primero</option>
+            <option value="2">Segundo</option>
+            <option value="3">Tercero</option>
+          </select>
           
-          <img class="img" [src]="images" alt="" />
-        </ul>
-      </div>
-      <div class="col">
-        <h4>Orden</h4>
-        <select
-          class="form-select form-select-lg mb-3"
-          aria-label=".form-select-lg example"
-          formControlName="order"
-        >
-          <option selected>Elige posición de Slide</option>
-          <option value="1">Primero</option>
-          <option value="2">Segundo</option>
-          <option value="3">Tercero</option>
-        </select>
+          <h4 class="description">Descripción</h4>
+          <div
+            *ngIf="
+              slide.description.length != 0;
+              then thenBlock1;
+              else elseBlock1
+            "
+          ></div>
+          <ng-template #thenBlock1
+            ><ckeditor
+              [editor]="Editor"
+              data="<p>{{ slide.description }}</p>"
+              formControlName="description"
+            ></ckeditor>
+            
+          </ng-template>
+          <ng-template #elseBlock1
+            ><ckeditor
+              [editor]="Editor"
+              data="<p>Escribe aqui la Descripción  </p>"
+              formControlName="description"
+            ></ckeditor>
+            </ng-template
+          >
+          </ul>
         
-        <h4 class="description">Descripción</h4>
-        <div
-          *ngIf="
-            slide.description.length != 0;
-            then thenBlock1;
-            else elseBlock1
-          "
-        ></div>
-        <ng-template #thenBlock1
-          ><ckeditor
-            [editor]="Editor"
-            data="<p>{{ slide.description }}</p>"
-            formControlName="description"
-          ></ckeditor>
           
-        </ng-template>
-        <ng-template #elseBlock1
-          ><ckeditor
-            [editor]="Editor"
-            data="<p>Escribe aqui la Descripción  </p>"
-            formControlName="description"
-          ></ckeditor>
-          </ng-template
-        >
-
-        <button  type="submit" class="btn btn-primary" id="submit-button">
-          Crear / Editar
-        </button>
+  
+          <button  type="submit" class="btn btn-primary" id="submit-button">
+            Crear
+          </button>
+        </div>
       </div>
-    </div>
-  </form>
-</body>
+    </form> 
+
+  </div>
+  

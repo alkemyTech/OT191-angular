@@ -1,0 +1,53 @@
+
+#carouselExampleIndicators{
+    max-height: 80vh;
+    padding-top: 15px;
+    overflow: hidden;
+    font-family: var(--font-family-primary);
+    font-size: .9rem;
+    
+  }
+  
+  .carousel-indicators button{
+    border-radius: 100%;
+    height: 12px;
+  }
+  
+  .carousel-caption{
+    position: absolute;
+    top: 400px;  
+  }
+
+  h5{
+    font-family: var(--font-family-primary);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+      
+  }
+
+  .endbox{
+    display: block;
+    overflow: visible;
+  }
+
+.product-item{
+  align-items: center;
+  justify-content: center;
+  margin-left: 20%;
+}
+
+.custom-carousel{
+  display: none;
+
+}
+
+@media  (max-width: 780px) {
+  #carouselExampleIndicators{
+    display: none;
+  }
+  .custom-carousel{
+    display: inline;
+    margin-top: 40px;
+  }
+}
