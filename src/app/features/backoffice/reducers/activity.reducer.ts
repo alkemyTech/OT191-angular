@@ -35,7 +35,6 @@ export const activityReducer = createReducer(
 		return activities;
 	}),
 	on(errorActivity, (state, { error }) => {
-		console.log(error);
 		return error;
 	})
 );
