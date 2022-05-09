@@ -1,12 +1,11 @@
 import { Component, Input, OnInit, ViewChild } from "@angular/core";
-
-import { ActivitiesControllerService } from "../services/activitiesController/activities-controller.service";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { Table } from "primeng/table";
-import { IActivity } from "src/app/core/models/activity.model";
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
-import { deleteActivity, loadActivities } from "../actions/activity.actions";
+import { deleteActivity, loadActivities } from "../../actions/activity.actions";
+import {  IActivity } from "src/app/core/models/activity.model";
+import { ActivitiesControllerService } from "../../services/activitiesController/activities-controller.service";
 
 @Component({
 	selector: "app-activities-list",
