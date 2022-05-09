@@ -30,4 +30,8 @@ export class DialogComponent implements OnInit {
     return this.data.value == "success"
   }
 
+  isQuestion() {
+    return this.data.value == "question"
+  }
+
 }
