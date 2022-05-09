@@ -76,27 +76,11 @@ export class ActivitiesListComponent implements OnInit {
 	}
 
 	deleteSelectedActivities() {
-		//Falta agregar metodo para actualizar base de datos
-
 		this.confirmationService.confirm({
 			message: "Esta seguro de eliminar estas actividades?",
 			header: "Confirmacion",
 			icon: "pi pi-exclamation-triangle",
 			accept: () => {
-				//------ Parte para eliminar del servidor  -----------
-				// this.selectedActivities.data.forEach(activity=> {
-				// 	this.activityController
-				// 	.deleteActivity("/activities", activity.id)
-				// 	.subscribe({
-				// 		next: (response) => {
-				// 			this.openDialog("Eliminada con exito", response, "success");
-				// 		},
-				// 		error: (error) => {
-				// 			this.openDialog("Error en la eliminacion", error, "error");
-				// 		},
-				// 	});
-				// }); 
-				//--------------------------------------------------
 				this.activities.data = this.activities.data.filter(
 					(val) => !this.selectedActivities.data.includes(val)
 				);
@@ -116,24 +100,11 @@ export class ActivitiesListComponent implements OnInit {
 	}
 
 	deleteActivity(activity: any) {
-		//Falta agregar metodo para actualizar base de datos
 		this.confirmationService.confirm({
 			message: "Esta seguro de eliminar la actividad " + activity.name + "?",
 			header: "Confirmacion",
 			icon: "pi pi-exclamation-triangle",
 			accept: () => {
-				//------ Parte para eliminar del servidor  -----------
-				// this.activityController
-				// 	.deleteActivity("/activities", activity.id)
-				// 	.subscribe({
-				// 		next: (response) => {
-				// 			this.openDialog("Eliminada con exito", response, "success");
-				// 		},
-				// 		error: (error) => {
-				// 			this.openDialog("Error en la eliminacion", error, "error");
-				// 		},
-				// 	});
-				//----------------------------------------------------
 				this.activities.data = this.activities.data.filter(
 					(val) => val.id !== activity.id
 				);
