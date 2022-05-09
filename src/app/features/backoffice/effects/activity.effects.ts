@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { act, Actions, createEffect, ofType } from "@ngrx/effects";
-import { of } from "rxjs";
+import { forkJoin, of } from "rxjs";
 import { catchError, map, mergeMap, switchMap } from "rxjs/operators";
 import { IActivity } from "src/app/core/models/activity.model";
 import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
@@ -9,7 +9,6 @@ import { ActivitiesControllerService } from "../services/activitiesController/ac
 import {
 	addActivity,
 	addActivitySuccess,
-	// deleteActivities,
 	deleteActivity,
 	deleteActivitySuccess,
 	loadActivities,
@@ -132,6 +131,7 @@ export class activityEffects {
 			})
 		)
 	);
+
 
 	constructor(
 		private actions$: Actions,

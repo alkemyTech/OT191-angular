@@ -4,7 +4,6 @@ import { IActivity } from "src/app/core/models/activity.model";
 import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
 import {
 	addActivitySuccess,
-	// deleteActivitiesSuccess,
 	deleteActivitySuccess,
 	errorActivity,
 	loadActivitiesSuccess,
@@ -35,12 +34,6 @@ export const activityReducer = createReducer(
 		);
 		return activities;
 	}),
-	// on(deleteActivitiesSuccess, (state, { activities }) => {
-	// 	activities.forEach((activity: IActivity) => {
-	// 		state=state.filter(element=>element.id!=activity.id);
-	// 	});
-	// 	return state;
-	// }),
 	on(errorActivity, (state, { error }) => {
 		console.log(error);
 		return error;
