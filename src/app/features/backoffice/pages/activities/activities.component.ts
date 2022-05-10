@@ -16,7 +16,11 @@ import { DialogComponent } from "src/app/shared/components/dialog/dialog.compone
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { ActivitiesControllerService } from "../../services/activitiesController/activities-controller.service";
-import { addActivity, loadActivities, updateActivity } from "../../actions/activity.actions";
+import {
+	addActivity,
+	loadActivities,
+	updateActivity,
+} from "../../actions/activity.actions";
 
 @Component({
 	selector: "app-activities",
@@ -25,7 +29,7 @@ import { addActivity, loadActivities, updateActivity } from "../../actions/activ
 })
 export class ActivitiesComponent implements OnInit {
 	activities$: Observable<any>;
-	lastActivity:IActivity=<IActivity>{};
+	lastActivity: IActivity = <IActivity>{};
 	constructor(
 		public dialog: MatDialog,
 		private route: ActivatedRoute,
@@ -43,7 +47,8 @@ export class ActivitiesComponent implements OnInit {
 			this.activityController
 				.getActivity("/activities", Number(id))
 				.subscribe((response) => {
-					this.activitySelected = response.data;
+					console.log(response.data)
+					this.activitySelected = <IActivity>response.data;
 					this.activityForm.reset({
 						name: this.activitySelected.name,
 						description: this.activitySelected.description,
@@ -52,13 +57,16 @@ export class ActivitiesComponent implements OnInit {
 					this.imageEmpty = false;
 					this.title = "Modificar actividad";
 				});
-		}else{
-			this.activities$.subscribe((data:IActivity[])=>{this.lastActivity=data[data.length-1]});
+		} else {
+			this.activities$.subscribe((data: IActivity[]) => {
+				this.lastActivity = data[data.length - 1];
+			});
 			this.imageEmpty = true;
 		}
 	}
 
 	@Input() activitySelected: IActivity = <IActivity>{};
+	activitySubmit: IActivity = <IActivity>{};
 	imageEmpty = true;
 	submitted = false;
 	title: string = "Crear actividad";
@@ -89,7 +97,7 @@ export class ActivitiesComponent implements OnInit {
 			? ""
 			: this.activitySelected.description;
 	public config = {
-		class:"text",
+		class: "text",
 		placeholder: "Ingrese la descripcion de la actividad",
 	};
 	// ------------------------------
@@ -132,24 +140,38 @@ export class ActivitiesComponent implements OnInit {
 		this.imageEmpty = true;
 	}
 	submitActivity() {
+		this.activitySubmit = <IActivity>{};
 		this.submitted = true;
 		if (this.activityForm.valid) {
+			this.activitySubmit = {
+				id: this.activitySelected.id,
+				name: this.activityFormControl.name.value,
+				slug: null,
+				description: this.activityFormControl.description.value,
+				image: "",
+				user_id: null,
+				category_id: null,
+				created_at: "",
+				updated_at: "",
+				deleted_at: "",
+				group_id: 0,
+			};
 			if (Object.keys(this.activitySelected).length === 0) {
-				const activity: IActivity = {
-					id: this.lastActivity.id+1,
-					name: this.activityFormControl.name.value,
-					slug: this.activitySelected.slug,
-					description: this.activityFormControl.description.value,
-					image: this.activityFormControl.image.value,
-					user_id: null,
-					category_id: null,
-					created_at: "",
-					updated_at: "",
-					deleted_at: null,
-					group_id: 0,
-				};
+				this.activitySubmit.id=this.lastActivity.id + 1;
+				this.activitySubmit.image= this.activityFormControl.image.value;
+				const activity: IActivity = this.activitySubmit;
 				this.store.dispatch(addActivity({ activity }));
 			} else {
+				this.activitySubmit.id=this.activitySelected.id;
+				this.activitySubmit.slug=this.activitySelected.slug;
+				this.activitySubmit.image= this.activityFormControl.image.value;
+				this.activitySubmit.user_id= this.activitySelected.user_id;
+				this.activitySubmit.category_id= this.activitySelected.category_id;
+				this.activitySubmit.created_at= this.activitySelected.created_at;
+				this.activitySubmit.updated_at= this.activitySelected.updated_at;
+				this.activitySubmit.deleted_at= this.activitySelected.deleted_at;
+				this.activitySubmit.group_id= this.activitySelected.group_id;
+				console.log(this.activitySubmit)
 				if (
 					this.activityFormControl.image.value == this.activitySelected.image
 				) {
@@ -158,58 +180,19 @@ export class ActivitiesComponent implements OnInit {
 						"https://cors-anywhere.herokuapp.com/" + string,
 						(base64) => {
 							this.activityForm.controls.image.setValue(base64);
-							const activity: IActivity = {
-								id: this.activitySelected.id,
-								name: this.changeValue(
-									this.activityFormControl.name.value,
-									this.activitySelected.name
-								),
-								slug: this.activitySelected.slug,
-								description: this.changeValue(
-									this.activityFormControl.description.value,
-									this.activitySelected.description
-								),
-								image: this.activityFormControl.image.value,
-								user_id: this.activitySelected.user_id,
-								category_id: this.activitySelected.category_id,
-								created_at: this.activitySelected.created_at,
-								updated_at: this.activitySelected.updated_at,
-								deleted_at: this.activitySelected.deleted_at,
-								group_id: this.activitySelected.group_id,
-							};
+							this.activitySubmit.image = this.activityFormControl.image.value;
+							const activity = this.activitySubmit;
+							console.log(this.activitySubmit)
 							this.store.dispatch(updateActivity({ activity }));
 						}
 					);
 				} else {
-					const activity: IActivity = {
-						id: this.activitySelected.id,
-						name: this.changeValue(
-							this.activityFormControl.name.value,
-							this.activitySelected.name
-						),
-						slug: this.activitySelected.slug,
-						description: this.changeValue(
-							this.activityFormControl.description.value,
-							this.activitySelected.description
-						),
-						image: this.activityFormControl.image.value,
-						user_id: this.activitySelected.user_id,
-						category_id: this.activitySelected.category_id,
-						created_at: this.activitySelected.created_at,
-						updated_at: this.activitySelected.updated_at,
-						deleted_at: this.activitySelected.deleted_at,
-						group_id: this.activitySelected.group_id,
-					};
+					this.activitySubmit.image = this.activityFormControl.image.value;
+					const activity = this.activitySubmit;
+					console.log(activity)
 					this.store.dispatch(updateActivity({ activity }));
 				}
 			}
-		}
-	}
-	changeValue(formValue: any, initialValue: any) {
-		if (formValue != initialValue) {
-			return formValue;
-		} else {
-			return initialValue;
 		}
 	}
 	openDialog(title: String, description: any, value: String) {
@@ -239,4 +222,7 @@ export class ActivitiesComponent implements OnInit {
 		xhr.responseType = "blob";
 		xhr.send();
 	}
+	disableControls() {
+		this.activityFormControl.name.disable();
+	  }
 }

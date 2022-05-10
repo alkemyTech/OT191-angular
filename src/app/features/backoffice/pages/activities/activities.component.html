@@ -46,6 +46,7 @@
 					(change)="onChange($event)"
 					[editor]="Editor"
 					[data]="editorData"
+					[disabled]="submitted"
 				></ckeditor>
 			</div>
 		</div>
@@ -85,6 +86,7 @@
 					#buttonImage
 					type="button"
 					pButton
+					[disabled]="submitted"
 					class="p-button-sm p-button-raised p-button-secondary"
 					(click)="image.click()"
 					(click)="nothingSelected()"
@@ -120,7 +122,7 @@
 					type="button"
 					[routerLink]="['/backoffice/activities']"
 					class="p-button-raised p-button-danger"
-					label="Cancelar"
+					[label]="submitted?'Volver':'Cancelar'"
 				></button>
 			</div>
 			<div class="col-auto">
@@ -130,6 +132,8 @@
 					type="submit"
 					class="p-button-raised p-button-info"
 					[label]="title"
+					[disabled]="submitted"
+					(click)="disableControls()"
 				></button>
 			</div>
 		</div>

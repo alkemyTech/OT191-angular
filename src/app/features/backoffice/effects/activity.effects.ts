@@ -3,7 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { act, Actions, createEffect, ofType } from "@ngrx/effects";
 import { forkJoin, of } from "rxjs";
 import { catchError, map, mergeMap, switchMap } from "rxjs/operators";
-import { IActivity } from "src/app/core/models/activity.model";
+import { IActivity, IActivityResponse } from "src/app/core/models/activity.model";
 import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
 import { ActivitiesControllerService } from "../services/activitiesController/activities-controller.service";
 import {
@@ -24,7 +24,7 @@ export class activityEffects {
 			ofType(loadActivities),
 			switchMap(() =>
 				this.activityService.getActivities("/activities", null).pipe(
-					map((data) => loadActivitiesSuccess({ activities: data.data })),
+					map((data) => loadActivitiesSuccess({ activities: <IActivity[]>data.data })),
 					catchError((error) => {
 						this.openDialog(
 							"Error en la carga de actividades",
@@ -48,15 +48,15 @@ export class activityEffects {
 				this.activityService
 					.putActivity("/activities", activity.id, activity)
 					.pipe(
-						map((data) => {
+						map((data:IActivityResponse) => {
 							this.openDialog(
 								"Actividad modificada con exito",
 								"Actividad " +
-									data.data.name +
+									 activity.name +
 									" fue modificada satisfactoriamente",
 								"success"
 							);
-							return updateActivitySuccess({ activity: data.data });
+							return updateActivitySuccess({ activity: <IActivity>data.data });
 						}),
 						catchError((error) => {
 							this.openDialog(
@@ -82,10 +82,10 @@ export class activityEffects {
 					map((data) => {
 						this.openDialog(
 							"Actividad creada con exito",
-							"Actividad " + data.data.name + " fue creada satisfactoriamente",
+							"Actividad " + activity.name + " fue creada satisfactoriamente",
 							"success"
 						);
-						return addActivitySuccess({ activity: data.data });
+						return addActivitySuccess({ activity: <IActivity>data.data });
 					}),
 					catchError((error) => {
 						this.openDialog("Error en la creacion", error.message, "error");
