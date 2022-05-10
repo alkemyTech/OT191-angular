@@ -18,6 +18,7 @@ import { SlidesTableComponent } from "./components/slides-table/slides-table.com
 import { ActivitiesListComponent } from "./pages/activities-list/activities-list.component";
 import { ActivitiesComponent } from "./pages/activities/activities.component";
 import { HeaderComponent } from "./pages/header/header.component";
+import { SidebarComponent } from "./pages/sidebar/sidebar.component";
 
 @NgModule({
 	declarations: [
@@ -33,6 +34,7 @@ import { HeaderComponent } from "./pages/header/header.component";
 		ActivitiesListComponent,
 		SlidesTableComponent,
 		HeaderComponent,
+		SidebarComponent,
 	],
 	imports: [
 		CommonModule,
