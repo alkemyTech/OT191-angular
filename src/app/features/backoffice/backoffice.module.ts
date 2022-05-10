@@ -19,6 +19,7 @@ import { ActivitiesListComponent } from "./pages/activities-list/activities-list
 import { ActivitiesComponent } from "./pages/activities/activities.component";
 import { HeaderComponent } from "./pages/header/header.component";
 import { SidebarComponent } from "./pages/sidebar/sidebar.component";
+import { BackofficeHomeComponent } from './pages/backoffice-home/backoffice-home.component';
 
 @NgModule({
 	declarations: [
@@ -35,6 +36,7 @@ import { SidebarComponent } from "./pages/sidebar/sidebar.component";
 		SlidesTableComponent,
 		HeaderComponent,
 		SidebarComponent,
+  		BackofficeHomeComponent,
 	],
 	imports: [
 		CommonModule,

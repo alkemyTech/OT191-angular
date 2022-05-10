@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,5 +12,10 @@ export class SidebarComponent {
   @Input() elements:string[]=[];
   @Input() elementsUrl:string[]=[];
   
-  display:boolean=false;
+  @HostBinding('class.is-open')
+  isOpen = false;
+
+  toggle() {
+    this.isOpen = !this.isOpen;
+  }
 }
