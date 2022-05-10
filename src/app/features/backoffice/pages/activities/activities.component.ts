@@ -47,7 +47,6 @@ export class ActivitiesComponent implements OnInit {
 			this.activityController
 				.getActivity("/activities", Number(id))
 				.subscribe((response) => {
-					console.log(response.data)
 					this.activitySelected = <IActivity>response.data;
 					this.activityForm.reset({
 						name: this.activitySelected.name,
@@ -69,6 +68,8 @@ export class ActivitiesComponent implements OnInit {
 	activitySubmit: IActivity = <IActivity>{};
 	imageEmpty = true;
 	submitted = false;
+	errorAlert: boolean = false;
+	error: string = "";
 	title: string = "Crear actividad";
 	activityForm = new FormGroup({
 		name: new FormControl(

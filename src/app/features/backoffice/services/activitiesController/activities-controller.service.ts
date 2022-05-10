@@ -3,8 +3,6 @@ import { observable, Observable } from "rxjs";
 import { IActivity, IActivityResponse } from "src/app/core/models/activity.model";
 import { BaseApiService } from "src/app/shared/services/base-api.service";
 
-
-
 @Injectable({
 	providedIn: "root",
 })

@@ -17,7 +17,7 @@ import { UserformComponent } from "./pages/userform/userform.component";
 import { SlidesTableComponent } from "./components/slides-table/slides-table.component";
 import { ActivitiesListComponent } from "./pages/activities-list/activities-list.component";
 import { ActivitiesComponent } from "./pages/activities/activities.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HeaderComponent } from "./pages/header/header.component";
 
 @NgModule({
 	declarations: [
@@ -32,6 +32,7 @@ import { HttpClientModule } from "@angular/common/http";
 		UserformComponent,
 		ActivitiesListComponent,
 		SlidesTableComponent,
+		HeaderComponent,
 	],
 	imports: [
 		CommonModule,
@@ -42,7 +43,6 @@ import { HttpClientModule } from "@angular/common/http";
 		FormsModule,
 		CKEditorModule,
 		BackofficeRoutingModule,
-		HttpClientModule,
 	],
 })
 export class BackofficeModule {}
