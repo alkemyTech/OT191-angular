@@ -21,6 +21,7 @@ import { ToolbarModule } from "primeng/toolbar";
 import { CarouselModule } from "primeng/carousel";
 import { FileUploadModule } from "primeng/fileupload";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
+import {SidebarModule} from 'primeng/sidebar';
 
 @NgModule({
 	exports: [
@@ -49,6 +50,7 @@ import { ConfirmDialogModule } from "primeng/confirmdialog";
 		ToolbarModule,
 		FileUploadModule,
 		ConfirmDialogModule,
+		SidebarModule
 	],
 })
 export class PrimengModule {}
