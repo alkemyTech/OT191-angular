@@ -2,6 +2,9 @@ import { Component, Input, OnInit, ViewChild } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { Table } from "primeng/table";
 import { IActivities, IActivity } from "src/app/core/models/activity.model";
+import { Observable } from "rxjs";
+import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
+import { MatDialog } from "@angular/material/dialog";
 import { ActivitiesControllerService } from "../../services/activitiesController/activities-controller.service";
 
 @Component({
@@ -21,19 +24,36 @@ export class ActivitiesListComponent implements OnInit {
 	constructor(
 		private activityController: ActivitiesControllerService,
 		private messageService: MessageService,
-		private confirmationService: ConfirmationService
+		private confirmationService: ConfirmationService,
+		public dialog: MatDialog
 	) {}
 
 	ngOnInit() {
-		this.activityController
-			.getActivities("/activities", null)
-			.subscribe((response) => {
+		this.activityController.getActivities("/activities", null).subscribe({
+			next: (response) => {
 				this.activities = response;
-			});
+				this.errorAlert = false;
+			},
+			error: (error) => {
+				this.errorAlert = true;
+				this.error = error.message;
+				this.openDialog("Error", this.error, "error");
+			},
+		});
 	}
 
+	openDialog(title: String, description: any, value: String) {
+		this.dialog.open(DialogComponent, {
+			data: {
+				title: title,
+				description: description,
+				value: value,
+			},
+		});
+	}
 	activityDialog: boolean = false;
-
+	errorAlert: boolean = false;
+	error: string = "";
 	activities: IActivities = <IActivities>{
 		success: true,
 		data: [],
@@ -55,7 +75,6 @@ export class ActivitiesListComponent implements OnInit {
 	}
 
 	deleteSelectedActivities() {
-		//Falta agregar metodo para actualizar base de datos
 		this.confirmationService.confirm({
 			message: "Esta seguro de eliminar estas actividades?",
 			header: "Confirmacion",
@@ -80,7 +99,6 @@ export class ActivitiesListComponent implements OnInit {
 	}
 
 	deleteActivity(activity: any) {
-		//Falta agregar metodo para actualizar base de datos
 		this.confirmationService.confirm({
 			message: "Esta seguro de eliminar la actividad " + activity.name + "?",
 			header: "Confirmacion",
