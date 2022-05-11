@@ -6,18 +6,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule } from "@ngrx/effects";
-
 import { ConfirmationService, MessageService } from "primeng/api";
-
 import { environment } from "src/environments/environment";
-
 import { AppComponent } from "./app.component";
-import { reducers } from './store';
-
+import { reducers } from "./store";
 import { AboutModule } from "./About/about.module";
 import { CoreModule } from "./core/core.module";
 import { FeaturesModule } from "./features/features.module";
 import { SharedModule } from "./shared/shared.module";
+import { activityEffects } from "./features/backoffice/effects/activity.effects";
 
 @NgModule({
 	declarations: [AppComponent],
@@ -33,8 +30,8 @@ import { SharedModule } from "./shared/shared.module";
 			maxAge: 25, // Retains last 25 states
 			logOnly: environment.production, // Restrict extension to log-only mode
 		}),
-		EffectsModule.forRoot([]),
 		NgbModule,
+		EffectsModule.forRoot([activityEffects]),
 	],
 	providers: [ConfirmationService, MessageService],
 	bootstrap: [AppComponent],

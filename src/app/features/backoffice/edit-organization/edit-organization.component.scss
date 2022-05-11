@@ -1,21 +1,9 @@
 .p-button-raised{
-    font-family: var(--font-family-primary);
+    font-family: var(--font-family-primary)!important;
     transition: 0.5s ease;
 }
 .p-button-raised:hover{
     transform: scale(1.1);
-}
-.text{
-    font-family: var(--font-family-primary);
-}
-.p-button-info{
-    font-family: var(--font-family-primary)!important;
-    background-color: var(--lightblue)!important;
-    border-color: var(--lightblue)!important;
-}
-.p-button-info:hover{
-    background-color: var(--lightblue)!important;
-    border-color: var(--lightblue)!important;
 }
 .p-button-secondary{
     font-family: var(--font-family-primary);
@@ -26,6 +14,15 @@
 .p-button-secondary:hover{
     background-color: rgb(193, 193, 193)!important;
     border-color: rgb(193, 193, 193)!important;
+}
+.p-button-info{
+    font-family: var(--font-family-primary);
+    background-color: var(--lightblue);
+    border-color: var(--lightblue)!important;
+}
+.p-button-info:hover{
+    background-color: var(--lightblue)!important;
+    border-color: var(--lightblue)!important;
 }
 .p-button-danger{
     font-family: var(--font-family-primary);
@@ -38,4 +35,10 @@
 }
 .bi-image{ 
     margin-right:5px
+}
+.text-danger{
+    font-family: var(--font-family-primary);
+}
+.p-inputtext-lg{
+    font-family: var(--font-family-primary);
 }
