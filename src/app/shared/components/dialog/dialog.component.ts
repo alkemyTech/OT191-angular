@@ -13,9 +13,6 @@ export class DialogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data.value)
-
-    console.log(this.isError())
   }
 
   isError(){    
@@ -28,6 +25,10 @@ export class DialogComponent implements OnInit {
 
   isSuccess(){
     return this.data.value == "success"
+  }
+
+  isQuestion() {
+    return this.data.value == "question"
   }
 
 }

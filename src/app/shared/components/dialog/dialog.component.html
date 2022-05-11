@@ -37,3 +37,32 @@
     <button class="btn btn-succes"  mat-dialog-close>Close</button>
   </div>
 </div>
+
+<div class="container" *ngIf = "isQuestion()" >
+  <h1 mat-dialog-title>{{ data?.title }}</h1>
+    <pdf-viewer *ngIf="data?.description == 'Terms'" [src]="'/assets/documents/TerminosCondiciones.pdf'" [render-text]="true" [original-size]="false">
+    </pdf-viewer>
+  <div *ngIf="data?.description != 'Terms'" mat-dialog-content [innerHTML]="data?.description">
+  </div>
+  <mat-dialog-actions align="center">
+
+    <div class="btn-group text-center">
+      <button
+        [mat-dialog-close]="true" 
+        cdkFocusInitial
+        pButton
+        pRipple
+        class="p-button-raised"
+        label="Aceptar"
+      ></button>
+      <button
+        mat-dialog-close
+        pButton
+        pRipple
+        label="Cancelar"
+        class="p-button-raised p-button-danger"
+      ></button>
+    </div>
+
+  </mat-dialog-actions>
+</div>

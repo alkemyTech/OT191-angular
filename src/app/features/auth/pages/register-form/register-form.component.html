@@ -14,20 +14,20 @@
                 autofill="off"
                 autocomplete="off"
               >
-              <!--Nombre-->
-              <div class="field mb-2 p-fluid">
-                <label for="float-input">Ingresa tu Nombre</label>
-                <input
-                  pInputText
-                  type="text"
-                  formControlName="name"
-                  [class]="isInvalid('name') ? 'ng-invalid ng-dirty' : ''"
-                  placeholder="Nombre Apellido"
-                />
-                <small *ngIf="isInvalid('name')" class="p-error block"
-                  >El nombre es requerido.</small
-                >
-              </div>
+                <!--Nombre-->
+                <div class="field mb-2 p-fluid">
+                  <label for="float-input">Ingresa tu Nombre</label>
+                  <input
+                    pInputText
+                    type="text"
+                    formControlName="name"
+                    [class]="isInvalid('name') ? 'ng-invalid ng-dirty' : ''"
+                    placeholder="Nombre Apellido"
+                  />
+                  <small *ngIf="isInvalid('name')" class="p-error block"
+                    >El nombre es requerido.</small
+                  >
+                </div>
                 <!--Email-->
                 <div class="field mb-2 p-fluid">
                   <label for="float-input">Ingresa tu correo electrónico</label>
@@ -98,6 +98,21 @@
                   ></p-password>
                   <small *ngIf="isInvalid('password2')" class="p-error block"
                     >Las contraseñas no coinciden.</small
+                  >
+                </div>
+                <div class="field mb-2 p-fluid">
+                  <div class="field-checkbox">
+                    <mat-checkbox
+                      class="example-margin"
+                      formControlName="terms"
+                    ></mat-checkbox>
+
+                    <label (click)="termsConditions()" class="terms"
+                      >Acepte los términos y condiciones</label
+                    >
+                  </div>
+                  <small *ngIf="isInvalid('terms')" class="p-error block"
+                    >Debe aceptar los términos y condiciones.</small
                   >
                 </div>
 
