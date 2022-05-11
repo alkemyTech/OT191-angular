@@ -17,6 +17,7 @@ import { AboutModule } from "./About/about.module";
 import { CoreModule } from "./core/core.module";
 import { FeaturesModule } from "./features/features.module";
 import { SharedModule } from "./shared/shared.module";
+import { SlideEffects } from "./features/backoffice/state/effects/slide.effects";
 
 @NgModule({
 	declarations: [AppComponent],
@@ -32,7 +33,7 @@ import { SharedModule } from "./shared/shared.module";
 			maxAge: 25, // Retains last 25 states
 			logOnly: environment.production, // Restrict extension to log-only mode
 		}),
-		EffectsModule.forRoot([]),
+		EffectsModule.forRoot([SlideEffects]),
 	],
 	providers: [ConfirmationService, MessageService],
 	bootstrap: [AppComponent],

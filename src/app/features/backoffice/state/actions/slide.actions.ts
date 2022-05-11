@@ -4,7 +4,7 @@ import { createAction, props } from "@ngrx/store";
 export const loadingSlides = createAction("[Load Slides] Loading Slides");
 
 export const loadedSlides = createAction(
-  "[Load Slides] Loaded succes",
+  "[Load Slides] Loaded success",
   props<{ slides: Slide[] }>()
 );
 
