@@ -23,7 +23,7 @@
 						icon="pi pi-trash"
 						class="p-button-danger"
 						(click)="deleteSelectedActivities()"
-						[disabled]="!selectedActivities || !selectedActivities.data.length"
+						[disabled]="!selectedActivities || !selectedActivities.length"
 					></button>
 				</div>
 			</div>
@@ -32,20 +32,20 @@
 
 	<p-table
 		#dt
-		[value]="activities.data"
+		[value]="activities"
 		[rows]="10"
 		[paginator]="true"
 		[globalFilterFields]="['name', 'created_at']"
 		responsiveLayout="scroll"
-		[(selection)]="selectedActivities.data"
+		[(selection)]="selectedActivities"
 		[rowHover]="true"
 		dataKey="id"
 		currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} actividades"
 		[showCurrentPageReport]="true"
 	>
-		<ng-template pTemplate="caption">
+		<ng-template [pTemplate]="'caption'">
 			<div class="d-flex align-items-center justify-content-between">
-				<h5 class="m-0">Administrador de actividades</h5>
+				<h4 class="m-0 text">Administrador de actividades</h4>
 				<span class="p-input-icon-left">
 					<i class="pi pi-search"></i>
 					<input
@@ -57,23 +57,23 @@
 				</span>
 			</div>
 		</ng-template>
-		<ng-template pTemplate="header">
-			<tr>
+		<ng-template [pTemplate]="'header'">
+			<tr class="text">
 				<th style="width: 3rem">
 					<p-tableHeaderCheckbox></p-tableHeaderCheckbox>
 				</th>
-				<th pSortableColumn="name">
-					Nombre <p-sortIcon field="name"></p-sortIcon>
+				<th [pSortableColumn]="'name'">
+					Nombre <p-sortIcon [field]="'name'"></p-sortIcon>
 				</th>
 				<th>Image</th>
-				<th pSortableColumn="created_at">
-					Creado en <p-sortIcon field="created_at"></p-sortIcon>
+				<th [pSortableColumn]="'created_at'">
+					Creado en <p-sortIcon [field]="'created_at'"></p-sortIcon>
 				</th>
 				<th></th>
 			</tr>
 		</ng-template>
-		<ng-template pTemplate="body" let-activity>
-			<tr>
+		<ng-template [pTemplate]="'body'" let-activity>
+			<tr class="text">
 				<td>
 					<p-tableCheckbox [value]="activity"></p-tableCheckbox>
 				</td>
@@ -105,10 +105,10 @@
 				</td>
 			</tr>
 		</ng-template>
-		<ng-template pTemplate="summary">
-			<div class="flex align-items-center justify-content-between">
+		<ng-template [pTemplate]="'summary'">
+			<div class="text flex align-items-center justify-content-between">
 				En total hay
-				{{ activities.success ? activities.data.length : 0 }} actividades.
+				{{ activities ? activities.length : 0 }} actividades.
 			</div>
 		</ng-template>
 	</p-table>
