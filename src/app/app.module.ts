@@ -1,6 +1,7 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
@@ -33,6 +34,7 @@ import { SharedModule } from "./shared/shared.module";
 			logOnly: environment.production, // Restrict extension to log-only mode
 		}),
 		EffectsModule.forRoot([]),
+		NgbModule,
 	],
 	providers: [ConfirmationService, MessageService],
 	bootstrap: [AppComponent],

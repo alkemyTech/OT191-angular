@@ -20,6 +20,17 @@
     
 }
 
+.navbar-nav .nav-item .nav-link{
+    border-radius: 1.5rem;
+}
+
+.active{
+    background-color: var(--lightblue);
+    border-radius: 1.5rem;
+    color: #fff !important;
+    transform: scale(1.1);
+}
+
 .navbar-nav .nav-item .nav-link:hover{
     background-color: var(--lightblue);
     border-radius: 1.5rem;
