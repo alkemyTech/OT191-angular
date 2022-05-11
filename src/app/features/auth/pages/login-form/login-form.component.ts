@@ -83,6 +83,11 @@ export class LoginFormComponent {
   }
 
   onGoogleLogin(){
-    
+    try {
+      this.auth.loginGoogle();
+      
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
