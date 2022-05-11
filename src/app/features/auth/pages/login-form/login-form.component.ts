@@ -81,4 +81,8 @@ export class LoginFormComponent {
       this.loading = false;
     }
   }
+
+  onGoogleLogin(){
+    
+  }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Router } from "@angular/router";
 
 import { of, throwError } from "rxjs";
@@ -9,6 +10,7 @@ import { AlertService } from "src/app/core/services/alert.service";
 import { BaseApiService } from "src/app/shared/services/base-api.service";
 
 import { PrivateApiService } from "../../backoffice/services/private-api.service";
+import * as firebase from "firebase/compat";
 
 @Injectable({
   providedIn: "root",
@@ -21,14 +23,20 @@ export class AuthService {
     private baseApi: BaseApiService,
     private privateApi: PrivateApiService,
     private router: Router,
-    private alert: AlertService
+    private alert: AlertService,
+    private afAuth:AngularFireAuth
   ) {}
 
+  async loginGoogle(){
+    try{
+    }
+    catch(error){console.log(error)}
+  }
   login(user: User | Partial<User>) {
     return this.baseApi.post("/login", user).pipe(
       map((res: any) => {
         if (res.token == undefined) {
-          return throwError("Ususario o contraseña incorrectos");
+          return throwError("Usuario o contraseña incorrectos");
         }
         this.loggedIn = true;
         this.token = res.token;

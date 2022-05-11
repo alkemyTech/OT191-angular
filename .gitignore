@@ -55,3 +55,7 @@ Thumbs.db
 /libpeerconnection.log
 testem.log
 /typings
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
