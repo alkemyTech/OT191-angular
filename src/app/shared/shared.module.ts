@@ -14,6 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TitleViewComponent } from './components/title-view/title-view.component';
+import { CampaignHeaderComponent } from './components/campaign-header/campaign-header.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TitleViewComponent } from './components/title-view/title-view.component
     RolPipe,
     CardComponent,
     LoadingSpinnerComponent,
+    CampaignHeaderComponent,
   ],
   exports: [
     TitleViewComponent,

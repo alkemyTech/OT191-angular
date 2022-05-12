@@ -89,6 +89,7 @@ export class LoginFormComponent {
 	}
 
 	onGoogleLogin() {
+    this.loading = true;
 		try {
 			this.auth.loginGoogle().then((result) => {
 				const credential = result.credential as OAuthCredential;
@@ -97,7 +98,7 @@ export class LoginFormComponent {
 				const password = "";
 				this.store.dispatch(new Login({ email, password } as Authenticate));
 				localStorage.setItem("token", token);
-				this.loading = true;
+				this.loading = false;
 				this.router.navigate(["/"]);
 			});
 		} catch (error) {
