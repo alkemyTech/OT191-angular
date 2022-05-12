@@ -15,7 +15,9 @@ import { SharedModule } from "./shared/shared.module";
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from "@angular/fire/compat/auth/";
+import { SlideEffects } from "./features/backoffice/state/effects/slide.effects";
 import { activityEffects } from "./features/backoffice/effects/activity.effects";
+
 
 @NgModule({
 	declarations: [AppComponent],
@@ -31,9 +33,9 @@ import { activityEffects } from "./features/backoffice/effects/activity.effects"
 			maxAge: 25, // Retains last 25 states
 			logOnly: environment.production, // Restrict extension to log-only mode
 		}),
-		EffectsModule.forRoot([activityEffects]),
 		AngularFireModule.initializeApp(environment.firebase),
-		AngularFireAuthModule
+		AngularFireAuthModule,
+		EffectsModule.forRoot([activityEffects, SlideEffects]),
 	],
 	providers: [ConfirmationService, MessageService],
 	bootstrap: [AppComponent],

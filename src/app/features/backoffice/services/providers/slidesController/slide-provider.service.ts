@@ -7,6 +7,8 @@ import { AlertService } from "src/app/core/services/alert.service";
 
 import { PrivateApiService } from "../../private-api.service";
 import { Slide } from "src/app/core/models/slides.model";
+import { Store } from "@ngrx/store";
+
 
 @Injectable({
   providedIn: "root",
@@ -14,13 +16,16 @@ import { Slide } from "src/app/core/models/slides.model";
 export class SlideProviderService {
   constructor(
     private privateApiService: PrivateApiService,
-    private alerts: AlertService
+    private alerts: AlertService,
+    private store: Store,
   ) {}
 
   public getSlides(): Observable<Slide[]> {
     return this.privateApiService.get("/slides").pipe(
       map((data: any) => {
+        
         return data.data;
+        
       }),
       catchError((err: any) => {
         this.alerts.alertNotification("Error", err, "error");
