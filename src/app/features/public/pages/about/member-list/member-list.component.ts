@@ -12,12 +12,16 @@ export class MemberListComponent {
 	constructor(memberService: MembersService) {
 		memberService.getMembers("/members", null).subscribe({
 			next: (response) => {
-        console.log(response)
+        	console.log(response)
 				this.memberList = <IMember[]>response.data;
 			},
 			error: (error) => {
 				console.log(error);
 			},
 		});
+	}
+
+	getUser(a:string){
+		return a.slice(a.lastIndexOf('/')+1)
 	}
 }

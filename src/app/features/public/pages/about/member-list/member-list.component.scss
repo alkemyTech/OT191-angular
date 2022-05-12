@@ -1,25 +1,48 @@
 
 .flex-container{
-
     display: flex;
-    align-content:flex-start;
-    justify-content: space-evenly;
-    max-width: 1100px;
+    justify-content: center;
+
+
     margin: 20px auto;
-    overflow: hidden;
+    flex-wrap: wrap;
+
 }
 .flex-container>div{
-    background-color: rgb(156, 147, 147);
+    background-color: var(--lightblue);
+    border: 1px solid rgb(68, 108, 255);
     padding: 20px;
     margin: 10px;
     width: 100%;
+    max-width: 300px;
+    border-radius: 10%;
+    overflow: hidden;
 }
 .image img{
 	object-fit: cover;
     width: 100px;
+    border-radius: 50%;
+    overflow: hidden;
 }
 .image{
     display: -webkit-flex;
     display: flex;
     justify-content: center;
+}
+.text{
+    font-family: var(--font-family-primary);
+}
+.name{
+    font-size: large;
+    font-weight: 600;
+}
+.description{
+    font-size: medium;
+}
+.title{
+    font-size: x-large;
+    font-weight: bold;
+}
+.align-center{
+    text-align: center;
 }
