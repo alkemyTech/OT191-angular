@@ -8,15 +8,13 @@ import { MembersService } from "../../../services/members/members.service";
 	styleUrls: ["./member-list.component.scss"],
 })
 export class MemberListComponent {
-	@Input() memberList: IMember[] = [];
+	memberList: IMember[] = [];
 	constructor(memberService: MembersService) {
 		memberService.getMembers("/members", null).subscribe({
 			next: (response) => {
-        	console.log(response)
 				this.memberList = <IMember[]>response.data;
 			},
 			error: (error) => {
-				console.log(error);
 			},
 		});
 	}

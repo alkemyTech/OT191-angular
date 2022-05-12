@@ -9,7 +9,6 @@ import { BaseApiService } from 'src/app/shared/services/base-api.service';
 export class MembersService {
   
   constructor(public baseHttp: BaseApiService) {}
-
 	getMembers(destinationRoute: string, id: null): Observable<IMemberResponse> {
 		return this.baseHttp.getApi(destinationRoute, id);
 	}
