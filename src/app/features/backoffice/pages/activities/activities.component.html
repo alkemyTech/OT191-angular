@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container justify-content:center align-items-center mt-4">
 	<app-title-view [title]="title"></app-title-view>
 	<form [formGroup]="activityForm" (ngSubmit)="submitActivity()">
@@ -13,6 +14,7 @@
 						<input
 							id="name"
 							type="text"
+							class="text"
 							pInputText
 							formControlName="name"
 							[ngClass]="
@@ -21,14 +23,17 @@
 									: ''
 							"
 						/>
-						<label for="name">Nombre de la actividad</label>
+						<label class="text" for="name">Nombre de la actividad</label>
 					</div>
 				</div>
 				<div
 					class="text-danger"
 					*ngIf="validateControlForText(activityFormControl.name)"
 				>
-					<span *ngIf="activityFormControl.name.errors?.['required']">
+					<span
+						class="text"
+						*ngIf="activityFormControl.name.errors?.['required']"
+					>
 						El nombre es requerido
 					</span>
 				</div>
@@ -42,6 +47,7 @@
 					(change)="onChange($event)"
 					[editor]="Editor"
 					[data]="editorData"
+					[disabled]="submitted"
 				></ckeditor>
 			</div>
 		</div>
@@ -50,10 +56,10 @@
 				<p-image
 					[src]="
 						activityFormControl.image.value == ''
-							? activitySelected.data.image
+							? activitySelected.image
 							: activityFormControl.image.value
 					"
-					[alt]="activitySelected.data.name"
+					[alt]="activitySelected.name"
 					width="300"
 				></p-image>
 			</div>
@@ -61,7 +67,7 @@
 		<div
 			class="row pt-4"
 			[ngClass]="
-				validateControlForSpacing(activityFormControl.image.value) && imageEmpty
+				validateControlForSpacing(activityFormControl.image) && imageEmpty
 					? 'mb-4'
 					: ''
 			"
@@ -81,15 +87,31 @@
 					#buttonImage
 					type="button"
 					pButton
+					[disabled]="submitted"
 					class="p-button-sm p-button-raised p-button-secondary"
 					(click)="image.click()"
 					(click)="nothingSelected()"
 				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						fill="currentColor"
+						class="bi bi-image"
+						viewBox="0 0 16 16"
+					>
+						<path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+						<path
+							d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"
+						/>
+					</svg>
 					Cargar imagen
 				</button>
 			</div>
-			<div class="text-danger" *ngIf="imageEmpty">
-				<span *ngIf="imageEmpty"> La imagen es requerida </span>
+			<div class="text-danger" *ngIf="imageEmpty && submitted">
+				<span class="text" *ngIf="imageEmpty && submitted">
+					La imagen es requerida
+				</span>
 			</div>
 		</div>
 
@@ -101,7 +123,7 @@
 					type="button"
 					[routerLink]="['/backoffice/activities']"
 					class="p-button-raised p-button-danger"
-					label="Cancelar"
+					[label]="submitted?'Volver':'Cancelar'"
 				></button>
 			</div>
 			<div class="col-auto">
@@ -109,8 +131,10 @@
 					pButton
 					pRipple
 					type="submit"
-					class="p-button-raised"
+					class="p-button-raised p-button-info"
 					[label]="title"
+					[disabled]="submitted"
+					(click)="disableControls()"
 				></button>
 			</div>
 		</div>

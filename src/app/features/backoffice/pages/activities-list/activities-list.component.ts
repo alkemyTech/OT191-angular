@@ -1,7 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { Table } from "primeng/table";
-import { IActivities, IActivity } from "src/app/core/models/activity.model";
+import { Observable } from "rxjs";
+import { Store } from "@ngrx/store";
+import { deleteActivity, loadActivities } from "../../actions/activity.actions";
+import {  IActivity } from "src/app/core/models/activity.model";
 import { ActivitiesControllerService } from "../../services/activitiesController/activities-controller.service";
 
 @Component({
@@ -11,42 +14,31 @@ import { ActivitiesControllerService } from "../../services/activitiesController
 })
 export class ActivitiesListComponent implements OnInit {
 	@ViewChild("dt") dt: Table | undefined;
+	activities$: Observable<any>;
 
-	@Input() listActivities: IActivities = {
-		success: true,
-		data: [],
-		message: "",
-	};
+	@Input() listActivities: IActivity[] = [];
 
 	constructor(
-		private activityController: ActivitiesControllerService,
 		private messageService: MessageService,
-		private confirmationService: ConfirmationService
-	) {}
+		private confirmationService: ConfirmationService,
+		private store: Store<{ activity: IActivity }>
+	) {
+		this.activities$ = store.select((state) => state.activity);
+		this.store.dispatch(loadActivities());
+	}
 
 	ngOnInit() {
-		this.activityController
-			.getActivities("/activities", null)
-			.subscribe((response) => {
-				this.activities = response;
-			});
+		this.activities$.subscribe((response) => {
+			this.activities = <IActivity[]>response;
+		});
 	}
 
 	activityDialog: boolean = false;
 
-	activities: IActivities = <IActivities>{
-		success: true,
-		data: [],
-		message: "",
-	};
-
+	activities: IActivity[] = [];
 	activity: IActivity = <IActivity>{};
 
-	selectedActivities: IActivities = <IActivities>{
-		success: false,
-		data: [],
-		message: "",
-	};
+	selectedActivities: IActivity[] = [];
 
 	submitted: boolean = false;
 
@@ -55,47 +47,33 @@ export class ActivitiesListComponent implements OnInit {
 	}
 
 	deleteSelectedActivities() {
-		//Falta agregar metodo para actualizar base de datos
 		this.confirmationService.confirm({
 			message: "Esta seguro de eliminar estas actividades?",
 			header: "Confirmacion",
 			icon: "pi pi-exclamation-triangle",
 			accept: () => {
-				this.activities.data = this.activities.data.filter(
-					(val) => !this.selectedActivities.data.includes(val)
+				this.activities = this.activities.filter(
+					(val) => !this.selectedActivities.includes(val)
 				);
-				this.selectedActivities = <IActivities>{
-					success: false,
-					data: [],
-					message: "",
-				};
-				this.messageService.add({
-					severity: "success",
-					summary: "Exitoso",
-					detail: "Actividades eliminadas",
-					life: 3000,
+				this.selectedActivities.forEach((activity) => {
+					this.store.dispatch(deleteActivity({ activity }));
 				});
+				this.selectedActivities = [];
 			},
 		});
 	}
 
-	deleteActivity(activity: any) {
-		//Falta agregar metodo para actualizar base de datos
+	deleteActivity(activity: IActivity) {
 		this.confirmationService.confirm({
 			message: "Esta seguro de eliminar la actividad " + activity.name + "?",
 			header: "Confirmacion",
 			icon: "pi pi-exclamation-triangle",
 			accept: () => {
-				this.activities.data = this.activities.data.filter(
+				this.activities = this.activities.filter(
 					(val) => val.id !== activity.id
 				);
+				this.store.dispatch(deleteActivity({ activity }));
 				this.activity = <IActivity>{};
-				this.messageService.add({
-					severity: "success",
-					summary: "Exitoso",
-					detail: "Actividad eliminada",
-					life: 3000,
-				});
 			},
 		});
 	}

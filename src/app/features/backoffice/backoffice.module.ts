@@ -17,7 +17,8 @@ import { UserformComponent } from "./pages/userform/userform.component";
 import { SlidesTableComponent } from "./components/slides-table/slides-table.component";
 import { ActivitiesListComponent } from "./pages/activities-list/activities-list.component";
 import { ActivitiesComponent } from "./pages/activities/activities.component";
-import { SidebarComponent } from './pages/sidebar/sidebar.component';
+import { SidebarComponent } from "./pages/sidebar/sidebar.component";
+import { HeaderComponent } from "./pages/header/header.component";
 
 @NgModule({
 	declarations: [
@@ -32,7 +33,8 @@ import { SidebarComponent } from './pages/sidebar/sidebar.component';
 		UserformComponent,
 		ActivitiesListComponent,
 		SlidesTableComponent,
-  SidebarComponent,
+		SidebarComponent,
+		HeaderComponent,
 	],
 	imports: [
 		CommonModule,
