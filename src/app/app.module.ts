@@ -12,7 +12,9 @@ import { AboutModule } from "./About/about.module";
 import { CoreModule } from "./core/core.module";
 import { FeaturesModule } from "./features/features.module";
 import { SharedModule } from "./shared/shared.module";
+import { SlideEffects } from "./features/backoffice/state/effects/slide.effects";
 import { activityEffects } from "./features/backoffice/effects/activity.effects";
+
 
 @NgModule({
 	declarations: [AppComponent],
@@ -28,7 +30,7 @@ import { activityEffects } from "./features/backoffice/effects/activity.effects"
 			maxAge: 25, // Retains last 25 states
 			logOnly: environment.production, // Restrict extension to log-only mode
 		}),
-		EffectsModule.forRoot([activityEffects]),
+		EffectsModule.forRoot([activityEffects],[SlideEffects]),
 	],
 	providers: [ConfirmationService, MessageService],
 	bootstrap: [AppComponent],
