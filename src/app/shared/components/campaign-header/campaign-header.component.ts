@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-campaign-header',
@@ -12,4 +12,7 @@ export class CampaignHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Input() logoCamp:string="";
+  @Input() eslogan:string="";
+  @Input() logoONG:string="";
 }
