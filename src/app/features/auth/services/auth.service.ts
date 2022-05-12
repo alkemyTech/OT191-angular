@@ -18,7 +18,8 @@ import { GoogleAuthProvider } from "firebase/auth";
 export class AuthService {
 	private token: string = "";
 	private loggedIn = false;
-
+	private logginGoogle=false;
+	
 	constructor(
 		private baseApi: BaseApiService,
 		private privateApi: PrivateApiService,
@@ -28,13 +29,15 @@ export class AuthService {
 	) {}
 
 	async loginGoogle() {
-		try {
-			const provider = new GoogleAuthProvider();
-			return this.afAuth.signInWithPopup(provider);
-		} catch (error) {
-			return console.log(error);
-		}
+		const provider = new GoogleAuthProvider();
+		this.logginGoogle=true;
+		return this.afAuth.signInWithPopup(provider);
 	}
+
+	logoutGoogle() {
+		this.afAuth.signOut();
+	}
+
 	login(user: User | Partial<User>) {
 		return this.baseApi.post("/login", user).pipe(
 			map((res: any) => {
@@ -84,6 +87,11 @@ export class AuthService {
 	}
 
 	logout() {
+		this.afAuth.onAuthStateChanged(function(user) {
+			if (user) {
+			  // User is signed in.
+			}
+		  });
 		this.loggedIn = false;
 		localStorage.removeItem("token");
 		return of(true);
