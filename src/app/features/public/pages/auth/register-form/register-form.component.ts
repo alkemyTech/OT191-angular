@@ -9,10 +9,11 @@ import { AlertService } from 'src/app/core/services/alert.service';
 import { User } from 'src/app/core/models/user.model';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 
-import { Register } from '../../actions/auth.actions';
-import { State } from '../../reducers/auth.reducer';
-import { AuthService } from '../../services/auth.service';
-import { ValidatorService } from '../../services/validators/validator.service';
+import { Register } from 'src/app/store/auth/actions/auth.actions';
+import { State } from 'src/app/store/auth/reducers/auth.reducer';
+
+import { ValidatorService } from '../../../services/auth/validators/validator.service';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-register-form',

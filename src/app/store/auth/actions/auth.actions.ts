@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 import { User } from 'src/app/core/models/user.model';
 
-import { Authenticate } from '../models/authentication.model';
+import { Authenticate } from '../../../core/models/authentication.model';
 
 
 export enum AuthActionTypes {
