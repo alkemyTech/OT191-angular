@@ -1,10 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { Table } from "primeng/table";
-import { IActivities, IActivity } from "src/app/core/models/activity.model";
 import { Observable } from "rxjs";
-import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
-import { MatDialog } from "@angular/material/dialog";
+import { Store } from "@ngrx/store";
+import { deleteActivity, loadActivities } from "../../actions/activity.actions";
+import {  IActivity } from "src/app/core/models/activity.model";
 import { ActivitiesControllerService } from "../../services/activitiesController/activities-controller.service";
 
 @Component({
@@ -14,59 +14,31 @@ import { ActivitiesControllerService } from "../../services/activitiesController
 })
 export class ActivitiesListComponent implements OnInit {
 	@ViewChild("dt") dt: Table | undefined;
+	activities$: Observable<any>;
 
-	@Input() listActivities: IActivities = {
-		success: true,
-		data: [],
-		message: "",
-	};
+	@Input() listActivities: IActivity[] = [];
 
 	constructor(
-		private activityController: ActivitiesControllerService,
 		private messageService: MessageService,
 		private confirmationService: ConfirmationService,
-		public dialog: MatDialog
-	) {}
+		private store: Store<{ activity: IActivity }>
+	) {
+		this.activities$ = store.select((state) => state.activity);
+		this.store.dispatch(loadActivities());
+	}
 
 	ngOnInit() {
-		this.activityController.getActivities("/activities", null).subscribe({
-			next: (response) => {
-				this.activities = response;
-				this.errorAlert = false;
-			},
-			error: (error) => {
-				this.errorAlert = true;
-				this.error = error.message;
-				this.openDialog("Error", this.error, "error");
-			},
+		this.activities$.subscribe((response) => {
+			this.activities = <IActivity[]>response;
 		});
 	}
 
-	openDialog(title: String, description: any, value: String) {
-		this.dialog.open(DialogComponent, {
-			data: {
-				title: title,
-				description: description,
-				value: value,
-			},
-		});
-	}
 	activityDialog: boolean = false;
-	errorAlert: boolean = false;
-	error: string = "";
-	activities: IActivities = <IActivities>{
-		success: true,
-		data: [],
-		message: "",
-	};
 
+	activities: IActivity[] = [];
 	activity: IActivity = <IActivity>{};
 
-	selectedActivities: IActivities = <IActivities>{
-		success: false,
-		data: [],
-		message: "",
-	};
+	selectedActivities: IActivity[] = [];
 
 	submitted: boolean = false;
 
@@ -80,40 +52,28 @@ export class ActivitiesListComponent implements OnInit {
 			header: "Confirmacion",
 			icon: "pi pi-exclamation-triangle",
 			accept: () => {
-				this.activities.data = this.activities.data.filter(
-					(val) => !this.selectedActivities.data.includes(val)
+				this.activities = this.activities.filter(
+					(val) => !this.selectedActivities.includes(val)
 				);
-				this.selectedActivities = <IActivities>{
-					success: false,
-					data: [],
-					message: "",
-				};
-				this.messageService.add({
-					severity: "success",
-					summary: "Exitoso",
-					detail: "Actividades eliminadas",
-					life: 3000,
+				this.selectedActivities.forEach((activity) => {
+					this.store.dispatch(deleteActivity({ activity }));
 				});
+				this.selectedActivities = [];
 			},
 		});
 	}
 
-	deleteActivity(activity: any) {
+	deleteActivity(activity: IActivity) {
 		this.confirmationService.confirm({
 			message: "Esta seguro de eliminar la actividad " + activity.name + "?",
 			header: "Confirmacion",
 			icon: "pi pi-exclamation-triangle",
 			accept: () => {
-				this.activities.data = this.activities.data.filter(
+				this.activities = this.activities.filter(
 					(val) => val.id !== activity.id
 				);
+				this.store.dispatch(deleteActivity({ activity }));
 				this.activity = <IActivity>{};
-				this.messageService.add({
-					severity: "success",
-					summary: "Exitoso",
-					detail: "Actividad eliminada",
-					life: 3000,
-				});
 			},
 		});
 	}
