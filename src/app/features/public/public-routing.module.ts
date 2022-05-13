@@ -4,6 +4,7 @@ import { FormcontactComponent } from "./pages/formcontact/formcontact.component"
 import { DonationsComponent } from "./pages/donations/donations.component";
 import { GraciasComponent } from "./pages/donations/gracias/gracias.component";
 import { PrincipalComponent } from "src/app/About/principal/principal.component";
+import { JuguetesComponent } from "./pages/campaigns/juguetes/juguetes.component";
 
 const routes: Routes = [
 	{
@@ -25,6 +26,10 @@ const routes: Routes = [
 			{
 				path: "nosotros",
 				component: PrincipalComponent,
+			},
+			{
+				path: "juguetes",
+				component: JuguetesComponent,
 			},
 			{
 				path: "",
