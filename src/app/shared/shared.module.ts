@@ -35,6 +35,7 @@ import { CampaignHeaderComponent } from './components/campaign-header/campaign-h
     DialogComponent,
     CardComponent,
     LoadingSpinnerComponent,
+    CampaignHeaderComponent
   ],
   imports: [
     CommonModule,
