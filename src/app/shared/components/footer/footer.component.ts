@@ -42,7 +42,7 @@ export class FooterComponent implements OnInit {
       respuesta = response;
       this.orgData=response;
     }).catch(e => console.error(e));
-    console.log(respuesta)
+    
     return respuesta;
   }
 

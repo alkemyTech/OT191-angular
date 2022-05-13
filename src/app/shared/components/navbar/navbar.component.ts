@@ -1,5 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RouterPublicI } from 'src/app/core/models/routing-public.module';
+
+import { Store } from '@ngrx/store';
+
+import { reducers } from 'src/app/store';
+import { AuthState } from 'src/app/core/models/auth.state';
+
 
 @Component({
   selector: "app-navbar",
@@ -10,7 +15,7 @@ export class NavbarComponent implements OnInit {
   public routerList = [
     {
       name: "Inicio",
-      url: "",
+      url: "/",
       campaign: false,
     },
     {
@@ -40,11 +45,19 @@ export class NavbarComponent implements OnInit {
     }
   ];
 
-  public campaign = true;
+  public activePage = window.location.pathname;
+  
 
-  constructor() {}
+  public campaign = true;
+  authLogin$: any;
+  constructor( private store:Store<{auth: AuthState}>) {
+    this.authLogin$ = store.select((state)=>state.auth);
+  }
 
   ngOnInit(): void {
-    console.log(this.routerList);
+    console.log(this.authLogin$)
   }
+
+ 
+  
 }

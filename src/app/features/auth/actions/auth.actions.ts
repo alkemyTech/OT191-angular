@@ -16,6 +16,7 @@ export enum AuthActionTypes {
   Register = '[Register Page] Register',
   RegisterSuccess = '[Auth API] Register Success',
   RegisterFailure = '[Auth API] Register Failure',
+  StateLogin = '[Auth] Select Auth'
 }
 
 export class Login implements Action {
@@ -23,6 +24,14 @@ export class Login implements Action {
 
   constructor(public payload: Authenticate) {}
 }
+
+export class StateLogin implements Action {
+  readonly type = AuthActionTypes.StateLogin;
+
+  constructor(public payload: { logged: boolean }) {}
+}
+
+
 
 export class LoginSuccess implements Action {
   readonly type = AuthActionTypes.LoginSuccess;
@@ -80,4 +89,5 @@ export type AuthActions =
   | LogoutComplete
   | Register
   | RegisterSuccess
-  | RegisterFailure;
+  | RegisterFailure
+  | StateLogin;
