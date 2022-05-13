@@ -30,7 +30,7 @@ import { activityEffects } from "./features/backoffice/effects/activity.effects"
 			maxAge: 25, // Retains last 25 states
 			logOnly: environment.production, // Restrict extension to log-only mode
 		}),
-		EffectsModule.forRoot([activityEffects],[SlideEffects]),
+		EffectsModule.forRoot([activityEffects, SlideEffects]),
 	],
 	providers: [ConfirmationService, MessageService],
 	bootstrap: [AppComponent],

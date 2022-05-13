@@ -1,14 +1,6 @@
-<button
-	pButton
-	pRipple
-	type="button"
-	label="sidebar"
-	class="p-button"
-	(click)="display = true"
-></button>
 <p-sidebar
-	[(visible)]="display"
-	[transitionOptions]="'0.1s'"
+	[(visible)]="isOpen"
+	[transitionOptions]="'0.2s'"
 	class="sidebar"
 	styleClass="p-sidebar-sm"
 >
