@@ -12,7 +12,6 @@ import { AboutModule } from "./About/about.module";
 import { CoreModule } from "./core/core.module";
 import { FeaturesModule } from "./features/features.module";
 import { SharedModule } from "./shared/shared.module";
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from "@angular/fire/compat/auth/";
 import { SlideEffects } from "./features/backoffice/state/effects/slide.effects";
