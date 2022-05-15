@@ -29,4 +29,8 @@ export class JuguetesComponent {
 		let date = days + "d " + hours + "h " + minutes + "m ";
 		return date;
 	}
+
+	ngOnInit(){
+		console.log(this.timeLeftString)
+	}
 }
