@@ -19,6 +19,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 
 
 
+
 @NgModule({
   declarations: [LoginFormComponent, RegisterFormComponent],
   imports: [

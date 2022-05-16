@@ -12,6 +12,9 @@ import { AboutModule } from "./features/public/pages/about/about.module";
 import { CoreModule } from "./core/core.module";
 import { FeaturesModule } from "./features/features.module";
 import { SharedModule } from "./shared/shared.module";
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from "@angular/fire/compat/auth/";
 import { activityEffects } from "./store/activities/effects/activity.effects";
 import { SlideEffects } from "./store/slides/effects/slide.effects";
 
@@ -30,7 +33,9 @@ import { SlideEffects } from "./store/slides/effects/slide.effects";
 			maxAge: 25, // Retains last 25 states
 			logOnly: environment.production, // Restrict extension to log-only mode
 		}),
-		EffectsModule.forRoot([activityEffects, SlideEffects]),
+		EffectsModule.forRoot([activityEffects]),
+		AngularFireModule.initializeApp(environment.firebase),
+		AngularFireAuthModule
 	],
 	providers: [ConfirmationService, MessageService],
 	bootstrap: [AppComponent],

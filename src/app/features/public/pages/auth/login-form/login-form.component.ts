@@ -6,80 +6,102 @@ import { Store } from "@ngrx/store";
 
 import { AlertService } from "src/app/core/services/alert.service";
 import { User } from "src/app/core/models/user.model";
-
+import {
+	getAuth,
+	GoogleAuthProvider,
+	OAuthCredential,
+	UserCredential,
+} from "firebase/auth";
 import { Login } from "../../../../../store/auth/actions/auth.actions";
 import { Authenticate } from "../../../../../core/models/authentication.model";
 import { State } from "src/app/store/auth/reducers/auth.reducer";
-
 import { ValidatorService } from "../../../services/auth/validators/validator.service";
 import { AuthService } from "../../../services/auth/auth.service";
 
 @Component({
-  selector: "app-login-form",
-  templateUrl: "./login-form.component.html",
-  styleUrls: ["./login-form.component.scss"],
+	selector: "app-login-form",
+	templateUrl: "./login-form.component.html",
+	styleUrls: ["./login-form.component.scss"],
 })
 export class LoginFormComponent {
-  loading = false;
+	loading = false;
 
-  loginForm: FormGroup = this.fb.group({
-    email: [
-      "",
-      [Validators.required, Validators.pattern(this.valSer.emailPattern)],
-    ],
-    password: ["", [Validators.required]],
-  });
+	loginForm: FormGroup = this.fb.group({
+		email: [
+			"",
+			[Validators.required, Validators.pattern(this.valSer.emailPattern)],
+		],
+		password: ["", [Validators.required]],
+	});
 
-  constructor(
-    private router: Router,
-    private alerts: AlertService,
-    private fb: FormBuilder,
-    private auth: AuthService,
-    private valSer: ValidatorService,
-    private store: Store<State>
-  ) {}
+	constructor(
+		private router: Router,
+		private alerts: AlertService,
+		private fb: FormBuilder,
+		private auth: AuthService,
+		private valSer: ValidatorService,
+		private store: Store<State>
+	) {}
 
-  isInvalid(value: string) {
-    return (
-      this.loginForm.controls[value].errors &&
-      this.loginForm.controls[value].touched
-    );
-  }
+	isInvalid(value: string) {
+		return (
+			this.loginForm.controls[value].errors &&
+			this.loginForm.controls[value].touched
+		);
+	}
 
-  onSubmit() {
-    if (this.loginForm.invalid) {
-      this.loginForm.markAllAsTouched();
-      return;
-    }
+	onSubmit() {
+		if (this.loginForm.invalid) {
+			this.loginForm.markAllAsTouched();
+			return;
+		}
 
-    this.loading = true;
+		this.loading = true;
 
-    try {
-      let user: Partial<User> = {
-        email: this.loginForm.controls["email"].value,
-        password: this.loginForm.controls["password"].value,
-      };
+		try {
+			let user: Partial<User> = {
+				email: this.loginForm.controls["email"].value,
+				password: this.loginForm.controls["password"].value,
+			};
 
-      this.store.dispatch(new Login(user as Authenticate));
+			this.store.dispatch(new Login(user as Authenticate));
 
-      this.auth.login(user).subscribe({
-        next: (res) => {
-          localStorage.setItem("token", res.token);
-          this.loading = false;
-          this.router.navigate(["/"]);
-        },
-        error: (err) => {
-          this.loading = false;
-          this.alerts.alertNotification(
-            "Error",
-            "Error Usuario o contraseña incorrectos",
-            "error"
-          );
-        },
-      });
-    } catch (error) {
-      this.alerts.alertNotification("Error", "Error desconocido", "error");
-      this.loading = false;
-    }
-  }
+			this.auth.login(user).subscribe({
+				next: (res) => {
+					localStorage.setItem("token", res.token);
+					this.loading = false;
+					this.router.navigate(["/"]);
+				},
+				error: (err) => {
+					this.loading = false;
+					this.alerts.alertNotification(
+						"Error",
+						"Error Usuario o contraseña incorrectos",
+						"error"
+					);
+				},
+			});
+		} catch (error) {
+			this.alerts.alertNotification("Error", "Error desconocido", "error");
+			this.loading = false;
+		}
+	}
+
+	onGoogleLogin() {
+		try {
+			this.auth.loginGoogle().then((result) => {
+				const credential = result.credential as OAuthCredential;
+				const token = <string>credential.accessToken;
+				const email = <string>result.user?.email;
+				const password = "";
+				this.store.dispatch(new Login({ email, password } as Authenticate));
+				localStorage.setItem("token", token);
+				this.loading = true;
+				this.router.navigate(["/"]);
+			});
+		} catch (error) {
+			this.alerts.alertNotification("Error", "Error desconocido", "error");
+			this.loading = false;
+		}
+	}
 }
