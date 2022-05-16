@@ -63,7 +63,7 @@ export class LoginFormComponent {
 
       this.auth.login(user).subscribe({
         next: (res) => {
-          localStorage.setItem("token", res.token);
+          localStorage.setItem("token", res.data.token);
           this.loading = false;
           this.router.navigate(["/"]);
         },

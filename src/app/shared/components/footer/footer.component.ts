@@ -31,10 +31,13 @@ export class FooterComponent implements OnInit {
   
 
   data$!: Observable<Organization[]>  
-  data:any;
+  dataOrg$!:Observable<Organization>;
 
-  constructor(private OrgService:OrganizationProviderService) { }
+  constructor(private OrgService:OrganizationProviderService) { 
+    this.dataOrg$ = OrgService.getOrganization();
+  }
 
+  
   
   async getData(){
     let respuesta;
@@ -45,7 +48,8 @@ export class FooterComponent implements OnInit {
     
     return respuesta;
   }
-
+  
+  
   
   ngOnInit(): void {
     this.getData();
