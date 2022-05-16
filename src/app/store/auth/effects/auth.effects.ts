@@ -22,7 +22,8 @@ import {
   RegisterSuccess,
   RegisterFailure,
 } from "../actions/auth.actions";
-import { AuthService } from "../services/auth.service";
+import { AuthService } from "src/app/features/public/services/auth/auth.service";
+
 
 
 @Injectable()

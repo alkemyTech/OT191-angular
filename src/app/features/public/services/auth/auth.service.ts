@@ -6,9 +6,9 @@ import { map, tap } from "rxjs/operators";
 
 import { User } from "src/app/core/models/user.model";
 import { AlertService } from "src/app/core/services/alert.service";
+import { PrivateApiService } from "src/app/features/backoffice/services/private-api.service";
 import { BaseApiService } from "src/app/shared/services/base-api.service";
 
-import { PrivateApiService } from "../../backoffice/services/private-api.service";
 
 @Injectable({
   providedIn: "root",

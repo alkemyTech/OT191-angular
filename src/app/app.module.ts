@@ -8,12 +8,12 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { environment } from "src/environments/environment";
 import { AppComponent } from "./app.component";
 import { reducers } from "./store";
-import { AboutModule } from "./About/about.module";
+import { AboutModule } from "./features/public/pages/about/about.module";
 import { CoreModule } from "./core/core.module";
 import { FeaturesModule } from "./features/features.module";
 import { SharedModule } from "./shared/shared.module";
-import { SlideEffects } from "./features/backoffice/state/effects/slide.effects";
-import { activityEffects } from "./features/backoffice/effects/activity.effects";
+import { activityEffects } from "./store/activities/effects/activity.effects";
+import { SlideEffects } from "./store/slides/effects/slide.effects";
 
 
 @NgModule({

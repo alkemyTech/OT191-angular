@@ -7,11 +7,12 @@ import { Store } from "@ngrx/store";
 import { AlertService } from "src/app/core/services/alert.service";
 import { User } from "src/app/core/models/user.model";
 
-import { Login } from "../../actions/auth.actions";
-import { Authenticate } from "../../models/authentication.model";
-import { State } from "../../reducers/auth.reducer";
-import { AuthService } from "../../services/auth.service";
-import { ValidatorService } from "../../services/validators/validator.service";
+import { Login } from "../../../../../store/auth/actions/auth.actions";
+import { Authenticate } from "../../../../../core/models/authentication.model";
+import { State } from "src/app/store/auth/reducers/auth.reducer";
+
+import { ValidatorService } from "../../../services/auth/validators/validator.service";
+import { AuthService } from "../../../services/auth/auth.service";
 
 @Component({
   selector: "app-login-form",

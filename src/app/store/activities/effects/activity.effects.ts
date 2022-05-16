@@ -4,8 +4,9 @@ import { act, Actions, createEffect, ofType } from "@ngrx/effects";
 import { forkJoin, of } from "rxjs";
 import { catchError, map, mergeMap, switchMap } from "rxjs/operators";
 import { IActivity, IActivityResponse } from "src/app/core/models/activity.model";
+import { ActivitiesControllerService } from "src/app/features/backoffice/services/activitiesController/activities-controller.service";
 import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
-import { ActivitiesControllerService } from "../services/activitiesController/activities-controller.service";
+
 import {
 	addActivity,
 	addActivitySuccess,
