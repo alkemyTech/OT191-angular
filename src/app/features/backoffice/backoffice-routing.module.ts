@@ -9,12 +9,13 @@ import { UserformComponent } from "./pages/userform/userform.component";
 import { ActivitiesListComponent } from "./pages/activities-list/activities-list.component";
 import { ActivitiesComponent } from "./pages/activities/activities.component";
 import { EditOrganizationComponent } from "./components/edit-organization/edit-organization.component";
+import { BackofficeHomeComponent } from "./pages/backoffice-home/backoffice-home.component";
 
 const routes: Routes = [
 	{
 		path: "",
 		children: [
-			{ path: "" },
+			{ path: "", component: BackofficeHomeComponent },
 			{
 				path: "categories",
 				component: CategoriesComponent,
@@ -28,7 +29,7 @@ const routes: Routes = [
 				component: ShowSlidesComponent,
 			},
 			{
-				path:"slides/create",
+				path: "slides/create",
 				component: SlidesComponent,
 			},
 			{
@@ -63,7 +64,7 @@ const routes: Routes = [
 			{
 				path: "**",
 				redirectTo: "",
-			}
+			},
 		],
 	},
 ];
