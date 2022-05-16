@@ -8,14 +8,16 @@ import { MaterialModule } from 'src/app/core/utils/material/material.module';
 
 import { PdfViewerModule }  from 'ng2-pdf-viewer';
 
-import { SharedModule } from '../../shared/shared.module';
-import { PrimengModule } from '../../core/utils/primeng/primeng.module';
+import { SharedModule } from '../../../../shared/shared.module';
+import { PrimengModule } from '../../../../core/utils/primeng/primeng.module';
 
 import { AuthRoutingModule } from './auth-routing.module';
 
-import { AuthEffects } from './effects/auth.effects';
-import { LoginFormComponent } from './pages/login-form/login-form.component';
-import { RegisterFormComponent } from './pages/register-form/register-form.component';
+import { AuthEffects } from 'src/app/store/auth/effects/auth.effects';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
+
+
 
 
 @NgModule({
