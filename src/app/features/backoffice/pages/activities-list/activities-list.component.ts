@@ -3,7 +3,7 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { Table } from "primeng/table";
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
-import { deleteActivity, loadActivities } from "../../actions/activity.actions";
+import { deleteActivity, loadActivities } from "../../../../store/activities/actions/activity.actions";
 import {  IActivity } from "src/app/core/models/activity.model";
 import { ActivitiesControllerService } from "../../services/activitiesController/activities-controller.service";
 

@@ -1,0 +1,29 @@
+<p-sidebar
+	[(visible)]="isOpen"
+	[transitionOptions]="'0.2s'"
+	class="sidebar"
+	styleClass="p-sidebar-sm"
+>
+	<div class="d-flex align-items-center">
+		<div class="">
+			<p-image
+				src="../../../../../assets/img/LOGO-SOMOS-MAS.png"
+				weight="100"
+				height="100"
+				alt="logo-ONG"
+			></p-image>
+		</div>
+		<div class="flex-grow-1">
+			<p class="font">&nbsp; Somos mas</p>
+		</div>
+	</div>
+	<hr />
+	<div class="d-flex flex-column text-center">
+		<a
+			*ngFor="let element of elements; index as i"
+			href="{{ elementsUrl[i] }}"
+			class="align-middle element-sidebar"
+			>{{ element }}</a
+		>
+	</div>
+</p-sidebar>
