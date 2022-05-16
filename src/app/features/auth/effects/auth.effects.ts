@@ -69,6 +69,7 @@ export class AuthEffects {
         ofType<LoginSuccess>(AuthActionTypes.LoginSuccess),
         tap((response) => {this.router.navigate(["/"]);
           console.log(response.payload.logged);
+          return response.payload.logged;
       })
       ),
     { dispatch: false }

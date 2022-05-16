@@ -28,9 +28,9 @@
   transform: scale(0.8);
 
   // animations
-  // animation-name: growup;
-  // animation-duration: 1.5s;
-  // animation-timing-function: ease-in;
+  animation-name: growup;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
 }
 .container > .row > .col1 > .col {
   overflow: hidden;
@@ -121,10 +121,10 @@
 
 @keyframes growup {
   0% {
-    transform: scale(0.5);
+    opacity: 0;
   }
   100% {
-    background-color: #9ac9fb;
+    
   }
 }
 

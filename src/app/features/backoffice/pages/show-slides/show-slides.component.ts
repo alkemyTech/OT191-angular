@@ -23,8 +23,7 @@ export class ShowSlidesComponent{
 
   ngOnInit(): void {
     
-    this.store.dispatch(loadingSlides())
-    
+    this.store.dispatch(loadingSlides())    
   }
 
 
