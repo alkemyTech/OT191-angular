@@ -33,9 +33,9 @@ import { SlideEffects } from "./store/slides/effects/slide.effects";
 			maxAge: 25, // Retains last 25 states
 			logOnly: environment.production, // Restrict extension to log-only mode
 		}),
-		EffectsModule.forRoot([activityEffects]),
 		AngularFireModule.initializeApp(environment.firebase),
-		AngularFireAuthModule
+		AngularFireAuthModule,
+		EffectsModule.forRoot([activityEffects, SlideEffects]),
 	],
 	providers: [ConfirmationService, MessageService],
 	bootstrap: [AppComponent],
