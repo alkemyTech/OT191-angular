@@ -8,13 +8,13 @@ import { AuthService } from 'src/app/features/public/services/auth/auth.service'
 })
 export class NavbarComponent implements OnInit {
   
-  loggedIn:boolean=false;
+  loggedIn:boolean=localStorage.getItem('token')==undefined?false:true;
   constructor(private authService: AuthService) { 
-    authService.verifyAuth().subscribe((res)=>{
-      this.loggedIn=res.success;})
   }
 
   ngOnInit(): void {
+    this.authService.verifyAuth().subscribe((res)=>{
+      this.loggedIn=res.success;})
   }
 
 }

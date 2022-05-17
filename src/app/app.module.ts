@@ -12,13 +12,14 @@ import { AboutModule } from "./features/public/pages/about/about.module";
 import { CoreModule } from "./core/core.module";
 import { FeaturesModule } from "./features/features.module";
 import { SharedModule } from "./shared/shared.module";
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { AngularFireModule } from '@angular/fire/compat';
+import { getFirestore, provideFirestore } from "@angular/fire/firestore";
+import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth/";
 import { activityEffects } from "./store/activities/effects/activity.effects";
 import { SlideEffects } from "./store/slides/effects/slide.effects";
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-
+import {
+	AngularFirestoreModule,
+} from "@angular/fire/compat/firestore";
 
 @NgModule({
 	declarations: [AppComponent],
@@ -37,7 +38,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 		AngularFireModule.initializeApp(environment.firebase),
 		AngularFireAuthModule,
 		EffectsModule.forRoot([activityEffects, SlideEffects]),
-		AngularFirestoreModule
+		AngularFirestoreModule,
 	],
 	providers: [ConfirmationService, MessageService],
 	bootstrap: [AppComponent],

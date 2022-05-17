@@ -11,7 +11,7 @@ const routes: Routes = [
 	},
 	{
 		path: "auth",
-    canActivate: [loginGuardian],
+    	canActivate: [loginGuardian],
 		loadChildren: () =>
 			import("./public/pages/auth/auth.module").then((m) => m.AuthModule),
 	},

@@ -10,21 +10,26 @@ import { AlertService } from "src/app/core/services/alert.service";
 import { PrivateApiService } from "src/app/features/backoffice/services/private-api.service";
 import { BaseApiService } from "src/app/shared/services/base-api.service";
 import { GoogleAuthProvider } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
+import { UserFirebase } from "src/app/core/models/user-firebase.model";
 
 @Injectable({
 	providedIn: "root",
 })
 export class AuthService {
+	private itemsCollection!: AngularFirestoreCollection<UserFirebase>;
 	private token: string = "";
 	private loggedIn = false;
 	private logginGoogle=false;
-	
+
 	constructor(
 		private baseApi: BaseApiService,
 		private privateApi: PrivateApiService,
 		private router: Router,
 		private alert: AlertService,
-		private afAuth: AngularFireAuth
+		private afAuth: AngularFireAuth,
 	) {}
 
 	async loginGoogle() {
@@ -38,7 +43,6 @@ export class AuthService {
 	}
 
 	login(user: User | Partial<User>) {
-		
 		return this.baseApi.post("/login", {email:user.email, password:user.password}).pipe(
 			map((res: any) => {
 				if (res.data.token == undefined) {
@@ -105,4 +109,5 @@ export class AuthService {
 		);
 		this.router.navigate(["/auth/login"]);
 	}
+	
 }
