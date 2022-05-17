@@ -17,6 +17,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from "@angular/fire/compat/auth/";
 import { activityEffects } from "./store/activities/effects/activity.effects";
 import { SlideEffects } from "./store/slides/effects/slide.effects";
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { SlideEffects } from "./store/slides/effects/slide.effects";
 		AngularFireModule.initializeApp(environment.firebase),
 		AngularFireAuthModule,
 		EffectsModule.forRoot([activityEffects, SlideEffects]),
+		AngularFirestoreModule
 	],
 	providers: [ConfirmationService, MessageService],
 	bootstrap: [AppComponent],

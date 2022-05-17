@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Router } from "@angular/router";
 
-import { of, throwError } from "rxjs";
+import { Observable, of, throwError } from "rxjs";
 import { map, tap } from "rxjs/operators";
 
 import { User } from "src/app/core/models/user.model";
@@ -38,13 +38,14 @@ export class AuthService {
 	}
 
 	login(user: User | Partial<User>) {
-		return this.baseApi.post("/login", user).pipe(
+		
+		return this.baseApi.post("/login", {email:user.email, password:user.password}).pipe(
 			map((res: any) => {
-				if (res.token == undefined) {
+				if (res.data.token == undefined) {
 					return throwError("Usuario o contraseña incorrectos");
 				}
 				this.loggedIn = true;
-				this.token = res.token;
+				this.token = res.data.token;
 
 				return res;
 			})
@@ -62,10 +63,10 @@ export class AuthService {
 		);
 	}
 
-	verifyAuth() {
+	verifyAuth():Observable<any> {
 		return this.privateApi.get("/auth/me").pipe(
-			map((res: any) => {
-				return res.success;
+			tap(res => {
+				this.loggedIn=res.success;
 			})
 		);
 	}
