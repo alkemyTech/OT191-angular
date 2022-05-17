@@ -15,6 +15,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TitleViewComponent } from './components/title-view/title-view.component';
 import { FooterCampaignComponent } from './components/footer-campaign/footer-campaign.component';
+import { CampaignHeaderComponent } from './components/campaign-header/campaign-header.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FooterCampaignComponent } from './components/footer-campaign/footer-cam
     CardComponent,
     LoadingSpinnerComponent,
     FooterCampaignComponent,
+    CampaignHeaderComponent,
   ],
   exports: [
     TitleViewComponent,
