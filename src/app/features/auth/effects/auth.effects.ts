@@ -107,5 +107,5 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-  // statelogged$ = createEffect(()=>this.actions$.pipe(ofType<StateLogin>(AuthActionTypes.)))
+
 }
