@@ -29,15 +29,16 @@ export class loginGuardian implements CanActivate {
 		items = this.itemsCollection.valueChanges();
 		return items.pipe(
 			map((res) => {
-				console.log(res)
 				let item = res.find(
-					(element) => element.token == localStorage.getItem("token")
+					(element) => 
+						element.token === localStorage.getItem("token")
 				);
-				if (item?.token == localStorage.getItem("token")) {
-					this.router.navigate(["/"]);
-					return false;
+				if (
+					item?.token ==undefined) {
+					return true;
 				}
-				return true;
+				this.router.navigate(["/"]);
+				return false;
 			})
 		);
 	}
