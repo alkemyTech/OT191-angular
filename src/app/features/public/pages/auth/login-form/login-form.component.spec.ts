@@ -22,13 +22,13 @@ import { AngularFireModule } from "@angular/fire/compat";
 import { reducers } from "src/app/store";
 import { By } from "@angular/platform-browser";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 
 describe("LoginFormComponent", () => {
 	let component: LoginFormComponent;
 	let fixture: ComponentFixture<LoginFormComponent>;
-	let auth: AuthService;
-	const formBuilder:FormBuilder=new FormBuilder();
+	const formBuilder: FormBuilder = new FormBuilder();
+	const auth = jasmine.createSpyObj("AuthService", ["login"]);
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -47,18 +47,17 @@ describe("LoginFormComponent", () => {
 				HttpClientModule,
 				AngularFireModule.initializeApp(environment.firebase),
 				StoreModule.forRoot(reducers),
-				HttpClientTestingModule
+				HttpClientTestingModule,
 			],
 			providers: [
 				AlertService,
 				FormBuilder,
-				AuthService,
 				BaseApiService,
 				ValidatorService,
 				Store,
 				HttpClient,
-				AngularFireAuth, 
-				
+				AngularFireAuth,
+				{ provide: AuthService, useValue: auth },
 			],
 		}).compileComponents();
 	});
@@ -66,33 +65,56 @@ describe("LoginFormComponent", () => {
 	beforeEach(() => {
 		fixture = TestBed.createComponent(LoginFormComponent);
 		component = fixture.componentInstance;
-		auth = TestBed.inject(AuthService);
 		fixture.detectChanges();
 	});
-	
 
 	it("should create", () => {
 		expect(component).toBeTruthy();
 	});
 	it("should detect form is invalid", () => {
-		component.loginForm.controls['email'].setValue("test");
-		component.loginForm.controls['password'].setValue("");
-		spyOn(component, "isInvalid" ).and.returnValue(true);
+		component.loginForm.controls["email"].setValue("test");
+		component.loginForm.controls["password"].setValue("");
+		spyOn(component, "isInvalid").and.returnValue(true);
 		fixture.detectChanges();
 
-		const messageEmail = fixture.debugElement.nativeElement.querySelector('#errorEmail');
-		const messagePassword = fixture.debugElement.nativeElement.querySelector('#errorPassword');
-		console.log(messageEmail);
-		expect(component.loginForm.status).toEqual('INVALID');
-		expect(messageEmail.innerText.trim()).toEqual('Correo electrónico inválido.');
-		expect(messagePassword.innerText.trim()).toEqual('Contraseña no debe estar vacía.');
+		const messageEmail =
+			fixture.debugElement.nativeElement.querySelector("#errorEmail");
+		const messagePassword =
+			fixture.debugElement.nativeElement.querySelector("#errorPassword");
+		expect(component.loginForm.status).toEqual("INVALID");
+		expect(messageEmail.innerText.trim()).toEqual(
+			"Correo electrónico inválido."
+		);
+		expect(messagePassword.innerText.trim()).toEqual(
+			"Contraseña no debe estar vacía."
+		);
 	});
 
 	it("should execute request HTTP and be successful", () => {
-		component.loginForm.controls['email'].setValue("danielmedina012@gmail.com");
-		component.loginForm.controls['password'].setValue("Alexander1!");
+		component.loginForm.controls["email"].setValue("danielmedina012@gmail.com");
+		component.loginForm.controls["password"].setValue("Alexander1!");
 		fixture.detectChanges();
-		const user={email:component.loginForm.controls['email'].value, password:component.loginForm.controls['password'].value}
-		expect(auth.login(user)).toBe(new Observable);
+		const user = {
+			email: component.loginForm.controls["email"].value,
+			password: component.loginForm.controls["password"].value,
+		};
+		auth.login.and.returnValue(
+			of({ success: true, data: "somevalue", message: "" })
+		);
+		expect(auth.login).toBeDefined();
+	});
+
+	it("should execute HTTP request and give error", () => {
+		component.loginForm.controls["email"].setValue("danielmedina012@gmail.com");
+		component.loginForm.controls["password"].setValue("Alexander1!");
+		fixture.detectChanges();
+		const user = {
+			email: component.loginForm.controls["email"].value,
+			password: component.loginForm.controls["password"].value,
+		};
+		auth.login.and.returnValue(
+			of({ success: false, data: "somevalue", message: "" })
+		);
+		expect(auth.login).toBeDefined();
 	});
 });
