@@ -14,6 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TitleViewComponent } from './components/title-view/title-view.component';
+import { FooterCampaignComponent } from './components/footer-campaign/footer-campaign.component';
 import { CampaignHeaderComponent } from './components/campaign-header/campaign-header.component';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { CampaignHeaderComponent } from './components/campaign-header/campaign-h
     RolPipe,
     CardComponent,
     LoadingSpinnerComponent,
+    FooterCampaignComponent,
     CampaignHeaderComponent,
   ],
   exports: [
@@ -35,6 +37,7 @@ import { CampaignHeaderComponent } from './components/campaign-header/campaign-h
     DialogComponent,
     CardComponent,
     LoadingSpinnerComponent,
+    FooterCampaignComponent
   ],
   imports: [
     CommonModule,
