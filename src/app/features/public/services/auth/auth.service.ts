@@ -43,18 +43,21 @@ export class AuthService {
 	}
 
 	login(user: User | Partial<User>) {
-		return this.baseApi.post("/login", {email:user.email, password:user.password}).pipe(
-			map((res: any) => {
-				if (res.data.token == undefined) {
-					return throwError("Usuario o contraseña incorrectos");
-				}
-				this.loggedIn = true;
-				this.token = res.data.token;
-
-				return res;
-			})
+		const u = {email: user.email,
+		password:user.password}
+		return this.baseApi.post("/login", u).pipe(
+		  map((res: any) => {
+			
+			if (res.data.token == undefined) {
+			  return throwError("Ususario o contraseña incorrectos");
+			}
+			this.loggedIn = true;
+			this.token = res.data.token;
+			
+			return res;
+		  })
 		);
-	}
+	  }
 
 	register(user: User | Partial<User>) {
 		return this.baseApi.post("/register", user).pipe(
