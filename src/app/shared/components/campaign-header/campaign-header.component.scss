@@ -1,0 +1,39 @@
+.background{
+    background-color: rgb(200, 130, 130);
+}
+.text{
+    font-family: var(--font-family-primary);
+    font-size: xx-large;
+    text-transform: capitalize;
+}
+@media screen and (max-width: 425px) {
+    .logoOngImg{
+        display: none;
+    }
+    .logoCampImg{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .eslogan{
+        display: none;
+    }
+
+}
+@media screen and (min-width:426px) and (max-width: 768px) {
+    .logoOngImg{
+        display: block;
+    }
+    .logoCampImg{
+        display: block;
+    }
+    .eslogan{
+        display: none;
+    }
+    
+}
+@media screen and (min-width:1920px){
+    .background{
+        background-color: rgb(230, 190, 190);
+    }
+}

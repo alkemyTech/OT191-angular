@@ -13,6 +13,7 @@ import { GraciasComponent } from './pages/donations/gracias/gracias.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HomeSlidesComponent } from './components/home-slides/home-slides.component';
 import { PublicRoutingModule } from './public-routing.module';
+import { ActivityDetailComponent } from './pages/activity-detail/activity-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PublicRoutingModule } from './public-routing.module';
     DonationsComponent,
     GraciasComponent,
     HomeSlidesComponent,
+    ActivityDetailComponent,
   ],
   imports: [
     CommonModule,

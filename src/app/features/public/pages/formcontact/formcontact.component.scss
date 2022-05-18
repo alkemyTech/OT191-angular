@@ -1,0 +1,23 @@
+.label{
+    font-family: var(--font-family-primary)!important;
+}
+.p-inputtext-lg{
+    font-family: var(--font-family-primary)!important;
+}
+.text-danger{
+    font-family: var(--font-family-primary)!important;
+}
+.p-inputMask{
+    font-family: var(--font-family-primary)!important;
+}
+.p-button-raised{
+    background-color: var(--lightblue);
+    border-color: var(--lightblue)!important;
+    font-family: var(--font-family-primary);
+    transition: 0.5s ease;
+}
+.p-button-raised:hover{
+    background-color: var(--lightblue)!important;
+    border-color: var(--lightblue)!important;
+    transform: scale(1.1);
+}

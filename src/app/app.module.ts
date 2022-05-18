@@ -9,12 +9,15 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { environment } from "src/environments/environment";
 import { AppComponent } from "./app.component";
 import { reducers } from "./store";
-import { AboutModule } from "./About/about.module";
+import { AboutModule } from "./features/public/pages/about/about.module";
 import { CoreModule } from "./core/core.module";
 import { FeaturesModule } from "./features/features.module";
 import { SharedModule } from "./shared/shared.module";
-import { SlideEffects } from "./features/backoffice/state/effects/slide.effects";
-import { activityEffects } from "./features/backoffice/effects/activity.effects";
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from "@angular/fire/compat/auth/";
+import { activityEffects } from "./store/activities/effects/activity.effects";
+import { SlideEffects } from "./store/slides/effects/slide.effects";
 
 
 @NgModule({
@@ -31,6 +34,8 @@ import { activityEffects } from "./features/backoffice/effects/activity.effects"
 			maxAge: 25, // Retains last 25 states
 			logOnly: environment.production, // Restrict extension to log-only mode
 		}),
+		AngularFireModule.initializeApp(environment.firebase),
+		AngularFireAuthModule,
 		EffectsModule.forRoot([activityEffects, SlideEffects]),
 	],
 	providers: [ConfirmationService, MessageService],
