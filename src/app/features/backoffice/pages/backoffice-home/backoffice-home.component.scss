@@ -1,0 +1,20 @@
+.row{
+    margin-top: 10vh;
+}
+
+.img-container{
+    width: 350px;
+    min-height: 350px;    
+    box-shadow: 1px 1px 2px 2px  rgb(107, 107, 107);
+    border-radius: 1rem;
+    transition: 1s ease all;
+    cursor: pointer;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-container:hover{
+    transform: scale(1.05);
+}
