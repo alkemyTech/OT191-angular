@@ -6,7 +6,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { MaterialModule } from '../core/utils/material/material.module';
 import { PrimengModule } from '../core/utils/primeng/primeng.module';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 import { RolPipe } from './pipes/rol.pipe';
 import { CardComponent } from './components/card/card.component';
 import { DialogComponent } from './components/dialog/dialog.component';
@@ -44,7 +44,8 @@ import { CampaignHeaderComponent } from './components/campaign-header/campaign-h
     PrimengModule,
     MaterialModule,
     MatDialogModule,
-    PdfViewerModule
+    PdfViewerModule,
+    MatExpansionModule,
   ]
 })
 export class SharedModule { }
