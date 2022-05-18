@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "ong-somos-mas-349817"
+  },
+  "targets": {
+    "ong-somos-mas-349817": {
+      "hosting": {
+        "base-ong-angular-client": [
+          "ong-somos-mas-349817"
+        ]
+      }
+    }
+  }
+}

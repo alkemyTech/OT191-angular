@@ -6,7 +6,11 @@ import { Component, Input } from "@angular/core";
 	styleUrls: ["./principal.component.scss"],
 })
 export class PrincipalComponent {
-	constructor() {}
-
 	@Input() text: string = "";
+	data = false;
+	constructor() {
+		setTimeout(() => {
+			this.data = true;
+		}, 1000);
+	}
 }

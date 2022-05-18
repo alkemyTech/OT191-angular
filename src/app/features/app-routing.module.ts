@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: "auth",
-    loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
+    loadChildren: () => import("./public/pages/auth/auth.module").then((m) => m.AuthModule),
   },
   {
     path: "backoffice",
