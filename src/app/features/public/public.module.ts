@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HomeSlidesComponent } from './components/home-slides/home-slides.component';
 import { PublicRoutingModule } from './public-routing.module';
 import { JuguetesComponent } from './pages/campaigns/juguetes/juguetes.component';
+import { ActivityDetailComponent } from './pages/activity-detail/activity-detail.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { JuguetesComponent } from './pages/campaigns/juguetes/juguetes.component
     GraciasComponent,
     HomeSlidesComponent,
     JuguetesComponent,
+    ActivityDetailComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,63 @@
+footer{
+    background-color: rgb(219, 144, 144);
+    min-height: 18vh;
+    font-family: var(--font-family-primary);
+}
+
+.row{
+    align-items: center;
+}
+
+.row .col li{
+    list-style: none;
+    padding-bottom: 10px;
+}
+
+.social-media{
+    color: black;
+}
+
+.social-text{
+    color: black;
+    display: inline-block;
+
+}
+
+#campaigns{
+    display: none;
+}
+
+#campaigns li a{
+    color:black;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+@media(max-width: 760px){   
+
+    h1{
+        display: none;
+    }
+
+    .social-text{
+        display: none !important;
+    }
+
+}   
+
+@media(max-width: 1024px){
+    .social-text{
+        display: none !important;
+    }
+}
+
+@media (max-width: 1200){
+}
+
+
+@media (min-width: 1201){
+    #campaigns{
+        display: block;
+    }
+}

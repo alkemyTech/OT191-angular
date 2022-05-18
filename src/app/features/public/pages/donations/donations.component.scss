@@ -1,18 +1,21 @@
 .body {
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
   background-color: var(--primaryColor);
 }
 
-.body p {
-  color: black;
+
+
+.input-group-text{
+  font-family: var(--font-family-primary);
+  color: #fff;
+  font-size: 1.1rem;
+  background-color: rgb(32, 32, 32);  
 }
 
-.row {
-  border: solid 1px #bbb;
+.row {  
   border-radius: 4px;
-  margin-top: 4vh;
-  background-color: #9ac9fb;
+  margin-top: 4vh;  
   padding: 20px;
 }
 
@@ -22,10 +25,11 @@
   border: solid 1px #bbb;
   background: #fff;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.8);
 
   // animations
   animation-name: growup;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
   animation-timing-function: ease-in;
 }
 .container > .row > .col1 > .col {
@@ -41,41 +45,74 @@
   overflow: hidden;
 }
 
+
+
 .box {
-  background-color: var(--secondaryColor);
+  background-color: white ;  
+  padding-bottom: 60px;
+  padding-top: 0px;
+  border-radius: 0.2rem;
+  
+}
+//input
+
+.input-group{
+  margin-top: 20px;
+  width: 200px;
+  margin-left: 25%;
 }
 
 // Donar
 
+
+
 #donar {
   display: flexbox;
-  justify-content: center;
+
 }
 
 #donar p {
-  color: var(--primaryColor);
+  color: #08a0e9;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 1px;  
   display: block;
-  text-align: center;
+  text-align: justify;
+  font-family: var(--font-family-primary);
 }
 
 #primertexto {
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+  margin-top: 1rem;
+  padding-top: 70px;  
+  font-size: 8rem !important;
+  margin-bottom: 3rem;
+  //animacion
+  animation-name: leftToRight;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in;
 }
 
 .donacion {
-  margin-bottom: 10px;
+  margin-top: 90px;
+  text-align: center !important;
+  margin-bottom: 20px;
+  color: black !important;
+  font-style: italic;
+  font-size: 1.2rem;
+  font-weight: 100 !important;
 }
 
 .btn {
-  position: absolute;
-  left: 85%;
-
-  background-color: var(--accentColor);
+  position: relative;
+  left: 15%;
+  font-family: var(--font-family-primary);
+  background-color: rgb(32, 32, 32);
+  color: white;
   font-weight: 600;
   transition: 0.5s ease-in-out all;
+  width: 300px;
+  margin-top: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 .btn:hover {
@@ -84,10 +121,20 @@
 
 @keyframes growup {
   0% {
-    transform: scale(0.5);
+    opacity: 0;
   }
   100% {
-    background-color: #9ac9fb;
+    
+  }
+}
+
+@keyframes leftToRight{
+  0%{
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  100%{
+
   }
 }
 

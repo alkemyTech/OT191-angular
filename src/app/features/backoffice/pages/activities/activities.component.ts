@@ -20,7 +20,7 @@ import {
 	addActivity,
 	loadActivities,
 	updateActivity,
-} from "../../actions/activity.actions";
+} from "../../../../store/activities/actions/activity.actions";
 
 @Component({
 	selector: "app-activities",
