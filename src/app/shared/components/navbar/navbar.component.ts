@@ -7,11 +7,7 @@ import {
 } from "@angular/core";
 
 import { Store } from "@ngrx/store";
-import {  Observable } from "rxjs";
-
-import { AuthState } from "src/app/core/models/auth.state";
-import { State } from "src/app/features/auth/reducers/auth.reducer";
-import { selectAuthLoading } from "src/app/features/backoffice/state/selectors/slides.selector";
+import { selectAuthLoading } from "src/app/store/slides/selectors/slides.selector";
 import { AppState } from "src/app/store";
 
 @Component({

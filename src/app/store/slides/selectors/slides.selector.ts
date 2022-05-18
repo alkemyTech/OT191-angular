@@ -1,7 +1,7 @@
 import { SlideState } from "src/app/core/models/slides.state";
 import { createSelector } from "@ngrx/store";
 import { AppState } from "src/app/store"; 
-import { State } from "src/app/features/auth/reducers/auth.reducer";
+import { State } from "../../auth/reducers/auth.reducer";
 
 export const selectSlideFeatures = (state: AppState) => state.slides;
 export const selectAuthFeatueres = (state: AppState) => state.auth
