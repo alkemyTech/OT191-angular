@@ -16,6 +16,7 @@ import { PublicRoutingModule } from './public-routing.module';
 import { MemberListComponent } from './pages/about/member-list/member-list.component';
 import { PrincipalComponent } from './pages/about/principal/principal.component';
 import { ActivityDetailComponent } from './pages/activity-detail/activity-detail.component';
+import { AboutModule } from './pages/about/about.module';
 
 @NgModule({
   declarations: [
@@ -24,8 +25,6 @@ import { ActivityDetailComponent } from './pages/activity-detail/activity-detail
     DonationsComponent,
     GraciasComponent,
     HomeSlidesComponent,
-    MemberListComponent,
-    PrincipalComponent,
     ActivityDetailComponent,
   ],
   imports: [
@@ -38,7 +37,7 @@ import { ActivityDetailComponent } from './pages/activity-detail/activity-detail
     MatDialogModule,
     PublicRoutingModule
   ],
-  exports:[HomeSlidesComponent,MemberListComponent],
+  exports:[],
   providers:[CurrencyPipe]
 })
 export class PublicModule {}

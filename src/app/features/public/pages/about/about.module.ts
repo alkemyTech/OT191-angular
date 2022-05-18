@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PrincipalComponent } from './principal/principal.component';
 import { SharedModule } from '../../../../shared/shared.module';
+import { PrincipalComponent } from './principal/principal.component';
+import { MemberListComponent } from './member-list/member-list.component';
+import { PublicModule } from '../../public.module';
 
 
 
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
   ],
-  declarations: [PrincipalComponent]
+  declarations: [PrincipalComponent, MemberListComponent]
 })
 export class AboutModule { }
