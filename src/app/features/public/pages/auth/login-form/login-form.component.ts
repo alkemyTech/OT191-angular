@@ -24,6 +24,7 @@ import { AuthService } from "../../../services/auth/auth.service";
 	styleUrls: ["./login-form.component.scss"],
 })
 export class LoginFormComponent {
+	[x: string]: {};
 	loading = false;
 
 	loginForm: FormGroup = this.fb.group({
