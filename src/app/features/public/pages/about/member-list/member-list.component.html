@@ -1,0 +1,29 @@
+<div class="">
+	<h1 class="text align-center">Miembros</h1>
+	<div class="flex-container">
+		<div *ngFor="let member of memberList; index as i">
+			<div class="image">
+				<img [src]="member.image" height="100px" alt="" />
+			</div>
+			<p class="text name align-center">{{ member.name }}</p>
+			<div
+				class="text description align-center flex-shrink-1"
+				[innerHTML]="member.description"
+			></div>
+			<div class="align-center pb-2">
+				<a href="http://{{ member.facebookUrl }}" target="_blank"
+					><i><img src="assets/icons/facebook-icon.svg" /></i>&nbsp;{{
+						getUser(member.linkedinUrl)
+					}}</a
+				>
+			</div>
+			<div class="align-center">
+				<a href="http://{{ member.linkedinUrl }}" target="_blank"
+					><i> <img src="assets/icons/linkedin-icon.svg" /></i>&nbsp;{{
+						getUser(member.linkedinUrl)
+					}}</a
+				>
+			</div>
+		</div>
+	</div>
+</div>
