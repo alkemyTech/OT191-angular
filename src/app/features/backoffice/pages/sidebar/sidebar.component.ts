@@ -1,21 +1,21 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnChanges, OnInit, Output, SimpleChanges } from "@angular/core";
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+	selector: "app-sidebar",
+	templateUrl: "./sidebar.component.html",
+	styleUrls: ["./sidebar.component.scss"],
 })
-export class SidebarComponent {
+export class SidebarComponent{
+	constructor() {}
 
-  constructor() { }
-  
-  @Input() elements:string[]=[];
-  @Input() elementsUrl:string[]=[];
-  
-  @HostBinding('class.is-open')
-  isOpen = false;
+	@Input() elements: string[] = [];
+	@Input() elementsUrl: string[] = [];
+	@Input() display: boolean = false;
+  	@Output() displayEvent = new EventEmitter<boolean>();
+  sendEvent(){
+    if (this.display==false){
+      this.displayEvent.emit(this.display);
+    }
 
-  toggle() {
-    this.isOpen = !this.isOpen;
   }
 }

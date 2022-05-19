@@ -17,6 +17,7 @@ export const environment = {
 	newsApiURL: "https://ongapi.alkemy.org/api/news",
 	usersApiURL: "https://ongapi.alkemy.org/api/users",
 	categoriesApiURL: "https://ongapi.alkemy.org/api/categories",
+  baseUrlBackoffice:"/backoffice"
 };
 
 /*

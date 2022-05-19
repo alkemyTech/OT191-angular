@@ -1,5 +1,6 @@
 <p-sidebar
-	[(visible)]="isOpen"
+	(click)="sendEvent()"
+	[(visible)]="display"
 	[transitionOptions]="'0.2s'"
 	class="sidebar"
 	styleClass="p-sidebar-sm"

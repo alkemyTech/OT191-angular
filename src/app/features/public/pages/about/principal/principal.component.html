@@ -1,5 +1,8 @@
+<app-navbar></app-navbar>
 <div class="container">
     <app-title-view title="Nosotros"></app-title-view>
-    <p class="font fs-3 lh-sm">{{text}}</p>
+    <h1 class="text align-center">{{welcome}}</h1>
+    <p class="font lh-sm" [innerHTML]="text"></p>
     <app-member-list></app-member-list>
 </div>
+<app-footer></app-footer>

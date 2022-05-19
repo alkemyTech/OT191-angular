@@ -11,6 +11,7 @@ import { ActivitiesControllerService } from "../../services/activitiesController
 	selector: "app-activities-list",
 	templateUrl: "./activities-list.component.html",
 	styleUrls: ["./activities-list.component.scss"],
+	providers:[ConfirmationService, MessageService]
 })
 export class ActivitiesListComponent implements OnInit {
 	@ViewChild("dt") dt: Table | undefined;
@@ -19,7 +20,6 @@ export class ActivitiesListComponent implements OnInit {
 	@Input() listActivities: IActivity[] = [];
 
 	constructor(
-		private messageService: MessageService,
 		private confirmationService: ConfirmationService,
 		private store: Store<{ activity: IActivity }>
 	) {

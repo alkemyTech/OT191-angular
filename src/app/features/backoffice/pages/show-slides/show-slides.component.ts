@@ -16,24 +16,6 @@ import { Router } from "@angular/router";
 export class ShowSlidesComponent{
   slides$: Observable<any> = new Observable();
 
-  urlBase = this.router.url;
-	elements: string[] = [
-		"actividades",
-		"categorias",
-		"organizacion",
-		"slides",
-		"home",
-		"usuarios",
-	];
-	elementsUrl: string[] = [
-		this.urlBase + "/activities",
-		this.urlBase + "/categories",
-		this.urlBase + "/organization",
-		this.urlBase + "/slides",
-		this.urlBase + "/home",
-		this.urlBase + "/users",
-	];
-
   constructor(
     private userP: SlideProviderService, private store:Store<AppState>,
     private router:Router,

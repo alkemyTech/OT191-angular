@@ -1,4 +1,6 @@
 import { Component, HostListener, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
 import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
@@ -7,11 +9,31 @@ import { SidebarComponent } from "../sidebar/sidebar.component";
 	styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent {
-	constructor() {}
-	@Input() sidebar!: SidebarComponent;
+	constructor(private router: Router) {}
+	display:boolean=false;
+	urlBase = environment.baseUrlBackoffice;
+	elements: string[] = [
+		"actividades",
+		"categorias",
+		"organizacion",
+		"slides",
+		"home",
+		"usuarios",
+	];
+	elementsUrl: string[] = [
+		this.urlBase + "/activities",
+		this.urlBase + "/categories",
+		this.urlBase + "/organization",
+		this.urlBase + "/slides",
+		this.urlBase + "/home",
+		this.urlBase + "/users",
+	];
 
-	@HostListener('click')
-	click(){
-		this.sidebar.toggle()
+	Display(){
+		this.display=true;
 	}
+
+	receiveEvent($event:any) {
+		this.display = $event
+	  }
 }

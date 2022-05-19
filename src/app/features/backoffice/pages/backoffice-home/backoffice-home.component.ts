@@ -9,21 +9,4 @@ import { Router } from "@angular/router";
 export class BackofficeHomeComponent {
 	constructor(private router: Router) {}
 
-	urlBase = this.router.url;
-	elements: string[] = [
-		"actividades",
-		"categorias",
-		"organizacion",
-		"slides",
-		"home",
-		"usuarios",
-	];
-	elementsUrl: string[] = [
-		this.urlBase + "/activities",
-		this.urlBase + "/categories",
-		this.urlBase + "/organization",
-		this.urlBase + "/slides",
-		this.urlBase + "/home",
-		this.urlBase + "/users",
-	];
 }
