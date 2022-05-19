@@ -21,6 +21,9 @@ export function authReducer(state = initialState, action: AuthActions): State {
     case AuthActionTypes.LogoutConfirmed:
       return initialState;
 
+    case AuthActionTypes.StateLogin:
+      return  state ;
+
     default:
       return state;
   }

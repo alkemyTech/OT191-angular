@@ -6,7 +6,7 @@
 }
 
 .container-fluid{
-    overflow: hidden;
+    
     max-height: 50px;
 }
 
@@ -20,13 +20,45 @@
     
 }
 
-.navbar-nav .nav-item .nav-link:hover{
-    background-color: var(--lightblue);
+.navbar-nav .nav-item .nav-link{
     border-radius: 1.5rem;
-    color: #fff;
+}
+
+.active{
+    // background-color: var(--lightblue);
+    // border-radius: 1.5rem;
+    // color: #fff !important;
+    transform: scale(1.1);
+    font-weight: 600;
+    color: rgb(65, 64, 64) !important;
+    
+}
+
+.dropdown-item{
+    color: var(--lightblue); 
+    transition: 0.7s all ease;
+    overflow: hidden;
+    font-size: 1.1rem;
+}
+
+
+
+.dropdown-item:hover{
+    background-color: var(--mainGrey);
+   
+    
+    transform: scale(1.1);
+}
+
+
+.navbar-nav .nav-item .nav-link:hover{
+    background-color: var(--mainGrey);
+
+    
     transform: scale(1.1);
     
 }
+
 
 
 .navbar-nav .nav-item .nav-link{
@@ -46,6 +78,36 @@
     
 }
 
+#logout-form{
+    position: absolute;
+    right: 30px;
+}
+
+#logout{
+    margin-right: 10px;
+    color: var(--secondaryColor);
+    border-color: var(--secondaryColor);
+    transition: 0.8s all ease;
+    font-size: 1rem;
+}
+
+#logout:hover{
+    background-color: var(--secondaryColor);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+#backoffice{
+    background-color: var(--secondaryColor);
+    border-color: var(--secondaryColor);
+    color: #fff;
+    transition: 0.8s all ease;
+    font-size: 1rem;
+}
+
+#backoffice:hover{
+    transform: scale(1.15);
+}
 
 
 #login{
@@ -73,4 +135,18 @@
 #register:hover{
     
     transform: scale(1.15);
+}
+
+.dropdown-menu{
+    z-index: 99999;
+    overflow: hidden;
+    
+}
+
+.show{
+    display: block;
+}
+
+#campaign{
+    margin-left: -50px;
 }

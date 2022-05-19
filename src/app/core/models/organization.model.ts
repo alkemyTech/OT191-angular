@@ -8,9 +8,9 @@ export interface Organization {
     address:           string;
     phone:             string;
     cellphone:         number | null;
-    created_at:        Date;
-    updated_at:        Date;
-    deleted_at:        Date | null;
+    created_at:        string;
+    updated_at:        string;
+    deleted_at:        string | null;
     group_id:          number | null;
     facebook_url:      string;
     linkedin_url:      string;
