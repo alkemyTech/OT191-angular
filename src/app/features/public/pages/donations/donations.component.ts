@@ -8,7 +8,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
   styleUrls: ["./donations.component.scss"],
 })
 export class DonationsComponent implements OnInit {
-  texto = "Donando ayudaras a muchos!";
+  texto = "DONÁ";
 
   name = "Angular";
   formattedAmount: any;

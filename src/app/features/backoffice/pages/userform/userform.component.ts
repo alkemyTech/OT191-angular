@@ -82,13 +82,11 @@ export class UserformComponent implements OnInit {
   editarForm(form:UserI){
     if(this.user.role_id == 0){
       form.profile_image=this.stringimage
-      this.api.createUser(form).subscribe( data =>{
-        console.log(data)
+      this.api.createUser(form).subscribe( data =>{        
       })
     }else{
       form.profile_image=this.stringimage
-      this.api.editUser(form).subscribe( data =>{
-        console.log(data)
+      this.api.editUser(form).subscribe( data =>{        
       })
     }
   }

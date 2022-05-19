@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+
+<section class="body">
+
+    <div class="container">
+      <div class="row">
+        <div class="col1">
+          <div class="col">
+            <img [src]="activitySelected.image" alt="img" />
+          </div>
+        </div>
+        <div class="col">
+          <div class="box">
+            <app-title-view [title]="title"></app-title-view>
+            <p id="primertexto" [innerHTML]="activitySelected.description"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<app-footer></app-footer>

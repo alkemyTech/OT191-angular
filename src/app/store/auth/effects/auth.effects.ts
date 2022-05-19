@@ -68,7 +68,10 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType<LoginSuccess>(AuthActionTypes.LoginSuccess),
-        tap(() => this.router.navigate(["/"]))
+        tap((response) => {this.router.navigate(["/"]);
+          console.log(response.payload.logged);
+          return response.payload.logged;
+      })
       ),
     { dispatch: false }
   );
@@ -105,5 +108,5 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-  
+
 }

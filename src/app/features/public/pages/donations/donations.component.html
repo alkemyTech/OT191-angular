@@ -8,22 +8,19 @@
         </div>
       </div>
       <div class="col" id="donar">
-        <p id="primertexto">{{ texto }}</p>
-        <p class="donacion">Cuánto quieres donar?</p>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">ARS</span>
+        <div class="box">
+          <p id="primertexto">{{ texto }}</p>
+          <p class="donacion">Impactá vidas. <br> Cambiá el mundo.</p>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+
+            <input type="text" (blur)="transformAmount($event)" [(ngModel)]="formattedAmount" class="form-control" />
           </div>
 
-          <input
-            type="text"
-            (blur)="transformAmount($event)"
-            [(ngModel)]="formattedAmount"
-            class="form-control"
-          />
+          <button type="submit" class="btn" id="submit-button">Donar</button>
         </div>
-
-        <button type="submit" class="btn" id="submit-button">Donar</button>
       </div>
     </div>
   </div>
