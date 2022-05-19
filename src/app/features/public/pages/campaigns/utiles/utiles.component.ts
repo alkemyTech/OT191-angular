@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-	selector: "app-juguetes",
-	templateUrl: "./juguetes.component.html",
-	styleUrls: ["./juguetes.component.scss"],
+  selector: 'app-utiles',
+  templateUrl: './utiles.component.html',
+  styleUrls: ['./utiles.component.scss']
 })
-export class JuguetesComponent {
-	currentDate: any;
+export class UtilesComponent implements OnInit {
+  currentDate: any;
 	date: Date = new Date();
 	eventDate: any = new Date("Jun 3, 2022 16:40:00").getTime();
 	timeLeftSeconds = Math.floor((this.eventDate - this.date.getTime()) / 1000);

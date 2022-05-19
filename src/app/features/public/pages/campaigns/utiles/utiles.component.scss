@@ -5,7 +5,7 @@
     align-content: center;
 }
 
-.center h1{
+h1{
     font-family: var(--font-family-primary);
     text-align: center;
 }
@@ -15,7 +15,8 @@
 }
 
 #carouselExampleIndicators{
-    max-height: 80vh;    
+    max-height: 80vh;
+    
     overflow: hidden;
     font-family: var(--font-family-primary);
     font-size: .9rem;
@@ -37,7 +38,7 @@ h5{
   
 .carousel-caption{
     position: absolute;
-    top: 450px;  
+    top: 400px;  
 }
 
 .content-img{

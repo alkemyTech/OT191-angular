@@ -15,6 +15,7 @@ import { HomeSlidesComponent } from './components/home-slides/home-slides.compon
 import { PublicRoutingModule } from './public-routing.module';
 import { JuguetesComponent } from './pages/campaigns/juguetes/juguetes.component';
 import { ActivityDetailComponent } from './pages/activity-detail/activity-detail.component';
+import { UtilesComponent } from './pages/campaigns/utiles/utiles.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ActivityDetailComponent } from './pages/activity-detail/activity-detail
     HomeSlidesComponent,
     JuguetesComponent,
     ActivityDetailComponent,
+    UtilesComponent,
   ],
   imports: [
     CommonModule,
