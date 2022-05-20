@@ -20,6 +20,7 @@ import { ActivitiesComponent } from "./pages/activities/activities.component";
 import { HeaderComponent } from "./pages/header/header.component";
 import { SidebarComponent } from "./pages/sidebar/sidebar.component";
 import { BackofficeHomeComponent } from './pages/backoffice-home/backoffice-home.component';
+import { ConfirmationService, MessageService } from "primeng/api";
 
 @NgModule({
 	declarations: [
@@ -48,5 +49,6 @@ import { BackofficeHomeComponent } from './pages/backoffice-home/backoffice-home
 		CKEditorModule,
 		BackofficeRoutingModule,
 	],
+	providers:[MessageService]
 })
 export class BackofficeModule {}

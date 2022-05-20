@@ -16,7 +16,6 @@ import { Router } from "@angular/router";
 export class ShowSlidesComponent{
   slides$: Observable<any> = new Observable();
 
-
   constructor(
     private userP: SlideProviderService, private store:Store<AppState>,
     private router:Router,
