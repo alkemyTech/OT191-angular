@@ -13,6 +13,8 @@ import { GraciasComponent } from './pages/donations/gracias/gracias.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HomeSlidesComponent } from './components/home-slides/home-slides.component';
 import { PublicRoutingModule } from './public-routing.module';
+import { JuguetesComponent } from './pages/campaigns/juguetes/juguetes.component';
+import { UtilesComponent } from './pages/campaigns/utiles/utiles.component';
 import { MemberListComponent } from './pages/about/member-list/member-list.component';
 import { PrincipalComponent } from './pages/about/principal/principal.component';
 import { ActivityDetailComponent } from './pages/activity-detail/activity-detail.component';
@@ -25,7 +27,9 @@ import { AboutModule } from './pages/about/about.module';
     DonationsComponent,
     GraciasComponent,
     HomeSlidesComponent,
+    JuguetesComponent,
     ActivityDetailComponent,
+    UtilesComponent,
   ],
   imports: [
     CommonModule,
