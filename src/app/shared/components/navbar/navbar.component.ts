@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/features/public/services/auth/auth.service';
 import {
   Component,
   OnInit,
@@ -16,6 +17,9 @@ import { AppState } from "src/app/store";
   styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent implements OnInit {
+  
+  loggedIn:boolean=localStorage.getItem('token')==undefined?false:true;
+
   public routerList = [
     {
       name: "Inicio",
@@ -81,7 +85,9 @@ export class NavbarComponent implements OnInit {
   
   constructor(
     private store:Store<AppState>,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private authService: AuthService
+  
   ) {
     this.authLogin$ = this.store.select(selectAuthLoading);
 
@@ -99,5 +105,7 @@ export class NavbarComponent implements OnInit {
  
 
   ngOnInit(): void {
+      this.authService.verifyAuth().subscribe((res)=>{
+      this.loggedIn=res.success;})
   }
 }
