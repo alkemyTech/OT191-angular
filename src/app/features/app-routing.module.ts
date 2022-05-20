@@ -2,6 +2,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { HomeComponent } from "./public/pages/home/home.component";
+import { loginGuardian } from "./public/services/loginguardian/login-guardian-service";
 import { BackofficeGuardGuard } from "../core/guards/backoffice-guard.guard";
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   },
   {
     path: "auth",
+    canActivate: [loginGuardian],
     loadChildren: () => import("./public/pages/auth/auth.module").then((m) => m.AuthModule),
   },
   {
@@ -32,7 +34,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, RouterModule.forRoot(routes)],
+	declarations: [],
+	imports: [CommonModule, RouterModule.forRoot(routes)],
 })
 export class AppRoutingModule {}

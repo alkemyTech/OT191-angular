@@ -1,0 +1,47 @@
+<app-campaign-header logoONG="../../../../../../assets/img/LOGO-SOMOS-MAS.png" eslogan="Campaña juguetes" logoCamp="../../../../../../assets/img/campaña-juguetes/Logotipo campaña juguetes.png"></app-campaign-header>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img [src]=slides2[0].image class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="slide-text">{{slides2[0].name}}</h5>
+          <p class="slide-text">{{slides2[0].description}}</p>
+        </div>        
+      </div>      
+      <div class="carousel-item">
+        <img [src]=slides2[1].image class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="slide-text">{{slides2[1].name}}</h5>
+          <p class="slide-text">{{slides2[1].description}}</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img [src]=slides2[2].image class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="slide-text">{{slides2[2].name}}</h5>
+          <p class="slide-text">{{slides2[2].description}}</p>
+        </div>
+      </div>      
+    </div>    
+</div>
+<div class="container">
+    <div class="center">
+        <div class="img-container">
+            <img class="content-img" id="img1" src="../../../../../../assets/img/campañas/juguetes1.jpg" alt="">
+            <h1 class="mobile-content">Jun 3, 2022 16:40:00 hs Calle 123, Localidad, Provincia</h1>
+            <img class="content-img" id="img2" src="../../../../../../assets/img/campañas/juguetes2.png" alt="">
+        </div>
+        <h1 class="tablet-content">Te quedan: {{timeLeftString}} para participar</h1>
+        <p class="mobile-content">Descripcion de la campaña lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+            ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+    </div>
+    
+</div>
+<app-footer-campaign></app-footer-campaign>

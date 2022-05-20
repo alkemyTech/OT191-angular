@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Router } from "@angular/router";
 
-import { of, throwError } from "rxjs";
+import { Observable, of, throwError } from "rxjs";
 import { map, tap } from "rxjs/operators";
 
 import { User } from "src/app/core/models/user.model";
@@ -10,21 +10,26 @@ import { AlertService } from "src/app/core/services/alert.service";
 import { PrivateApiService } from "src/app/features/backoffice/services/private-api.service";
 import { BaseApiService } from "src/app/shared/services/base-api.service";
 import { GoogleAuthProvider } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
+import { UserFirebase } from "src/app/core/models/user-firebase.model";
 
 @Injectable({
 	providedIn: "root",
 })
 export class AuthService {
+	private itemsCollection!: AngularFirestoreCollection<UserFirebase>;
 	private token: string = "";
 	private loggedIn = false;
 	private logginGoogle=false;
-	
+
 	constructor(
 		private baseApi: BaseApiService,
 		private privateApi: PrivateApiService,
 		private router: Router,
 		private alert: AlertService,
-		private afAuth: AngularFireAuth
+		private afAuth: AngularFireAuth,
 	) {}
 
 	async loginGoogle() {
@@ -67,10 +72,10 @@ export class AuthService {
 		);
 	}
 
-	verifyAuth() {
+	verifyAuth():Observable<any> {
 		return this.privateApi.get("/auth/me").pipe(
-			map((res: any) => {
-				return res.success;
+			tap(res => {
+				this.loggedIn=res.success;
 			})
 		);
 	}
@@ -109,4 +114,5 @@ export class AuthService {
 		);
 		this.router.navigate(["/auth/login"]);
 	}
+	
 }
