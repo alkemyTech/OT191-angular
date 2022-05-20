@@ -22,6 +22,7 @@ import { SlideEffects } from "./store/slides/effects/slide.effects";
 
 @NgModule({
 	declarations: [AppComponent],
+	providers: [MessageService],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,

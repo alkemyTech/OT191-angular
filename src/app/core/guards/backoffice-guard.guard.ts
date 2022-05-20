@@ -18,7 +18,7 @@ export class BackofficeGuardGuard implements CanActivate, CanActivateChild {
     
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    return token!=undefined;
   }
   
 }
