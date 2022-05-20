@@ -1,0 +1,17 @@
+Test 1: No permitir que haga submit estando los datos completos incorrectamente
+* Se mockea el email y la password
+* se mockea la funcion isInvalid para que devuelva un true
+* Se guarda en constantes el elemento html que contiene el mensaje de error para el mail y la password
+* Se testea que el form sea invalido
+* Se testea que el mensaje de email incorrecto se este mostrando en el html.
+* Se testea que el mensaje de password incorrecta se este mostrando en el html.
+
+Test 1: Ejecutar solicitud HTTP y que sea exitosa
+* Se mockea el email y la password
+* Se mockea la solicitud HTTP para que devuelva un observable exitoso
+* Se testea que el servicio que realiza la solicitud este definido
+
+Test 1: Ejecutar solicitud HTTP y que sea exitosa
+* Se mockea el email y la password
+* Se mockea la solicitud HTTP para que devuelva un observable con fracaso
+* Se testea que el servicio que realiza la solicitud este definido
