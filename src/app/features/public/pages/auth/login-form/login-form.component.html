@@ -8,7 +8,7 @@
         <div class="container animate__animated animate__fadeInRight">
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
-              <h3 class="login-heading mb-4">¡Bienvenido a Somos Más!</h3>
+              <h3 id= "title" class="login-heading mb-4">¡Bienvenido a Somos Más!</h3>
 
               <!-- Sign In Form -->
               <form
@@ -20,13 +20,14 @@
                 <div class="field mb-2 p-fluid">
                   <label for="float-input">Ingresa tu correo electrónico</label>
                   <input
+                    id="inputEmail"
                     pInputText
                     type="email"
                     formControlName="email"
                     [class]="isInvalid('email') ? 'ng-invalid ng-dirty' : ''"
                     placeholder="name@example.com"
                   />
-                  <small *ngIf="isInvalid('email')" class="p-error block"
+                  <small id="errorEmail" *ngIf="isInvalid('email')" class="p-error block"
                     >Correo electrónico inválido.</small
                   >
                 </div>
@@ -35,6 +36,7 @@
                     >Ingresa tu contraseña</label
                   >
                   <p-password
+                    id="inputPassword"
                     autofill="off"
                     autocomplete="off"
                     type="password"
@@ -47,7 +49,7 @@
                     styleClass="p-password p-component p-inputwrapper p-input-icon-right"
                     placeholder="Escribe tu contraseña"
                   ></p-password>
-                  <small *ngIf="isInvalid('password')" class="p-error block"
+                  <small id="errorPassword" *ngIf="isInvalid('password')" class="p-error block"
                     >Contraseña no debe estar vacía.</small
                   >
                 </div>
