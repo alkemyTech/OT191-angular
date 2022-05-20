@@ -1,3 +1,11 @@
 .font{
     font-family: var(--font-family-primary)!important;
+    text-align: justify;
+    font-size: medium;
+}
+.text{
+    font-family: var(--font-family-primary);
+}
+.align-center{
+    text-align: center;
 }

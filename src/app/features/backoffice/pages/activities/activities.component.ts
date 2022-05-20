@@ -172,7 +172,6 @@ export class ActivitiesComponent implements OnInit {
 				this.activitySubmit.updated_at= this.activitySelected.updated_at;
 				this.activitySubmit.deleted_at= this.activitySelected.deleted_at;
 				this.activitySubmit.group_id= this.activitySelected.group_id;
-				console.log(this.activitySubmit)
 				if (
 					this.activityFormControl.image.value == this.activitySelected.image
 				) {
@@ -183,14 +182,12 @@ export class ActivitiesComponent implements OnInit {
 							this.activityForm.controls.image.setValue(base64);
 							this.activitySubmit.image = this.activityFormControl.image.value;
 							const activity = this.activitySubmit;
-							console.log(this.activitySubmit)
 							this.store.dispatch(updateActivity({ activity }));
 						}
 					);
 				} else {
 					this.activitySubmit.image = this.activityFormControl.image.value;
 					const activity = this.activitySubmit;
-					console.log(activity)
 					this.store.dispatch(updateActivity({ activity }));
 				}
 			}

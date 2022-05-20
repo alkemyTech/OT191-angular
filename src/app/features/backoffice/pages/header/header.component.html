@@ -1,7 +1,7 @@
 <header>
 	<div class="row">
 		<div class="col ">
-			<button pButton pRipple type="button" class="p-button-raised button">
+			<button pButton pRipple type="button" class="p-button-raised button" (click)="Display()">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
@@ -18,4 +18,5 @@
 			</button>
 		</div>
 	</div>
+	<app-sidebar (displayEvent)="receiveEvent($event)" [elements]="elements" [elementsUrl]="elementsUrl" [display]="display"></app-sidebar>
 </header>
