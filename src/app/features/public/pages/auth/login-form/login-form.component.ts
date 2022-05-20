@@ -17,6 +17,7 @@ import { Authenticate } from "../../../../../core/models/authentication.model";
 import { State } from "src/app/store/auth/reducers/auth.reducer";
 import { ValidatorService } from "../../../services/auth/validators/validator.service";
 import { AuthService } from "../../../services/auth/auth.service";
+import { AngularFirestore } from "@angular/fire/compat/firestore";
 
 @Component({
 	selector: "app-login-form",
@@ -24,6 +25,7 @@ import { AuthService } from "../../../services/auth/auth.service";
 	styleUrls: ["./login-form.component.scss"],
 })
 export class LoginFormComponent {
+	[x: string]: {};
 	loading = false;
 
 	loginForm: FormGroup = this.fb.group({
@@ -40,7 +42,8 @@ export class LoginFormComponent {
 		private fb: FormBuilder,
 		private auth: AuthService,
 		private valSer: ValidatorService,
-		private store: Store<State>
+		private store: Store<State>,
+		private db: AngularFirestore,
 	) {}
 
 	isInvalid(value: string) {
@@ -68,7 +71,9 @@ export class LoginFormComponent {
 
 			this.auth.login(user).subscribe({
 				next: (res) => {
-					localStorage.setItem("token", res.token);
+					const docRef=this.db.collection<{token:string, rolUser:string}>('users');
+					docRef.add({token:res.data.token, rolUser:'Administrador'})
+					localStorage.setItem("token", res.data.token);
 					this.loading = false;
 					this.router.navigate(["/"]);
 				},
@@ -96,6 +101,8 @@ export class LoginFormComponent {
 				const email = <string>result.user?.email;
 				const password = "";
 				this.store.dispatch(new Login({ email, password } as Authenticate));
+				const docRef=this.db.collection<{token:string, rolUser:string}>('users');
+				docRef.add({token:token, rolUser:'Administrador'})
 				localStorage.setItem("token", token);
 				this.loading = false;
 				this.router.navigate(["/"]);
