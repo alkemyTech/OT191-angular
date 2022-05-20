@@ -48,7 +48,9 @@ export class AuthService {
 			}
 			this.loggedIn = true;
 			this.token = res.data.token;
-			
+			let tokenres = JSON.stringify(res.data.token)
+
+			localStorage.setItem("token", tokenres);
 			return res;
 		  })
 		);

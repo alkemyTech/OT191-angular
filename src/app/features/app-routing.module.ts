@@ -2,6 +2,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { HomeComponent } from "./public/pages/home/home.component";
+import { BackofficeGuardGuard } from "../core/guards/backoffice-guard.guard";
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
     path: "backoffice",
     loadChildren: () =>
       import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
+    canActivateChild: [BackofficeGuardGuard]
   },
   {
     path: "",
