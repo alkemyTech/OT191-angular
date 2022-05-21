@@ -1,8 +1,14 @@
 <app-navbar></app-navbar>
-<div class="container">
+<ng-container *ngIf="!welcome; else Us">
+  <app-loading-spinner></app-loading-spinner>
+</ng-container>
+
+<ng-template #Us>
+  <div class="container">
     <app-title-view title="Nosotros"></app-title-view>
-    <h1 class="text align-center">{{welcome}}</h1>
+    <h1 class="text align-center">{{ welcome }}</h1>
     <p class="font lh-sm" [innerHTML]="text"></p>
     <app-member-list></app-member-list>
-</div>
-<app-footer></app-footer>
+  </div>
+  <app-footer></app-footer>
+</ng-template>

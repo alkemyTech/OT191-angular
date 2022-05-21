@@ -38,7 +38,7 @@
                     [class]="isInvalid('email') ? 'ng-invalid ng-dirty' : ''"
                     placeholder="name@example.com"
                   />
-                  <small *ngIf="isInvalid('email')" class="p-error block"
+                  <small id="emailError" *ngIf="isInvalid('email')" class="p-error block"
                     >Correo electrónico inválido.</small
                   >
                 </div>
@@ -73,7 +73,7 @@
                       </ul>
                     </ng-template>
                   </p-password>
-                  <small *ngIf="isInvalid('password')" class="p-error block"
+                  <small id="errorPass1" *ngIf="isInvalid('password')" class="p-error block"
                     >Contraseña inválida.</small
                   >
                 </div>
@@ -96,7 +96,7 @@
                     styleClass="p-password p-component p-inputwrapper p-input-icon-right"
                     placeholder="Repite la contraseña"
                   ></p-password>
-                  <small *ngIf="isInvalid('password2')" class="p-error block"
+                  <small id="errorPass2" *ngIf="isInvalid('password2')" class="p-error block"
                     >Las contraseñas no coinciden.</small
                   >
                 </div>
@@ -111,7 +111,7 @@
                       >Acepte los términos y condiciones</label
                     >
                   </div>
-                  <small *ngIf="isInvalid('terms')" class="p-error block"
+                  <small id="errorTerms" *ngIf="isInvalid('terms')" class="p-error block"
                     >Debe aceptar los términos y condiciones.</small
                   >
                 </div>
