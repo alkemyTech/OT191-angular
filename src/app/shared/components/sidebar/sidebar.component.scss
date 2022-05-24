@@ -1,0 +1,85 @@
+.font{
+    font-family: var(--font-family-primary);
+    font-size:28px;
+    margin-bottom: 0px;
+    color: var(--lightblue);
+}
+.element-sidebar{
+    font-family: var(--font-family-primary);
+    font-size:x-large;
+    color: var(--lightblue);
+    text-decoration:none;
+    transition: 0.5s all ease;
+    text-transform: capitalize;
+}
+.element-sidebar:hover{
+    text-decoration:none;
+    background-color: var(--lightblue);
+    color: #fff;
+    border-color: var(--lightblue)!important;
+    border-radius: 1.5rem;
+    transform: scale(1.1);
+}
+.element-sidebar-botton{
+    font-family: var(--font-family-primary);
+    font-size:x-large;
+}
+#login{
+    margin-right: 10px;
+    color: var(--lightblue);
+    border-color: var(--lightblue);
+    transition: 0.8s all ease;
+    font-size: 1rem;
+}
+
+#login:hover{
+    background-color: var(--lightblue);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+#logout{
+    margin-right: 10px;
+    color: var(--secondaryColor);
+    border-color: var(--secondaryColor);
+    transition: 0.8s all ease;
+    font-size: 1rem;
+}
+
+#logout:hover{
+    background-color: var(--secondaryColor);
+    color: #fff;
+    transform: scale(1.1);
+}
+#register{
+    background-color: var(--lightblue);
+    border-color: var(--lightblue);
+    color: #fff;
+    transition: 0.8s all ease;
+    font-size: 1rem;
+}
+
+#register:hover{
+    
+    transform: scale(1.15);
+}
+
+#backoffice{
+    background-color: var(--secondaryColor);
+    border-color: var(--secondaryColor);
+    color: #fff;
+    transition: 0.8s all ease;
+    font-size: 1rem;
+}
+
+#backoffice:hover{
+    transform: scale(1.15);
+}
+.space{
+    padding: 15px;
+}
+.dropdown-item{
+    color: var(--lightblue); 
+    transition: 0.7s all ease;
+    font-size: 1.1rem;
+}
