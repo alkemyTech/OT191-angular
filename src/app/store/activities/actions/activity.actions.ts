@@ -36,3 +36,11 @@ export const deleteActivitySuccess = createAction(
 	"[activities Component] Delete Activity success",
 	props<{ activity: IActivity }>()
 );
+export const deleteActivities = createAction(
+	"[activities Component] Delete Activities",
+	props<{ activities: IActivity[] }>()
+);
+export const deleteActivitiesSuccess = createAction(
+	"[activities Component] Delete Activities success",
+	props<{ activities: IActivity[] }>()
+);
