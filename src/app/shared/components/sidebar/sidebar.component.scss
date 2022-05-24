@@ -7,15 +7,17 @@
 .element-sidebar{
     font-family: var(--font-family-primary);
     font-size:x-large;
+    padding:7px;
+    border-radius: 1.5rem;
     color: var(--lightblue);
     text-decoration:none;
-    transition: 0.5s all ease;
+    transition: 0.8s all ease;
     text-transform: capitalize;
 }
 .element-sidebar:hover{
     text-decoration:none;
-    background-color: var(--lightblue);
-    color: #fff;
+    background-color: var(--mainGrey);
+    padding:7px;
     border-color: var(--lightblue)!important;
     border-radius: 1.5rem;
     transform: scale(1.1);
@@ -23,6 +25,7 @@
 .element-sidebar-botton{
     font-family: var(--font-family-primary);
     font-size:x-large;
+    margin-top: 40px;
 }
 #login{
     margin-right: 10px;
@@ -34,6 +37,7 @@
 
 #login:hover{
     background-color: var(--lightblue);
+
     color: #fff;
     transform: scale(1.1);
 }

@@ -9,25 +9,32 @@
 
 }
 .flex-container>div{
-    background-color: var(--lightblue);
-    border: 1px solid rgb(68, 108, 255);
+    background: linear-gradient(to top, white, var(--lightblue));  
     padding: 20px;
     margin: 10px;
     width: 100%;
     max-width: 300px;
+    height: 300px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border-radius: 10%;
     overflow: hidden;
+    box-shadow: 1px 1px 1px 1px rgb(211, 208, 208);
 }
 .image img{
 	object-fit: cover;
     width: 100px;
     border-radius: 50%;
     overflow: hidden;
+    margin-bottom: 10px;
 }
 .image{
     display: -webkit-flex;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .text{
     font-family: var(--font-family-primary);

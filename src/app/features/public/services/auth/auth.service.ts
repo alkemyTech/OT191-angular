@@ -12,17 +12,21 @@ import { BaseApiService } from "src/app/shared/services/base-api.service";
 import { GoogleAuthProvider } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { AngularFireModule } from "@angular/fire/compat";
-import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from "@angular/fire/compat/firestore";
 import { UserFirebase } from "src/app/core/models/user-firebase.model";
+import { MatDialog } from "@angular/material/dialog";
+import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
 
 @Injectable({
 	providedIn: "root",
 })
 export class AuthService {
 	private itemsCollection!: AngularFirestoreCollection<UserFirebase>;
+	private itemsUsers!: Observable<UserFirebase[]>
 	private token: string = "";
 	private loggedIn = false;
 	private logginGoogle=false;
+	private doc:any;
 
 	constructor(
 		private baseApi: BaseApiService,
@@ -30,7 +34,13 @@ export class AuthService {
 		private router: Router,
 		private alert: AlertService,
 		private afAuth: AngularFireAuth,
-	) {}
+		private db: AngularFirestore,
+		private dialog: MatDialog,
+	) {
+
+		this.itemsCollection = db.collection<UserFirebase>('users');
+    	this.itemsUsers = this.itemsCollection.valueChanges();
+	}
 
 	async loginGoogle() {
 		const provider = new GoogleAuthProvider();
@@ -53,11 +63,23 @@ export class AuthService {
 			}
 			this.loggedIn = true;
 			this.token = res.data.token;
-			
+			let tokenres = JSON.stringify(res.data.token)
+
+			localStorage.setItem("token", tokenres);
 			return res;
 		  })
 		);
 	  }
+
+	openDialog(){
+		this.dialog.open(DialogComponent,{
+			data:{
+				title:"¿Quiere Cerrar sesión?",
+				description:"Aprete aceptar para continuar, cierre para continuar logueado",
+				value:"info",
+			}
+		})
+	}
 
 	register(user: User | Partial<User>) {
 		return this.baseApi.post("/register", user).pipe(
@@ -88,10 +110,15 @@ export class AuthService {
 			.then((res) => {
 				if (res.isConfirmed) {
 					of(true);
+					
+					
+					this.logout();
 				}
 			});
+			
 		return of(false);
 	}
+
 
 	logout() {
 		this.afAuth.onAuthStateChanged(function(user) {
@@ -100,7 +127,10 @@ export class AuthService {
 			}
 		  });
 		this.loggedIn = false;
-		localStorage.removeItem("token");
+		
+		
+		localStorage.clear();
+		this.router.navigate(["/"]);
 		return of(true);
 	}
 

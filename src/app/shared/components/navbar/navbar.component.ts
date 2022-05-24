@@ -89,14 +89,13 @@ export class NavbarComponent implements OnInit {
     private authService: AuthService
   
   ) {
-    this.authLogin$ = this.store.select(selectAuthLoading);
-
-    
+    this.authLogin$ = this.store.select(selectAuthLoading);   
     
   }
 
   logOut(){
-    localStorage.clear();
+    this.authService.askLogout();
+    
   }
   
   isLogged(){

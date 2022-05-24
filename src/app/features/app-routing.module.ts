@@ -3,33 +3,34 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { HomeComponent } from "./public/pages/home/home.component";
 import { loginGuardian } from "./public/services/loginguardian/login-guardian-service";
+import { BackofficeGuardGuard } from "../core/guards/backoffice-guard.guard";
 
 const routes: Routes = [
-	{
-		path: "",
-		component: HomeComponent,
-	},
-	{
-		path: "auth",
-    	canActivate: [loginGuardian],
-		loadChildren: () =>
-			import("./public/pages/auth/auth.module").then((m) => m.AuthModule),
-	},
-	{
-		path: "backoffice",
-		loadChildren: () =>
-			import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
-	},
-	{
-		path: "",
-		loadChildren: () =>
-			import("./public/public.module").then((m) => m.PublicModule),
-	},
-	{
-		path: "**",
-		redirectTo: "",
-		pathMatch: "full",
-	},
+  {
+    path: "",
+    component: HomeComponent,
+  },
+  {
+    path: "auth",
+    canActivate: [loginGuardian],
+    loadChildren: () => import("./public/pages/auth/auth.module").then((m) => m.AuthModule),
+  },
+  {
+    path: "backoffice",
+    loadChildren: () =>
+      import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
+    canActivateChild: [BackofficeGuardGuard]
+  },
+  {
+    path: "",
+    loadChildren: () =>
+      import("./public/public.module").then((m) => m.PublicModule),
+  },
+  {
+    path: "**",
+    redirectTo: "",
+    pathMatch: "full",
+  },
 ];
 
 @NgModule({

@@ -13,6 +13,7 @@ export class HeaderComponent {
 	display:boolean=false;
 	urlBase = environment.baseUrlBackoffice;
 	elements: string[] = [
+		"backoffice",
 		"actividades",
 		"categorias",
 		"organizacion",
@@ -21,9 +22,10 @@ export class HeaderComponent {
 		"usuarios",
 	];
 	elementsUrl: string[] = [
+		this.urlBase,
 		this.urlBase + "/activities",
 		this.urlBase + "/categories",
-		this.urlBase + "/organization",
+		this.urlBase + "/organization/edit",
 		this.urlBase + "/slides",
 		this.urlBase + "/home",
 		this.urlBase + "/users",
