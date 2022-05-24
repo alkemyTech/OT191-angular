@@ -1,9 +1,12 @@
 import { Injectable } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { act, Actions, createEffect, ofType } from "@ngrx/effects";
-import { forkJoin, of } from "rxjs";
+import { forkJoin, Observable, of } from "rxjs";
 import { catchError, map, mergeMap, switchMap } from "rxjs/operators";
-import { IActivity, IActivityResponse } from "src/app/core/models/activity.model";
+import {
+	IActivity,
+	IActivityResponse,
+} from "src/app/core/models/activity.model";
 import { ActivitiesControllerService } from "src/app/features/backoffice/services/activitiesController/activities-controller.service";
 import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
 
@@ -12,6 +15,8 @@ import {
 	addActivitySuccess,
 	deleteActivity,
 	deleteActivitySuccess,
+	deleteActivities,
+	deleteActivitiesSuccess,
 	loadActivities,
 	loadActivitiesSuccess,
 	updateActivity,
@@ -25,7 +30,9 @@ export class activityEffects {
 			ofType(loadActivities),
 			switchMap(() =>
 				this.activityService.getActivities("/activities", null).pipe(
-					map((data) => loadActivitiesSuccess({ activities: <IActivity[]>data.data })),
+					map((data) =>
+						loadActivitiesSuccess({ activities: <IActivity[]>data.data })
+					),
 					catchError((error) => {
 						this.openDialog(
 							"Error en la carga de actividades",
@@ -49,11 +56,11 @@ export class activityEffects {
 				this.activityService
 					.putActivity("/activities", activity.id, activity)
 					.pipe(
-						map((data:IActivityResponse) => {
+						map((data: IActivityResponse) => {
 							this.openDialog(
 								"Actividad modificada con exito",
 								"Actividad " +
-									 activity.name +
+									activity.name +
 									" fue modificada satisfactoriamente",
 								"success"
 							);
@@ -133,7 +140,40 @@ export class activityEffects {
 		)
 	);
 
-
+	deleteActivities$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(deleteActivities),
+			mergeMap(({ activities }) => {
+				let response: IActivityResponse[] = [];
+				let activitiesDeleted: string[] = [];
+				let count = 0;
+				let i = activities.length;
+				activities.forEach((element) => {
+					this.activityService
+						.deleteActivity("/activities", element.id)
+						.subscribe({
+							next: (a: IActivityResponse) => {
+								response.push(a);
+								activitiesDeleted.push(element.name);
+								count++;
+								console.log();
+								if (i == count) {
+									console.log(activitiesDeleted);
+									this.openDialog(
+										"Actividades eliminadas con exito",
+										"Actividades: " +
+											activitiesDeleted.toString() +
+											" fueron eliminadas satisfactoriamente",
+										"success"
+									);
+								}
+							},
+						});
+				});
+				return of(deleteActivitiesSuccess({ activities: activities }));
+			})
+		)
+	);
 	constructor(
 		private actions$: Actions,
 		private activityService: ActivitiesControllerService,

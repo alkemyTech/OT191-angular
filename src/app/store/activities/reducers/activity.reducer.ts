@@ -4,6 +4,7 @@ import { IActivity } from "src/app/core/models/activity.model";
 import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
 import {
 	addActivitySuccess,
+	deleteActivitiesSuccess,
 	deleteActivitySuccess,
 	errorActivity,
 	loadActivitiesSuccess,
@@ -33,6 +34,16 @@ export const activityReducer = createReducer(
 			(element) => element.id != activity.id
 		);
 		return activities;
+	}),
+	on(deleteActivitiesSuccess, (state, { activities }) => {
+		let activitiesState:IActivity[]=[];
+		activitiesState=state;
+		activities.forEach((activity:IActivity) => {
+			activitiesState=activitiesState.filter(
+				(element) => element.id != activity.id
+			);
+		});
+		return activitiesState;
 	}),
 	on(errorActivity, (state, { error }) => {
 		return error;
