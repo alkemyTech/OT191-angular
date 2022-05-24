@@ -16,6 +16,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { TitleViewComponent } from './components/title-view/title-view.component';
 import { FooterCampaignComponent } from './components/footer-campaign/footer-campaign.component';
 import { CampaignHeaderComponent } from './components/campaign-header/campaign-header.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { CampaignHeaderComponent } from './components/campaign-header/campaign-h
     LoadingSpinnerComponent,
     FooterCampaignComponent,
     CampaignHeaderComponent,
+    SidebarComponent,
+    HeaderComponent
   ],
   exports: [
     TitleViewComponent,
@@ -38,7 +42,9 @@ import { CampaignHeaderComponent } from './components/campaign-header/campaign-h
     CardComponent,
     LoadingSpinnerComponent,
     CampaignHeaderComponent,
-    FooterCampaignComponent
+    FooterCampaignComponent,
+    SidebarComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,

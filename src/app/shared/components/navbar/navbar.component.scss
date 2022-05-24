@@ -31,7 +31,6 @@
     transform: scale(1.1);
     font-weight: 600;
     color: rgb(65, 64, 64) !important;
-    
 }
 
 .dropdown-item{
@@ -53,8 +52,6 @@
     background-color: var(--mainGrey);    
     transform: scale(1.1);    
 }
-
-
 
 .navbar-nav .nav-item .nav-link{
     color: var(--lightblue); 
@@ -155,5 +152,16 @@
 
 #campaign{
     margin-left: -50px;
+}
+
+@media screen and (max-width:1000px) {
+    #navbar{
+        display: none;
+    }
+}
+@media screen and (min-width:1000px) {
+    #header{
+        display: none;
+    }
 }
 

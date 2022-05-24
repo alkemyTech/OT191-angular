@@ -1,0 +1,22 @@
+.button{
+    border-color: var(--lightblue);
+    background-color: var(--lightblue);
+    transition: 0.5s ease;
+    font-family: var(--font-family-primary);
+    font-size: medium;
+    margin-top: 4px;
+    margin-left: 6px;
+}
+.button:hover{
+    border-color: var(--lightblue);
+    background-color: var(--lightblue);
+    transform: scale(1.1);
+}
+.img{
+    height: 120px;
+    overflow: hidden;
+}
+img{
+    margin-top: -40px;
+    position: relative;
+}
