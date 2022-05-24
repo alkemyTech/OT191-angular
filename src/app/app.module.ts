@@ -20,6 +20,7 @@ import { SlideEffects } from "./store/slides/effects/slide.effects";
 import {
 	AngularFirestoreModule,
 } from "@angular/fire/compat/firestore";
+import { MessageService } from "primeng/api";
 
 @NgModule({
 	declarations: [AppComponent],
