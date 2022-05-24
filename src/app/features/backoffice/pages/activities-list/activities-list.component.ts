@@ -3,7 +3,7 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { Table } from "primeng/table";
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
-import { deleteActivity, loadActivities } from "../../../../store/activities/actions/activity.actions";
+import { deleteActivities, deleteActivity, loadActivities } from "../../../../store/activities/actions/activity.actions";
 import {  IActivity } from "src/app/core/models/activity.model";
 import { ActivitiesControllerService } from "../../services/activitiesController/activities-controller.service";
 
@@ -55,9 +55,11 @@ export class ActivitiesListComponent implements OnInit {
 				this.activities = this.activities.filter(
 					(val) => !this.selectedActivities.includes(val)
 				);
-				this.selectedActivities.forEach((activity) => {
-					this.store.dispatch(deleteActivity({ activity }));
-				});
+				// this.selectedActivities.forEach((activity) => {
+				// 	this.store.dispatch(deleteActivity({ activity }));
+				// });
+				const activities=this.selectedActivities;
+				this.store.dispatch(deleteActivities({ activities }));
 				this.selectedActivities = [];
 			},
 		});

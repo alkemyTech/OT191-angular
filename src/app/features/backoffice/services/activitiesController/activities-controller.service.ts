@@ -18,7 +18,7 @@ export class ActivitiesControllerService {
 	putActivity(destinationRoute: string, id: number, activity: IActivity): Observable<IActivityResponse> {
 		return this.baseHttp.put(destinationRoute + "/" + id, activity);
 	}
-	deleteActivity(destinationRoute: string, id: number) {
+	deleteActivity(destinationRoute: string, id: number):Observable<IActivityResponse>{
 		return this.baseHttp.delete(destinationRoute + "/" + id);
 	}
 	postActivity(destinationRoute: string, activity: IActivity): Observable<IActivityResponse> {
