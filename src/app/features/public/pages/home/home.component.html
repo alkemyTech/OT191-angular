@@ -1,31 +1,53 @@
 <app-navbar></app-navbar>
 <section>
-  <app-home-slides></app-home-slides>
-  <div class="container">
-    <div class="welcome">
-      <h2>{{welcomeong}}</h2>
-    </div>
-  </div>
-  
-  <div class="news">
-    <p-carousel [value]="products" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
-      <ng-template pTemplate="header">
-          <h3>Últimas novedades</h3>
-      </ng-template>
-      <ng-template let-product pTemplate="item">
-          <div class="product-item">
-              <div class="product-item-content">
-                <p-card header="{{product.name}}"  [style]="{width: '360px'}" styleClass="p-card-shadow">
-                  <ng-template pTemplate="header">
-                      <img alt="Card" src="../../../../../assets/img/auth/login.jpg">
-                  </ng-template>
-                  <p>{{product.description}}</p>
-                  
-              </p-card>
-              </div>
-          </div>
-      </ng-template>
-  </p-carousel>
-  </div>
+	<app-home-slides></app-home-slides>
+	<div class="container">
+		<div class="welcome">
+			<h2>{{ welcomeong }}</h2>
+		</div>
+	</div>
+
+	<div class="news">
+		<p-carousel
+			[value]="activities"
+			styleClass="custom-carousel"
+			[numVisible]="3"
+			[numScroll]="1"
+			[circular]="true"
+			[autoplayInterval]="3000"
+			[responsiveOptions]="responsiveOptions"
+		>
+			<ng-template pTemplate="header">
+				<h3>Actividades</h3>
+			</ng-template>
+			<ng-template let-activity pTemplate="item">
+				<div class="product-item">
+					<div
+						class="product-item-content"
+						(click)="detailActivity(activity.id)"
+					>
+						<p-card
+							header="{{ activity.name }}"
+							[style]="{ width: '360px', height: '450px' }"
+							styleClass="p-card-shadow"
+						>
+							<ng-template pTemplate="header">
+								<img alt="Card" [src]="activity.image" class="img" />
+							</ng-template>
+							<div [innerHTML]="activity.description" [style]="{height: '100px' }"></div>
+							<div class="car-buttons">
+								<p-button
+									type="button"
+									styleClass="p-button-info p-button-rounded"
+									icon="pi pi-info-circle"
+                  [routerLink]="['./activities', activity.id]"
+								></p-button>
+							</div>
+						</p-card>
+					</div>
+				</div>
+			</ng-template>
+		</p-carousel>
+	</div>
 </section>
 <app-footer></app-footer>
