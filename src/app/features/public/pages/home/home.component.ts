@@ -39,11 +39,16 @@ export class HomeComponent implements OnInit {
         organizationService.getOrganization().subscribe((response)=>{
           this.text=response.long_description;
           this.welcomeong=response.welcome_text;
+          
           }
         );
+
+        
 	}
 
   
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
 }

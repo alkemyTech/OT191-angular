@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Slide } from 'src/app/core/models/slides.model';
+import { SlideProviderService } from 'src/app/features/backoffice/services/providers/slidesController/slide-provider.service';
+import { Pipe, PipeTransform } from '@angular/core';
+    @Pipe({name: 'htmlToPlaintext'})
+    export class HtmlToPlaintextPipe implements PipeTransform {
+      transform(value: string): string {
+        return value? value.replace(/]+>/gm, '') : '';
+      }
+    }
 
 @Component({
   selector: "app-home-slides",
@@ -7,29 +17,43 @@ import { Slide } from 'src/app/core/models/slides.model';
   styleUrls: ["./home-slides.component.scss"],
 })
 export class HomeSlidesComponent implements OnInit {
-
-  responsiveOptions:any;
-  constructor() {
-    this.responsiveOptions = [
-      {
-          breakpoint: '1024px',
-          numVisible: 3,
-          numScroll: 3
-      },
-      {
-          breakpoint: '768px',
-          numVisible: 2,
-          numScroll: 2
-      },
-      {
-          breakpoint: '560px',
-          numVisible: 1,
-          numScroll: 1
+  slides?:Slide[]; 
+  public slide1:any;
+  public slide2:any;
+  public slide3:any;
+  
+  constructor(private slideService:SlideProviderService) {
+    
+  this.slideService.getSlides().subscribe((response) => {
+    this.slides=response;
+    this.slides.map(res=>{
+      if(res.order == 1){
+        console.log("orden1", res)
+        this.slide1 = res
       }
-  ];
+    })
+    this.slides.map(res=>{
+      if(res.order == 2){
+        console.log("orden2", res)
+        this.slide2 = res
+      }
+    })
+    this.slides.map(res=>{
+      if(res.order == 3){
+        console.log("orden3", res)
+        this.slide3=res
+      }
+    })
+  });
+
+
   }
 
-  slides!: Slide[];
+  
+
+  getSlides(){
+
+  }
 
   slides2 = [
     {
@@ -49,5 +73,9 @@ export class HomeSlidesComponent implements OnInit {
     },
   ];
 
-  ngOnInit(): void {}
+  
+
+  ngOnInit(): void {
+    
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { CurrencyPipe } from "@angular/common";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-donations",
@@ -13,7 +14,7 @@ export class DonationsComponent implements OnInit {
   name = "Angular";
   formattedAmount: any;
   amount: any;
-  constructor(private currencypipe: CurrencyPipe) {}
+  constructor(private currencypipe: CurrencyPipe, router:Router) {}
 
   donation = new FormGroup({
     donation: new FormControl("", Validators.required),
@@ -29,4 +30,6 @@ export class DonationsComponent implements OnInit {
 
     element.target.value = this.formattedAmount;
   }
+
+  
 }

@@ -49,7 +49,19 @@
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
-            <th></th>
+            <th>
+              <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  (input)="applyFilter($event, 'order')"
+                  [value]="$any(dt).filters['order']?.value"
+                  placeholder="Buscar Orden..."
+                  class="p-column-filter"
+                />
+              </span>
+            </th>
             <th>
               <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
@@ -144,7 +156,7 @@
               [(ngModel)]="slide.order"
               inputId="order"
               [options]="order"
-              placeholder="Selecciona un permiso"
+              placeholder="Selecciona un Orden"
             >
               <ng-template let-option pTemplate="item">
                 <span [class]="'product-badge status-' + option.value">{{

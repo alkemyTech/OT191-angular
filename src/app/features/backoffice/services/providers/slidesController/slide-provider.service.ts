@@ -58,8 +58,8 @@ export class SlideProviderService {
     )
   }
 
-  public updateSlide(id: string, user: Slide | Partial<Slide>) {
-    return this.privateApiService.put("/slides", id, user).pipe(
+  public updateSlide(id: string, slide: Slide | Partial<Slide>) {
+    return this.privateApiService.put("/slides", id, slide).pipe(
       map((data: any) => {
         return data.data;
       })
