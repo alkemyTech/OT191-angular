@@ -1,103 +1,190 @@
 <app-header></app-header>
 
   <div class="animate__animated animate__backInDown">
-    <app-title-view title="Editor de Slides"></app-title-view>
+    <app-title-view [title]="title"></app-title-view>
   </div>
 
   <div class="animate__animated animate__bounceIn">
-    <form [formGroup]="editarSlide" (ngSubmit)="editarForm(editarSlide.value)">
-      <div class="container">
-        <div class="col">
-          <ul class="list">
-            <h4>Nombre</h4>
+    <div class="container justify-content:center align-items-center mt-4">
+      
+      <form [formGroup]="slideForm" (ngSubmit)="submitSlide()">
+        <div
+          class="row pt-4"
+          [ngClass]="
+            validateControlForSpacing(slideFormControl.name) ? 'mb-4' : ''
+          "
+        >
+          <div class="col">
+            <div class="p-inputgroup">
+              <div class="p-float-label">
+                <input
+                  id="name"
+                  type="text"
+                  class="text"
+                  pInputText
+                  formControlName="name"
+                  [ngClass]="
+                    validateControlForText(slideFormControl.name)
+                      ? 'ng-invalid ng-dirty'
+                      : ''
+                  "
+                />
+                <label class="text" for="name">Nombre de la slide</label>
+              </div>
+            </div>
             <div
-              *ngIf="slide.name.length != 0; then thenBlock; else elseBlock"
-            ></div>
-            <ng-template #thenBlock
-              ><input
-                type="text"
-                class="form-control form-control"
-                value="{{ slide.name }}"
-                formControlName="name"
-                
-                required
-              />
-              
-            </ng-template>
-            <ng-template #elseBlock
-              ><input
-                type="text"
-                class="form-control form-control"
-                placeholder="Nombre del slide"
-                formControlName="name"
-                required
-              />
-              
-              
-            </ng-template>
-  
-            <h4 class="img-title">Imagen</h4>
-            <div class="mb-3">
-              <label for="formFile" class="form-label">Ingrese una imagen</label>
-              <input
-                (change)="getImage($event)"
-                class="form-control"
-                type="file"
-                id="formFile"
-                required
-              />
+              class="text-danger"
+              *ngIf="validateControlForText(slideFormControl.name)"
+            >
+              <span
+                class="text"
+                *ngIf="slideFormControl.name.errors?.['required']"
+              >
+                El nombre es requerido
+              </span>
             </div>
-            <div class="img-container">
-              <div class="center"><img class="img" [src]="images" alt="" /></div>
-            </div>
-            
-  
-            <h4>Orden</h4>
-          <small>Elige posicion de slide</small>
-          <select
-            class="form-select form-select-lg mb-3"
-            aria-label=".form-select-lg example"
-            formControlName="order"
-          >          
-            <option value="1">Primero</option>
-            <option value="2">Segundo</option>
-            <option value="3">Tercero</option>
-          </select>
-          
-          <h4 class="description">Descripción</h4>
-          <div
-            *ngIf="
-              slide.description.length != 0;
-              then thenBlock1;
-              else elseBlock1
-            "
-          ></div>
-          <ng-template #thenBlock1
-            ><ckeditor
-              [editor]="Editor"
-              data="<p>{{ slide.description }}</p>"
-              formControlName="description"
-            ></ckeditor>
-            
-          </ng-template>
-          <ng-template #elseBlock1
-            ><ckeditor
-              [editor]="Editor"
-              data="<p>Escribe aqui la Descripción  </p>"
-              formControlName="description"
-            ></ckeditor>
-            </ng-template
-          >
-          </ul>
-        
-          
-  
-          <button  type="submit" class="btn btn-primary" id="submit-button">
-            Crear
-          </button>
+          </div>
         </div>
-      </div>
-    </form> 
+        <!--  -->
+        <div
+          class="row pt-4"
+          [ngClass]="
+            validateControlForSpacing(slideFormControl.order) ? 'mb-4' : ''
+          "
+        >
+          <div class="col">
+            <div class="p-inputgroup">
+              <div class="p-float-label">
+                <input
+                  id="order"
+                  type="text"
+                  class="text"
+                  pInputText
+                  formControlName="order"
+                  [ngClass]="
+                    validateControlForText(slideFormControl.order)
+                      ? 'ng-invalid ng-dirty'
+                      : ''
+                  "
+                />
+                <label class="text" for="name">Orden de la slide</label>
+              </div>
+            </div>
+            <div
+              class="text-danger"
+              *ngIf="validateControlForText(slideFormControl.order)"
+            >
+              <span
+                class="text"
+                *ngIf="slideFormControl.order.errors?.['required']"
+              >
+                El orden es requerido
+              </span>
+            </div>
+          </div>
+        </div>
+        <!--  -->
+        <div class="row pt-4 mb-4">
+          <div class="col">
+            <ckeditor
+              formControlName="description"
+              [config]="config"
+              (change)="onChange($event)"
+              [editor]="Editor"
+              [data]="editorData"
+              [disabled]="submitted"
+            ></ckeditor>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col">
+            <p-image
+              [src]="
+                slideFormControl.image.value == ''
+                  ? slideSelected.image
+                  : slideFormControl.image.value
+              "
+              [alt]="slideSelected.name"
+              width="300"
+            ></p-image>
+          </div>
+        </div>
+        <div
+          class="row pt-4"
+          [ngClass]="
+            validateControlForSpacing(slideFormControl.image) && imageEmpty
+              ? 'mb-4'
+              : ''
+          "
+        >
+          <input
+            id="image"
+            type="file"
+            class="p-button-raised p-button-secondary"
+            (change)="onFileSelected($event)"
+            accept="image/x-png,image/jpeg"
+            required
+            #image
+            style="display: none"
+          />
+          <div class="p-inputgroup">
+            <button
+              #buttonImage
+              type="button"
+              pButton
+              [disabled]="submitted"
+              class="p-button-sm p-button-raised p-button-secondary"
+              (click)="image.click()"
+              (click)="nothingSelected()"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-image"
+                viewBox="0 0 16 16"
+              >
+                <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                <path
+                  d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"
+                />
+              </svg>
+              Cargar imagen
+            </button>
+          </div>
+          <div class="text-danger" *ngIf="imageEmpty && submitted">
+            <span class="text" *ngIf="imageEmpty && submitted">
+              La imagen es requerida
+            </span>
+          </div>
+        </div>
+    
+        <div class="row pt-4 mb-4 justify-content-between">
+          <div class="col-auto mr-auto">
+            <button
+              pButton
+              pRipple
+              type="button"
+              [routerLink]="['/backoffice/slides']"
+              class="p-button-raised p-button-danger"
+              [label]="submitted?'Volver':'Cancelar'"
+            ></button>
+          </div>
+          <div class="col-auto">
+            <button
+              pButton
+              pRipple
+              type="submit"
+              class="p-button-raised p-button-info"
+              [label]="title"
+              [disabled]="submitted"
+              (click)="disableControls()"
+            ></button>
+          </div>
+        </div>
+      </form>
+    </div>
 
   </div>
   

@@ -27,19 +27,19 @@ export class HomeSlidesComponent implements OnInit {
   this.slideService.getSlides().subscribe((response) => {
     this.slides=response;
     this.slides.map(res=>{
-      if(res.order == 1){
+      if(res.order == "1"){
         console.log("orden1", res)
         this.slide1 = res
       }
     })
     this.slides.map(res=>{
-      if(res.order == 2){
+      if(res.order == "2"){
         console.log("orden2", res)
         this.slide2 = res
       }
     })
     this.slides.map(res=>{
-      if(res.order == 3){
+      if(res.order == "3"){
         console.log("orden3", res)
         this.slide3=res
       }

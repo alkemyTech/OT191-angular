@@ -3,10 +3,16 @@ export interface Slide {
     name:        string;
     description: string;
     image:       string;
-    order:       number | null;
+    order:       string;
     user_id:     number | null;
-    created_at:  Date;
-    updated_at:  Date;
-    deleted_at:  number | null;
+    created_at:  string;
+    updated_at:  string;
+    deleted_at:  string;
     group_id:    number | null;
+}
+
+export interface SlideResponse {
+    success: boolean;
+    data: Slide;
+    message: string;
 }

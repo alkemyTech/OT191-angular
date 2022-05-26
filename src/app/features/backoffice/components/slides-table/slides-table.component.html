@@ -105,7 +105,7 @@
                 pRipple
                 icon="pi pi-pencil"
                 class="p-button-rounded p-button-success mr-2"
-                (click)="editSlide(slide)"
+                [routerLink]="['./create', slide.id]"
               ></button>
               <button
                 pButton
@@ -123,69 +123,6 @@
           </div>
         </ng-template>
       </p-table>
-  
-      <p-dialog
-        [(visible)]="productDialog"
-        class="stylesDialog"
-        [draggable]="false"
-        [resizable]="false"
-        header="Detalles del Slide"
-        [modal]="true"
-        styleClass="p-fluid"
-      >
-        <ng-template pTemplate="content">
-          <div class="field">
-            <label for="name">Nombre</label>
-            <input
-              type="text"
-              pInputText
-              id="name"
-              [(ngModel)]="slide.name"
-              required
-              autofocus
-            />
-            <small class="p-error" *ngIf="submitted && !slide.name"
-              >Debe incluir un nombre.</small
-            >
-          </div>
-          
-  
-          <div class="field">
-            <label for="role_id">Orden de slide</label>
-            <p-dropdown
-              [(ngModel)]="slide.order"
-              inputId="order"
-              [options]="order"
-              placeholder="Selecciona un Orden"
-            >
-              <ng-template let-option pTemplate="item">
-                <span [class]="'product-badge status-' + option.value">{{
-                  option.label
-                }}</span>
-              </ng-template>
-            </p-dropdown>
-          </div>
-        </ng-template>
-  
-        <ng-template pTemplate="footer">
-          <button
-            pButton
-            pRipple
-            label="Cancelar"
-            icon="pi pi-times"
-            class="p-button-text"
-            (click)="hideDialog()"
-          ></button>
-          <button
-            pButton
-            pRipple
-            label="Guardar"
-            icon="pi pi-check"
-            class="p-button-text"
-            (click)="saveSlide()"
-          ></button>
-        </ng-template>
-      </p-dialog>
     </p-card>
   </ng-template>
   
