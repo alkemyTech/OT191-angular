@@ -21,6 +21,8 @@ export class SlidesTableComponent {
 
   submitted: boolean = false;
 
+  stylesDialog = { width: '600px', height: '800px' };
+
   order: any[] = [
     { label: "Primero", value: 1 },
     { label: "Segundo", value: 2 },
@@ -49,6 +51,8 @@ export class SlidesTableComponent {
     this.productDialog = true;
     this.slide = { ...slide };
   }
+
+  
 
   deleteSelectedSlides() {
     this.alerts

@@ -27,6 +27,7 @@
 .img-container:hover{
     transform: scale(1.05);
     box-shadow: 1px 1px 2px 2px  var(--lightblue);
+    background: linear-gradient(to top, white, var(--lightblue)); 
 }
 
 

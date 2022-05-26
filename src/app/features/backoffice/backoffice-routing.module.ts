@@ -33,6 +33,10 @@ const routes: Routes = [
 				component: SlidesComponent,
 			},
 			{
+				path: "slides/create/:id",
+				component: SlidesComponent,
+			},
+			{
 				path: "home",
 				component: HomeEditComponent,
 			},
