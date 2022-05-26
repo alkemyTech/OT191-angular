@@ -30,11 +30,12 @@ export class ActivitiesListComponent implements OnInit {
 	ngOnInit() {
 		this.activities$.subscribe((response) => {
 			this.activities = <IActivity[]>response;
+			this.activityLoaded=true;
 		});
 	}
 
 	activityDialog: boolean = false;
-
+	activityLoaded: boolean=false;
 	activities: IActivity[] = [];
 	activity: IActivity = <IActivity>{};
 
