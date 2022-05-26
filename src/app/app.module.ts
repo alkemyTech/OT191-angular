@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { LOCALE_ID, NgModule } from "@angular/core";
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
@@ -21,10 +21,12 @@ import {
 	AngularFirestoreModule,
 } from "@angular/fire/compat/firestore";
 import { MessageService } from "primeng/api";
-
+import localeEs from '@angular/common/locales/es-AR'
+import { registerLocaleData } from "@angular/common";
+registerLocaleData(localeEs, 'es-AR')
 @NgModule({
 	declarations: [AppComponent],
-	providers: [MessageService],
+	providers: [MessageService, {provide: LOCALE_ID, useValue:'es-AR'}],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
